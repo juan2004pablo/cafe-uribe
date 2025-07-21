@@ -101,7 +101,7 @@ const Index = () => {
                 size="lg"
                 variant="outline"
                 onClick={handleRequestSample}
-                className="border-2 border-white text-white hover:bg-white hover:text-gray-900 text-lg px-8 font-medium"
+                className="border-2 border-white text-coffee-brown hover:bg-white hover:text-coffee-brown text-lg px-8 font-medium"
               >
                 Solicita una Muestra
               </Button>

@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ArrowRight, Coffee, Users, Award, Leaf, ChevronDown } from 'lucide-react';
@@ -82,8 +81,8 @@ const Index = () => {
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-              Legado de <span className="text-coffee-orange">Aroma</span> y <span className="text-coffee-orange">Sabor</span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+              Legado de <span className="text-orange-500">Aroma</span> y <span className="text-orange-500">Sabor</span>
             </h1>
             <p className="text-xl md:text-2xl mb-4 font-light">100% Colombiano</p>
             <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
@@ -93,7 +92,7 @@ const Index = () => {
               <Button
                 size="lg"
                 onClick={handleKnowOurCoffee}
-                className="bg-coffee-orange hover:bg-coffee-orange/90 text-white text-lg px-8 font-medium"
+                className="bg-orange-500 hover:bg-orange-600 text-white text-lg px-8 font-medium"
               >
                 Conoce Nuestro Café
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -102,7 +101,7 @@ const Index = () => {
                 size="lg"
                 variant="outline"
                 onClick={handleRequestSample}
-                className="border-2 border-white text-white hover:bg-white hover:text-coffee-brown text-lg px-8 font-medium"
+                className="border-2 border-white text-white hover:bg-white hover:text-gray-900 text-lg px-8 font-medium"
               >
                 Solicita una Muestra
               </Button>
@@ -120,7 +119,7 @@ const Index = () => {
       </section>
 
       {/* Quiénes Somos */}
-      <section ref={aboutRef} className="py-20 bg-coffee-cream/30">
+      <section ref={aboutRef} className="py-20 bg-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -128,19 +127,19 @@ const Index = () => {
               animate={aboutInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="font-playfair text-4xl md:text-5xl font-bold text-coffee-brown mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Nuestra Historia
               </h2>
-              <p className="text-lg text-coffee-brown/80 mb-6 leading-relaxed">
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
                 Desde las montañas del Eje Cafetero colombiano, llevamos más de tres generaciones
                 cultivando el café más fino con métodos tradicionales y tecnología moderna.
               </p>
-              <p className="text-lg text-coffee-brown/80 mb-8 leading-relaxed">
+              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
                 Cada grano cuenta la historia de nuestra tierra, nuestro compromiso con la calidad
                 y nuestra pasión por llevar el mejor café colombiano al mundo.
               </p>
               <Link to="/nosotros">
-                <Button className="bg-coffee-orange hover:bg-coffee-orange/90">
+                <Button className="bg-orange-500 hover:bg-orange-600">
                   Conoce Más Sobre Nosotros
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
@@ -158,8 +157,8 @@ const Index = () => {
                 className="rounded-lg shadow-2xl"
               />
               <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-lg shadow-xl">
-                <p className="font-playfair text-2xl font-bold text-coffee-brown">+50</p>
-                <p className="text-coffee-brown/70">Años de tradición</p>
+                <p className="text-2xl font-bold text-gray-900">+50</p>
+                <p className="text-gray-600">Años de tradición</p>
               </div>
             </motion.div>
           </div>
@@ -175,10 +174,10 @@ const Index = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold text-coffee-brown mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Nuestras Variedades
             </h2>
-            <p className="text-lg text-coffee-brown/70 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
               Descubre nuestras variedades premium, cada una con características únicas
               que reflejan la riqueza de nuestros suelos cafeteros.
             </p>
@@ -203,13 +202,13 @@ const Index = () => {
                     <div className="absolute inset-0 bg-black/20" />
                   </div>
                   <CardContent className="p-6 flex flex-col flex-grow">
-                    <h3 className="font-playfair text-xl font-semibold text-coffee-brown mb-2">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
                       {variety.name}
                     </h3>
-                    <p className="text-coffee-brown/70 mb-4 flex-grow">
+                    <p className="text-gray-700 mb-4 flex-grow">
                       {variety.description}
                     </p>
-                    <Button variant="outline" className="border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white mt-auto">
+                    <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white mt-auto">
                       Ver Detalles
                     </Button>
                   </CardContent>
@@ -220,7 +219,7 @@ const Index = () => {
 
           <div className="text-center">
             <Link to="/variedades">
-              <Button size="lg" className="bg-coffee-orange hover:bg-coffee-orange/90">
+              <Button size="lg" className="bg-orange-500 hover:bg-orange-600">
                 Ver Todas las Variedades
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
@@ -230,7 +229,7 @@ const Index = () => {
       </section>
 
       {/* De la Finca a Tu Taza */}
-      <section ref={processRef} className="py-20 bg-coffee-brown text-white">
+      <section ref={processRef} className="py-20 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -238,7 +237,7 @@ const Index = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
               De la Finca a Tu Taza
             </h2>
             <p className="text-lg text-white/80 max-w-2xl mx-auto">
@@ -256,14 +255,14 @@ const Index = () => {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 className="text-center relative"
               >
-                <div className="w-20 h-20 bg-coffee-orange rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
                   {step.icon}
                 </div>
-                <h3 className="font-playfair text-xl font-semibold mb-3">{step.title}</h3>
+                <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
                 <p className="text-white/70">{step.description}</p>
                 {index < processSteps.length - 1 && (
                   <div className="hidden md:block absolute top-10 left-full w-full">
-                    <ArrowRight className="w-6 h-6 text-coffee-orange/50 mx-auto" />
+                    <ArrowRight className="w-6 h-6 text-orange-500/50 mx-auto" />
                   </div>
                 )}
               </motion.div>
@@ -273,7 +272,7 @@ const Index = () => {
       </section>
 
       {/* Testimonios */}
-      <section ref={testimonialsRef} className="py-20 bg-coffee-cream/30">
+      <section ref={testimonialsRef} className="py-20 bg-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -281,10 +280,10 @@ const Index = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold text-coffee-brown mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Lo Que Dicen Nuestros Clientes
             </h2>
-            <p className="text-lg text-coffee-brown/70 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
               La confianza de nuestros socios comerciales es nuestro mayor logro
             </p>
           </motion.div>
@@ -306,15 +305,15 @@ const Index = () => {
                         className="w-16 h-16 rounded-full object-cover"
                       />
                       <div>
-                        <h3 className="font-semibold text-coffee-brown text-lg">
+                        <h3 className="font-semibold text-gray-900 text-lg">
                           {testimonial.name}
                         </h3>
-                        <p className="text-coffee-orange font-medium">
+                        <p className="text-orange-500 font-medium">
                           {testimonial.business}
                         </p>
                       </div>
                     </div>
-                    <blockquote className="text-coffee-brown/80 italic text-lg leading-relaxed">
+                    <blockquote className="text-gray-700 italic text-lg leading-relaxed">
                       "{testimonial.testimonial}"
                     </blockquote>
                   </CardContent>
@@ -326,24 +325,24 @@ const Index = () => {
       </section>
 
       {/* CTA B2B */}
-      <section className="py-20 bg-coffee-cream/50">
+      <section className="py-20 bg-orange-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-playfair text-4xl font-bold text-coffee-brown mb-6">
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
             ¿Eres un Negocio?
           </h2>
-          <p className="text-lg text-coffee-brown/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
             Únete a nuestra red de distribuidores y lleva la calidad premium de Café Uribe
             a tus clientes. Ofrecemos condiciones especiales para mayoristas.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/clientes-b2b">
-              <Button size="lg" className="bg-coffee-orange hover:bg-coffee-orange/90">
+              <Button size="lg" className="bg-orange-500 hover:bg-orange-600">
                 Información B2B
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
             <Link to="/contacto">
-              <Button size="lg" variant="outline" className="border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white">
+              <Button size="lg" variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white">
                 Contacta con Nosotros
               </Button>
             </Link>

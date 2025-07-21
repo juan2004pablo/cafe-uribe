@@ -1,157 +1,30 @@
 
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, MessageCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { motion, AnimatePresence } from 'framer-motion';
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import { Bell, Search, User } from "lucide-react";
 
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navigation = [
-    { name: 'Inicio', href: '/' },
-    { name: 'Nosotros', href: '/nosotros' },
-    { name: 'Variedades', href: '/variedades' },
-    { name: 'Clientes B2B', href: '/clientes-b2b' },
-    { name: 'Contacto', href: '/contacto' },
-  ];
-
-  const handleCall = () => {
-    window.open('tel:+573203737502', '_blank');
-  };
-
-  const handleWhatsApp = () => {
-    window.open('https://wa.me/573203737502?text=Hola, me interesa conocer más sobre Café Uribe', '_blank');
-  };
-
+export const Header = () => {
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white backdrop-blur-md shadow-lg' : 'bg-transparent'
-        }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-12 h-12 bg-coffee-orange rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-xl">CU</span>
-            </div>
-            <div className="flex flex-col">
-              <span className={`font-playfair font-bold text-xl transition-colors duration-300 ${isScrolled ? 'text-coffee-brown' : 'text-white'
-                }`}>Café Uribe</span>
-              <span className={`text-xs transition-colors duration-300 ${isScrolled ? 'text-coffee-brown/70' : 'text-white/80'
-                }`}>100% Colombiano</span>
-            </div>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`text-sm font-medium transition-colors duration-200 ${location.pathname === item.href
-                    ? `text-coffee-orange border-b-2 border-coffee-orange pb-1`
-                    : `transition-colors duration-300 hover:text-coffee-orange ${isScrolled ? 'text-coffee-brown' : 'text-white'
-                    }`
-                  }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Contact Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleCall}
-              className={`transition-all duration-300 ${isScrolled
-                  ? 'border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white'
-                  : 'border-white text-coffee-brown hover:bg-white hover:text-coffee-brown'
-                }`}
-            >
-              <Phone className="w-4 h-4 mr-2" />
-              Llamar
-            </Button>
-            <Button
-              size="sm"
-              onClick={handleWhatsApp}
-              className="bg-coffee-orange hover:bg-coffee-orange/90 text-white"
-            >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              WhatsApp
-            </Button>
-          </div>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden p-2 rounded-md transition-colors duration-300 hover:text-coffee-orange ${isScrolled ? 'text-coffee-brown' : 'text-white'
-              }`}
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+    <header className="h-16 border-b bg-white flex items-center px-4 gap-4">
+      <SidebarTrigger />
+      
+      <div className="flex-1 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="sm">
+            <Search className="h-4 w-4" />
+          </Button>
+          <Button variant="ghost" size="sm">
+            <Bell className="h-4 w-4" />
+          </Button>
+          <Button variant="ghost" size="sm">
+            <User className="h-4 w-4" />
+          </Button>
         </div>
       </div>
-
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 backdrop-blur-md border-t"
-          >
-            <div className="px-4 py-6 space-y-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`block text-lg font-medium ${location.pathname === item.href
-                      ? 'text-coffee-orange'
-                      : 'text-coffee-brown hover:text-coffee-orange'
-                    }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="pt-4 space-y-2">
-                <Button
-                  variant="outline"
-                  onClick={handleCall}
-                  className="w-full border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white"
-                >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Llamar
-                </Button>
-                <Button
-                  onClick={handleWhatsApp}
-                  className="w-full bg-coffee-orange hover:bg-coffee-orange/90 text-white"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  WhatsApp
-                </Button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   );
 };
-
-export default Header;

@@ -262,7 +262,7 @@ const Index = () => {
                 <p className="text-white/70">{step.description}</p>
                 {index < processSteps.length - 1 && (
                   <div className="hidden md:block absolute top-10 left-full w-full">
-                    <ArrowRight className="w-6 h-6 text-orange-500/50 mx-auto" />
+                    <ArrowRight className="w-6 h-6 text-coffee-orange/50 mx-auto" />
                   </div>
                 )}
               </motion.div>
@@ -325,7 +325,7 @@ const Index = () => {
       </section>
 
       {/* CTA B2B */}
-      <section className="py-20 bg-orange-50">
+      <section className="py-20 bg-coffee-cream/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
             ¿Eres un Negocio?

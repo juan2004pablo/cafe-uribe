@@ -1,73 +1,121 @@
-# Welcome to your Lovable project
 
-## Project info
+# Mi Proyecto React + TypeScript + Tailwind
 
-**URL**: https://lovable.dev/projects/a82f86f2-0a90-4fba-96bc-b22bce036d71
+Base de proyecto React con TypeScript y Tailwind CSS, preparada para desarrollo escalable.
 
-## How can I edit this code?
+## 🚀 Características
 
-There are several ways of editing your application.
+- **React 18** con TypeScript
+- **Tailwind CSS** para estilos
+- **Shadcn/ui** para componentes
+- **React Router** para navegación
+- **React Query** para manejo de estado
+- **Sidebar responsive** con navegación
+- **Estructura modular** y escalable
 
-**Use Lovable**
+## 📁 Estructura del Proyecto
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a82f86f2-0a90-4fba-96bc-b22bce036d71) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/
+│   ├── layout/          # Componentes de layout (Header, Sidebar, etc.)
+│   └── ui/             # Componentes UI reutilizables
+├── pages/              # Páginas de la aplicación
+├── hooks/              # Custom hooks
+├── utils/              # Utilidades y helpers
+├── types/              # Tipos TypeScript
+└── lib/                # Configuraciones de librerías
 ```
 
-**Edit a file directly in GitHub**
+## 🛠️ Instalación
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# Instalar dependencias
+npm install
 
-**Use GitHub Codespaces**
+# Ejecutar en desarrollo
+npm run dev
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Build para producción
+npm run build
+```
 
-## What technologies are used for this project?
+## 📝 Guía de Uso
 
-This project is built with:
+### Agregar una nueva página
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. Crear el componente en `src/pages/`
+2. Agregar la ruta en `src/App.tsx`
+3. Actualizar la navegación en `src/components/layout/AppSidebar.tsx`
 
-## How can I deploy this project?
+### Crear un nuevo componente
 
-Simply open [Lovable](https://lovable.dev/projects/a82f86f2-0a90-4fba-96bc-b22bce036d71) and click on Share -> Publish.
+1. Crear el archivo en `src/components/ui/` o una subcarpeta apropiada
+2. Exportar el componente
+3. Importar donde sea necesario
 
-## Can I connect a custom domain to my Lovable project?
+### Utilidades disponibles
 
-Yes, you can!
+- `formatDate()` - Formatear fechas
+- `formatNumber()` - Formatear números
+- `debounce()` - Función debounce
+- `copyToClipboard()` - Copiar al portapapeles
+- `isValidEmail()` - Validar email
+- `truncateText()` - Truncar texto
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Tipos TypeScript
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Los tipos principales están definidos en `src/types/index.ts`:
+- `User` - Usuario del sistema
+- `Document` - Documento
+- `Report` - Reporte
+- `ApiResponse<T>` - Respuesta de API
+- `PaginatedResponse<T>` - Respuesta paginada
+
+## 🎨 Personalización
+
+### Colores y tema
+
+Los colores se definen en `src/index.css` usando variables CSS.
+
+### Componentes UI
+
+Usa los componentes de Shadcn/ui disponibles en `src/components/ui/`.
+
+### Sidebar
+
+Modifica `src/components/layout/AppSidebar.tsx` para agregar/quitar elementos de navegación.
+
+## 📱 Responsive Design
+
+El proyecto está optimizado para:
+- Desktop (1024px+)
+- Tablet (768px - 1023px)
+- Mobile (< 768px)
+
+## 🔧 Configuración adicional
+
+### Variables de entorno
+
+Crea un archivo `.env.local`:
+
+```env
+VITE_API_URL=http://localhost:3000
+VITE_APP_NAME=Mi Proyecto
+```
+
+### Rutas
+
+Las rutas están definidas en `src/utils/constants.ts` para facilitar el mantenimiento.
+
+## 🤝 Contribuir
+
+1. Fork el proyecto
+2. Crea una rama para tu feature
+3. Commit tus cambios
+4. Push a la rama
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT.

@@ -229,7 +229,7 @@ const Index = () => {
       </section>
 
       {/* De la Finca a Tu Taza */}
-      <section ref={processRef} className="py-20 bg-gray-900 text-white">
+      <section ref={processRef} className="py-20 bg-coffee-brown text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

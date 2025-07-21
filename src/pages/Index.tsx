@@ -139,7 +139,7 @@ const Index = () => {
                 y nuestra pasión por llevar el mejor café colombiano al mundo.
               </p>
               <Link to="/nosotros">
-                <Button className="bg-orange-500 hover:bg-orange-600">
+                <Button className="bg-coffee-orange hover:bg-orange-600">
                   Conoce Más Sobre Nosotros
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
@@ -208,7 +208,7 @@ const Index = () => {
                     <p className="text-gray-700 mb-4 flex-grow">
                       {variety.description}
                     </p>
-                    <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white mt-auto">
+                    <Button variant="outline" className="border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white mt-auto">
                       Ver Detalles
                     </Button>
                   </CardContent>
@@ -219,7 +219,7 @@ const Index = () => {
 
           <div className="text-center">
             <Link to="/variedades">
-              <Button size="lg" className="bg-orange-500 hover:bg-orange-600">
+              <Button size="lg" className="bg-coffee-orange hover:bg-orange-600">
                 Ver Todas las Variedades
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
@@ -308,7 +308,7 @@ const Index = () => {
                         <h3 className="font-semibold text-gray-900 text-lg">
                           {testimonial.name}
                         </h3>
-                        <p className="text-orange-500 font-medium">
+                        <p className="text-coffee-orange font-medium">
                           {testimonial.business}
                         </p>
                       </div>

@@ -1,12 +1,12 @@
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-coffee-brown text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-coffee-orange rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-lg">CU</span>
               </div>
               <div>
@@ -23,10 +23,10 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Enlaces</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="/nosotros" className="hover:text-orange-500">Nosotros</a></li>
-              <li><a href="/variedades" className="hover:text-orange-500">Variedades</a></li>
-              <li><a href="/clientes-b2b" className="hover:text-orange-500">Clientes B2B</a></li>
-              <li><a href="/contacto" className="hover:text-orange-500">Contacto</a></li>
+              <li><a href="/nosotros" className="hover:text-coffee-orange">Nosotros</a></li>
+              <li><a href="/variedades" className="hover:text-coffee-orange">Variedades</a></li>
+              <li><a href="/clientes-b2b" className="hover:text-coffee-orange">Clientes B2B</a></li>
+              <li><a href="/contacto" className="hover:text-coffee-orange">Contacto</a></li>
             </ul>
           </div>
           

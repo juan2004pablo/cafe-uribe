@@ -1,6 +1,5 @@
 
-import { useState } from "react";
-import { Home, Settings, Users, FileText, BarChart3, Plus } from "lucide-react";
+import { Home, Settings, Users, FileText, BarChart3 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 
 import {
@@ -12,7 +11,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
 
@@ -28,7 +26,7 @@ const settingsItems = [
 ];
 
 export function AppSidebar() {
-  const { collapsed } = useSidebar();
+  const { state } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -38,8 +36,8 @@ export function AppSidebar() {
 
   return (
     <Sidebar
-      className={collapsed ? "w-16" : "w-64"}
-      collapsible
+      className={state === "collapsed" ? "w-16" : "w-64"}
+      collapsible="icon"
     >
       <SidebarContent className="bg-gray-50">
         <SidebarGroup>
@@ -53,7 +51,7 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild>
                     <NavLink to={item.url} end className={getNavCls}>
                       <item.icon className="mr-3 h-5 w-5" />
-                      {!collapsed && <span>{item.title}</span>}
+                      {state === "expanded" && <span>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -73,7 +71,7 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild>
                     <NavLink to={item.url} end className={getNavCls}>
                       <item.icon className="mr-3 h-5 w-5" />
-                      {!collapsed && <span>{item.title}</span>}
+                      {state === "expanded" && <span>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -82,7 +80,7 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {!collapsed && (
+        {state === "expanded" && (
           <div className="mt-auto p-4">
             <div className="bg-white rounded-lg p-4 border">
               <h3 className="font-medium text-gray-900 mb-2">¿Necesitas ayuda?</h3>

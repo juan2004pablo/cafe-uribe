@@ -44,15 +44,15 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
+            <div className="w-12 h-12 bg-coffee-orange rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-xl">CU</span>
             </div>
             <div className="flex flex-col">
               <span className={`font-bold text-xl transition-colors duration-300 ${
-                isScrolled ? 'text-gray-900' : 'text-white'
+                isScrolled ? 'text-coffee-brown' : 'text-white'
               }`}>Café Uribe</span>
               <span className={`text-xs transition-colors duration-300 ${
-                isScrolled ? 'text-gray-600' : 'text-white/80'
+                isScrolled ? 'text-coffee-brown/60' : 'text-white/80'
               }`}>100% Colombiano</span>
             </div>
           </Link>
@@ -65,9 +65,9 @@ const Header = () => {
                 to={item.href}
                 className={`text-sm font-medium transition-colors duration-200 ${
                   location.pathname === item.href
-                    ? `text-orange-500 border-b-2 border-orange-500 pb-1`
-                    : `transition-colors duration-300 hover:text-orange-500 ${
-                        isScrolled ? 'text-gray-900' : 'text-white'
+                    ? `text-coffee-orange border-b-2 border-coffee-orange pb-1`
+                    : `transition-colors duration-300 hover:text-coffee-orange ${
+                        isScrolled ? 'text-coffee-brown' : 'text-white'
                       }`
                 }`}
               >
@@ -84,8 +84,8 @@ const Header = () => {
               onClick={handleCall}
               className={`transition-all duration-300 ${
                 isScrolled
-                  ? 'border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white'
-                  : 'border-white text-white hover:bg-white hover:text-gray-900'
+                  ? 'border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white'
+                  : 'border-white text-white hover:bg-white hover:text-coffee-brown'
               }`}
             >
               <Phone className="w-4 h-4 mr-2" />
@@ -94,7 +94,7 @@ const Header = () => {
             <Button
               size="sm"
               onClick={handleWhatsApp}
-              className="bg-orange-500 hover:bg-orange-600 text-white"
+              className="bg-coffee-orange hover:bg-coffee-orange/90 text-white"
             >
               <MessageCircle className="w-4 h-4 mr-2" />
               WhatsApp
@@ -104,8 +104,8 @@ const Header = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden p-2 rounded-md transition-colors duration-300 hover:text-orange-500 ${
-              isScrolled ? 'text-gray-900' : 'text-white'
+            className={`md:hidden p-2 rounded-md transition-colors duration-300 hover:text-coffee-orange ${
+              isScrolled ? 'text-coffee-brown' : 'text-white'
             }`}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -130,8 +130,8 @@ const Header = () => {
                   onClick={() => setIsOpen(false)}
                   className={`block text-lg font-medium ${
                     location.pathname === item.href
-                      ? 'text-orange-500'
-                      : 'text-gray-900 hover:text-orange-500'
+                      ? 'text-coffee-orange'
+                      : 'text-coffee-brown hover:text-coffee-orange'
                   }`}
                 >
                   {item.name}
@@ -141,14 +141,14 @@ const Header = () => {
                 <Button
                   variant="outline"
                   onClick={handleCall}
-                  className="w-full border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
+                  className="w-full border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white"
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Llamar
                 </Button>
                 <Button
                   onClick={handleWhatsApp}
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+                  className="w-full bg-coffee-orange hover:bg-coffee-orange/90 text-white"
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
                   WhatsApp

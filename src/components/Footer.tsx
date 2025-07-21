@@ -89,7 +89,7 @@ const Footer = () => {
 
         <div className="border-t border-white/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/60 text-sm">
-            © 2024 Café Uribe. Todos los derechos reservados.
+            © 2025 Café Uribe. Todos los derechos reservados.
           </p>
           <p className="text-white/60 text-sm mt-4 md:mt-0">
             Legado de aroma y sabor - 100% Colombiano

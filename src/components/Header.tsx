@@ -85,7 +85,7 @@ const Header = () => {
               className={`transition-all duration-300 ${
                 isScrolled
                   ? 'border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white'
-                  : 'border-white text-white hover:bg-white hover:text-coffee-brown'
+                  : 'border-white text-coffee-brown hover:bg-white hover:text-coffee-brown'
               }`}
             >
               <Phone className="w-4 h-4 mr-2" />

@@ -82,7 +82,7 @@ const Index = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-              Legado de <span className="text-orange-500">Aroma</span> y <span className="text-orange-500">Sabor</span>
+              Legado de <span className="text-coffee-orange">Aroma</span> y <span className="text-coffee-orange">Sabor</span>
             </h1>
             <p className="text-xl md:text-2xl mb-4 font-light">100% Colombiano</p>
             <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
@@ -92,7 +92,7 @@ const Index = () => {
               <Button
                 size="lg"
                 onClick={handleKnowOurCoffee}
-                className="bg-orange-500 hover:bg-orange-600 text-white text-lg px-8 font-medium"
+                className="bg-coffee-orange hover:bg-orange-600 text-white text-lg px-8 font-medium"
               >
                 Conoce Nuestro Café
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -255,7 +255,7 @@ const Index = () => {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 className="text-center relative"
               >
-                <div className="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-coffee-orange rounded-full flex items-center justify-center mx-auto mb-6">
                   {step.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
@@ -336,13 +336,13 @@ const Index = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/clientes-b2b">
-              <Button size="lg" className="bg-orange-500 hover:bg-orange-600">
+              <Button size="lg" className="bg-coffee-orange hover:bg-orange-600">
                 Información B2B
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
             <Link to="/contacto">
-              <Button size="lg" variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white">
+              <Button size="lg" variant="outline" className="border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white">
                 Contacta con Nosotros
               </Button>
             </Link>

@@ -99,7 +99,7 @@ const ClientesB2B = () => {
                 Solicitar Información
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-coffee-brown">
+              <Button size="lg" variant="outline" className="border-white text-coffee-brown hover:bg-white hover:text-coffee-brown">
                 Ver Catálogo B2B
               </Button>
             </div>

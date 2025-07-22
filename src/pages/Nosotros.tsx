@@ -47,14 +47,23 @@ const Nosotros = () => {
             <Header />
 
             {/* Hero Section */}
-            <section ref={heroRef} className="relative min-h-[60vh] flex items-center justify-center pt-20">
-                <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style={{
-                        backgroundImage: "url('https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=1920&h=1080&fit=crop')",
-                        filter: "brightness(0.5)"
-                    }}
-                />
+            <section ref={heroRef} className="relative min-h-[60vh] flex items-center justify-center pt-20 overflow-hidden">
+                {/* Video de fondo */}
+                <video
+                    className="absolute inset-0 w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                >
+                    <source src="/images/video_2.mp4" type="video/mp4" />
+                    Tu navegador no soporta el tag de video.
+                </video>
+
+                {/* Overlay para oscurecer el video */}
+                <div className="absolute inset-0 bg-black opacity-50" />
+
+                {/* Contenido principal */}
                 <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
@@ -110,7 +119,7 @@ const Nosotros = () => {
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
                             <img
-                                src="https://images.unsplash.com/photo-1442975631115-c4f7b5d14785?w=600&h=700&fit=crop"
+                                src="/images/foto_70.avif"
                                 alt="Familia cafetera"
                                 className="rounded-lg shadow-2xl"
                             />
@@ -154,7 +163,7 @@ const Nosotros = () => {
                             transition={{ duration: 0.8 }}
                         >
                             <img
-                                src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=600&h=500&fit=crop"
+                                src="/images/foto_67.jpeg"
                                 alt="Finca de café"
                                 className="rounded-lg shadow-2xl"
                             />

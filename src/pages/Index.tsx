@@ -18,18 +18,13 @@ const Index = () => {
     {
       name: "Café Premium Origen",
       description: "Notas cítricas y chocolate, altura 1800m",
-      image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400&h=300&fit=crop"
+      image: "/images/foto_60.jpeg"
     },
     {
       name: "Café Especial Tostión Media",
       description: "Equilibrio perfecto, notas frutales",
-      image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=300&fit=crop"
+      image: "/images/foto_61.jpeg"
     },
-    {
-      name: "Café Artesanal Intenso",
-      description: "Cuerpo robusto, ideal para espresso",
-      image: "https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400&h=300&fit=crop"
-    }
   ];
 
   const processSteps = [
@@ -128,15 +123,21 @@ const Index = () => {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Nuestra Historia
+                Quiénes somos
               </h2>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Desde las montañas del Eje Cafetero colombiano, llevamos más de tres generaciones
-                cultivando el café más fino con métodos tradicionales y tecnología moderna.
+                Café Uribe es una empresa avalada por el registro Invima,
+                que cuenta con registro de marca como café Uribe un legado de aroma y sabor ,
+                lo que asegura su compromiso con la calidad y la sanidad de sus productos.
+                Contamos con registros que nos permiten operar como tostadores, exportadores y trilladores,
+                lo que garantiza un proceso integral en la producción de nuestro café.
+                Además, nos enorgullece poseer el logo de denominación de origen,
+                que resalta la autenticidad de nuestro café, y el sello de la Federación de Café,
+                que certifica que nuestro producto es 100% café colombiano.
               </p>
               <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                Cada grano cuenta la historia de nuestra tierra, nuestro compromiso con la calidad
-                y nuestra pasión por llevar el mejor café colombiano al mundo.
+                En Café Uribe, nos dedicamos a ofrecer una experiencia auténtica y de alta calidad a todos nuestros clientes,
+                celebrando la riqueza del café colombiano en cada taza.
               </p>
               <Link to="/nosotros">
                 <Button className="bg-coffee-orange hover:bg-orange-600">
@@ -152,7 +153,7 @@ const Index = () => {
               className="relative"
             >
               <img
-                src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&h=700&fit=crop"
+                src="/images/foto_24.jpeg"
                 alt="Plantación de café"
                 className="rounded-lg shadow-2xl"
               />
@@ -183,7 +184,7 @@ const Index = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {varieties.map((variety, index) => (
               <motion.div
                 key={variety.name}
@@ -208,9 +209,9 @@ const Index = () => {
                     <p className="text-gray-700 mb-4 flex-grow">
                       {variety.description}
                     </p>
-                    <Button variant="outline" className="border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white mt-auto">
+                    { /*<Button variant="outline" className="border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white mt-auto">
                       Ver Detalles
-                    </Button>
+                    </Button> */ }
                   </CardContent>
                 </Card>
               </motion.div>

@@ -44,9 +44,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-12 h-12 bg-coffee-orange rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-xl">CU</span>
-            </div>
+            <img 
+                src="/copy_logo.png" 
+                alt="Montemar Logo" 
+                className="h-24 w-auto mr-3"
+              />
             <div className="flex flex-col">
               <span className={`font-bold text-xl transition-colors duration-300 ${
                 isScrolled ? 'text-coffee-brown' : 'text-white'
@@ -85,7 +87,7 @@ const Header = () => {
               className={`transition-all duration-300 ${
                 isScrolled
                   ? 'border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white'
-                  : 'border-white text-coffee-brown hover:bg-white hover:text-coffee-brown'
+                  : 'border-white text-coffee-orange hover:bg-white/90 hover:text-coffee-orange'
               }`}
             >
               <Phone className="w-4 h-4 mr-2" />

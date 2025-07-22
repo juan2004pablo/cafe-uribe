@@ -28,107 +28,484 @@ const Galeria = () => {
         {
             id: 1,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&h=600&fit=crop',
+            src: '/images/foto_1.jpeg',
             title: 'Cultivos en las montañas',
             category: 'finca'
         },
         {
             id: 2,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&h=800&fit=crop',
+            src: '/images/foto_2.jpeg',
             title: 'Granos de café premium',
             category: 'producto'
         },
         {
             id: 3,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1442975631115-c4f7b5d14785?w=800&h=500&fit=crop',
+            src: '/images/foto_3.jpeg',
             title: 'Recolección tradicional',
             category: 'proceso'
         },
         {
             id: 4,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&h=700&fit=crop',
+            src: '/images/foto_4.jpeg',
             title: 'Arte en cada taza',
             category: 'barismo'
         },
         {
             id: 5,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=700&h=500&fit=crop',
+            src: '/images/foto_5.jpeg',
             title: 'Tostión artesanal',
             category: 'proceso'
         },
         {
             id: 6,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&h=600&fit=crop',
+            src: '/images/foto_6.jpeg',
             title: 'Café recién molido',
             category: 'producto'
         },
         {
             id: 7,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1497636577773-f1231844b336?w=800&h=600&fit=crop',
+            src: '/images/foto_7.jpeg',
             title: 'Plantaciones verdes',
             category: 'finca'
         },
         {
             id: 8,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1493397212122-2b85dda8106b?w=600&h=900&fit=crop',
+            src: '/images/foto_8.jpeg',
             title: 'Proceso de secado',
             category: 'proceso'
         },
         {
             id: 9,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1520637836862-4d197d17c38a?w=700&h=500&fit=crop',
+            src: '/images/foto_9.jpeg',
             title: 'Espresso perfecto',
             category: 'barismo'
         },
         {
             id: 10,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1525385133512-2f3bdd039054?w=500&h=800&fit=crop',
+            src: '/images/foto_10.jpeg',
             title: 'Grano seleccionado',
             category: 'producto'
         },
-        // Más imágenes...
         {
             id: 11,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1498804103079-a6351b050096?w=800&h=600&fit=crop',
-            title: 'Vista panorámica',
+            src: '/images/foto_11.jpeg',
+            title: 'Instante de molienda',
             category: 'finca'
         },
         {
             id: 12,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=600&h=700&fit=crop',
-            title: 'Latte art maestro',
-            category: 'barismo'
+            src: '/images/foto_12.jpeg',
+            title: 'Cereza brillante',
+            category: 'proceso'
         },
         {
             id: 13,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1610889556528-9a770e32642f?w=700&h=500&fit=crop',
-            title: 'Selección manual',
+            src: '/images/foto_13.jpeg',
+            title: 'Recolección precisa',
             category: 'proceso'
         },
         {
             id: 14,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=500&h=700&fit=crop',
-            title: 'Cappuccino cremoso',
-            category: 'barismo'
+            src: '/images/foto_14.jpeg',
+            title: 'Manos que cultivan',
+            category: 'finca'
         },
         {
             id: 15,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=800&h=500&fit=crop',
-            title: 'Terraza cafetera',
+            src: '/images/foto_15.jpeg',
+            title: 'Preparación artesanal',
+            category: 'barismo'
+        },
+        {
+            id: 16,
+            type: 'image',
+            src: '/images/foto_16.jpeg',
+            title: 'Café con identidad',
+            category: 'producto'
+        },
+        {
+            id: 17,
+            type: 'image',
+            src: '/images/foto_17.jpeg',
+            title: 'Taza de excelencia',
+            category: 'barismo'
+        },
+        {
+            id: 18,
+            type: 'image',
+            src: '/images/foto_18.jpeg',
+            title: 'Tueste en tambor',
+            category: 'proceso'
+        },
+        {
+            id: 19,
+            type: 'image',
+            src: '/images/foto_19.jpeg',
+            title: 'Pasión por el café',
+            category: 'producto'
+        },
+        {
+            id: 20,
+            type: 'image',
+            src: '/images/foto_20.jpeg',
+            title: 'Técnica de vertido',
+            category: 'barismo'
+        },
+        {
+            id: 21,
+            type: 'image',
+            src: '/images/foto_21.jpeg',
+            title: 'Catación profesional',
+            category: 'proceso'
+        },
+        {
+            id: 22,
+            type: 'image',
+            src: '/images/foto_22.jpeg',
+            title: 'Café de altura',
+            category: 'finca'
+        },
+        {
+            id: 23,
+            type: 'image',
+            src: '/images/foto_23.jpeg',
+            title: 'Floración de cafeto',
+            category: 'finca'
+        },
+        {
+            id: 24,
+            type: 'image',
+            src: '/images/foto_24.jpeg',
+            title: 'Tostado lento',
+            category: 'proceso'
+        },
+        {
+            id: 25,
+            type: 'image',
+            src: '/images/foto_25.jpeg',
+            title: 'Filtro artesanal',
+            category: 'barismo'
+        },
+        {
+            id: 26,
+            type: 'image',
+            src: '/images/foto_26.jpeg',
+            title: 'Café con historia',
+            category: 'producto'
+        },
+        {
+            id: 27,
+            type: 'image',
+            src: '/images/foto_27.jpeg',
+            title: 'Macizo cafetero',
+            category: 'finca'
+        },
+        {
+            id: 28,
+            type: 'image',
+            src: '/images/foto_28.jpeg',
+            title: 'Tueste medio perfecto',
+            category: 'proceso'
+        },
+        {
+            id: 29,
+            type: 'image',
+            src: '/images/foto_29.jpeg',
+            title: 'Filtro en acción',
+            category: 'barismo'
+        },
+        {
+            id: 30,
+            type: 'image',
+            src: '/images/foto_30.jpeg',
+            title: 'Selección rigurosa',
+            category: 'proceso'
+        },
+        {
+            id: 31,
+            type: 'image',
+            src: '/images/foto_31.jpeg',
+            title: 'Café especial',
+            category: 'producto'
+        },
+        {
+            id: 32,
+            type: 'image',
+            src: '/images/foto_32.jpeg',
+            title: 'Degustación sensorial',
+            category: 'barismo'
+        },
+        {
+            id: 33,
+            type: 'image',
+            src: '/images/foto_33.jpeg',
+            title: 'Cultivo sostenible',
+            category: 'finca'
+        },
+        {
+            id: 34,
+            type: 'image',
+            src: '/images/foto_34.jpeg',
+            title: 'Proceso natural',
+            category: 'proceso'
+        },
+        {
+            id: 35,
+            type: 'image',
+            src: '/images/foto_35.jpeg',
+            title: 'Color del grano',
+            category: 'producto'
+        },
+        {
+            id: 36,
+            type: 'image',
+            src: '/images/foto_36.jpeg',
+            title: 'Campesino en faena',
+            category: 'finca'
+        },
+        {
+            id: 37,
+            type: 'image',
+            src: '/images/foto_37.jpeg',
+            title: 'Degustación en finca',
+            category: 'barismo'
+        },
+        {
+            id: 38,
+            type: 'image',
+            src: '/images/foto_38.jpeg',
+            title: 'Molienda precisa',
+            category: 'proceso'
+        },
+        {
+            id: 39,
+            type: 'image',
+            src: '/images/foto_39.jpeg',
+            title: 'Desde el origen',
+            category: 'finca'
+        },
+        {
+            id: 40,
+            type: 'image',
+            src: '/images/foto_40.jpeg',
+            title: 'Barismo en acción',
+            category: 'barismo'
+        },
+        {
+            id: 41,
+            type: 'image',
+            src: '/images/foto_41.jpeg',
+            title: 'Vista desde la finca',
+            category: 'finca'
+        },
+        {
+            id: 42,
+            type: 'image',
+            src: '/images/foto_42.jpeg',
+            title: 'Aroma envolvente',
+            category: 'producto'
+        },
+        {
+            id: 43,
+            type: 'image',
+            src: '/images/foto_43.jpeg',
+            title: 'Proceso húmedo',
+            category: 'proceso'
+        },
+        {
+            id: 44,
+            type: 'image',
+            src: '/images/foto_44.jpeg',
+            title: 'Finca familiar',
+            category: 'finca'
+        },
+        {
+            id: 45,
+            type: 'image',
+            src: '/images/foto_45.jpeg',
+            title: 'Café de origen',
+            category: 'producto'
+        },
+        {
+            id: 46,
+            type: 'image',
+            src: '/images/foto_46.jpeg',
+            title: 'Detalle del cafeto',
+            category: 'finca'
+        },
+        {
+            id: 47,
+            type: 'image',
+            src: '/images/foto_47.jpeg',
+            title: 'Café orgánico',
+            category: 'producto'
+        },
+        {
+            id: 48,
+            type: 'image',
+            src: '/images/foto_48.jpeg',
+            title: 'Arte latte',
+            category: 'barismo'
+        },
+        {
+            id: 49,
+            type: 'image',
+            src: '/images/foto_49.jpeg',
+            title: 'Cosecha del día',
+            category: 'finca'
+        },
+        {
+            id: 50,
+            type: 'image',
+            src: '/images/foto_50.jpeg',
+            title: 'Historia en cada taza',
+            category: 'barismo'
+        },
+        {
+            id: 51,
+            type: 'image',
+            src: '/images/foto_51.jpeg',
+            title: 'Sombra entre cafetales',
+            category: 'finca'
+        },
+        {
+            id: 52,
+            type: 'image',
+            src: '/images/foto_52.jpeg',
+            title: 'Proceso de secado',
+            category: 'proceso'
+        },
+        {
+            id: 53,
+            type: 'image',
+            src: '/images/foto_53.jpeg',
+            title: 'Taza equilibrada',
+            category: 'barismo'
+        },
+        {
+            id: 54,
+            type: 'image',
+            src: '/images/foto_54.jpeg',
+            title: 'Grano dorado',
+            category: 'producto'
+        },
+        {
+            id: 55,
+            type: 'image',
+            src: '/images/foto_55.jpeg',
+            title: 'Recorrido por la finca',
+            category: 'finca'
+        },
+        {
+            id: 56,
+            type: 'image',
+            src: '/images/foto_56.jpeg',
+            title: 'Revisión de calidad',
+            category: 'proceso'
+        },
+        {
+            id: 57,
+            type: 'image',
+            src: '/images/foto_57.jpeg',
+            title: 'Maduración ideal',
+            category: 'finca'
+        },
+        {
+            id: 58,
+            type: 'image',
+            src: '/images/foto_58.jpeg',
+            title: 'Grano seleccionado',
+            category: 'producto'
+        },
+        {
+            id: 59,
+            type: 'image',
+            src: '/images/foto_59.jpeg',
+            title: 'Preparación V60',
+            category: 'barismo'
+        },
+        {
+            id: 60,
+            type: 'image',
+            src: '/images/foto_60.jpeg',
+            title: 'Detalle del proceso',
+            category: 'proceso'
+        },
+        {
+            id: 61,
+            type: 'image',
+            src: '/images/foto_61.jpeg',
+            title: 'Terruño colombiano',
+            category: 'finca'
+        },
+        {
+            id: 62,
+            type: 'image',
+            src: '/images/foto_62.jpeg',
+            title: 'Café al amanecer',
+            category: 'barismo'
+        },
+        {
+            id: 63,
+            type: 'image',
+            src: '/images/foto_63.jpeg',
+            title: 'Manos expertas',
+            category: 'proceso'
+        },
+        {
+            id: 64,
+            type: 'image',
+            src: '/images/foto_64.jpeg',
+            title: 'Fragancia única',
+            category: 'producto'
+        },
+        {
+            id: 66,
+            type: 'image',
+            src: '/images/foto_66.jpeg',
+            title: 'Amanecer cafetero',
+            category: 'finca'
+        },
+        {
+            id: 67,
+            type: 'image',
+            src: '/images/foto_67.jpeg',
+            title: 'Secado al aire libre',
+            category: 'proceso'
+        },
+        {
+            id: 68,
+            type: 'image',
+            src: '/images/foto_68.jpeg',
+            title: 'Café recién molido',
+            category: 'producto'
+        },
+        {
+            id: 69,
+            type: 'image',
+            src: '/images/foto_69.jpeg',
+            title: 'Cafetales en flor',
+            category: 'finca'
+        },
+        {
+            id: 70,
+            type: 'image',
+            src: '/images/foto_70.avif',
+            title: 'Desde el origen',
             category: 'finca'
         }
     ];

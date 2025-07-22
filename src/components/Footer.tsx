@@ -10,9 +10,11 @@ const Footer = () => {
           {/* Logo y descripción */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-12 h-12 bg-coffee-orange rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xl">CU</span>
-              </div>
+              <img 
+                src="/logo.avif" 
+                alt="Montemar Logo" 
+                className="h-28 w-auto mr-3"
+              />
               <div className="flex flex-col">
                 <span className="font-playfair font-bold text-xl">Café Uribe</span>
                 <span className="text-sm text-white/70">100% Colombiano</span>

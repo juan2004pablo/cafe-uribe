@@ -30,8 +30,8 @@ interface TextRotateProps {
   staggerDuration?: number
   staggerFrom?: "first" | "last" | "center" | number | "random"
   transition?: Transition
-  loop?: boolean // Whether to start from the first text when the last one is reached
-  auto?: boolean // Whether to start the animation automatically
+  loop?: boolean
+  auto?: boolean
   splitBy?: "words" | "characters" | "lines" | string
   onNext?: (index: number) => void
   mainClassName?: string
@@ -49,6 +49,20 @@ export interface TextRotateRef {
 interface WordObject {
   characters: string[]
   needsSpace: boolean
+}
+
+// Type guard for Intl.Segmenter
+declare global {
+  namespace Intl {
+    interface Segmenter {
+      new (locales?: string | string[], options?: { granularity?: "grapheme" | "word" | "sentence" }): Segmenter;
+      segment(input: string): Iterable<{ segment: string; index: number; input: string }>;
+    }
+    const Segmenter: {
+      prototype: Segmenter;
+      new (locales?: string | string[], options?: { granularity?: "grapheme" | "word" | "sentence" }): Segmenter;
+    };
+  }
 }
 
 const TextRotate = forwardRef<TextRotateRef, TextRotateProps>(
@@ -77,13 +91,16 @@ const TextRotate = forwardRef<TextRotateRef, TextRotateProps>(
   ) => {
     const [currentTextIndex, setCurrentTextIndex] = useState(0)
 
-    // handy function to split text into characters with support for unicode and emojis
     const splitIntoCharacters = (text: string): string[] => {
       if (typeof Intl !== "undefined" && "Segmenter" in Intl) {
-        const segmenter = new Intl.Segmenter("en", { granularity: "grapheme" })
-        return Array.from(segmenter.segment(text), ({ segment }) => segment)
+        try {
+          const segmenter = new (Intl as any).Segmenter("en", { granularity: "grapheme" })
+          return Array.from(segmenter.segment(text), ({ segment }: any) => segment)
+        } catch {
+          // Fallback if Segmenter is not supported
+          return Array.from(text)
+        }
       }
-      // Fallback for browsers that don't support Intl.Segmenter
       return Array.from(text)
     }
 
@@ -121,7 +138,6 @@ const TextRotate = forwardRef<TextRotateRef, TextRotateProps>(
       [staggerFrom, staggerDuration]
     )
 
-    // Helper function to handle index changes and trigger callback
     const handleIndexChange = useCallback((newIndex: number) => {
       setCurrentTextIndex(newIndex)
       onNext?.(newIndex)
@@ -160,14 +176,12 @@ const TextRotate = forwardRef<TextRotateRef, TextRotateProps>(
       }
     }, [currentTextIndex, handleIndexChange])
 
-    // Expose all navigation functions via ref
     useImperativeHandle(ref, () => ({
       next,
       previous,
       jumpTo,
       reset,
     }), [next, previous, jumpTo, reset])
-
 
     useEffect(() => {
       if (!auto) return

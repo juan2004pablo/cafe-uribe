@@ -1,32 +1,19 @@
+
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ArrowRight, Coffee, Users, Award, Leaf, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
 import B2BSection from '@/components/B2BSection';
+import VarietiesSection from '@/components/VarietiesSection';
+import { TestimonialsSection } from '@/components/ui/testimonials-with-marquee';
 
 const Index = () => {
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [aboutRef, aboutInView] = useInView({ triggerOnce: true, threshold: 0.1 });
-  const [varietiesRef, varietiesInView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [processRef, processInView] = useInView({ triggerOnce: true, threshold: 0.1 });
-  const [testimonialsRef, testimonialsInView] = useInView({ triggerOnce: true, threshold: 0.1 });
-
-  const varieties = [
-    {
-      name: "Café Premium Origen",
-      description: "Notas cítricas y chocolate, altura 1800m",
-      image: "/images/foto_60.jpeg"
-    },
-    {
-      name: "Café Especial Tostión Media",
-      description: "Equilibrio perfecto, notas frutales",
-      image: "/images/foto_61.jpeg"
-    },
-  ];
 
   const processSteps = [
     { icon: <Leaf className="w-8 h-8" />, title: "Cultivo", description: "En las montañas del Eje Cafetero" },
@@ -37,16 +24,36 @@ const Index = () => {
 
   const testimonials = [
     {
-      name: "Juan Pérez",
-      business: "Café Central - Bogotá",
-      testimonial: "El café de Cafe Uribe es excepcional, se siente la calidad desde la primera taza. ¡Recomendado!",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
+      author: {
+        name: "Juan Pérez",
+        handle: "Café Central - Bogotá",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+      },
+      text: "El café de Cafe Uribe es excepcional, se siente la calidad desde la primera taza. Nuestros clientes siempre quedan satisfechos con el aroma y sabor único que ofrecemos.",
     },
     {
-      name: "Ana López",
-      business: "Tostadora Especializada",
-      testimonial: "La trazabilidad del café es impresionante, se nota el cuidado en cada detalle. ¡Increíble experiencia!",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face"
+      author: {
+        name: "Ana López",
+        handle: "Tostadora Especializada",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
+      },
+      text: "La trazabilidad del café es impresionante, se nota el cuidado en cada detalle. Como tostadora, valoramos la consistencia y calidad que nos brinda Café Uribe.",
+    },
+    {
+      author: {
+        name: "Carlos Mendoza",
+        handle: "Restaurante Gourmet",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+      },
+      text: "Hemos trabajado con Café Uribe por años y siempre nos sorprende la calidad constante. Es el complemento perfecto para nuestros desayunos gourmet.",
+    },
+    {
+      author: {
+        name: "María Rodríguez",
+        handle: "Café Boutique",
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
+      },
+      text: "La variedad de sabores y la frescura del café de Uribe nos permite ofrecer una experiencia única a nuestros clientes. Definitivamente recomendado.",
     }
   ];
 
@@ -167,68 +174,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Nuestro Café */}
-      <section ref={varietiesRef} className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={varietiesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Nuestras Variedades
-            </h2>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              Descubre nuestras variedades premium, cada una con características únicas
-              que reflejan la riqueza de nuestros suelos cafeteros.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {varieties.map((variety, index) => (
-              <motion.div
-                key={variety.name}
-                initial={{ opacity: 0, y: 30 }}
-                animate={varietiesInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="h-full"
-              >
-                <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
-                  <div className="relative h-64 flex-shrink-0">
-                    <img
-                      src={variety.image}
-                      alt={variety.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/20" />
-                  </div>
-                  <CardContent className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                      {variety.name}
-                    </h3>
-                    <p className="text-gray-700 mb-4 flex-grow">
-                      {variety.description}
-                    </p>
-                    { /*<Button variant="outline" className="border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white mt-auto">
-                      Ver Detalles
-                    </Button> */ }
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Link to="/variedades">
-              <Button size="lg" className="bg-coffee-orange hover:bg-orange-600">
-                Ver Todas las Variedades
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Nuestro Café - Nuevo componente */}
+      <VarietiesSection />
 
       {/* De la Finca a Tu Taza */}
       <section ref={processRef} className="py-20 bg-coffee-brown text-white">
@@ -273,58 +220,13 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonios */}
-      <section ref={testimonialsRef} className="py-20 bg-orange-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={testimonialsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Lo Que Dicen Nuestros Clientes
-            </h2>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              La confianza de nuestros socios comerciales es nuestro mayor logro
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 30 }}
-                animate={testimonialsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-              >
-                <Card className="p-8 h-full hover:shadow-xl transition-shadow duration-300">
-                  <CardContent className="p-0">
-                    <div className="flex items-start space-x-4 mb-6">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-16 h-16 rounded-full object-cover"
-                      />
-                      <div>
-                        <h3 className="font-semibold text-gray-900 text-lg">
-                          {testimonial.name}
-                        </h3>
-                        <p className="text-coffee-orange font-medium">
-                          {testimonial.business}
-                        </p>
-                      </div>
-                    </div>
-                    <blockquote className="text-gray-700 italic text-lg leading-relaxed">
-                      "{testimonial.testimonial}"
-                    </blockquote>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Testimonios - Nuevo componente con marquee */}
+      <TestimonialsSection
+        title="Lo Que Dicen Nuestros Clientes"
+        description="La confianza de nuestros socios comerciales es nuestro mayor logro"
+        testimonials={testimonials}
+        className="bg-orange-50"
+      />
 
       {/* CTA B2B - Enhanced Section */}
       <B2BSection />

@@ -1,7 +1,8 @@
+
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ArrowLeft, Grid, List } from 'lucide-react';
+import { ArrowLeft, Grid, LayoutGrid } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -601,7 +602,7 @@ const Galeria = () => {
                                     onClick={() => setViewMode('masonry')}
                                     className="rounded-md"
                                 >
-                                    <List className="w-4 h-4 mr-2" />
+                                    <LayoutGrid className="w-4 h-4 mr-2" />
                                     Mosaico
                                 </Button>
                             </div>
@@ -612,6 +613,7 @@ const Galeria = () => {
                     <GalleryGrid
                         items={filteredItems}
                         onImageClick={openModal}
+                        viewMode={viewMode}
                     />
                 </div>
             </section>

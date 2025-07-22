@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
+import B2BSection from '@/components/B2BSection';
 
 const Index = () => {
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -325,31 +326,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA B2B */}
-      <section className="py-20 bg-coffee-cream/50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            ¿Eres un Negocio?
-          </h2>
-          <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-            Únete a nuestra red de distribuidores y lleva la calidad premium de Café Uribe
-            a tus clientes. Ofrecemos condiciones especiales para mayoristas.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/clientes-b2b">
-              <Button size="lg" className="bg-coffee-orange hover:bg-orange-600">
-                Información B2B
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-            </Link>
-            <Link to="/contacto">
-              <Button size="lg" variant="outline" className="border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white">
-                Contacta con Nosotros
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* CTA B2B - Enhanced Section */}
+      <B2BSection />
 
       <Footer />
     </div>

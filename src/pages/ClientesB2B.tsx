@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ModernWorkflowSection from '@/components/ModernWorkflowSection';
-import MinimalBenefitsSection from '@/components/MinimalBenefitsSection';
+{ /* import MinimalBenefitsSection from '@/components/MinimalBenefitsSection';  */}
 import ModernContactForm from '@/components/ModernContactForm';
 
 const ClientesB2B = () => {
@@ -185,7 +185,7 @@ const ClientesB2B = () => {
 
             {/* Nuevos componentes rediseñados */}
             <ModernWorkflowSection />
-            <MinimalBenefitsSection />
+            {/* <MinimalBenefitsSection /> */}
             <ModernContactForm />
 
             <Footer />

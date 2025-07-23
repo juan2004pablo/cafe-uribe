@@ -11,7 +11,7 @@ const ModernContactForm = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section ref={ref} className="py-32 bg-coffee-brown relative overflow-hidden">
+    <section ref={ref} className="py-32 bg-coffee-cream/10 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-coffee-orange/5 rounded-full blur-3xl"></div>

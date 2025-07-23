@@ -88,7 +88,7 @@ const Index = () => {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
               Legado de <span className="text-coffee-orange">Aroma</span> y <span className="text-coffee-orange">Sabor</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-4 font-light">100% Colombiano</p>
+            <p className="text-xl md:text-2xl mb-4 font-light">🇨🇴 100% Colombiano 🇨🇴</p>
             <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
               Café de finca con trazabilidad garantizada siempre. De la finca a tu taza con la más alta calidad.
             </p>

@@ -43,25 +43,15 @@ const HeroCTA = ({ onKnowOurCoffee, onRequestSample }: HeroCTAProps) => {
 
       {/* Secondary CTA with enhanced styling */}
       <div className="flex flex-col sm:flex-row gap-4 items-center">
-        <Button
-          size="lg"
-          variant="outline"
-          onClick={onRequestSample}
-          className="border-2 border-white/80 text-white hover:bg-white/10 hover:border-white text-lg px-8 py-3 rounded-xl font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105"
-        >
-          <Sparkles className="mr-2 w-5 h-5" />
-          Solicita una Muestra Gratuita
-        </Button>
-        
         {/* Trust indicators */}
         <div className="flex items-center space-x-6 text-white/80 text-sm">
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span>100% Colombiano</span>
+            <span>Registro Invima</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-coffee-orange rounded-full animate-pulse"></div>
-            <span>Envío Gratis</span>
+            <span>Envío Seguro</span>
           </div>
         </div>
       </div>

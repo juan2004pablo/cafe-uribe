@@ -19,27 +19,21 @@ const Variedades = () => {
         {
             name: "Arábica",
             scientific: "Coffea Arabica",
-            description: "Grano principal en nuestras fincas, cultivado en altitudes superiores a 1,500m. Representa el 85% de nuestra producción.",
-            characteristics: ["Sabor suave y dulce", "Menor contenido de cafeína", "Acidez balanceada", "Aroma floral"],
-            image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=500&h=400&fit=crop",
-            icon: <Leaf className="w-8 h-8" />,
+            image: "/images/granos/grano_arabica.webp",
+            icon: <Coffee className="w-8 h-8" />,
             percentage: 85
         },
         {
             name: "Robusta",
             scientific: "Coffea Canephora",
-            description: "Variedad resistente cultivada en zonas específicas. Aporta cuerpo y crema a nuestras mezclas especiales.",
-            characteristics: ["Mayor contenido de cafeína", "Sabor más fuerte", "Excelente crema", "Resistente a plagas"],
-            image: "https://images.unsplash.com/photo-1442975631115-c4f7b5d14785?w=500&h=400&fit=crop",
-            icon: <Coffee className="w-8 h-8" />,
+            image: "/images/granos/grano_robusta.webp",
+            icon: <Leaf className="w-8 h-8" />,
             percentage: 12
         },
         {
             name: "Liberica",
             scientific: "Coffea Liberica",
-            description: "Variedad especial en cultivos experimentales. Notas únicas y distintivas que agregan complejidad.",
-            characteristics: ["Granos más grandes", "Sabor frutal intenso", "Notas ahumadas", "Perfil único"],
-            image: "https://images.unsplash.com/photo-1518832988845-bb9b64c9ee9d?w=500&h=400&fit=crop",
+            image: "/images/granos/grano_liberica.webp",
             icon: <Award className="w-8 h-8" />,
             percentage: 3
         }
@@ -300,9 +294,9 @@ const Variedades = () => {
                                         <img
                                             src={grain.image}
                                             alt={grain.name}
-                                            className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                                            className="w-full h-64 object-scale-down object-center p-6 group-hover:scale-110 transition-transform duration-700"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-coffee-brown/60 to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-coffee-brown/50 to-transparent" />
                                         <div className="absolute top-4 right-4 bg-coffee-orange text-white rounded-full p-3">
                                             {grain.icon}
                                         </div>
@@ -319,24 +313,7 @@ const Variedades = () => {
                                         <p className="text-coffee-orange font-medium italic">
                                             {grain.scientific}
                                         </p>
-                                        <p className="text-coffee-brown/70 leading-relaxed">
-                                            {grain.description}
-                                        </p>
                                     </CardHeader>
-
-                                    <CardContent>
-                                        <div className="space-y-2">
-                                            <h4 className="font-semibold text-coffee-brown mb-3">Características:</h4>
-                                            <div className="grid grid-cols-2 gap-2">
-                                                {grain.characteristics.map((char, idx) => (
-                                                    <div key={idx} className="flex items-center text-sm">
-                                                        <div className="w-2 h-2 bg-coffee-orange rounded-full mr-2" />
-                                                        <span className="text-coffee-brown/80">{char}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </CardContent>
                                 </Card>
                             </motion.div>
                         ))}
@@ -390,11 +367,11 @@ const Variedades = () => {
                                             {coffee.description}
                                         </p>
                                         <div className="space-y-2 text-sm">
-                                            <div className="flex justify-between">
+                                            <div className="flex space-x-2">
                                                 <span className="text-coffee-brown/60">Método:</span>
                                                 <span className="text-coffee-brown font-medium">{coffee.method}</span>
                                             </div>
-                                            <div className="flex justify-between">
+                                            <div className="flex space-x-2">
                                                 <span className="text-coffee-brown/60">Tiempo:</span>
                                                 <span className="text-coffee-orange font-medium">{coffee.time}</span>
                                             </div>

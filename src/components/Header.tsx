@@ -45,7 +45,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
             <img 
-                src="/copy_logo.png" 
+                src={isScrolled ? "/logo_claro.webp" : "/logo_oscuro.webp"} 
                 alt="Montemar Logo" 
                 className="h-20 md:h-24 w-auto"
               />

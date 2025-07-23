@@ -12,18 +12,16 @@ const VarietiesSection = () => {
     {
       name: "Premium Origen",
       description: "Notas cítricas y chocolate",
-      altitude: "1800m",
       image: "/images/foto_60.jpeg",
       rating: 4.9,
-      origin: "Huila"
+      origin: "Norte de Santander"
     },
     {
       name: "Especial Tostión Media",
       description: "Equilibrio perfecto, notas frutales",
-      altitude: "1600m",
       image: "/images/foto_61.jpeg",
       rating: 4.8,
-      origin: "Quindío"
+      origin: "Norte de Santander"
     },
   ];
 
@@ -76,14 +74,9 @@ const VarietiesSection = () => {
 
                 {/* Content overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Coffee className="w-5 h-5 text-coffee-orange" />
-                    <span className="text-sm font-medium text-coffee-orange">
-                      Altura: {variety.altitude}
-                    </span>
-                  </div>
                   <h3 className="text-2xl font-bold mb-2">{variety.name}</h3>
-                  <p className="text-white/90 text-sm leading-relaxed">
+                  <p className="flex items-center gap-2 mb-2 text-white/90 text-sm leading-relaxed">
+                    <Coffee className="w-5 h-5 text-coffee-orange" />
                     {variety.description}
                   </p>
                 </div>
@@ -111,7 +104,7 @@ const VarietiesSection = () => {
             <div className="text-gray-600">Años de experiencia</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-coffee-orange mb-2">1500m+</div>
+            <div className="text-3xl font-bold text-coffee-orange mb-2">1750m</div>
             <div className="text-gray-600">Altitud promedio</div>
           </div>
           <div className="text-center">

@@ -1,15 +1,14 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Building2, Coffee, Truck, Users, CheckCircle, ArrowRight } from 'lucide-react';
+import { Building2, Coffee, Truck, Users, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Card, CardContent } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import WorkflowSection from '@/components/WorkflowSection';
+import ModernWorkflowSection from '@/components/ModernWorkflowSection';
+import MinimalBenefitsSection from '@/components/MinimalBenefitsSection';
+import ModernContactForm from '@/components/ModernContactForm';
 
 const ClientesB2B = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -184,98 +183,10 @@ const ClientesB2B = () => {
                 </div>
             </section>
 
-            {/* Nuevo componente de proceso de colaboración */}
-            <WorkflowSection />
-
-            {/* Formulario de contacto para negocios */}
-            <section className="py-20 bg-coffee-brown text-white">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-12">
-                        <h2 className="font-playfair text-4xl font-bold mb-6">
-                            Comencemos una Alianza
-                        </h2>
-                        <p className="text-lg text-white/80">
-                            Completa el formulario y nos pondremos en contacto contigo en menos de 24 horas.
-                        </p>
-                    </div>
-
-                    <Card className="bg-white/10 backdrop-blur-sm border-white/20">
-                        <CardHeader>
-                            <h3 className="font-playfair text-2xl font-semibold text-center">
-                                Formulario para Negocios
-                            </h3>
-                        </CardHeader>
-                        <CardContent className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">Nombre del Negocio</label>
-                                    <Input placeholder="Nombre de tu empresa" className="bg-white/10 border-white/30 text-white placeholder:text-white/60" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">Tipo de Negocio</label>
-                                    <Select>
-                                        <SelectTrigger className="bg-white/10 border-white/30 text-white">
-                                            <SelectValue placeholder="Selecciona tipo" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="cafeteria">Cafetería</SelectItem>
-                                            <SelectItem value="restaurante">Restaurante/Hotel</SelectItem>
-                                            <SelectItem value="distribuidor">Distribuidor</SelectItem>
-                                            <SelectItem value="tienda">Tienda Especializada</SelectItem>
-                                            <SelectItem value="otro">Otro</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">Nombre de Contacto</label>
-                                    <Input placeholder="Tu nombre completo" className="bg-white/10 border-white/30 text-white placeholder:text-white/60" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">Email</label>
-                                    <Input type="email" placeholder="tu@email.com" className="bg-white/10 border-white/30 text-white placeholder:text-white/60" />
-                                </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">Teléfono</label>
-                                    <Input placeholder="+57 300 123 4567" className="bg-white/10 border-white/30 text-white placeholder:text-white/60" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">Volumen Mensual Estimado</label>
-                                    <Select>
-                                        <SelectTrigger className="bg-white/10 border-white/30 text-white">
-                                            <SelectValue placeholder="Selecciona volumen" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="1-10">1-10 kg</SelectItem>
-                                            <SelectItem value="11-50">11-50 kg</SelectItem>
-                                            <SelectItem value="51-100">51-100 kg</SelectItem>
-                                            <SelectItem value="100+">Más de 100 kg</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium mb-2">Mensaje</label>
-                                <Textarea
-                                    placeholder="Cuéntanos sobre tu negocio y necesidades específicas..."
-                                    className="bg-white/10 border-white/30 text-white placeholder:text-white/60 min-h-[100px]"
-                                />
-                            </div>
-
-                            <Button size="lg" className="w-full bg-coffee-orange hover:bg-coffee-orange/90">
-                                Enviar Solicitud
-                                <ArrowRight className="ml-2 w-4 h-4" />
-                            </Button>
-                        </CardContent>
-                    </Card>
-                </div>
-            </section>
+            {/* Nuevos componentes rediseñados */}
+            <ModernWorkflowSection />
+            <MinimalBenefitsSection />
+            <ModernContactForm />
 
             <Footer />
         </div>

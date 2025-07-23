@@ -2,18 +2,19 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ArrowLeft, Grid, LayoutGrid } from 'lucide-react';
+import { ArrowLeft, LayoutGrid, Layers3 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import GalleryGrid from '@/components/gallery/GalleryGrid';
+import LayeredCarouselView from '@/components/gallery/LayeredCarouselView';
 import GalleryModal from '@/components/gallery/GalleryModal';
 import GalleryFilters from '@/components/gallery/GalleryFilters';
 
 const Galeria = () => {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-    const [viewMode, setViewMode] = useState<'grid' | 'masonry'>('grid');
+    const [viewMode, setViewMode] = useState<'masonry' | 'carousel'>('masonry');
     
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
@@ -588,15 +589,6 @@ const Galeria = () => {
                         <div className="flex justify-center">
                             <div className="bg-muted p-1 rounded-lg">
                                 <Button
-                                    variant={viewMode === 'grid' ? 'default' : 'ghost'}
-                                    size="sm"
-                                    onClick={() => setViewMode('grid')}
-                                    className="rounded-md"
-                                >
-                                    <Grid className="w-4 h-4 mr-2" />
-                                    Cuadrícula
-                                </Button>
-                                <Button
                                     variant={viewMode === 'masonry' ? 'default' : 'ghost'}
                                     size="sm"
                                     onClick={() => setViewMode('masonry')}
@@ -605,16 +597,32 @@ const Galeria = () => {
                                     <LayoutGrid className="w-4 h-4 mr-2" />
                                     Mosaico
                                 </Button>
+                                <Button
+                                    variant={viewMode === 'carousel' ? 'default' : 'ghost'}
+                                    size="sm"
+                                    onClick={() => setViewMode('carousel')}
+                                    className="rounded-md"
+                                >
+                                    <Layers3 className="w-4 h-4 mr-2" />
+                                    Carrusel en Capas
+                                </Button>
                             </div>
                         </div>
                     </div>
 
-                    {/* Gallery Grid */}
-                    <GalleryGrid
-                        items={filteredItems}
-                        onImageClick={openModal}
-                        viewMode={viewMode}
-                    />
+                    {/* Gallery Views */}
+                    {viewMode === 'masonry' ? (
+                        <GalleryGrid
+                            items={filteredItems}
+                            onImageClick={openModal}
+                            viewMode="masonry"
+                        />
+                    ) : (
+                        <LayeredCarouselView
+                            items={filteredItems}
+                            onImageClick={openModal}
+                        />
+                    )}
                 </div>
             </section>
 

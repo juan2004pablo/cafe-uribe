@@ -19,6 +19,9 @@ export function TestimonialsSection({
   testimonials,
   className 
 }: TestimonialsSectionProps) {
+  // Create multiple sets to ensure continuous scrolling
+  const testimonialSets = Array(6).fill(testimonials).flat();
+
   return (
     <section className={cn(
       "bg-background text-foreground",
@@ -36,15 +39,21 @@ export function TestimonialsSection({
         </div>
 
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-          <div className="group flex overflow-hidden p-2 [--gap:1rem] [gap:var(--gap)] flex-row [--duration:40s]">
-            <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row group-hover:[animation-play-state:paused]">
-              {[...Array(4)].map((_, setIndex) => (
-                testimonials.map((testimonial, i) => (
-                  <TestimonialCard 
-                    key={`${setIndex}-${i}`}
-                    {...testimonial}
-                  />
-                ))
+          <div className="flex overflow-hidden [--gap:1rem] [gap:var(--gap)] [--duration:60s]">
+            <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee hover:[animation-play-state:paused]">
+              {testimonialSets.map((testimonial, index) => (
+                <TestimonialCard 
+                  key={`testimonial-${index}`}
+                  {...testimonial}
+                />
+              ))}
+            </div>
+            <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee hover:[animation-play-state:paused]">
+              {testimonialSets.map((testimonial, index) => (
+                <TestimonialCard 
+                  key={`testimonial-duplicate-${index}`}
+                  {...testimonial}
+                />
               ))}
             </div>
           </div>

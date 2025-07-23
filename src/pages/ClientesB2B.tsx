@@ -18,7 +18,7 @@ const ClientesB2B = () => {
     const benefits = [
         {
             icon: <Coffee className="w-8 h-8" />,
-            title: "Calidad Premium Garantizada",
+            title: "Calidad Garantizada",
             description: "Café de especialidad con trazabilidad completa desde la finca hasta su negocio."
         },
         {

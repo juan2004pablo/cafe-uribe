@@ -408,7 +408,7 @@ const Variedades = () => {
             </section>
 
             {/* Tipos de Tostión */}
-            <section ref={roastTypesRef} className="py-20 bg-coffee-brown text-white">
+            <section ref={roastTypesRef} className="py-20 bg-coffee-brown/80 text-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

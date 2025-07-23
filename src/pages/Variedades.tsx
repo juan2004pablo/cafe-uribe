@@ -157,6 +157,117 @@ const Variedades = () => {
                 </div>
             </section>
 
+            {/* Producto Principal */}
+            <section ref={productRef} className="py-20 bg-gradient-to-br from-coffee-cream/30 to-white">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={productInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8 }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="font-playfair text-4xl md:text-6xl font-bold text-coffee-brown mb-6">
+                            Nuestro Producto Principal
+                        </h2>
+                        <p className="text-lg text-coffee-brown/70 max-w-3xl mx-auto">
+                            Café Uribe Premium - El resultado de décadas de experiencia en una presentación perfecta
+                        </p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={productInView ? { opacity: 1, x: 0 } : {}}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="relative"
+                        >
+                            <div className="relative group">
+                                <div className="absolute -inset-4 bg-gradient-to-r from-coffee-orange to-coffee-brown rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300" />
+                                <img
+                                    src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&h=600&fit=crop"
+                                    alt="Café Uribe Premium"
+                                    className="relative w-full max-w-md mx-auto rounded-2xl shadow-2xl"
+                                />
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={productInView ? { opacity: 1, x: 0 } : {}}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                            className="space-y-6"
+                        >
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="bg-coffee-orange rounded-full p-3">
+                                    <Package className="w-8 h-8 text-white" />
+                                </div>
+                                <div>
+                                    <h3 className="font-playfair text-3xl font-bold text-coffee-brown">
+                                        Café Uribe Premium
+                                    </h3>
+                                    <p className="text-coffee-orange font-medium">
+                                        Presentación de 500g
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-3">
+                                    <Award className="w-5 h-5 text-coffee-orange" />
+                                    <span className="text-coffee-brown">Certificación de calidad premium</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <Leaf className="w-5 h-5 text-coffee-orange" />
+                                    <span className="text-coffee-brown">100% café colombiano de origen</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <Coffee className="w-5 h-5 text-coffee-orange" />
+                                    <span className="text-coffee-brown">Tostión media para máximo sabor</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <Package className="w-5 h-5 text-coffee-orange" />
+                                    <span className="text-coffee-brown">Empaque hermético para frescura</span>
+                                </div>
+                            </div>
+
+                            <div className="bg-coffee-cream/50 rounded-lg p-6 space-y-4">
+                                <h4 className="font-playfair text-xl font-bold text-coffee-brown">
+                                    Perfil de Sabor
+                                </h4>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <span className="text-coffee-brown/60 text-sm">Acidez:</span>
+                                        <p className="text-coffee-brown font-medium">Media-Alta</p>
+                                    </div>
+                                    <div>
+                                        <span className="text-coffee-brown/60 text-sm">Cuerpo:</span>
+                                        <p className="text-coffee-brown font-medium">Medio</p>
+                                    </div>
+                                    <div>
+                                        <span className="text-coffee-brown/60 text-sm">Aroma:</span>
+                                        <p className="text-coffee-brown font-medium">Floral y Frutal</p>
+                                    </div>
+                                    <div>
+                                        <span className="text-coffee-brown/60 text-sm">Notas:</span>
+                                        <p className="text-coffee-brown font-medium">Chocolate y Cítricos</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4 pt-4">
+                                <Button size="lg" className="bg-coffee-orange hover:bg-coffee-orange/90">
+                                    <Download className="w-4 h-4 mr-2" />
+                                    Descargar Ficha Técnica
+                                </Button>
+                                <Button size="lg" variant="outline" className="border-coffee-brown text-coffee-brown hover:bg-coffee-brown hover:text-white">
+                                    Solicitar Cotización
+                                </Button>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
             {/* Tipos de Grano */}
             <section ref={grainTypesRef} className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -374,117 +485,6 @@ const Variedades = () => {
                                 </Card>
                             </motion.div>
                         ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Producto Principal */}
-            <section ref={productRef} className="py-20 bg-gradient-to-br from-coffee-cream/30 to-white">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={productInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8 }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="font-playfair text-4xl md:text-6xl font-bold text-coffee-brown mb-6">
-                            Nuestro Producto Principal
-                        </h2>
-                        <p className="text-lg text-coffee-brown/70 max-w-3xl mx-auto">
-                            Café Uribe Premium - El resultado de décadas de experiencia en una presentación perfecta
-                        </p>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            animate={productInView ? { opacity: 1, x: 0 } : {}}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="relative"
-                        >
-                            <div className="relative group">
-                                <div className="absolute -inset-4 bg-gradient-to-r from-coffee-orange to-coffee-brown rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300" />
-                                <img
-                                    src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&h=600&fit=crop"
-                                    alt="Café Uribe Premium"
-                                    className="relative w-full max-w-md mx-auto rounded-2xl shadow-2xl"
-                                />
-                            </div>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            animate={productInView ? { opacity: 1, x: 0 } : {}}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                            className="space-y-6"
-                        >
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="bg-coffee-orange rounded-full p-3">
-                                    <Package className="w-8 h-8 text-white" />
-                                </div>
-                                <div>
-                                    <h3 className="font-playfair text-3xl font-bold text-coffee-brown">
-                                        Café Uribe Premium
-                                    </h3>
-                                    <p className="text-coffee-orange font-medium">
-                                        Presentación de 500g
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="space-y-4">
-                                <div className="flex items-center gap-3">
-                                    <Award className="w-5 h-5 text-coffee-orange" />
-                                    <span className="text-coffee-brown">Certificación de calidad premium</span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <Leaf className="w-5 h-5 text-coffee-orange" />
-                                    <span className="text-coffee-brown">100% café colombiano de origen</span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <Coffee className="w-5 h-5 text-coffee-orange" />
-                                    <span className="text-coffee-brown">Tostión media para máximo sabor</span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <Package className="w-5 h-5 text-coffee-orange" />
-                                    <span className="text-coffee-brown">Empaque hermético para frescura</span>
-                                </div>
-                            </div>
-
-                            <div className="bg-coffee-cream/50 rounded-lg p-6 space-y-4">
-                                <h4 className="font-playfair text-xl font-bold text-coffee-brown">
-                                    Perfil de Sabor
-                                </h4>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <span className="text-coffee-brown/60 text-sm">Acidez:</span>
-                                        <p className="text-coffee-brown font-medium">Media-Alta</p>
-                                    </div>
-                                    <div>
-                                        <span className="text-coffee-brown/60 text-sm">Cuerpo:</span>
-                                        <p className="text-coffee-brown font-medium">Medio</p>
-                                    </div>
-                                    <div>
-                                        <span className="text-coffee-brown/60 text-sm">Aroma:</span>
-                                        <p className="text-coffee-brown font-medium">Floral y Frutal</p>
-                                    </div>
-                                    <div>
-                                        <span className="text-coffee-brown/60 text-sm">Notas:</span>
-                                        <p className="text-coffee-brown font-medium">Chocolate y Cítricos</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="flex gap-4 pt-4">
-                                <Button size="lg" className="bg-coffee-orange hover:bg-coffee-orange/90">
-                                    <Download className="w-4 h-4 mr-2" />
-                                    Descargar Ficha Técnica
-                                </Button>
-                                <Button size="lg" variant="outline" className="border-coffee-brown text-coffee-brown hover:bg-coffee-brown hover:text-white">
-                                    Solicitar Cotización
-                                </Button>
-                            </div>
-                        </motion.div>
                     </div>
                 </div>
             </section>

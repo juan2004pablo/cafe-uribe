@@ -8,12 +8,12 @@ import { Link } from 'react-router-dom';
 
 const B2BSection = () => {
   const businessTypes = [
-    "Cafeterías",
-    "Restaurantes", 
-    "Hoteles",
-    "Distribuidores",
-    "Supermercados",
-    "Oficinas"
+    "Consultorio",
+    "Hotel",
+    "Bar",
+    "Restaurante", 
+    "Distribuidor",
+    "Supermercado",
   ];
 
   const floatingImages = [

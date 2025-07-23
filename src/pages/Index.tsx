@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import B2BSection from '@/components/B2BSection';
 import VarietiesSection from '@/components/VarietiesSection';
 import { TestimonialsSection } from '@/components/ui/testimonials-with-marquee';
+import HeroCTA from '@/components/HeroCTA';
 
 const Index = () => {
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -91,24 +92,11 @@ const Index = () => {
             <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
               Café de finca con trazabilidad garantizada siempre. De la finca a tu taza con la más alta calidad.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                onClick={handleKnowOurCoffee}
-                className="bg-coffee-orange hover:bg-orange-600 text-white text-lg px-8 font-medium"
-              >
-                Conoce Nuestro Café
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={handleRequestSample}
-                className="border-2 border-white text-coffee-brown hover:bg-white hover:text-coffee-brown text-lg px-8 font-medium"
-              >
-                Solicita una Muestra
-              </Button>
-            </div>
+            
+            <HeroCTA 
+              onKnowOurCoffee={handleKnowOurCoffee}
+              onRequestSample={handleRequestSample}
+            />
           </motion.div>
           <motion.div
             initial={{ opacity: 0 }}

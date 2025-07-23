@@ -4,15 +4,16 @@ import { useInView } from 'react-intersection-observer';
 import { Building2, Coffee, Truck, Users, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ModernWorkflowSection from '@/components/ModernWorkflowSection';
-{ /* import MinimalBenefitsSection from '@/components/MinimalBenefitsSection';  */}
 import ModernContactForm from '@/components/ModernContactForm';
 
 const ClientesB2B = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [benefitsRef, benefitsInView] = useInView({ triggerOnce: true, threshold: 0.1 });
+    const navigate = useNavigate();
 
     const benefits = [
         {
@@ -60,6 +61,17 @@ const ClientesB2B = () => {
         }
     ];
 
+    const scrollToSection = (sectionId: string) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    const handleContactRedirect = () => {
+        navigate('/contacto');
+    };
+
     return (
         <div className="min-h-screen">
             <Header />
@@ -86,12 +98,21 @@ const ClientesB2B = () => {
                             Únete a nuestra red de distribuidores y lleva la excelencia del café colombiano a tu negocio
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button size="lg" className="bg-coffee-orange hover:bg-coffee-orange/90">
+                            <Button 
+                                size="lg" 
+                                className="bg-coffee-orange hover:bg-coffee-orange/90"
+                                onClick={() => scrollToSection('comencemos-alianza')}
+                            >
                                 Solicitar Información
                                 <ArrowRight className="ml-2 w-4 h-4" />
                             </Button>
-                            <Button size="lg" variant="outline" className="border-white text-coffee-brown hover:bg-white hover:text-coffee-brown">
-                                Ver Catálogo para Negocios
+                            <Button 
+                                size="lg" 
+                                variant="outline" 
+                                className="border-white text-white hover:bg-white hover:text-coffee-brown"
+                                onClick={handleContactRedirect}
+                            >
+                                Contactar Directamente
                             </Button>
                         </div>
                     </motion.div>
@@ -183,9 +204,10 @@ const ClientesB2B = () => {
                 </div>
             </section>
 
-            {/* Nuevos componentes rediseñados */}
+            {/* Modern Workflow Section */}
             <ModernWorkflowSection />
-            {/* <MinimalBenefitsSection /> */}
+
+            {/* Contact Form */}
             <ModernContactForm />
 
             <Footer />

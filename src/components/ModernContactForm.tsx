@@ -1,13 +1,40 @@
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ArrowRight, Coffee, Shield, Truck, Mail, Building2, User, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { toast } from '@/components/ui/use-toast';
+import { useNavigate } from 'react-router-dom';
 import DisplayCards from '@/components/ui/display-cards';
+
+// Form validation schema
+const formSchema = z.object({
+  businessName: z.string().min(2, 'El nombre del negocio debe tener al menos 2 caracteres'),
+  contactName: z.string().min(2, 'El nombre de contacto debe tener al menos 2 caracteres'),
+  email: z.string().email('Por favor ingresa un email válido'),
+  phone: z.string().min(10, 'El teléfono debe tener al menos 10 caracteres'),
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 const ModernContactForm = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+  });
 
   const coffeeCards = [
     {
@@ -39,8 +66,38 @@ const ModernContactForm = () => {
     },
   ];
 
+  const onSubmit = async (data: FormData) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      console.log('Form submitted:', data);
+      
+      toast({
+        title: "Solicitud enviada exitosamente",
+        description: "Nos pondremos en contacto contigo muy pronto.",
+      });
+      
+      reset();
+    } catch (error) {
+      toast({
+        title: "Error al enviar la solicitud",
+        description: "Por favor intenta nuevamente más tarde.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleContactRedirect = () => {
+    navigate('/contacto');
+  };
+
   return (
-    <section ref={ref} className="py-20 bg-coffee-cream/30">
+    <section id="comencemos-alianza" ref={ref} className="py-20 bg-coffee-cream/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -56,15 +113,17 @@ const ModernContactForm = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left side - Display Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          {/* Left side - Display Cards - Better responsive positioning */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex justify-center"
+            className="flex justify-center order-2 lg:order-1"
           >
-            <DisplayCards cards={coffeeCards} />
+            <div className="w-full max-w-lg">
+              <DisplayCards cards={coffeeCards} />
+            </div>
           </motion.div>
 
           {/* Right side - Simple Contact Form */}
@@ -72,7 +131,7 @@ const ModernContactForm = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-white rounded-2xl p-8 shadow-lg border border-coffee-cream"
+            className="bg-white rounded-2xl p-8 shadow-lg border border-coffee-cream order-1 lg:order-2"
           >
             <div className="space-y-6">
               <div className="text-center mb-8">
@@ -84,16 +143,20 @@ const ModernContactForm = () => {
                 </p>
               </div>
 
-              <div className="space-y-4">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div className="space-y-2">
                   <label className="text-coffee-brown text-sm font-medium flex items-center">
                     <Building2 className="w-4 h-4 mr-2 text-coffee-orange" />
                     Nombre del Negocio
                   </label>
                   <Input 
+                    {...register('businessName')}
                     placeholder="Tu empresa" 
                     className="border-coffee-cream/60 focus:border-coffee-orange"
                   />
+                  {errors.businessName && (
+                    <p className="text-sm text-red-500">{errors.businessName.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -102,9 +165,13 @@ const ModernContactForm = () => {
                     Nombre de Contacto
                   </label>
                   <Input 
+                    {...register('contactName')}
                     placeholder="Tu nombre" 
                     className="border-coffee-cream/60 focus:border-coffee-orange"
                   />
+                  {errors.contactName && (
+                    <p className="text-sm text-red-500">{errors.contactName.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -113,10 +180,14 @@ const ModernContactForm = () => {
                     Email
                   </label>
                   <Input 
+                    {...register('email')}
                     type="email" 
                     placeholder="tu@email.com" 
                     className="border-coffee-cream/60 focus:border-coffee-orange"
                   />
+                  {errors.email && (
+                    <p className="text-sm text-red-500">{errors.email.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -125,25 +196,39 @@ const ModernContactForm = () => {
                     Teléfono
                   </label>
                   <Input 
+                    {...register('phone')}
                     placeholder="+57 300 123 4567" 
                     className="border-coffee-cream/60 focus:border-coffee-orange"
                   />
+                  {errors.phone && (
+                    <p className="text-sm text-red-500">{errors.phone.message}</p>
+                  )}
                 </div>
-              </div>
 
-              <div className="space-y-4 pt-4">
-                <Button size="lg" className="w-full bg-coffee-orange hover:bg-coffee-orange/90 text-white">
-                  Enviar Solicitud
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-                
-                <div className="text-center">
-                  <p className="text-sm text-coffee-brown/60 mb-2">¿Prefieres contactarnos directamente?</p>
-                  <Button variant="outline" className="text-coffee-brown border-coffee-brown hover:bg-coffee-brown hover:text-white">
-                    Ir a Página de Contacto
+                <div className="space-y-4 pt-4">
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    className="w-full bg-coffee-orange hover:bg-coffee-orange/90 text-white"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
+                    <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
+                  
+                  <div className="text-center">
+                    <p className="text-sm text-coffee-brown/60 mb-2">¿Prefieres contactarnos directamente?</p>
+                    <Button 
+                      type="button"
+                      variant="outline" 
+                      className="text-coffee-brown border-coffee-brown hover:bg-coffee-brown hover:text-white"
+                      onClick={handleContactRedirect}
+                    >
+                      Ir a Página de Contacto
+                    </Button>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
           </motion.div>
         </div>

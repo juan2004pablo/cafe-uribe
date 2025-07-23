@@ -177,7 +177,7 @@ const Nosotros = () => {
                                 La Finca Café Uribe
                             </h2>
                             <p className="text-lg text-coffee-brown/80 mb-6 leading-relaxed">
-                                Ubicada en el corazón del Eje Cafetero, a 1,800 metros sobre el nivel del mar,
+                                Ubicada en el corazón del Eje Cafetero, a 1.750 metros sobre el nivel del mar,
                                 nuestra finca goza de condiciones climáticas excepcionales que favorecen
                                 el desarrollo de granos de café premium.
                             </p>

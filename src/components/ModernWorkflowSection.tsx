@@ -35,6 +35,13 @@ const ModernWorkflowSection = () => {
     }
   ];
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section ref={ref} className="py-32 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,18 +57,18 @@ const ModernWorkflowSection = () => {
           <div className="w-24 h-1 bg-coffee-orange mx-auto"></div>
         </motion.div>
 
-        {/* Modern Timeline */}
+        {/* Modern Timeline - Responsive */}
         <div className="relative">
-          {/* Central flowing line */}
+          {/* Central flowing line - Desktop */}
           <motion.div
             initial={{ scaleX: 0 }}
             animate={inView ? { scaleX: 1 } : {}}
             transition={{ duration: 2, delay: 0.5 }}
-            className="absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-coffee-orange via-coffee-brown to-coffee-orange transform -translate-y-1/2 origin-left"
+            className="absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-coffee-orange via-coffee-brown to-coffee-orange transform -translate-y-1/2 origin-left hidden lg:block"
           />
 
-          {/* Steps */}
-          <div className="flex justify-between items-center relative z-10">
+          {/* Steps - Desktop (horizontal) */}
+          <div className="hidden lg:flex justify-between items-center relative z-10">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
@@ -101,6 +108,58 @@ const ModernWorkflowSection = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* Steps - Mobile/Tablet (vertical) */}
+          <div className="lg:hidden space-y-12">
+            {steps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="flex items-center group"
+              >
+                {/* Step number */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={inView ? { scale: 1 } : {}}
+                  transition={{ duration: 0.4, delay: index * 0.2 + 0.8 }}
+                  className="w-8 h-8 bg-coffee-orange text-white rounded-full flex items-center justify-center text-sm font-bold mr-6 flex-shrink-0"
+                >
+                  {index + 1}
+                </motion.div>
+
+                {/* Icon container with floating effect */}
+                <motion.div
+                  className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full shadow-xl flex items-center justify-center text-coffee-brown mr-6 group-hover:shadow-2xl transition-all duration-300 border-4 border-coffee-cream flex-shrink-0"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, delay: index * 0.4 }}
+                >
+                  {step.icon}
+                </motion.div>
+
+                {/* Content */}
+                <div className="flex-1">
+                  <h3 className="font-playfair text-xl font-bold text-coffee-brown mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-coffee-brown/70">
+                    {step.description}
+                  </p>
+                </div>
+
+                {/* Connecting line for mobile */}
+                {index < steps.length - 1 && (
+                  <motion.div
+                    initial={{ scaleY: 0 }}
+                    animate={inView ? { scaleY: 1 } : {}}
+                    transition={{ duration: 1, delay: index * 0.2 + 0.5 }}
+                    className="absolute left-4 top-16 w-0.5 h-12 bg-gradient-to-b from-coffee-orange to-coffee-brown origin-top"
+                  />
+                )}
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Call to action */}
@@ -110,7 +169,11 @@ const ModernWorkflowSection = () => {
           transition={{ duration: 0.8, delay: 1.5 }}
           className="text-center mt-20"
         >
-          <Button size="lg" className="bg-coffee-brown hover:bg-coffee-brown/90 text-white px-12 py-4 text-lg">
+          <Button 
+            size="lg" 
+            className="bg-coffee-brown hover:bg-coffee-brown/90 text-white px-12 py-4 text-lg"
+            onClick={() => scrollToSection('comencemos-alianza')}
+          >
             Comenzar Alianza
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>

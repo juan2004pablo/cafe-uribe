@@ -53,7 +53,7 @@ const ModernContactForm = () => {
       date: "Respaldado",
       iconClassName: "text-coffee-orange",
       titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] translate-x-12 translate-y-10 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
+      className: "[grid-area:stack] translate-x-8 sm:translate-x-12 translate-y-10 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
     },
     {
       icon: <Truck className="size-4 text-coffee-orange" />,
@@ -62,7 +62,7 @@ const ModernContactForm = () => {
       date: "Garantizado",
       iconClassName: "text-coffee-orange",
       titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] translate-x-24 translate-y-20 hover:translate-y-10",
+      className: "[grid-area:stack] translate-x-16 sm:translate-x-24 translate-y-20 hover:translate-y-10",
     },
   ];
 
@@ -97,7 +97,7 @@ const ModernContactForm = () => {
   };
 
   return (
-    <section id="comencemos-alianza" ref={ref} className="py-20 bg-coffee-cream/30">
+    <section id="comencemos-alianza" ref={ref} className="py-20 bg-coffee-cream/30 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -113,15 +113,15 @@ const ModernContactForm = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Left side - Display Cards - Better responsive positioning */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left side - Display Cards - Responsive positioning */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex justify-center order-2 lg:order-1"
+            className="flex justify-center order-2 lg:order-1 lg:self-center"
           >
-            <div className="w-full max-w-lg">
+            <div className="w-full max-w-md lg:max-w-lg scale-75 sm:scale-90 lg:scale-100">
               <DisplayCards cards={coffeeCards} />
             </div>
           </motion.div>
@@ -131,7 +131,7 @@ const ModernContactForm = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-white rounded-2xl p-8 shadow-lg border border-coffee-cream order-1 lg:order-2"
+            className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-coffee-cream order-1 lg:order-2"
           >
             <div className="space-y-6">
               <div className="text-center mb-8">

@@ -47,7 +47,7 @@ const Contacto = () => {
             <Header />
 
             {/* Hero Section */}
-            <section ref={heroRef} className="relative min-h-[50vh] flex items-center justify-center pt-20">
+            <section ref={heroRef} className="relative min-h-[80vh] flex items-center justify-center pt-20">
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{

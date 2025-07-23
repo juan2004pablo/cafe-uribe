@@ -47,7 +47,7 @@ const Nosotros = () => {
             <Header />
 
             {/* Hero Section */}
-            <section ref={heroRef} className="relative min-h-[60vh] flex items-center justify-center pt-20 overflow-hidden">
+            <section ref={heroRef} className="relative min-h-[80vh] flex items-center justify-center pt-20 overflow-hidden">
                 {/* Video de fondo */}
                 <video
                     className="absolute inset-0 w-full h-full object-cover"

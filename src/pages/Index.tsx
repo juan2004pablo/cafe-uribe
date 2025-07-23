@@ -122,14 +122,13 @@ const Index = () => {
                 Quiénes somos
               </h2>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Café Uribe es una empresa avalada por el registro Invima,
-                que cuenta con registro de marca como café Uribe un legado de aroma y sabor ,
-                lo que asegura su compromiso con la calidad y la sanidad de sus productos.
-                Contamos con registros que nos permiten operar como tostadores, exportadores y trilladores,
-                lo que garantiza un proceso integral en la producción de nuestro café.
-                Además, nos enorgullece poseer el logo de denominación de origen,
-                que resalta la autenticidad de nuestro café, y el sello de la Federación de Café,
-                que certifica que nuestro producto es 100% café colombiano.
+                Café Uribe es una marca registrada y avalada por Invima,
+                lo que garantiza la calidad y sanidad de sus productos.
+                Operamos como tostadores, exportadores y trilladores,
+                asegurando un proceso de producción completo.
+                Nuestro café cuenta con denominación de origen y el sello de la Federación Nacional de Cafeteros,
+                lo que certifica su autenticidad y que es 100% colombiano.
+                Un verdadero legado de aroma y sabor.
               </p>
               <p className="text-lg text-gray-700 mb-8 leading-relaxed">
                 En Café Uribe, nos dedicamos a ofrecer una experiencia auténtica y de alta calidad a todos nuestros clientes,

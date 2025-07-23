@@ -62,7 +62,7 @@ const Contacto = () => {
                         transition={{ duration: 0.8 }}
                     >
                         <h1 className="font-playfair text-5xl md:text-6xl font-bold mb-6">
-                            Hablemos de Buen Café
+                            Hablemos de buen café
                         </h1>
                         <p className="text-xl md:text-2xl opacity-90">
                             Estamos aquí para acompañarte en tu negocio

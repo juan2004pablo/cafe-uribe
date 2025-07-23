@@ -64,6 +64,24 @@ const ModernContactForm = () => {
       titleClassName: "text-coffee-brown",
       className: "[grid-area:stack] translate-x-24 translate-y-20 hover:translate-y-10",
     },
+    {
+      icon: <Leaf className="size-4 text-coffee-orange" />,
+      title: "Sostenibilidad",
+      description: "Cultivo responsable",
+      date: "Eco Friendly",
+      iconClassName: "text-coffee-orange",
+      titleClassName: "text-coffee-brown",
+      className: "[grid-area:stack] -translate-x-12 translate-y-10 hover:-translate-y-4 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
+    },
+    {
+      icon: <Users className="size-4 text-coffee-orange" />,
+      title: "Relaciones Directas",
+      description: "Apoyo al caficultor",
+      date: "Comercio Justo",
+      iconClassName: "text-coffee-orange",
+      titleClassName: "text-coffee-brown",
+      className: "[grid-area:stack] -translate-x-24 translate-y-20 hover:translate-y-6 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
+    },
   ];
 
   const onSubmit = async (data: FormData) => {

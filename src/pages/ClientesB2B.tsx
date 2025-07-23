@@ -100,7 +100,7 @@ const ClientesB2B = () => {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button 
                                 size="lg" 
-                                className="bg-coffee-orange hover:bg-coffee-orange/90"
+                                className="bg-coffee-orange hover:bg-coffee-orange/80"
                                 onClick={() => scrollToSection('comencemos-alianza')}
                             >
                                 Solicitar Información
@@ -109,7 +109,7 @@ const ClientesB2B = () => {
                             <Button 
                                 size="lg" 
                                 variant="outline" 
-                                className="border-white text-white hover:bg-white hover:text-coffee-brown"
+                                className="border-coffee-brown text-coffee-brown hover:bg-white/80 hover:text-coffee-brown"
                                 onClick={handleContactRedirect}
                             >
                                 Contactar Directamente

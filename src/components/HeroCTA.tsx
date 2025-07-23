@@ -16,32 +16,91 @@ const HeroCTA = ({ onKnowOurCoffee, onRequestSample }: HeroCTAProps) => {
       transition={{ duration: 0.8, delay: 0.4 }}
       className="flex flex-col items-center space-y-8 mt-8"
     >
-      {/* Primary CTA */}
-      <div className="relative">
+      {/* Primary CTA con efecto liquid glass mejorado */}
+      <div className="relative group">
+        {/* Efecto de resplandor animado */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-coffee-orange/20 to-coffee-orange/10 rounded-2xl blur-xl"
+          className="absolute -inset-2 bg-gradient-to-r from-coffee-orange via-amber-400 to-coffee-orange rounded-3xl blur-xl opacity-60"
           animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.5, 0.8, 0.5]
+            scale: [1, 1.2, 1],
+            opacity: [0.6, 0.9, 0.6]
           }}
           transition={{
-            duration: 3,
+            duration: 2,
             repeat: Infinity,
             ease: "easeInOut"
           }}
         />
+        
+        {/* Ondas de energía */}
+        <motion.div
+          className="absolute -inset-4 bg-gradient-to-r from-coffee-orange/30 via-amber-300/30 to-coffee-orange/30 rounded-full blur-2xl"
+          animate={{
+            scale: [1, 1.4, 1],
+            rotate: [0, 90, 180, 270, 360]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+
+        {/* Botón principal con efecto liquid glass */}
         <Button
           size="lg"
           onClick={onKnowOurCoffee}
-          className="relative bg-coffee-orange hover:bg-coffee-orange/90 text-white text-lg px-10 py-4 rounded-2xl font-semibold shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-coffee-orange/20"
+          className="relative bg-gradient-to-r from-coffee-orange via-amber-500 to-coffee-orange text-white text-lg px-12 py-6 rounded-3xl font-bold shadow-2xl transform hover:scale-110 transition-all duration-500 border-2 border-white/20 backdrop-blur-sm overflow-hidden group"
         >
-          <Coffee className="mr-3 w-6 h-6" />
-          Descubre Nuestro Café
-          <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          {/* Efecto liquid glass interno */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-transparent rounded-3xl" />
+          
+          {/* Efecto de brillo que se mueve */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12"
+            animate={{
+              x: ['-200%', '200%']
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatDelay: 1
+            }}
+          />
+          
+          {/* Contenido del botón */}
+          <div className="relative flex items-center">
+            <motion.div
+              animate={{ rotate: [0, 15, -15, 0] }}
+              transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
+            >
+              <Coffee className="mr-3 w-6 h-6" />
+            </motion.div>
+            Descubre Nuestro Café
+            <motion.div
+              className="ml-3"
+              animate={{ x: [0, 5, 0] }}
+              transition={{ duration: 1, repeat: Infinity }}
+            >
+              <ArrowRight className="w-5 h-5" />
+            </motion.div>
+          </div>
+          
+          {/* Partículas flotantes */}
+          <motion.div
+            className="absolute top-2 right-4"
+            animate={{ 
+              y: [-2, -8, -2],
+              opacity: [0.7, 1, 0.7] 
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <Sparkles className="w-4 h-4 text-white/80" />
+          </motion.div>
         </Button>
       </div>
 
-      {/* Secondary CTA with enhanced styling */}
+      {/* Secondary CTA con enhanced styling */}
       <div className="flex flex-col sm:flex-row gap-4 items-center">
         {/* Trust indicators */}
         <div className="flex items-center space-x-6 text-white/80 text-sm">

@@ -9,11 +9,11 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import WorkflowSection from '@/components/WorkflowSection';
 
 const ClientesB2B = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [benefitsRef, benefitsInView] = useInView({ triggerOnce: true, threshold: 0.1 });
-    const [processRef, processInView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
     const benefits = [
         {
@@ -61,14 +61,6 @@ const ClientesB2B = () => {
         }
     ];
 
-    const processSteps = [
-        { title: "Contacto Inicial", description: "Nos ponemos en contacto para entender sus necesidades" },
-        { title: "Propuesta Personalizada", description: "Elaboramos una oferta adaptada a su negocio" },
-        { title: "Muestras Gratuitas", description: "Enviamos muestras para que evalúe la calidad" },
-        { title: "Acuerdo Comercial", description: "Formalizamos la alianza comercial" },
-        { title: "Primera Entrega", description: "Iniciamos el suministro regular de café premium" }
-    ];
-
     return (
         <div className="min-h-screen">
             <Header />
@@ -89,7 +81,7 @@ const ClientesB2B = () => {
                         transition={{ duration: 0.8 }}
                     >
                         <h1 className="font-playfair text-5xl md:text-6xl font-bold mb-6">
-                            Aliados Comerciales
+                            Soluciones para Negocios
                         </h1>
                         <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-2xl mx-auto">
                             Únete a nuestra red de distribuidores y lleva la excelencia del café colombiano a tu negocio
@@ -100,7 +92,7 @@ const ClientesB2B = () => {
                                 <ArrowRight className="ml-2 w-4 h-4" />
                             </Button>
                             <Button size="lg" variant="outline" className="border-white text-coffee-brown hover:bg-white hover:text-coffee-brown">
-                                Ver Catálogo B2B
+                                Ver Catálogo para Negocios
                             </Button>
                         </div>
                     </motion.div>
@@ -192,53 +184,10 @@ const ClientesB2B = () => {
                 </div>
             </section>
 
-            {/* Proceso de colaboración */}
-            <section ref={processRef} className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={processInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8 }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="font-playfair text-4xl font-bold text-coffee-brown mb-6">
-                            Cómo Trabajamos Juntos
-                        </h2>
-                        <p className="text-lg text-coffee-brown/70 max-w-2xl mx-auto">
-                            Un proceso simple y transparente para establecer una alianza comercial exitosa.
-                        </p>
-                    </motion.div>
+            {/* Nuevo componente de proceso de colaboración */}
+            <WorkflowSection />
 
-                    <div className="relative">
-                        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-                            {processSteps.map((step, index) => (
-                                <motion.div
-                                    key={step.title}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={processInView ? { opacity: 1, y: 0 } : {}}
-                                    transition={{ duration: 0.8, delay: index * 0.2 }}
-                                    className="text-center relative"
-                                >
-                                    <div className="w-16 h-16 bg-coffee-orange rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
-                                        <span className="text-white font-bold text-xl">{index + 1}</span>
-                                    </div>
-                                    <h3 className="font-playfair text-lg font-semibold text-coffee-brown mb-3">
-                                        {step.title}
-                                    </h3>
-                                    <p className="text-coffee-brown/70 text-sm">
-                                        {step.description}
-                                    </p>
-                                    {index < processSteps.length - 1 && (
-                                        <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-coffee-orange/30 transform -translate-y-1/2" />
-                                    )}
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Formulario de contacto B2B */}
+            {/* Formulario de contacto para negocios */}
             <section className="py-20 bg-coffee-brown text-white">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
@@ -253,7 +202,7 @@ const ClientesB2B = () => {
                     <Card className="bg-white/10 backdrop-blur-sm border-white/20">
                         <CardHeader>
                             <h3 className="font-playfair text-2xl font-semibold text-center">
-                                Formulario de Contacto B2B
+                                Formulario para Negocios
                             </h3>
                         </CardHeader>
                         <CardContent className="space-y-6">

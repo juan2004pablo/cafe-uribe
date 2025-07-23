@@ -103,7 +103,7 @@ const B2BSection = () => {
                 className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium"
               >
                 <TrendingUp className="w-4 h-4" />
-                <span>Oportunidades B2B</span>
+                <span>Oportunidades para Negocios</span>
               </motion.div>
 
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight">
@@ -172,7 +172,7 @@ const B2BSection = () => {
                   size="lg" 
                   className="bg-primary hover:bg-primary/90 text-primary-foreground group"
                 >
-                  Información B2B
+                  Información para Negocios
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>

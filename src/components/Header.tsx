@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MessageCircle } from 'lucide-react';
@@ -22,7 +21,7 @@ const Header = () => {
     { name: 'Inicio', href: '/' },
     { name: 'Nosotros', href: '/nosotros' },
     { name: 'Variedades', href: '/variedades' },
-    { name: 'Clientes B2B', href: '/clientes-b2b' },
+    { name: 'Aliados Comerciales', href: '/clientes-b2b' },
     { name: 'Contacto', href: '/contacto' },
   ];
 

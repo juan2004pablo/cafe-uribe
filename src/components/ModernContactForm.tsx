@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ArrowRight, Coffee, Shield, Truck, Mail, Building2, User, Phone } from 'lucide-react';
+import { ArrowRight, Coffee, Shield, Truck, Mail, Building2, User, Phone, Leaf, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useForm } from 'react-hook-form';

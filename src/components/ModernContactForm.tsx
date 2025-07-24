@@ -145,7 +145,7 @@ const ModernContactForm = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex justify-center px-4"
           >
-            <div className="flex min-h-[400px] w-full items-center justify-center py-20 overflow-hidden">
+            <div className="flex min-h-[400px] w-full items-center justify-center py-5 overflow-hidden">
               <div className="w-full max-w-3xl px-4">
                 <DisplayCards cards={mobileCards} />
               </div>
@@ -167,7 +167,7 @@ const ModernContactForm = () => {
             { /* <div className="w-full max-w-lg">
               <DisplayCards cards={desktopCards} />
             </div> */ }
-            <div className="flex min-h-[400px] w-full items-center justify-center py-20 overflow-hidden">
+            <div className="flex min-h-[400px] w-full items-center justify-center py-5 overflow-hidden">
               <div className="w-full max-w-3xl px-4">
                 <DisplayCards cards={desktopCards} />
               </div>

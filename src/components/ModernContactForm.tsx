@@ -77,7 +77,7 @@ const ModernContactForm = () => {
       date: "Eco Friendly",
       iconClassName: "text-coffee-orange",
       titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] translate-x-18 sm:translate-x-24 md:translate-x-36 translate-y-30 hover:translate-y-20",
+      className: "[grid-area:stack] translate-x-6 sm:translate-x-8 md:translate-x-36 translate-y-32 hover:translate-y-20 transition-transform duration-700",
     },
     {
       icon: <Users className="size-4 text-coffee-orange" />,
@@ -86,7 +86,7 @@ const ModernContactForm = () => {
       date: "Comercio Justo",
       iconClassName: "text-coffee-orange",
       titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] translate-x-24 sm:translate-x-32 md:translate-x-48 translate-y-40 hover:translate-y-30",
+      className: "[grid-area:stack] translate-x-24 sm:translate-x-32 md:translate-x-48 translate-y-44 hover:translate-y-28 transition-transform duration-700",
     },
   ];
 
@@ -127,7 +127,7 @@ const ModernContactForm = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center lg:mb-16"
         >
           <h2 className="font-playfair text-4xl md:text-5xl font-bold text-coffee-brown mb-6">
             Comencemos una Alianza
@@ -145,7 +145,7 @@ const ModernContactForm = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex justify-center px-4"
           >
-            <div className="flex min-h-[400px] w-full items-center justify-center py-5 overflow-hidden">
+            <div className="flex min-h-[400px] w-full items-center justify-center overflow-hidden">
               <div className="w-full max-w-3xl px-4">
                 <DisplayCards cards={mobileCards} />
               </div>
@@ -156,7 +156,7 @@ const ModernContactForm = () => {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-36 items-center">
           {/* Left side - Display Cards - Desktop only */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}

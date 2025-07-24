@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Download, Coffee, Leaf, Flame, Package, Award, Thermometer, Droplets } from 'lucide-react';
@@ -70,85 +70,41 @@ const Variedades = () => {
             description: "Intensidad suave para cualquier momento",
             method: "Espresso + agua caliente",
             time: "1-2 minutos",
-            image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=300&fit=crop",
+            image: "https://www.somoselcafe.com.ar/img/novedades/47.webp",
             icon: <Coffee className="w-6 h-6" />
         }
     ];
 
     const roastTypes = [
         {
-            name: "Tostión Clara",
+            name: "Tostión Ligera",
             level: "Light Roast",
-            description: "Preserva los sabores originales del grano, acidez pronunciada y notas florales más evidentes.",
+            description: "Preserva los sabores originales del grano, resaltando notas frutales y una acidez más pronunciada.",
             temperature: "180-205°C",
             time: "9-11 minutos",
-            characteristics: ["Acidez alta", "Sabores frutales", "Cuerpo ligero", "Cafeína alta"],
+            characteristics: ["Acidez alta", "Sabores frutales"],
             color: "bg-amber-200",
-            image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400&h=300&fit=crop"
+            image: "/images/tostados/tostado_ligero.webp"
         },
         {
             name: "Tostión Media",
             level: "Medium Roast",
-            description: "Equilibrio perfecto entre acidez y cuerpo, realza los sabores naturales con notas más balanceadas.",
+            description: "Ofrece un balance entre acidez y dulzor, con cuerpo medio y sabores más caramelizados.",
             temperature: "210-225°C",
             time: "12-14 minutos",
-            characteristics: ["Acidez media", "Sabor balanceado", "Cuerpo medio", "Versatilidad"],
+            characteristics: ["Sabor balanceado", "Cuerpo medio"],
             color: "bg-amber-600",
-            image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=300&fit=crop"
+            image: "/images/tostados/tostado_medio.webp"
         },
         {
             name: "Tostión Oscura",
             level: "Dark Roast",
-            description: "Desarrolla sabores profundos y complejos, con notas tostadas y cuerpo robusto ideal para espresso.",
+            description: "Resalta sabores intensos y tostados, con baja acidez y cuerpo más robusto.",
             temperature: "230-245°C",
             time: "15-18 minutos",
-            characteristics: ["Acidez baja", "Sabores intensos", "Cuerpo robusto", "Notas tostadas"],
+            characteristics: ["Cuerpo robusto", "Notas tostadas"],
             color: "bg-amber-900",
-            image: "https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400&h=300&fit=crop"
-        }
-    ];
-
-    const availableJobs = [
-        {
-            title: "EL BARISTA",
-            salary: "50 000 RUB",
-            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
-            requirements: [
-                "Experiencia laboral (Opcional);",
-                "Responder rápidamente a las solicitudes de los clientes;",
-                "Habilidades multitarea;",
-                "El deseo de desarrollar y aprender cosas nuevas;",
-                "Sociabilidad y amabilidad;",
-                "Responsable y atento;",
-                "La capacidad de trabajar en equipo."
-            ]
-        },
-        {
-            title: "EL ADMINISTRADOR DEL SALÓN",
-            salary: "60 000 RUB",
-            image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop",
-            requirements: [
-                "Experiencia laboral en el campo del servicio al cliente;",
-                "Habilidades de comunicación y resolución de conflictos;",
-                "Organización y atención al detalle;",
-                "Disposición para trabajar en la noche;",
-                "Conocimiento de trabajar con clientes y proveedores;",
-                "Conocimiento de los principios básicos de trabajar con",
-                "clientes y brindar un servicio de alta calidad."
-            ]
-        },
-        {
-            title: "PASTELERO",
-            salary: "30 000 RUB",
-            image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop",
-            requirements: [
-                "Conocimiento de los conceptos básicos de la pastelería;",
-                "Esforzarse por el desarrollo;",
-                "La capacidad de organizar eficazmente su lugar de trabajo;",
-                "Atención a la calidad de los productos;",
-                "Resistencia al estrés;",
-                "Amabilidad e interacción con el equipo."
-            ]
+            image: "/images/tostados/tostado_oscuro.webp"
         }
     ];
 
@@ -175,7 +131,7 @@ const Variedades = () => {
                             Del Cultivo a la Taza
                         </h1>
                         <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-3xl mx-auto">
-                            Descubre el fascinante mundo del café colombiano: desde los granos que cultivamos 
+                            Descubre el fascinante mundo del café colombiano: desde los granos que cultivamos
                             hasta las preparaciones que puedes disfrutar
                         </p>
                         <div className="flex flex-wrap justify-center gap-4 text-sm">
@@ -242,7 +198,7 @@ const Variedades = () => {
                                 </div>
                                 <div>
                                     <h3 className="font-playfair text-3xl font-bold text-coffee-brown">
-                                        Café Uribe Premium
+                                        Café Uribe Tostado
                                     </h3>
                                     <p className="text-coffee-orange font-medium">
                                         Presentación de 500g
@@ -293,12 +249,19 @@ const Variedades = () => {
                                 </div>
                             </div>
 
-                            <div className="flex gap-4 pt-4">
-                                <Button size="lg" className="bg-coffee-orange hover:bg-coffee-orange/90">
+                            <div className="flex flex-col sm:flex-row gap-4 pt-4 flex-wrap">
+                                <Button
+                                    size="lg"
+                                    className="bg-coffee-orange hover:bg-coffee-orange/90 w-full sm:w-auto"
+                                >
                                     <Download className="w-4 h-4 mr-2" />
                                     Descargar Ficha Técnica
                                 </Button>
-                                <Button size="lg" variant="outline" className="border-coffee-brown text-coffee-brown hover:bg-coffee-brown hover:text-white">
+                                <Button
+                                    size="lg"
+                                    variant="outline"
+                                    className="border-coffee-brown text-coffee-brown hover:bg-coffee-brown hover:text-white w-full sm:w-auto"
+                                >
                                     Solicitar Cotización
                                 </Button>
                             </div>
@@ -430,143 +393,64 @@ const Variedades = () => {
             </section>
 
             {/* Tipos de Tostión */}
-            <section ref={roastTypesRef} className="py-20 bg-coffee-brown/80 text-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={roastTypesInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8 }}
-                        className="text-center mb-16"
-                    >
+            <section className="bg-[#2C1309] py-20 px-6 text-white">
+                <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+                    <div className="text-center mb-16">
                         <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6">
-                            Tipos de Tostión
+                            Tipos de Tueste
                         </h2>
                         <p className="text-lg text-white/70 max-w-3xl mx-auto">
                             El arte de tostar define el carácter final del café. Conoce nuestros tres niveles
                             de tostión y cómo cada uno desarrolla sabores únicos
                         </p>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        {roastTypes.map((roast, index) => (
-                            <motion.div
-                                key={roast.name}
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={roastTypesInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.8, delay: index * 0.2 }}
-                                className="group"
-                            >
-                                <Card className="h-full bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300">
-                                    <div className="relative overflow-hidden rounded-t-lg">
-                                        <img
-                                            src={roast.image}
-                                            alt={roast.name}
-                                            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                                        <div className={`absolute top-4 right-4 ${roast.color} rounded-full p-3`}>
-                                            <Flame className="w-6 h-6 text-white" />
-                                        </div>
-                                    </div>
-
-                                    <CardHeader className="text-white">
-                                        <h3 className="font-playfair text-2xl font-bold">
-                                            {roast.name}
-                                        </h3>
-                                        <p className="text-coffee-orange font-medium">
-                                            {roast.level}
-                                        </p>
-                                        <p className="text-white/80 leading-relaxed">
-                                            {roast.description}
-                                        </p>
-                                    </CardHeader>
-
-                                    <CardContent className="text-white">
-                                        <div className="grid grid-cols-2 gap-4 text-sm mb-4">
-                                            <div>
-                                                <span className="text-white/60">Temperatura:</span>
-                                                <p className="text-coffee-orange font-medium">{roast.temperature}</p>
-                                            </div>
-                                            <div>
-                                                <span className="text-white/60">Tiempo:</span>
-                                                <p className="text-coffee-orange font-medium">{roast.time}</p>
-                                            </div>
-                                        </div>
-                                        <div className="space-y-2">
-                                            <h4 className="font-semibold text-white mb-2">Características:</h4>
-                                            <div className="grid grid-cols-2 gap-2">
-                                                {roast.characteristics.map((char, idx) => (
-                                                    <div key={idx} className="flex items-center text-sm">
-                                                        <div className="w-2 h-2 bg-coffee-orange rounded-full mr-2" />
-                                                        <span className="text-white/80">{char}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-                        ))}
                     </div>
-                </div>
-            </section>
+                    <hr className="w-full border-t border-[#583E37] opacity-100" />
 
-            {/* Oportunidades Laborales */}
-            <section ref={jobsRef} className="py-20 bg-coffee-brown text-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={jobsInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8 }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 text-white">
-                            OPORTUNIDADES LABORALES
-                        </h2>
-                    </motion.div>
+                    <div className="space-y-0">
+                        {roastTypes.map((roast, idx) => (
+                            <React.Fragment key={idx}>
+                                <div className="relative pt-8 overflow-hidden">
+                                    <div className="grid grid-cols-1 md:grid-cols-12 items-start gap-6 md:gap-8 mb-8 md:mb-0">
+                                        {/* Title & Info */}
+                                        <div className="md:col-span-3 pt-4 text-center md:text-left">
+                                            <h3 className="text-base md:text-lg font-semibold uppercase">{roast.name}</h3>
+                                            <p className="text-sm italic text-coffee-orange">{roast.level}</p>
+                                            <p className="text-xs mt-1 text-neutral-400">
+                                                {roast.temperature} · {roast.time}
+                                            </p>
+                                        </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        {availableJobs.map((job, index) => (
-                            <motion.div
-                                key={job.title}
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={jobsInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.8, delay: index * 0.2 }}
-                                className="group"
-                            >
-                                <div className="bg-coffee-brown/90 backdrop-blur-sm border border-coffee-orange/20 rounded-lg overflow-hidden">
-                                    <div className="p-6">
-                                        <h3 className="font-playfair text-xl font-bold text-white mb-2">
-                                            {job.title}
-                                        </h3>
-                                        <p className="text-coffee-orange font-medium mb-6">
-                                            {job.salary}
-                                        </p>
-                                        
-                                        <div className="relative mb-6">
-                                            <div className="w-48 h-48 mx-auto relative">
-                                                <div 
-                                                    className="w-full h-full rounded-t-full bg-cover bg-center"
-                                                    style={{ 
-                                                        backgroundImage: `url(${job.image})`,
-                                                        clipPath: 'ellipse(50% 50% at 50% 50%)'
-                                                    }}
+                                        {/* Image */}
+                                        <div className="md:col-span-3 flex justify-center md:justify-start relative z-10">
+                                            <div className="w-56 h-36 lg:h-56 overflow-hidden">
+                                                <img
+                                                    src={roast.image}
+                                                    alt={roast.name}
+                                                    className="w-full h-36 object-cover"
                                                 />
                                             </div>
                                         </div>
 
-                                        <div className="space-y-2">
-                                            {job.requirements.map((req, idx) => (
-                                                <div key={idx} className="flex items-start text-sm">
-                                                    <div className="w-2 h-2 bg-coffee-orange rounded-full mr-3 mt-2 flex-shrink-0" />
-                                                    <span className="text-white/90">{req}</span>
-                                                </div>
-                                            ))}
+                                        {/* Characteristics */}
+                                        <div className="md:col-span-6 pt-4 md:mt-6 lg:mt-0 text-center md:text-left">
+                                            <p className="mb-3 text-sm text-neutral-200">{roast.description}</p>
+                                            <ul className="space-y-2 flex flex-col items-center md:items-start pt-4">
+                                                {roast.characteristics.map((point, j) => (
+                                                    <li key={j} className="flex items-start text-sm text-white/90">
+                                                        <span className="mt-1 mr-2 inline-block w-2 h-2 rounded-full bg-coffee-orange flex-shrink-0" />
+                                                        <span>{point}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
                                     </div>
+
+                                    {/* Divider */}
+                                    <hr className="absolute bottom-0 left-0 w-full border-t border-[#583E37] opacity-100 z-0" />
                                 </div>
-                            </motion.div>
+                            </React.Fragment>
                         ))}
+
                     </div>
                 </div>
             </section>

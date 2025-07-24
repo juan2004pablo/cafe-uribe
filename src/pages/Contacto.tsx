@@ -201,19 +201,19 @@ const Contacto = () => {
                                         transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                                     >
                                         <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
-                                            <div className="flex items-start justify-between">
-                                                <div className="flex items-start space-x-4 flex-1">
+                                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                                                <div className="flex items-start space-x-4 flex-1 min-w-0">
                                                     <div className="w-12 h-12 bg-coffee-orange/10 rounded-full flex items-center justify-center flex-shrink-0">
                                                         <div className="text-coffee-orange">{method.icon}</div>
                                                     </div>
-                                                    <div className="flex-1">
+                                                    <div className="flex-1 min-w-0">
                                                         <h3 className="font-semibold text-coffee-brown mb-1">
                                                             {method.title}
                                                         </h3>
-                                                        <p className="text-coffee-brown font-medium mb-1">
+                                                        <p className="text-coffee-brown font-medium mb-1 break-words">
                                                             {method.info}
                                                         </p>
-                                                        <p className="text-coffee-brown/60 text-sm mb-3">
+                                                        <p className="text-coffee-brown/60 text-sm">
                                                             {method.description}
                                                         </p>
                                                     </div>
@@ -221,9 +221,10 @@ const Contacto = () => {
                                                 <Button
                                                     onClick={method.action}
                                                     size="sm"
-                                                    className="bg-coffee-orange hover:bg-coffee-orange/90 text-white flex items-center gap-2"
+                                                    className="bg-coffee-orange hover:bg-coffee-orange/90 text-white flex items-center gap-2 w-full sm:w-auto flex-shrink-0"
                                                 >
-                                                    {method.buttonText}
+                                                    <span className="hidden sm:inline">{method.buttonText}</span>
+                                                    <span className="sm:hidden text-xs">{method.buttonText}</span>
                                                     <ExternalLink className="w-3 h-3" />
                                                 </Button>
                                             </div>

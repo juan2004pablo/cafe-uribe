@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ArrowRight, Coffee, Shield, Truck, Mail, Building2, User, Phone } from 'lucide-react';
+import { ArrowRight, Coffee, Shield, Truck, Mail, Building2, User, Phone, Leaf, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useForm } from 'react-hook-form';
@@ -36,7 +36,8 @@ const ModernContactForm = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const coffeeCards = [
+  // Cards for mobile/tablet (3 cards)
+  const mobileCards = [
     {
       icon: <Coffee className="size-4 text-coffee-orange" />,
       title: "Calidad Premium",
@@ -63,6 +64,29 @@ const ModernContactForm = () => {
       iconClassName: "text-coffee-orange",
       titleClassName: "text-coffee-brown",
       className: "[grid-area:stack] translate-x-16 sm:translate-x-24 translate-y-20 hover:translate-y-10",
+    },
+  ];
+
+  // Cards for desktop (5 cards)
+  const desktopCards = [
+    ...mobileCards,
+    {
+      icon: <Leaf className="size-4 text-coffee-orange" />,
+      title: "Sostenibilidad",
+      description: "Cultivo responsable",
+      date: "Eco Friendly",
+      iconClassName: "text-coffee-orange",
+      titleClassName: "text-coffee-brown",
+      className: "[grid-area:stack] translate-x-24 sm:translate-x-36 translate-y-30 hover:translate-y-20",
+    },
+    {
+      icon: <Users className="size-4 text-coffee-orange" />,
+      title: "Relaciones Directas",
+      description: "Apoyo al caficultor",
+      date: "Comercio Justo",
+      iconClassName: "text-coffee-orange",
+      titleClassName: "text-coffee-brown",
+      className: "[grid-area:stack] translate-x-32 sm:translate-x-48 translate-y-40 hover:translate-y-30",
     },
   ];
 
@@ -113,16 +137,30 @@ const ModernContactForm = () => {
           </p>
         </motion.div>
 
+        {/* Display Cards - Mobile/Tablet: Above form */}
+        <div className="lg:hidden mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex justify-center px-4"
+          >
+            <div className="w-full max-w-md scale-75 sm:scale-90 overflow-hidden">
+              <DisplayCards cards={mobileCards} />
+            </div>
+          </motion.div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left side - Display Cards - Responsive positioning */}
+          {/* Left side - Display Cards - Desktop only */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex justify-center order-2 lg:order-1 lg:self-center"
+            className="hidden lg:flex justify-center self-center"
           >
-            <div className="w-full max-w-md lg:max-w-lg scale-75 sm:scale-90 lg:scale-100">
-              <DisplayCards cards={coffeeCards} />
+            <div className="w-full max-w-lg">
+              <DisplayCards cards={desktopCards} />
             </div>
           </motion.div>
 

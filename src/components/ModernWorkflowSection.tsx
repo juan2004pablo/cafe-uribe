@@ -110,55 +110,56 @@ const ModernWorkflowSection = () => {
           </div>
 
           {/* Steps - Mobile/Tablet (vertical) */}
-          <div className="lg:hidden space-y-12">
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="flex items-center group"
-              >
-                {/* Step number */}
+          <div className="lg:hidden relative">
+            {/* Vertical line for mobile */}
+            <motion.div
+              initial={{ scaleY: 0 }}
+              animate={inView ? { scaleY: 1 } : {}}
+              transition={{ duration: 2, delay: 0.5 }}
+              className="absolute left-4 top-0 w-0.5 bg-gradient-to-b from-coffee-orange via-coffee-brown to-coffee-orange origin-top z-0"
+              style={{ height: `${(steps.length - 1) * 112 + 80}px` }}
+            />
+            
+            <div className="space-y-12">
+              {steps.map((step, index) => (
                 <motion.div
-                  initial={{ scale: 0 }}
-                  animate={inView ? { scale: 1 } : {}}
-                  transition={{ duration: 0.4, delay: index * 0.2 + 0.8 }}
-                  className="w-8 h-8 bg-coffee-orange text-white rounded-full flex items-center justify-center text-sm font-bold mr-6 flex-shrink-0"
+                  key={index}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="flex items-center group relative z-10"
                 >
-                  {index + 1}
-                </motion.div>
-
-                {/* Icon container with floating effect */}
-                <motion.div
-                  className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full shadow-xl flex items-center justify-center text-coffee-brown mr-6 group-hover:shadow-2xl transition-all duration-300 border-4 border-coffee-cream flex-shrink-0"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: index * 0.4 }}
-                >
-                  {step.icon}
-                </motion.div>
-
-                {/* Content */}
-                <div className="flex-1">
-                  <h3 className="font-playfair text-xl font-bold text-coffee-brown mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-coffee-brown/70">
-                    {step.description}
-                  </p>
-                </div>
-
-                {/* Connecting line for mobile */}
-                {index < steps.length - 1 && (
+                  {/* Step number */}
                   <motion.div
-                    initial={{ scaleY: 0 }}
-                    animate={inView ? { scaleY: 1 } : {}}
-                    transition={{ duration: 1, delay: index * 0.2 + 0.5 }}
-                    className="absolute left-4 top-16 w-0.5 h-12 bg-gradient-to-b from-coffee-orange to-coffee-brown origin-top"
-                  />
-                )}
-              </motion.div>
-            ))}
+                    initial={{ scale: 0 }}
+                    animate={inView ? { scale: 1 } : {}}
+                    transition={{ duration: 0.4, delay: index * 0.2 + 0.8 }}
+                    className="w-8 h-8 bg-coffee-orange text-white rounded-full flex items-center justify-center text-sm font-bold mr-6 flex-shrink-0 relative z-10"
+                  >
+                    {index + 1}
+                  </motion.div>
+
+                  {/* Icon container with floating effect */}
+                  <motion.div
+                    className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full shadow-xl flex items-center justify-center text-coffee-brown mr-6 group-hover:shadow-2xl transition-all duration-300 border-4 border-coffee-cream flex-shrink-0"
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: index * 0.4 }}
+                  >
+                    {step.icon}
+                  </motion.div>
+
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="font-playfair text-xl font-bold text-coffee-brown mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-coffee-brown/70">
+                      {step.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
 

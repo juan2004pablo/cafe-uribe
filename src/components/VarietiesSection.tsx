@@ -1,7 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ArrowRight, MapPin, Star, Coffee } from 'lucide-react';
+import { ArrowRight, MapPin, Coffee } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -10,17 +10,15 @@ const VarietiesSection = () => {
 
   const varieties = [
     {
-      name: "Premium Origen",
+      name: "Especial Tostado Entero y Molido",
       description: "Notas cítricas y chocolate",
       image: "/images/foto_60.jpeg",
-      rating: 4.9,
       origin: "Norte de Santander"
     },
     {
-      name: "Especial Tostión Media",
+      name: "Especial Tostado Molido",
       description: "Equilibrio perfecto, notas frutales",
       image: "/images/foto_61.jpeg",
-      rating: 4.8,
       origin: "Norte de Santander"
     },
   ];
@@ -59,12 +57,6 @@ const VarietiesSection = () => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                
-                {/* Rating badge */}
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
-                  <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  <span className="text-sm font-medium">{variety.rating}</span>
-                </div>
 
                 {/* Origin badge */}
                 <div className="absolute top-4 left-4 bg-coffee-orange/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1 text-white">

@@ -16,7 +16,7 @@ const Nosotros = () => {
         { year: "1970", event: "Fundación de la finca familiar en el Eje Cafetero" },
         { year: "1985", event: "Primera exportación internacional" },
         { year: "2000", event: "Certificación de café orgánico" },
-        { year: "2024", event: "Expansión a mercados B2B especializados" }
+        { year: "2024", event: "Expansión a mercados especializados" }
     ];
 
     const values = [
@@ -188,7 +188,7 @@ const Nosotros = () => {
                             </p>
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="bg-white p-4 rounded-lg">
-                                    <p className="font-playfair text-2xl font-bold text-coffee-orange">1,800m</p>
+                                    <p className="font-playfair text-2xl font-bold text-coffee-orange">1.750m</p>
                                     <p className="text-coffee-brown/70">Altura sobre el mar</p>
                                 </div>
                                 <div className="bg-white p-4 rounded-lg">

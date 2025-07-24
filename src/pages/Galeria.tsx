@@ -565,7 +565,7 @@ const Galeria = () => {
                         <h1 className="font-playfair text-4xl md:text-6xl font-bold mb-6">
                             Nuestra Galería
                         </h1>
-                        <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
+                        <p className="text-lg md:text-xl opacity-90 max-w-3xl mx-auto">
                             Un viaje visual por nuestro legado cafetero, desde la finca hasta tu taza
                         </p>
                     </motion.div>
@@ -604,7 +604,7 @@ const Galeria = () => {
                                     className="rounded-md"
                                 >
                                     <Layers3 className="w-4 h-4 mr-2" />
-                                    Carrusel en Capas
+                                    Carrusel
                                 </Button>
                             </div>
                         </div>

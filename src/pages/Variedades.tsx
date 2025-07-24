@@ -14,6 +14,7 @@ const Variedades = () => {
     const [coffeeTypesRef, coffeeTypesInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [roastTypesRef, roastTypesInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [productRef, productInView] = useInView({ triggerOnce: true, threshold: 0.1 });
+    const [jobsRef, jobsInView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
     const grainTypes = [
         {
@@ -104,6 +105,50 @@ const Variedades = () => {
             characteristics: ["Acidez baja", "Sabores intensos", "Cuerpo robusto", "Notas tostadas"],
             color: "bg-amber-900",
             image: "https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400&h=300&fit=crop"
+        }
+    ];
+
+    const availableJobs = [
+        {
+            title: "EL BARISTA",
+            salary: "50 000 RUB",
+            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
+            requirements: [
+                "Experiencia laboral (Opcional);",
+                "Responder rápidamente a las solicitudes de los clientes;",
+                "Habilidades multitarea;",
+                "El deseo de desarrollar y aprender cosas nuevas;",
+                "Sociabilidad y amabilidad;",
+                "Responsable y atento;",
+                "La capacidad de trabajar en equipo."
+            ]
+        },
+        {
+            title: "EL ADMINISTRADOR DEL SALÓN",
+            salary: "60 000 RUB",
+            image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop",
+            requirements: [
+                "Experiencia laboral en el campo del servicio al cliente;",
+                "Habilidades de comunicación y resolución de conflictos;",
+                "Organización y atención al detalle;",
+                "Disposición para trabajar en la noche;",
+                "Conocimiento de trabajar con clientes y proveedores;",
+                "Conocimiento de los principios básicos de trabajar con",
+                "clientes y brindar un servicio de alta calidad."
+            ]
+        },
+        {
+            title: "PASTELERO",
+            salary: "30 000 RUB",
+            image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop",
+            requirements: [
+                "Conocimiento de los conceptos básicos de la pastelería;",
+                "Esforzarse por el desarrollo;",
+                "La capacidad de organizar eficazmente su lugar de trabajo;",
+                "Atención a la calidad de los productos;",
+                "Resistencia al estrés;",
+                "Amabilidad e interacción con el equipo."
+            ]
         }
     ];
 
@@ -460,6 +505,66 @@ const Variedades = () => {
                                         </div>
                                     </CardContent>
                                 </Card>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Oportunidades Laborales */}
+            <section ref={jobsRef} className="py-20 bg-coffee-brown text-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={jobsInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8 }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 text-white">
+                            OPORTUNIDADES LABORALES
+                        </h2>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        {availableJobs.map((job, index) => (
+                            <motion.div
+                                key={job.title}
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={jobsInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.8, delay: index * 0.2 }}
+                                className="group"
+                            >
+                                <div className="bg-coffee-brown/90 backdrop-blur-sm border border-coffee-orange/20 rounded-lg overflow-hidden">
+                                    <div className="p-6">
+                                        <h3 className="font-playfair text-xl font-bold text-white mb-2">
+                                            {job.title}
+                                        </h3>
+                                        <p className="text-coffee-orange font-medium mb-6">
+                                            {job.salary}
+                                        </p>
+                                        
+                                        <div className="relative mb-6">
+                                            <div className="w-48 h-48 mx-auto relative">
+                                                <div 
+                                                    className="w-full h-full rounded-t-full bg-cover bg-center"
+                                                    style={{ 
+                                                        backgroundImage: `url(${job.image})`,
+                                                        clipPath: 'ellipse(50% 50% at 50% 50%)'
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            {job.requirements.map((req, idx) => (
+                                                <div key={idx} className="flex items-start text-sm">
+                                                    <div className="w-2 h-2 bg-coffee-orange rounded-full mr-3 mt-2 flex-shrink-0" />
+                                                    <span className="text-white/90">{req}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
                             </motion.div>
                         ))}
                     </div>

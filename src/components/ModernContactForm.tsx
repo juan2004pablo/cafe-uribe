@@ -69,33 +69,7 @@ const ModernContactForm = () => {
 
   // Cards for desktop (5 cards)
   const desktopCards = [
-    {
-      icon: <Coffee className="size-4 text-coffee-orange" />,
-      title: "Calidad Premium",
-      description: "100% Café Colombiano",
-      date: "Certificado",
-      iconClassName: "text-coffee-orange",
-      titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
-    },
-    {
-      icon: <Shield className="size-4 text-coffee-orange" />,
-      title: "Garantía Total",
-      description: "Satisfacción asegurada",
-      date: "Respaldado",
-      iconClassName: "text-coffee-orange",
-      titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] translate-x-16 translate-y-10 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
-    },
-    {
-      icon: <Truck className="size-4 text-coffee-orange" />,
-      title: "Logística Eficaz",
-      description: "Entregas puntuales",
-      date: "Garantizado",
-      iconClassName: "text-coffee-orange",
-      titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] translate-x-32 translate-y-20 hover:translate-y-10",
-    },
+    ...mobileCards,
     {
       icon: <Leaf className="size-4 text-coffee-orange" />,
       title: "Sostenibilidad",
@@ -103,7 +77,7 @@ const ModernContactForm = () => {
       date: "Eco Friendly",
       iconClassName: "text-coffee-orange",
       titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] translate-x-48 translate-y-30 hover:translate-y-20 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
+      className: "[grid-area:stack] translate-x-18 sm:translate-x-24 md:translate-x-36 translate-y-30 hover:translate-y-20",
     },
     {
       icon: <Users className="size-4 text-coffee-orange" />,
@@ -112,7 +86,7 @@ const ModernContactForm = () => {
       date: "Comercio Justo",
       iconClassName: "text-coffee-orange",
       titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] translate-x-64 translate-y-40 hover:translate-y-30 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
+      className: "[grid-area:stack] translate-x-24 sm:translate-x-32 md:translate-x-48 translate-y-40 hover:translate-y-30",
     },
   ];
 
@@ -163,19 +137,22 @@ const ModernContactForm = () => {
           </p>
         </motion.div>
 
-        {/* Display Cards - Mobile/Tablet: Above form with reduced margin */}
-        <div className="lg:hidden mb-8">
+        {/* Display Cards - Mobile/Tablet: Above form */}
+        <div className="lg:hidden mb-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex justify-center px-4"
           >
-            <div className="flex min-h-[350px] w-full items-center justify-center py-4 overflow-hidden">
+            <div className="flex min-h-[400px] w-full items-center justify-center py-5 overflow-hidden">
               <div className="w-full max-w-3xl px-4">
                 <DisplayCards cards={mobileCards} />
               </div>
             </div>
+            { /*<div className="w-full max-w-md scale-75 sm:scale-90 overflow-hidden">
+              <DisplayCards cards={mobileCards} />
+            </div> */ }
           </motion.div>
         </div>
 
@@ -187,6 +164,9 @@ const ModernContactForm = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="hidden lg:flex justify-center self-center"
           >
+            { /* <div className="w-full max-w-lg">
+              <DisplayCards cards={desktopCards} />
+            </div> */ }
             <div className="flex min-h-[400px] w-full items-center justify-center py-5 overflow-hidden">
               <div className="w-full max-w-3xl px-4">
                 <DisplayCards cards={desktopCards} />

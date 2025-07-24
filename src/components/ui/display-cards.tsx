@@ -26,12 +26,12 @@ function DisplayCard({
   return (
     <div
       className={cn(
-        "relative flex h-32 w-72 sm:h-36 sm:w-[22rem] -skew-y-[8deg] select-none flex-col justify-between rounded-xl border-2 bg-muted/70 backdrop-blur-sm px-4 py-3 transition-all duration-700 after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-64 sm:after:w-[20rem] after:bg-gradient-to-l after:from-background after:to-transparent after:content-[''] hover:border-white/20 hover:bg-muted [&>*]:flex [&>*]:items-center [&>*]:gap-2 group",
+        "relative flex h-32 w-72 sm:h-36 sm:w-[22rem] -skew-y-[8deg] select-none flex-col justify-between rounded-xl border-2 bg-muted/70 backdrop-blur-sm px-4 py-3 transition-all duration-700 after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-64 sm:after:w-[20rem] after:bg-gradient-to-l after:from-background after:to-transparent after:content-[''] hover:border-white/20 hover:bg-muted [&>*]:flex [&>*]:items-center [&>*]:gap-2",
         className
       )}
     >
       <div>
-        <span className="relative inline-block rounded-full bg-blue-800 p-1 group-hover:bg-coffee-orange transition-colors duration-300">
+        <span className="relative inline-block rounded-full bg-blue-800 p-1">
           {icon}
         </span>
         <p className={cn("text-sm sm:text-lg font-medium", titleClassName)}>{title}</p>
@@ -63,22 +63,9 @@ export default function DisplayCards({ cards }: DisplayCardsProps) {
 
   return (
     <div className="grid [grid-template-areas:'stack'] place-items-center opacity-100 animate-in fade-in-0 duration-700">
-      {displayCards.map((cardProps, index) => {
-        // Only the first card should have blue icon by default, others should be gray
-        const isFirstCard = index === 0;
-        const cardWithIconColor = {
-          ...cardProps,
-          className: cn(
-            cardProps.className,
-            // Add specific styling for non-first cards to have gray icons initially
-            !isFirstCard && "grayscale [&_span]:bg-gray-400 hover:[&_span]:bg-coffee-orange hover:grayscale-0"
-          )
-        };
-        
-        return (
-          <DisplayCard key={index} {...cardWithIconColor} />
-        );
-      })}
+      {displayCards.map((cardProps, index) => (
+        <DisplayCard key={index} {...cardProps} />
+      ))}
     </div>
   );
 }

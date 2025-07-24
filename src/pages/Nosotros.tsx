@@ -1,10 +1,10 @@
-
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Award, Users, Leaf, Heart, Camera } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import DiscountSection from '@/components/DiscountSection';
 import { Button } from '@/components/ui/button';
 
 const Nosotros = () => {
@@ -241,6 +241,9 @@ const Nosotros = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Discount Section */}
+            <DiscountSection />
 
             <Footer />
         </div>

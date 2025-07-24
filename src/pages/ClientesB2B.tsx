@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Building2, Coffee, Truck, Users, ArrowRight } from 'lucide-react';
@@ -9,6 +8,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ModernWorkflowSection from '@/components/ModernWorkflowSection';
 import ModernContactForm from '@/components/ModernContactForm';
+import CoffeeShowcaseSection from '@/components/CoffeeShowcaseSection';
 
 const ClientesB2B = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -73,7 +73,7 @@ const ClientesB2B = () => {
     };
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen bg-background">
             <Header />
 
             {/* Hero Section */}
@@ -209,6 +209,9 @@ const ClientesB2B = () => {
 
             {/* Contact Form */}
             <ModernContactForm />
+
+            {/* Coffee Showcase Section */}
+            <CoffeeShowcaseSection />
 
             <Footer />
         </div>

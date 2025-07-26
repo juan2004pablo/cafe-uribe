@@ -27,24 +27,22 @@ const CoffeeShowcaseSection = () => {
             </div>
           </motion.div>
 
-          <div className="aspect-[4/3] pb-4 grid grid-cols-1 sm:grid-cols-2 grid-rows-2 auto-rows-[minmax(150px,_1fr)] gap-4">
-            {/* Tarjeta grande */}
+          {/* Tarjetas grid responsivo */}
+          <div className="pb-4 grid grid-cols-2 gap-4 sm:grid-cols-2 sm:auto-rows-[minmax(150px,_1fr)] sm:aspect-[4/3]">
+            {/* Tarjeta grande - Fila 1, dos columnas */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
-              className="sm:col-span-2 bg-gradient-to-br from-gray-100 to-gray-300 text-black relative overflow-hidden flex justify-between items-center py-6 pl-6"
+              className="col-span-2 sm:col-span-2 bg-gradient-to-br from-gray-100 to-gray-300 text-black relative overflow-hidden flex justify-between items-center py-6 pl-6"
             >
-              {/* Texto a la izquierda */}
               <div>
                 <div className="text-lg font-semibold uppercase mb-2">
                   Transformación<br /> del Café
                 </div>
                 <span className='text-sm text-gray-400'>Realizamos todo el proceso de post cosecha, asegurando calidad en cada paso.</span>
               </div>
-
-              {/* Imagen a la derecha */}
               <div className="shrink-0">
                 <img
                   src="/images/foto_71.png"
@@ -54,13 +52,13 @@ const CoffeeShowcaseSection = () => {
               </div>
             </motion.div>
 
-            {/* Tarjeta 3 */}
+            {/* Tarjeta 3 - Fila 2, una columna */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-white/80 relative overflow-hidden"
+              className="col-span-1 sm:col-span-1 bg-white/80 relative overflow-hidden"
             >
               <div className="absolute top-4 right-4 text-md font-semibold text-black uppercase">
                 Legado de <br />aroma y sabor
@@ -72,13 +70,13 @@ const CoffeeShowcaseSection = () => {
               />
             </motion.div>
 
-            {/* Tarjeta 2 */}
+            {/* Tarjeta 2 - Fila 2, segunda columna */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden"
+              className="col-span-1 sm:col-span-1 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden"
             >
               <video
                 src="/images/video_3.mp4"
@@ -89,6 +87,8 @@ const CoffeeShowcaseSection = () => {
                 className="w-full h-84 object-cover"
               />
             </motion.div>
+
+            {/* Aquí puedes agregar una cuarta tarjeta si la tienes (fila 3) */}
           </div>
         </div>
 
@@ -101,13 +101,11 @@ const CoffeeShowcaseSection = () => {
           className="max-h-36 bg-[#000003] text-white relative overflow-hidden"
         >
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-            {/* Bloque de texto izquierdo */}
             <div className="flex-1 text-center text-gray-200">
               <h3 className="text-xl lg:text-2xl mb-2">Avalada por el registro Invima®</h3>
               <h3 className="text-xl lg:text-2xl">y logo de denominación de origen®</h3>
             </div>
 
-            {/* Imagen del medio */}
             <div className="hidden lg:block mr-20">
               <img
                 src="/images/foto_74.jpeg"
@@ -116,7 +114,6 @@ const CoffeeShowcaseSection = () => {
               />
             </div>
 
-            {/* Bloque de marca a la derecha */}
             <div className="text-center p-4 mr-10 mb-5">
               <h3 className="text-2xl lg:text-3xl font-semibold mb-2">Café Uribe</h3>
               <p className="text-sm text-gray-300">Saborea el origen</p>

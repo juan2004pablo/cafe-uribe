@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import GoogleMaps from '@/components/GoogleMaps';
+import { WhatsAppIcon } from '@/components/ui/whatsAppIcon';
 
 const Contacto = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -245,7 +246,7 @@ const Contacto = () => {
                                     onClick={() => window.open('https://wa.me/573203737502?text=Hola, necesito atención inmediata sobre Café Uribe', '_blank')}
                                     className="bg-coffee-orange hover:bg-coffee-orange/90 text-white w-full"
                                 >
-                                    <MessageCircle className="w-4 h-4 mr-2" />
+                                    <WhatsAppIcon className="w-4 h-4 mr-2" />
                                     Chatear por WhatsApp
                                 </Button>
                             </Card>

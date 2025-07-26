@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 
 const CoffeeShowcaseSection = () => {
@@ -6,8 +5,8 @@ const CoffeeShowcaseSection = () => {
     <section className="py-16 lg:py-24 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-          {/* Left Column - Large Image */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-4">
+          {/* Left Column - Large Video */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -15,132 +14,130 @@ const CoffeeShowcaseSection = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="aspect-[4/3] relative rounded-2xl overflow-hidden">
-              <img
-                src="/images/foto_45.jpeg"
-                alt="Coffee tasting professional"
-                className="w-full h-full object-cover"
+            <div className="relative overflow-hidden">
+              <video
+                src="/images/video_4.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-[432px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              
-              {/* Overlay Text */}
-              <div className="absolute top-8 left-8 text-white">
-                <h3 className="text-xl lg:text-2xl font-bold mb-2">DISCOVER OUR</h3>
-                <h3 className="text-xl lg:text-2xl font-bold">NEW BLENDS</h3>
-              </div>
             </div>
           </motion.div>
 
-          {/* Right Column - Product Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {/* Premium Roasted Card */}
+          <div className="aspect-[4/3] pb-4 grid grid-cols-1 sm:grid-cols-2 grid-rows-2 auto-rows-[minmax(150px,_1fr)] gap-4">
+            {/* Tarjeta grande */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 text-white relative overflow-hidden"
+              className="sm:col-span-2 bg-gradient-to-br from-gray-100 to-gray-300 text-black relative overflow-hidden flex justify-between items-center py-6 pl-6"
             >
-              <div className="absolute top-4 right-4 text-xs font-semibold">
-                PREMIUM<br />ROASTED
-              </div>
-              <div className="mt-12">
-                <h3 className="text-xl font-bold mb-2">FABRIKA</h3>
-                <h3 className="text-xl font-bold mb-2">COFFEE</h3>
-                <p className="text-sm text-gray-300 mb-4">TAKE, BREW AND DRINK</p>
-                <div className="bg-primary/20 rounded-lg p-4">
-                  <h4 className="font-bold text-lg">KENYA MOUNT</h4>
-                  <p className="text-xs text-gray-400 mt-1">Premium quality coffee beans</p>
+              {/* Texto a la izquierda */}
+              <div>
+                <div className="text-lg font-semibold uppercase mb-2">
+                  Transformación<br /> del Café
                 </div>
+                <span className='text-sm text-gray-400'>Realizamos todo el proceso de post cosecha, asegurando calidad en cada paso.</span>
+              </div>
+
+              {/* Imagen a la derecha */}
+              <div className="shrink-0">
+                <img
+                  src="/images/foto_71.png"
+                  alt="Taza de café"
+                  className="w-84 h-96 object-cover rounded-lg opacity-80"
+                />
               </div>
             </motion.div>
 
-            {/* Coffee Knowledge Card */}
+            {/* Tarjeta 3 */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl p-6 relative overflow-hidden"
+              className="bg-white/80 relative overflow-hidden"
             >
-              <div className="absolute top-4 right-4 text-xs font-semibold text-gray-600">
-                BARISTA'S<br />CHOICE
+              <div className="absolute top-4 right-4 text-md font-semibold text-black uppercase">
+                Legado de <br />aroma y sabor
               </div>
-              <div className="mt-4">
-                <h3 className="text-lg font-bold text-gray-800 mb-4">WE KNOW COFFEE</h3>
-                <h3 className="text-lg font-bold text-gray-800 mb-4">INSIDE AND OUT</h3>
-                
-                {/* Coffee beans illustration */}
-                <div className="flex justify-center mb-4">
-                  <div className="grid grid-cols-3 gap-2">
-                    {[1, 2, 3, 4, 5, 6].map((i) => (
-                      <div
-                        key={i}
-                        className="w-8 h-8 bg-gradient-to-br from-amber-600 to-amber-800 rounded-full shadow-sm"
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <img
+                src="/images/foto_72.png"
+                alt="Café de origen"
+                className="min-w-36 h-full object-cover rounded-lg opacity-80"
+              />
+            </motion.div>
+
+            {/* Tarjeta 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden"
+            >
+              <video
+                src="/images/video_3.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-84 object-cover"
+              />
             </motion.div>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="mt-8 lg:mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Capsules Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-            className="lg:col-span-2 bg-gradient-to-r from-gray-900 to-black rounded-2xl p-8 text-white relative overflow-hidden"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-2xl lg:text-3xl font-bold mb-2">CAPSULES FOR NESPRESSO®</h3>
-                <h3 className="text-2xl lg:text-3xl font-bold">AND DOLCE GUSTO® MACHINES</h3>
-              </div>
-              <div className="hidden lg:block">
-                <img
-                  src="/images/foto_38.jpeg"
-                  alt="Coffee cup"
-                  className="w-32 h-32 object-cover rounded-lg opacity-80"
-                />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Brand Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 text-white relative overflow-hidden"
-          >
-            <div className="text-center">
-              <h3 className="text-2xl lg:text-3xl font-bold mb-2">FABRIKA</h3>
-              <h3 className="text-2xl lg:text-3xl font-bold mb-4">COFFEE</h3>
-              <p className="text-sm text-gray-300 mb-2">TAKE, BREW AND DRINK</p>
-              <p className="text-xs text-gray-400">ROASTING COFFEE SINCE 2007</p>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Large Bottom Text */}
+        {/* Sección inferior unificada */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
-          className="mt-12 text-center"
+          className="max-h-36 bg-[#000003] text-white relative overflow-hidden"
         >
-          <h2 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-foreground/20 leading-tight">
-            TAKE, BREW AND DRINK - TAKE, BREW AN
-          </h2>
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+            {/* Bloque de texto izquierdo */}
+            <div className="flex-1 text-center text-gray-200">
+              <h3 className="text-xl lg:text-2xl mb-2">Avalada por el registro Invima®</h3>
+              <h3 className="text-xl lg:text-2xl">y logo de denominación de origen®</h3>
+            </div>
+
+            {/* Imagen del medio */}
+            <div className="hidden lg:block mr-20">
+              <img
+                src="/images/foto_74.jpeg"
+                alt="Taza de café"
+                className="w-32 h-42 object-cover"
+              />
+            </div>
+
+            {/* Bloque de marca a la derecha */}
+            <div className="text-center p-4 mr-10 mb-5">
+              <h3 className="text-2xl lg:text-3xl font-semibold mb-2">Café Uribe</h3>
+              <p className="text-sm text-gray-300">Saborea el origen</p>
+              <p className="text-xs text-gray-400">Café de especialidad colombiano</p>
+            </div>
+          </div>
         </motion.div>
       </div>
+
+      {/* Frase final destacada */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1 }}
+        viewport={{ once: true }}
+        className="mt-12 text-center"
+      >
+        <h2 className="text-4xl lg:text-6xl xl:text-7xl text-foreground/40 leading-tight">
+          Prepara, disfruta y comparte Café Uribe
+        </h2>
+      </motion.div>
     </section>
   );
 };

@@ -160,6 +160,9 @@ const ClientesB2B = () => {
                 </div>
             </section>
 
+            {/* Coffee Showcase Section */}
+            <CoffeeShowcaseSection />
+
             {/* A quién servimos */}
             <section className="py-20 bg-coffee-cream/20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -209,9 +212,6 @@ const ClientesB2B = () => {
 
             {/* Contact Form */}
             <ModernContactForm />
-
-            {/* Coffee Showcase Section */}
-            <CoffeeShowcaseSection />
 
             <Footer />
         </div>

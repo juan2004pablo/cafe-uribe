@@ -542,7 +542,7 @@ const Galeria = () => {
             <Header />
 
             {/* Hero Section */}
-            <section ref={heroRef} className="relative min-h-[60vh] flex items-center justify-center pt-20 bg-coffee-brown">
+            <section ref={heroRef} className="relative min-h-[80vh] flex items-center justify-center pt-20 bg-coffee-brown">
                 <div 
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
                     style={{

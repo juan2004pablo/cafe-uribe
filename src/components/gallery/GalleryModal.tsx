@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Play, Pause, Download, Share2, Copy } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Play, Pause, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 
@@ -79,49 +79,6 @@ const GalleryModal = ({ isOpen, items, currentIndex, onClose, onNavigate }: Gall
     });
   };
 
-  const handleShare = async () => {
-    const shareData = {
-      title: currentItem.title,
-      text: `Mira esta imagen de ${currentItem.title}`,
-      url: window.location.href,
-    };
-
-    // Intentar usar la API nativa de compartir
-    if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
-      try {
-        await navigator.share(shareData);
-        toast({
-          title: "Compartido exitosamente",
-          description: "La imagen ha sido compartida",
-        });
-      } catch (error) {
-        console.log('Error sharing:', error);
-        // Fallback a copiar al portapapeles
-        await copyToClipboard();
-      }
-    } else {
-      // Fallback a copiar al portapapeles
-      await copyToClipboard();
-    }
-  };
-
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      toast({
-        title: "Enlace copiado",
-        description: "El enlace ha sido copiado al portapapeles",
-      });
-    } catch (error) {
-      console.log('Error copying to clipboard:', error);
-      toast({
-        title: "Error al compartir",
-        description: "No se pudo compartir la imagen",
-        variant: "destructive",
-      });
-    }
-  };
-
   if (!isOpen || !currentItem) return null;
 
   return (
@@ -155,17 +112,6 @@ const GalleryModal = ({ isOpen, items, currentIndex, onClose, onNavigate }: Gall
                 className="text-white hover:bg-white/20"
               >
                 <Download className="w-5 h-5" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleShare();
-                }}
-                className="text-white hover:bg-white/20"
-              >
-                <Share2 className="w-5 h-5" />
               </Button>
               <Button
                 variant="ghost"

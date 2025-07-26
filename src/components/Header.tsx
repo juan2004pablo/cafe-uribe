@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
+import { WhatsAppIcon } from './ui/whatsAppIcon';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -97,7 +98,7 @@ const Header = () => {
               onClick={handleWhatsApp}
               className="bg-coffee-orange hover:bg-coffee-orange/90 text-white text-xs xl:text-sm px-3 xl:px-4"
             >
-              <MessageCircle className="w-3 h-3 xl:w-4 xl:h-4 mr-1 xl:mr-2" />
+              <WhatsAppIcon className="w-3 h-3 xl:w-4 xl:h-4 mr-1 xl:mr-2" />
               WhatsApp
             </Button>
           </div>
@@ -151,7 +152,7 @@ const Header = () => {
                   onClick={handleWhatsApp}
                   className="w-full bg-coffee-orange hover:bg-coffee-orange/90 text-white"
                 >
-                  <MessageCircle className="w-4 h-4 mr-2" />
+                  <WhatsAppIcon className="w-4 h-4 mr-2"/>
                   WhatsApp
                 </Button>
               </div>

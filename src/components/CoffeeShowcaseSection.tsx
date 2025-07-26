@@ -1,32 +1,33 @@
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
 
 const CoffeeShowcaseSection = () => {
-  const navigate = useNavigate();
-
-  const handleQuoteRedirect = () => {
-    navigate('/contacto');
-  };
-
   return (
-    <section className="py-20 bg-white">
+    <section className="py-16 lg:py-24 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        {/* Main Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-4">
+          {/* Left Column - Large Video */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="relative"
           >
-            <h2 className="font-playfair text-4xl font-bold text-coffee-brown mb-4">
-              Nuestro Producto Principal
-            </h2>
-            <p className="text-lg text-coffee-brown/70 max-w-2xl mx-auto">
-              Café de alta calidad cultivado en las montañas de Norte de Santander
-            </p>
+            <div className="relative overflow-hidden">
+              <video
+                src="/images/video_4.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-[432px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            </div>
           </motion.div>
 
+          {/* Tarjetas grid responsivo */}
           <div className="pb-4 grid grid-cols-2 gap-4 sm:grid-cols-2 sm:auto-rows-[minmax(150px,_1fr)] sm:aspect-[4/3]">
             {/* Tarjeta grande - Fila 1, dos columnas */}
             <motion.div
@@ -45,8 +46,8 @@ const CoffeeShowcaseSection = () => {
               <div className="shrink-0">
                 <img
                   src="/images/foto_71.png"
-                  alt="Transformación del café"
-                  className="w-24 h-24 object-cover"
+                  alt="Taza de café"
+                  className="w-84 h-96 object-cover rounded-lg opacity-80"
                 />
               </div>
             </motion.div>
@@ -64,8 +65,8 @@ const CoffeeShowcaseSection = () => {
               </div>
               <img
                 src="/images/foto_72.png"
-                alt="Café de calidad"
-                className="w-full h-full object-cover"
+                alt="Café de origen"
+                className="min-w-36 h-full object-cover rounded-lg opacity-80"
               />
             </motion.div>
 
@@ -91,7 +92,7 @@ const CoffeeShowcaseSection = () => {
           </div>
         </div>
 
-        {/* Banner inferior */}
+        {/* Sección inferior unificada */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -108,35 +109,32 @@ const CoffeeShowcaseSection = () => {
             <div className="hidden lg:block mr-20">
               <img
                 src="/images/foto_74.jpeg"
-                alt="Certificaciones"
-                className="h-20 w-auto"
+                alt="Taza de café"
+                className="w-32 h-42 object-cover"
               />
             </div>
 
             <div className="text-center p-4 mr-10 mb-5">
               <h3 className="text-2xl lg:text-3xl font-semibold mb-2">Café Uribe</h3>
               <p className="text-sm text-gray-300">Saborea el origen</p>
+              <p className="text-xs text-gray-400">Café de especialidad colombiano</p>
             </div>
           </div>
         </motion.div>
-
-        {/* Botón de cotización */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mt-8"
-        >
-          <Button
-            size="lg"
-            className="bg-coffee-orange hover:bg-coffee-orange/90 text-white px-8 py-3"
-            onClick={handleQuoteRedirect}
-          >
-            Solicitar Cotización
-          </Button>
-        </motion.div>
       </div>
+
+      {/* Frase final destacada */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1 }}
+        viewport={{ once: true }}
+        className="mt-12 text-center"
+      >
+        <h2 className="text-4xl lg:text-6xl xl:text-7xl text-foreground/40 leading-tight">
+          Prepara, disfruta y comparte Café Uribe
+        </h2>
+      </motion.div>
     </section>
   );
 };

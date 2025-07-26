@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -35,8 +36,8 @@ const ModernContactForm = () => {
     resolver: zodResolver(formSchema),
   });
 
-  // Cards for desktop (5 cards)
-  const desktopCards = [
+  // Cards for mobile/tablet (3 cards)
+  const mobileCards = [
     {
       icon: <Coffee className="size-4 text-coffee-orange" />,
       title: "Calidad Premium",
@@ -64,6 +65,11 @@ const ModernContactForm = () => {
       titleClassName: "text-coffee-brown",
       className: "[grid-area:stack] translate-x-12 sm:translate-x-16 md:translate-x-24 translate-y-20 hover:translate-y-10",
     },
+  ];
+
+  // Cards for desktop (5 cards)
+  const desktopCards = [
+    ...mobileCards,
     {
       icon: <Leaf className="size-4 text-coffee-orange" />,
       title: "Sostenibilidad",
@@ -131,14 +137,36 @@ const ModernContactForm = () => {
           </p>
         </motion.div>
 
+        {/* Display Cards - Mobile/Tablet: Above form */}
+        <div className="lg:hidden mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex justify-center px-4"
+          >
+            <div className="flex min-h-[400px] w-full items-center justify-center overflow-hidden">
+              <div className="w-full max-w-3xl px-4">
+                <DisplayCards cards={mobileCards} />
+              </div>
+            </div>
+            { /*<div className="w-full max-w-md scale-75 sm:scale-90 overflow-hidden">
+              <DisplayCards cards={mobileCards} />
+            </div> */ }
+          </motion.div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-36 items-center">
           {/* Left side - Display Cards - Desktop only */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="hidden xl:flex justify-center self-center"
+            className="hidden lg:flex justify-center self-center"
           >
+            { /* <div className="w-full max-w-lg">
+              <DisplayCards cards={desktopCards} />
+            </div> */ }
             <div className="flex min-h-[400px] w-full items-center justify-center py-5 overflow-hidden">
               <div className="w-full max-w-3xl px-4">
                 <DisplayCards cards={desktopCards} />

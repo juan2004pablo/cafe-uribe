@@ -115,7 +115,6 @@ const CoffeeShowcaseSection = () => {
             </div>
 
             <div className="text-center p-4 mr-10 mb-5">
-              <h3 className="text-2xl lg:text-3xl font-semibold mb-2">Café Uribe</h3>
               <p className="text-sm text-gray-300">Saborea el origen</p>
               <p className="text-xs text-gray-400">Café de especialidad colombiano</p>
             </div>

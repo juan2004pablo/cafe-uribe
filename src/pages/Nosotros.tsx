@@ -1,16 +1,22 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Award, Users, Leaf, Heart, Camera } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Award, Users, Leaf, Heart, MapPin } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import DiscountSection from '@/components/DiscountSection';
+import PhysicalStoreSection from '@/components/PhysicalStoreSection';
 import { Button } from '@/components/ui/button';
 
 const Nosotros = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [historyRef, historyInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [valuesRef, valuesInView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+    const scrollToPhysicalStore = () => {
+        const element = document.getElementById('punto-venta-fisico');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     const timeline = [
         { year: "1970", event: "Fundación de la finca familiar en el Eje Cafetero" },
@@ -76,12 +82,13 @@ const Nosotros = () => {
                         <p className="text-xl md:text-2xl opacity-90 mb-8">
                             Tres generaciones cultivando el mejor café colombiano
                         </p>
-                        <Link to="/galeria">
-                            <Button className="bg-coffee-orange hover:bg-coffee-orange/90 text-white">
-                                <Camera className="w-4 h-4 mr-2" />
-                                Ver Galería
-                            </Button>
-                        </Link>
+                        <Button 
+                            onClick={scrollToPhysicalStore}
+                            className="bg-coffee-orange hover:bg-coffee-orange/90 text-white"
+                        >
+                            <MapPin className="w-4 h-4 mr-2" />
+                            Visitar Tienda
+                        </Button>
                     </motion.div>
                 </div>
             </section>
@@ -242,8 +249,10 @@ const Nosotros = () => {
                 </div>
             </section>
 
-            {/* Discount Section */}
-            <DiscountSection />
+            {/* Physical Store Section */}
+            <div id="punto-venta-fisico">
+                <PhysicalStoreSection />
+            </div>
 
             <Footer />
         </div>

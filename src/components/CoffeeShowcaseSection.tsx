@@ -35,21 +35,19 @@ const CoffeeShowcaseSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
-              className="col-span-2 sm:col-span-2 bg-gradient-to-br from-gray-100 to-gray-300 text-black relative overflow-hidden flex flex-col sm:flex-row justify-between items-center py-4 sm:py-6 sm:pl-6 gap-4 sm:gap-0"
+              className="col-span-2 sm:col-span-2 bg-gradient-to-br from-gray-100 to-gray-300 text-black relative overflow-hidden flex justify-between items-center py-6 pl-6"
             >
-              <div className="text-center sm:text-left">
+              <div>
                 <div className="text-lg font-semibold uppercase mb-2">
                   Transformación<br /> del Café
                 </div>
-                <span className="text-sm text-gray-400">
-                  Realizamos todo el proceso de post cosecha, asegurando calidad en cada paso.
-                </span>
+                <span className='text-sm text-gray-400'>Realizamos todo el proceso de post cosecha, asegurando calidad en cada paso.</span>
               </div>
               <div className="shrink-0">
                 <img
                   src="/images/foto_71.png"
                   alt="Taza de café"
-                  className="w-60 h-60 lg:w-72 lg:h-72 object-cover rounded-lg opacity-80"
+                  className="w-84 h-96 object-cover rounded-lg opacity-80"
                 />
               </div>
             </motion.div>
@@ -60,7 +58,7 @@ const CoffeeShowcaseSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="col-span-1 sm:col-span-1 bg-white/80 relative overflow-hidden"
+              className="col-span-1 sm:col-span-1 bg-white/80 max-h-56 relative overflow-hidden"
             >
               <div className="absolute top-4 right-4 text-md font-semibold text-black uppercase">
                 Legado de <br />aroma y sabor
@@ -78,7 +76,7 @@ const CoffeeShowcaseSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="col-span-1 sm:col-span-1 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden"
+              className="col-span-1 sm:col-span-1 max-h-56 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden"
             >
               <video
                 src="/images/video_3.mp4"

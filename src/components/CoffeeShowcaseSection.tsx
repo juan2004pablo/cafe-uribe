@@ -35,19 +35,21 @@ const CoffeeShowcaseSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
-              className="col-span-2 sm:col-span-2 bg-gradient-to-br from-gray-100 to-gray-300 text-black relative overflow-hidden flex justify-between items-center py-6 pl-6"
+              className="col-span-2 sm:col-span-2 bg-gradient-to-br from-gray-100 to-gray-300 text-black relative overflow-hidden flex flex-col sm:flex-row justify-between items-center py-4 sm:py-6 sm:pl-6 gap-4 sm:gap-0"
             >
-              <div>
+              <div className="text-center sm:text-left">
                 <div className="text-lg font-semibold uppercase mb-2">
                   Transformación<br /> del Café
                 </div>
-                <span className='text-sm text-gray-400'>Realizamos todo el proceso de post cosecha, asegurando calidad en cada paso.</span>
+                <span className="text-sm text-gray-400">
+                  Realizamos todo el proceso de post cosecha, asegurando calidad en cada paso.
+                </span>
               </div>
               <div className="shrink-0">
                 <img
                   src="/images/foto_71.png"
                   alt="Taza de café"
-                  className="w-84 h-96 object-cover rounded-lg opacity-80"
+                  className="w-60 h-60 sm:w-72 sm:h-72 object-cover rounded-lg opacity-80"
                 />
               </div>
             </motion.div>

@@ -202,7 +202,7 @@ const Index = () => {
       {/* Testimonios - Nuevo componente con marquee */}
       <TestimonialsSection
         title="Lo Que Dicen Nuestros Clientes"
-        description="La confianza de nuestros socios comerciales es nuestro mayor logro"
+        description="La confianza de nuestros socios comerciales y clientes es nuestro mayor logro"
         testimonials={testimonials}
         className="bg-orange-50"
       />

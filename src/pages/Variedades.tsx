@@ -108,6 +108,12 @@ const Variedades = () => {
         }
     ];
 
+    const handleWhatsAppQuote = () => {
+        const message = "Hola, me interesa solicitar una cotización para el Café Uribe Tostado de 500g. ¿Podrían proporcionarme información sobre precios y disponibilidad?";
+        const whatsappUrl = `https://wa.me/573203737502?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    };
+
     return (
         <div className="min-h-screen">
             <Header />
@@ -250,17 +256,27 @@ const Variedades = () => {
                             </div>
 
                             <div className="flex flex-col sm:flex-row gap-4 pt-4 flex-wrap">
-                                <Button
-                                    size="lg"
-                                    className="bg-coffee-orange hover:bg-coffee-orange/90 w-full sm:w-auto"
-                                >
-                                    <Download className="w-4 h-4 mr-2" />
-                                    Descargar Ficha Técnica
-                                </Button>
+                                <div className="relative group w-full sm:w-auto">
+                                    <Button
+                                        size="lg"
+                                        className="bg-coffee-orange hover:bg-coffee-orange/90 w-full sm:w-auto"
+                                        disabled
+                                    >
+                                        <Download className="w-4 h-4 mr-2" />
+                                        Descargar Ficha Técnica
+                                    </Button>
+
+                                    {/* Tooltip */}
+                                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 px-4 py-2 text-sm text-white bg-coffee-brown rounded-xl shadow-xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 z-20 pointer-events-none whitespace-nowrap">
+                                        Pendiente por desarrollar
+                                    </div>
+                                </div>
+
                                 <Button
                                     size="lg"
                                     variant="outline"
                                     className="border-coffee-brown text-coffee-brown hover:bg-coffee-brown hover:text-white w-full sm:w-auto"
+                                    onClick={handleWhatsAppQuote}
                                 >
                                     Solicitar Cotización
                                 </Button>

@@ -15,6 +15,7 @@ const Contacto = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [contactRef, contactInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [mapRef, mapInView] = useInView({ triggerOnce: true, threshold: 0.1 });
+    const [disclaimerRef, disclaimerInView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
     const contactMethods = [
         {
@@ -264,6 +265,28 @@ const Contacto = () => {
                         transition={{ duration: 0.8 }}
                     >
                         <GoogleMaps />
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Disclaimer Section */}
+            <section ref={disclaimerRef} className="py-12 bg-coffee-brown/5">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={disclaimerInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <Card className="p-6 border-coffee-orange/20">
+                            <h3 className="font-playfair text-lg font-semibold text-coffee-orange mb-3">
+                                Propuesta no oficial – Uso demostrativo
+                            </h3>
+                            <p className="text-coffee-brown/80 text-sm leading-relaxed">
+                                Este sitio es una propuesta desarrollada exclusivamente con fines demostrativos para la empresa Café Uribe. 
+                                No representa su sitio oficial, no está afiliado directamente a la empresa y no se utiliza con fines comerciales. 
+                                El contenido utilizado (logos, imágenes e información) es referencial.
+                            </p>
+                        </Card>
                     </motion.div>
                 </div>
             </section>

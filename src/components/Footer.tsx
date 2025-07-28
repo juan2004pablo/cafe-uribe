@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {/* Logo y descripción */}
-          <div className="md:col-span-2 lg:col-span-2">
+          <div className="md:col-span-1 lg:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
               <img 
                 src="/logo_oscuro.webp" 
@@ -44,58 +44,73 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Navegación */}
-          <div>
-            <h3 className="font-playfair font-semibold text-lg mb-6">Navegación</h3>
-            <ul className="space-y-3">
-              <li><Link to="/" className="text-white/80 hover:text-coffee-orange transition-colors">Inicio</Link></li>
-              <li><Link to="/nosotros" className="text-white/80 hover:text-coffee-orange transition-colors">Nosotros</Link></li>
-              <li><Link to="/variedades" className="text-white/80 hover:text-coffee-orange transition-colors">Variedades</Link></li>
-              <li><Link to="/clientes-b2b" className="text-white/80 hover:text-coffee-orange transition-colors">Clientes</Link></li>
-              <li><Link to="/contacto" className="text-white/80 hover:text-coffee-orange transition-colors">Contacto</Link></li>
-            </ul>
-          </div>
+          {/* Navegación y Contacto - En la misma fila para pantallas medianas */}
+          <div className="md:col-span-2 lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Navegación */}
+            <div>
+              <h3 className="font-playfair font-semibold text-lg mb-6">Navegación</h3>
+              <ul className="space-y-3">
+                <li><Link to="/" className="text-white/80 hover:text-coffee-orange transition-colors">Inicio</Link></li>
+                <li><Link to="/nosotros" className="text-white/80 hover:text-coffee-orange transition-colors">Nosotros</Link></li>
+                <li><Link to="/variedades" className="text-white/80 hover:text-coffee-orange transition-colors">Variedades</Link></li>
+                <li><Link to="/clientes-b2b" className="text-white/80 hover:text-coffee-orange transition-colors">Clientes</Link></li>
+                <li><Link to="/contacto" className="text-white/80 hover:text-coffee-orange transition-colors">Contacto</Link></li>
+              </ul>
+            </div>
 
-          {/* Contacto */}
-          <div>
-            <h3 className="font-playfair font-semibold text-lg mb-6">Contacto</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-coffee-orange" />
-                <a 
-                  href="mailto:info@cafeuribe.com"
-                  className="text-white/80 hover:text-coffee-orange transition-colors"
-                >
-                  info@cafeuribe.com
-                </a>
-              </li>
-              <li className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-coffee-orange" />
-                <a 
-                  href="tel:+573203737502"
-                  className="text-white/80 hover:text-coffee-orange transition-colors"
-                >
-                  +57 320 373 7502
-                </a>
-              </li>
-              <li className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-coffee-orange mt-0.5" />
-                <span className="text-white/80">
-                  Ragonvalia, Norte de Santander<br />
-                  Villa del Rosario - Cr 11 6-88
-                </span>
-              </li>
-            </ul>
+            {/* Contacto */}
+            <div>
+              <h3 className="font-playfair font-semibold text-lg mb-6">Contacto</h3>
+              <ul className="space-y-3">
+                <li className="flex items-center space-x-3">
+                  <Mail className="w-5 h-5 text-coffee-orange" />
+                  <a 
+                    href="mailto:info@cafeuribe.com"
+                    className="text-white/80 hover:text-coffee-orange transition-colors"
+                  >
+                    info@cafeuribe.com
+                  </a>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <Phone className="w-5 h-5 text-coffee-orange" />
+                  <a 
+                    href="tel:+573203737502"
+                    className="text-white/80 hover:text-coffee-orange transition-colors"
+                  >
+                    +57 320 373 7502
+                  </a>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <MapPin className="w-5 h-5 text-coffee-orange mt-0.5" />
+                  <span className="text-white/80">
+                    Ragonvalia, Norte de Santander<br />
+                    Villa del Rosario - Cr 11 6-88
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-white/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-white/60 text-sm">
-            © 2025 Café Uribe. Todos los derechos reservados.
-          </p>
-          <p className="text-white/60 text-sm mt-4 md:mt-0">
-            Legado de aroma y sabor - 100% Colombiano
-          </p>
+        {/* Disclaimer */}
+        <div className="border-t border-white/20 mt-12 pt-8">
+          <div className="bg-white/5 rounded-lg p-4 mb-6">
+            <h4 className="font-semibold text-coffee-orange mb-2">Propuesta no oficial – Uso demostrativo</h4>
+            <p className="text-white/70 text-sm leading-relaxed">
+              Este sitio es una propuesta desarrollada exclusivamente con fines demostrativos para la empresa Café Uribe. 
+              No representa su sitio oficial, no está afiliado directamente a la empresa y no se utiliza con fines comerciales. 
+              El contenido utilizado (logos, imágenes e información) es referencial.
+            </p>
+          </div>
+          
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-white/60 text-sm">
+              © 2025 Café Uribe. Todos los derechos reservados.
+            </p>
+            <p className="text-white/60 text-sm mt-4 md:mt-0">
+              Legado de aroma y sabor - 100% Colombiano
+            </p>
+          </div>
         </div>
       </div>
     </footer>

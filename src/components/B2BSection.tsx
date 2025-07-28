@@ -179,8 +179,8 @@ const B2BSection = () => {
               <Link to="/contacto">
                 <Button 
                   size="lg" 
-                  variant="outline" 
-                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                  variant="outline"
+                  className="border-coffee-brown text-coffee-brown hover:bg-coffee-brown hover:text-white w-full sm:w-auto"
                 >
                   Contacta con Nosotros
                 </Button>

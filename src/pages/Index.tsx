@@ -17,7 +17,7 @@ const Index = () => {
   const [processRef, processInView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const processSteps = [
-    { icon: <Leaf className="w-8 h-8" />, title: "Cultivo", description: "En las montañas del Eje Cafetero" },
+    { icon: <Leaf className="w-8 h-8" />, title: "Cultivo", description: "En las montañas del Norte de Santander" },
     { icon: <Coffee className="w-8 h-8" />, title: "Recolección", description: "Manual y selectiva" },
     { icon: <Award className="w-8 h-8" />, title: "Tostión", description: "Proceso artesanal controlado" },
     { icon: <Users className="w-8 h-8" />, title: "Tu Taza", description: "Calidad garantizada" }

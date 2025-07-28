@@ -19,7 +19,7 @@ const Nosotros = () => {
     };
 
     const timeline = [
-        { year: "1970", event: "Fundación de la finca familiar en el Eje Cafetero" },
+        { year: "1970", event: "Fundación de la finca familiar en el Norte de Santander" },
         { year: "1985", event: "Primera exportación internacional" },
         { year: "2000", event: "Certificación de café orgánico" },
         { year: "2024", event: "Expansión a mercados especializados" }
@@ -107,7 +107,7 @@ const Nosotros = () => {
                             </h2>
                             <p className="text-lg text-coffee-brown/80 mb-6 leading-relaxed">
                                 Todo comenzó en 1970, cuando Don Carlos Uribe decidió plantar los primeros
-                                cafetos en las montañas del Eje Cafetero. Con la visión de crear un café
+                                cafetos en las montañas del Norte de Santander. Con la visión de crear un café
                                 excepcional, estableció los cimientos de lo que hoy es Café Uribe.
                             </p>
                             <p className="text-lg text-coffee-brown/80 mb-6 leading-relaxed">
@@ -184,7 +184,7 @@ const Nosotros = () => {
                                 La Finca Café Uribe
                             </h2>
                             <p className="text-lg text-coffee-brown/80 mb-6 leading-relaxed">
-                                Ubicada en el corazón del Eje Cafetero, a 1.750 metros sobre el nivel del mar,
+                                Ubicada en el corazón del Norte de Santander, a 1.750 metros sobre el nivel del mar,
                                 nuestra finca goza de condiciones climáticas excepcionales que favorecen
                                 el desarrollo de granos de café premium.
                             </p>

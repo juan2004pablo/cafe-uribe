@@ -170,7 +170,7 @@ const B2BSection = () => {
               <Link to="/clientes-b2b">
                 <Button 
                   size="lg" 
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground group"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground group w-full sm:w-auto"
                 >
                   Información para Negocios
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />

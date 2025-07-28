@@ -5,6 +5,7 @@ import { Download, Coffee, Leaf, Flame, Package, Award, Thermometer, Droplets } 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -107,6 +108,12 @@ const Variedades = () => {
             image: "/images/tostados/tostado_oscuro.webp"
         }
     ];
+
+    const handleWhatsAppQuote = () => {
+        const message = "Hola, me interesa solicitar una cotización para el Café Uribe Tostado de 500g. ¿Podrían proporcionarme información sobre precios y disponibilidad?";
+        const whatsappUrl = `https://wa.me/573001234567?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    };
 
     return (
         <div className="min-h-screen">
@@ -249,22 +256,33 @@ const Variedades = () => {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col sm:flex-row gap-4 pt-4 flex-wrap">
-                                <Button
-                                    size="lg"
-                                    className="bg-coffee-orange hover:bg-coffee-orange/90 w-full sm:w-auto"
-                                >
-                                    <Download className="w-4 h-4 mr-2" />
-                                    Descargar Ficha Técnica
-                                </Button>
-                                <Button
-                                    size="lg"
-                                    variant="outline"
-                                    className="border-coffee-brown text-coffee-brown hover:bg-coffee-brown hover:text-white w-full sm:w-auto"
-                                >
-                                    Solicitar Cotización
-                                </Button>
-                            </div>
+                            <TooltipProvider>
+                                <div className="flex flex-col sm:flex-row gap-4 pt-4 flex-wrap">
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Button
+                                                size="lg"
+                                                className="bg-coffee-orange hover:bg-coffee-orange/90 w-full sm:w-auto"
+                                                disabled
+                                            >
+                                                <Download className="w-4 h-4 mr-2" />
+                                                Descargar Ficha Técnica
+                                            </Button>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>Funcionalidad pendiente por desarrollar</p>
+                                        </TooltipContent>
+                                    </Tooltip>
+                                    <Button
+                                        size="lg"
+                                        variant="outline"
+                                        className="border-coffee-brown text-coffee-brown hover:bg-coffee-brown hover:text-white w-full sm:w-auto"
+                                        onClick={handleWhatsAppQuote}
+                                    >
+                                        Solicitar Cotización
+                                    </Button>
+                                </div>
+                            </TooltipProvider>
                         </motion.div>
                     </div>
                 </div>

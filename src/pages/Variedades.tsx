@@ -165,7 +165,7 @@ const Variedades = () => {
                             Nuestro Producto Principal
                         </h2>
                         <p className="text-lg text-coffee-brown/70 max-w-3xl mx-auto">
-                            Café Uribe Premium - El resultado de décadas de experiencia en una presentación perfecta
+                            El resultado de décadas de experiencia en una presentación perfecta
                         </p>
                     </motion.div>
 

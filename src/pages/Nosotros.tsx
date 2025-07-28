@@ -87,7 +87,7 @@ const Nosotros = () => {
                             className="bg-coffee-orange hover:bg-coffee-orange/90 text-white"
                         >
                             <MapPin className="w-4 h-4 mr-2" />
-                            Visitar Tienda
+                            Visitar Local
                         </Button>
                     </motion.div>
                 </div>

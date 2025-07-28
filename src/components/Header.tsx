@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MessageCircle } from 'lucide-react';
@@ -47,7 +48,7 @@ const Header = () => {
             <img 
                 src={isScrolled ? "/logo_claro.webp" : "/logo_oscuro.webp"} 
                 alt="Montemar Logo" 
-                className="h-20 md:h-24 w-auto"
+                className="h-20 w-auto"
               />
             <div className="flex flex-col">
               <span className={`font-bold text-lg md:text-xl transition-colors duration-300 ${

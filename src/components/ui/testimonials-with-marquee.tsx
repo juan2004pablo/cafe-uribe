@@ -38,8 +38,8 @@ export function TestimonialsSection({
           </p>
         </div>
 
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-          <div className="flex overflow-hidden [--gap:1rem] [gap:var(--gap)] [--duration:60s] hover:[animation-play-state:paused]">
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden hover:[animation-play-state:paused]">
+          <div className="flex overflow-hidden [--gap:1rem] [gap:var(--gap)] [--duration:90s]">
             <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee">
               {testimonialSets.map((testimonial, index) => (
                 <TestimonialCard 

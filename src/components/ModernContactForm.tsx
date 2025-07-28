@@ -126,7 +126,7 @@ const ModernContactForm = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-8 lg:mb-16"
+          className="text-center mb-16"
         >
           <h2 className="font-playfair text-4xl md:text-5xl font-bold text-coffee-brown mb-6">
             Comencemos una Alianza

@@ -4,6 +4,7 @@ import { Award, Users, Leaf, Heart, MapPin } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PhysicalStoreSection from '@/components/PhysicalStoreSection';
+import FarmShowcaseSection from '@/components/FarmShowcaseSection';
 import { Button } from '@/components/ui/button';
 
 const Nosotros = () => {
@@ -159,6 +160,9 @@ const Nosotros = () => {
                     </motion.div>
                 </div>
             </section>
+
+            {/* New Farm Showcase Section */}
+            <FarmShowcaseSection />
 
             {/* La Finca */}
             <section className="py-20 bg-coffee-cream/30">

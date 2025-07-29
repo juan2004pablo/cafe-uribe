@@ -106,7 +106,7 @@ const Nosotros = () => {
                                 El Legado Familiar
                             </h2>
                             <p className="text-lg text-coffee-brown/80 mb-6 leading-relaxed">
-                                Todo comenzó en 1970, cuando Don Álvaro Uribe decidió plantar los primeros
+                                Todo comenzó en 1970, cuando Don Álvaro Javier Uribe decidió plantar los primeros
                                 cafetos en las montañas del Norte de Santander. Con la visión de crear un café
                                 excepcional, estableció los cimientos de lo que hoy es Café Uribe.
                             </p>

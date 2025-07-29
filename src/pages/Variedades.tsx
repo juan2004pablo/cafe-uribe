@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import MachinerySection from '@/components/MachinerySection';
 
 const Variedades = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -344,6 +345,9 @@ const Variedades = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Machinery Section */}
+            <MachinerySection />
 
             {/* Tipos de Café */}
             <section ref={coffeeTypesRef} className="py-20 bg-coffee-cream/20">

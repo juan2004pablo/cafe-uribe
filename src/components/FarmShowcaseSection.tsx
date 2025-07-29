@@ -1,4 +1,3 @@
-
 import { useState, useRef, Suspense } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -132,9 +131,15 @@ const FarmShowcaseSection = () => {
     <section ref={containerRef} className="relative py-32 bg-gradient-to-br from-coffee-cream/20 via-white to-coffee-orange/10 overflow-hidden">
       {/* Floating Background Elements */}
       <Floating className="absolute inset-0 pointer-events-none">
-        <FloatingElement depth={1} className="top-20 left-10 w-32 h-32 bg-coffee-orange/10 rounded-full blur-xl" />
-        <FloatingElement depth={2} className="top-40 right-20 w-24 h-24 bg-coffee-brown/10 rounded-full blur-lg" />
-        <FloatingElement depth={3} className="bottom-32 left-1/4 w-40 h-40 bg-coffee-cream/20 rounded-full blur-2xl" />
+        <FloatingElement depth={1} className="top-20 left-10 w-32 h-32 bg-coffee-orange/10 rounded-full blur-xl">
+          <div />
+        </FloatingElement>
+        <FloatingElement depth={2} className="top-40 right-20 w-24 h-24 bg-coffee-brown/10 rounded-full blur-lg">
+          <div />
+        </FloatingElement>
+        <FloatingElement depth={3} className="bottom-32 left-1/4 w-40 h-40 bg-coffee-cream/20 rounded-full blur-2xl">
+          <div />
+        </FloatingElement>
       </Floating>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

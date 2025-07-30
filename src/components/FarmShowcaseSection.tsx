@@ -1,4 +1,5 @@
 
+
 import { useState, useRef, Suspense } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -6,6 +7,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Float, Environment } from '@react-three/drei';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import Floating, { FloatingElement } from '@/components/ui/parallax-floating';
+import InteractiveBentoGallery from '@/components/ui/interactive-bento-gallery';
 
 // 3D Coffee Bean Component
 const CoffeeBeans = () => {
@@ -128,16 +130,61 @@ const FarmShowcaseSection = () => {
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
-  const farmImages = [
-    { src: "/images/foto_67.jpeg", title: "Vista panorámica de la finca" },
-    { src: "/images/foto_70.avif", title: "Cafetales en las montañas" },
-    { src: "/images/foto_73.jpeg", title: "Proceso de recolección" },
-    { src: "/images/foto_74.jpeg", title: "Granos de café maduro" }
-  ];
-
   const farmVideos = [
     { src: "/images/video_2.mp4", title: "Recorrido por la plantación" },
     { src: "/images/video_3.mp4", title: "Proceso de cultivo" }
+  ];
+
+  // Media items for the InteractiveBentoGallery
+  const farmMediaItems = [
+    {
+      id: 1,
+      type: "image",
+      title: "Vista Panorámica",
+      desc: "Vista espectacular de nuestra finca cafetera",
+      url: "/images/foto_67.jpeg",
+      span: "md:col-span-2 md:row-span-3 sm:col-span-2 sm:row-span-3",
+    },
+    {
+      id: 2,
+      type: "image",
+      title: "Cafetales Montañosos",
+      desc: "Plantaciones en las montañas del Norte de Santander",
+      url: "/images/foto_70.avif",
+      span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
+    },
+    {
+      id: 3,
+      type: "video",
+      title: "Proceso de Cultivo",
+      desc: "Técnicas tradicionales de cultivo",
+      url: "/images/video_3.mp4",
+      span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2",
+    },
+    {
+      id: 4,
+      type: "image",
+      title: "Recolección Manual",
+      desc: "Proceso artesanal de recolección",
+      url: "/images/foto_73.jpeg",
+      span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
+    },
+    {
+      id: 5,
+      type: "image",
+      title: "Granos Premium",
+      desc: "Café de alta calidad recién cosechado",
+      url: "/images/foto_74.jpeg",
+      span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
+    },
+    {
+      id: 6,
+      type: "video",
+      title: "Recorrido Virtual",
+      desc: "Tour completo por nuestra plantación",
+      url: "/images/video_2.mp4",
+      span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-2",
+    }
   ];
 
   return (
@@ -229,33 +276,18 @@ const FarmShowcaseSection = () => {
           </div>
         </motion.div>
 
-        {/* Interactive Image Gallery */}
+        {/* Interactive Bento Gallery replacing the old image gallery */}
         <motion.div
-          style={{ y, opacity }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="mb-20"
         >
-          {farmImages.map((image, index) => (
-            <motion.div
-              key={image.src}
-              initial={{ opacity: 0, y: 50 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 1 + index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-            >
-              <img
-                src={image.src}
-                alt={image.title}
-                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h4 className="text-white font-semibold text-sm">{image.title}</h4>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          <InteractiveBentoGallery
+            mediaItems={farmMediaItems}
+            title="Galería Interactiva"
+            description="Explora y organiza nuestra colección visual arrastrando las imágenes"
+          />
         </motion.div>
 
         {/* Stats with Animation */}

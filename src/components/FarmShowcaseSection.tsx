@@ -1,8 +1,9 @@
+
 import { useState, useRef, Suspense } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Text3D, Float, Environment } from '@react-three/drei';
+import { OrbitControls, Float, Environment } from '@react-three/drei';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import Floating, { FloatingElement } from '@/components/ui/parallax-floating';
 
@@ -26,6 +27,18 @@ const CoffeeBeans = () => {
         <mesh position={[0, -1, 1]}>
           <sphereGeometry args={[0.35, 16, 16]} />
           <meshStandardMaterial color="#8B4513" roughness={0.8} />
+        </mesh>
+      </Float>
+      <Float speed={1.2} rotationIntensity={0.6} floatIntensity={0.6}>
+        <mesh position={[2, -0.5, 0.5]}>
+          <sphereGeometry args={[0.28, 16, 16]} />
+          <meshStandardMaterial color="#8B4513" roughness={0.8} />
+        </mesh>
+      </Float>
+      <Float speed={0.9} rotationIntensity={0.4} floatIntensity={0.4}>
+        <mesh position={[-1, 0.8, -0.5]}>
+          <sphereGeometry args={[0.32, 16, 16]} />
+          <meshStandardMaterial color="#A0522D" roughness={0.8} />
         </mesh>
       </Float>
     </group>
@@ -165,29 +178,31 @@ const FarmShowcaseSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1, delay: 0.3 }}
-          className="h-80 mb-20 rounded-3xl overflow-hidden shadow-2xl"
+          className="h-80 mb-20 rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-coffee-brown/20 to-coffee-orange/20"
         >
           <Canvas camera={{ position: [5, 2, 5], fov: 60 }}>
             <Suspense fallback={null}>
               <Environment preset="sunset" />
-              <ambientLight intensity={0.4} />
+              <ambientLight intensity={0.6} />
               <directionalLight position={[10, 10, 5]} intensity={1} />
               
               <CoffeeBeans />
               
-              <Text3D
-                font="/fonts/Playfair_Display_Regular.json"
-                size={0.5}
-                height={0.1}
-                position={[-1.5, 2, 0]}
-              >
-                Café Uribe
-                <meshStandardMaterial color="#8B4513" />
-              </Text3D>
-              
               <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={1} />
             </Suspense>
           </Canvas>
+          
+          {/* Overlay text */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="text-center">
+              <h3 className="font-playfair text-4xl font-bold text-white drop-shadow-lg">
+                Café Uribe
+              </h3>
+              <p className="text-white/90 text-lg mt-2 drop-shadow-md">
+                Granos de Excelencia
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         {/* Videos Section */}

@@ -1,141 +1,15 @@
 
-
-import { useState, useRef, Suspense } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Float, Environment } from '@react-three/drei';
-import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import Floating, { FloatingElement } from '@/components/ui/parallax-floating';
 import InteractiveBentoGallery from '@/components/ui/interactive-bento-gallery';
-
-// 3D Coffee Bean Component
-const CoffeeBeans = () => {
-  return (
-    <group>
-      <Float speed={1} rotationIntensity={0.5} floatIntensity={0.5}>
-        <mesh position={[-2, 0, 0]}>
-          <sphereGeometry args={[0.3, 16, 16]} />
-          <meshStandardMaterial color="#8B4513" roughness={0.8} />
-        </mesh>
-      </Float>
-      <Float speed={1.5} rotationIntensity={0.8} floatIntensity={0.8}>
-        <mesh position={[1, 1, -1]}>
-          <sphereGeometry args={[0.25, 16, 16]} />
-          <meshStandardMaterial color="#A0522D" roughness={0.8} />
-        </mesh>
-      </Float>
-      <Float speed={0.8} rotationIntensity={0.3} floatIntensity={0.3}>
-        <mesh position={[0, -1, 1]}>
-          <sphereGeometry args={[0.35, 16, 16]} />
-          <meshStandardMaterial color="#8B4513" roughness={0.8} />
-        </mesh>
-      </Float>
-      <Float speed={1.2} rotationIntensity={0.6} floatIntensity={0.6}>
-        <mesh position={[2, -0.5, 0.5]}>
-          <sphereGeometry args={[0.28, 16, 16]} />
-          <meshStandardMaterial color="#8B4513" roughness={0.8} />
-        </mesh>
-      </Float>
-      <Float speed={0.9} rotationIntensity={0.4} floatIntensity={0.4}>
-        <mesh position={[-1, 0.8, -0.5]}>
-          <sphereGeometry args={[0.32, 16, 16]} />
-          <meshStandardMaterial color="#A0522D" roughness={0.8} />
-        </mesh>
-      </Float>
-    </group>
-  );
-};
-
-// Video Player Component
-const VideoPlayer = ({ src, title }: { src: string; title: string }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  return (
-    <div className="relative group overflow-hidden rounded-2xl shadow-2xl">
-      <video
-        ref={videoRef}
-        className="w-full h-64 object-cover"
-        muted={isMuted}
-        loop
-        playsInline
-      >
-        <source src={src} type="video/mp4" />
-      </video>
-      
-      {/* Video Controls Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <button
-            onClick={togglePlay}
-            className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors duration-200"
-          >
-            {isPlaying ? (
-              <Pause className="w-8 h-8 text-coffee-brown" />
-            ) : (
-              <Play className="w-8 h-8 text-coffee-brown ml-1" />
-            )}
-          </button>
-        </div>
-        
-        <div className="absolute bottom-4 right-4">
-          <button
-            onClick={toggleMute}
-            className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors duration-200"
-          >
-            {isMuted ? (
-              <VolumeX className="w-5 h-5 text-coffee-brown" />
-            ) : (
-              <Volume2 className="w-5 h-5 text-coffee-brown" />
-            )}
-          </button>
-        </div>
-        
-        <div className="absolute bottom-4 left-4 text-white">
-          <h3 className="font-semibold">{title}</h3>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const FarmShowcaseSection = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-
-  const farmVideos = [
-    { src: "/images/video_2.mp4", title: "Recorrido por la plantación" },
-    { src: "/images/video_3.mp4", title: "Proceso de cultivo" }
-  ];
-
-  // Media items for the InteractiveBentoGallery
+  // Media items for the InteractiveBentoGallery - expandido con más imágenes
   const farmMediaItems = [
     {
       id: 1,
@@ -184,6 +58,54 @@ const FarmShowcaseSection = () => {
       desc: "Tour completo por nuestra plantación",
       url: "/images/video_2.mp4",
       span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-2",
+    },
+    {
+      id: 7,
+      type: "image",
+      title: "Cultivo Sostenible",
+      desc: "Prácticas ambientalmente responsables",
+      url: "/images/foto_1.jpeg",
+      span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
+    },
+    {
+      id: 8,
+      type: "image",
+      title: "Secado Natural",
+      desc: "Proceso tradicional de secado al sol",
+      url: "/images/foto_2.jpeg",
+      span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2",
+    },
+    {
+      id: 9,
+      type: "image",
+      title: "Selección de Granos",
+      desc: "Control de calidad riguroso",
+      url: "/images/foto_3.jpeg",
+      span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-2",
+    },
+    {
+      id: 10,
+      type: "image",
+      title: "Terroir Único",
+      desc: "Microclima ideal para café premium",
+      url: "/images/foto_4.jpeg",
+      span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
+    },
+    {
+      id: 11,
+      type: "image",
+      title: "Tradición Familiar",
+      desc: "Tres generaciones dedicadas al café",
+      url: "/images/foto_5.jpeg",
+      span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2",
+    },
+    {
+      id: 12,
+      type: "image",
+      title: "Cosecha Premium",
+      desc: "Recolección selectiva de los mejores frutos",
+      url: "/images/foto_6.jpeg",
+      span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-2",
     }
   ];
 
@@ -220,67 +142,11 @@ const FarmShowcaseSection = () => {
           <div className="w-32 h-1 bg-coffee-orange mx-auto mt-8"></div>
         </motion.div>
 
-        {/* Interactive 3D Scene */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="h-80 mb-20 rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-coffee-brown/20 to-coffee-orange/20"
-        >
-          <Canvas camera={{ position: [5, 2, 5], fov: 60 }}>
-            <Suspense fallback={null}>
-              <Environment preset="sunset" />
-              <ambientLight intensity={0.6} />
-              <directionalLight position={[10, 10, 5]} intensity={1} />
-              
-              <CoffeeBeans />
-              
-              <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={1} />
-            </Suspense>
-          </Canvas>
-          
-          {/* Overlay text */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="text-center">
-              <h3 className="font-playfair text-4xl font-bold text-white drop-shadow-lg">
-                Café Uribe
-              </h3>
-              <p className="text-white/90 text-lg mt-2 drop-shadow-md">
-                Granos de Excelencia
-              </p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Videos Section */}
+        {/* Interactive Bento Gallery */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mb-20"
-        >
-          <h3 className="font-playfair text-3xl font-bold text-coffee-brown text-center mb-12">
-            Experiencia Visual
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {farmVideos.map((video, index) => (
-              <motion.div
-                key={video.src}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.8 + index * 0.2 }}
-              >
-                <VideoPlayer src={video.src} title={video.title} />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Interactive Bento Gallery replacing the old image gallery */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           className="mb-20"
         >
           <InteractiveBentoGallery
@@ -290,44 +156,95 @@ const FarmShowcaseSection = () => {
           />
         </motion.div>
 
-        {/* Stats with Animation */}
+        {/* Stats with improved design */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1.5 }}
-          className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-20"
         >
-          <div className="group">
-            <motion.div
-              className="text-5xl font-bold text-coffee-orange mb-2"
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              1.750m
-            </motion.div>
-            <p className="text-coffee-brown">Altura sobre el mar</p>
-          </div>
-          
-          <div className="group">
-            <motion.div
-              className="text-5xl font-bold text-coffee-orange mb-2"
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-            >
-              50Ha
-            </motion.div>
-            <p className="text-coffee-brown">Extensión cultivada</p>
-          </div>
-          
-          <div className="group">
-            <motion.div
-              className="text-5xl font-bold text-coffee-orange mb-2"
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-            >
-              54°
-            </motion.div>
-            <p className="text-coffee-brown">Años de tradición</p>
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-lg border border-coffee-cream/30">
+            <h3 className="font-playfair text-3xl md:text-4xl font-bold text-coffee-brown text-center mb-12">
+              Nuestra Finca en Números
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center group">
+                <div className="bg-coffee-orange/10 rounded-2xl p-6 mb-4 group-hover:bg-coffee-orange/20 transition-colors duration-300">
+                  <div className="text-4xl md:text-5xl font-bold text-coffee-orange mb-2">
+                    1.750m
+                  </div>
+                  <div className="text-lg font-semibold text-coffee-brown mb-1">
+                    Altura sobre el mar
+                  </div>
+                  <p className="text-coffee-brown/70 text-sm">
+                    Condiciones climáticas ideales para café de especialidad
+                  </p>
+                </div>
+              </div>
+              
+              <div className="text-center group">
+                <div className="bg-coffee-brown/10 rounded-2xl p-6 mb-4 group-hover:bg-coffee-brown/20 transition-colors duration-300">
+                  <div className="text-4xl md:text-5xl font-bold text-coffee-brown mb-2">
+                    50Ha
+                  </div>
+                  <div className="text-lg font-semibold text-coffee-brown mb-1">
+                    Extensión cultivada
+                  </div>
+                  <p className="text-coffee-brown/70 text-sm">
+                    Terreno dedicado exclusivamente al cultivo de café premium
+                  </p>
+                </div>
+              </div>
+              
+              <div className="text-center group">
+                <div className="bg-coffee-cream/50 rounded-2xl p-6 mb-4 group-hover:bg-coffee-cream/70 transition-colors duration-300">
+                  <div className="text-4xl md:text-5xl font-bold text-coffee-orange mb-2">
+                    54
+                  </div>
+                  <div className="text-lg font-semibold text-coffee-brown mb-1">
+                    Años de tradición
+                  </div>
+                  <p className="text-coffee-brown/70 text-sm">
+                    Experiencia familiar transmitida de generación en generación
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Additional info section */}
+            <div className="mt-12 pt-8 border-t border-coffee-cream/50">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h4 className="font-playfair text-2xl font-semibold text-coffee-brown mb-4">
+                    Certificaciones y Calidad
+                  </h4>
+                  <ul className="space-y-2 text-coffee-brown/80">
+                    <li className="flex items-center">
+                      <div className="w-2 h-2 bg-coffee-orange rounded-full mr-3"></div>
+                      Café 100% Arábica Premium
+                    </li>
+                    <li className="flex items-center">
+                      <div className="w-2 h-2 bg-coffee-orange rounded-full mr-3"></div>
+                      Prácticas sostenibles certificadas
+                    </li>
+                    <li className="flex items-center">
+                      <div className="w-2 h-2 bg-coffee-orange rounded-full mr-3"></div>
+                      Comercio justo garantizado
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-playfair text-2xl font-semibold text-coffee-brown mb-4">
+                    Proceso Artesanal
+                  </h4>
+                  <p className="text-coffee-brown/80 leading-relaxed">
+                    Cada grano pasa por un proceso meticuloso de selección, lavado y secado 
+                    natural que preserva los sabores únicos de nuestro terroir montañoso.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>

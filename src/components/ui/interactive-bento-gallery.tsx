@@ -1,9 +1,7 @@
-
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react';
-
 
 // MediaItemType defines the structure of a media item
 interface MediaItemType {
@@ -14,6 +12,7 @@ interface MediaItemType {
     url: string;
     span: string;
 }
+
 // MediaItem component renders either a video or image based on item.type
 const MediaItem = ({ item, className, onClick }: { item: MediaItemType, className?: string, onClick?: () => void }) => {
     const videoRef = useRef<HTMLVideoElement>(null); // Reference for video element
@@ -131,9 +130,6 @@ const MediaItem = ({ item, className, onClick }: { item: MediaItemType, classNam
     );
 };
 
-
-
-// GalleryModal component displays the selected media item in a modal
 interface GalleryModalProps {
     selectedItem: MediaItemType;
     isOpen: boolean;
@@ -141,6 +137,7 @@ interface GalleryModalProps {
     setSelectedItem: (item: MediaItemType | null) => void;
     mediaItems: MediaItemType[]; // List of media items to display in the modal
 }
+
 const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaItems }: GalleryModalProps) => {
     const [dockPosition, setDockPosition] = useState({ x: 0, y: 0 });  // Track the position of the dockable panel
 
@@ -159,8 +156,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                     damping: 30
                 }}
                 className="fixed inset-0 w-full min-h-screen sm:h-[90vh] md:h-[600px] backdrop-blur-lg 
-                          rounded-none sm:rounded-lg md:rounded-xl overflow-hidden z-10"
-
+                          rounded-none sm:rounded-lg md:rounded-xl overflow-hidden z-[9999]"
             >
                 {/* Main Content */}
                 <div className="h-full flex flex-col">
@@ -203,11 +199,11 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                     </div>
                 </div>
 
-                {/* Close Button */}
+                {/* Close Button - Increased z-index to ensure it's above header */}
                 <motion.button
                     className="absolute top-2 sm:top-2.5 md:top-3 right-2 sm:right-2.5 md:right-3 
                               p-2 rounded-full bg-gray-200/80 text-gray-700 hover:bg-gray-300/80 
-                              text-xs sm:text-sm backdrop-blur-sm "
+                              text-xs sm:text-sm backdrop-blur-sm z-[10000]"
                     onClick={onClose}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
@@ -230,7 +226,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                         y: prev.y + info.offset.y
                     }));
                 }}
-                className="fixed z-50 left-1/2 bottom-4 -translate-x-1/2 touch-none"
+                className="fixed z-[9998] left-1/2 bottom-4 -translate-x-1/2 touch-none"
             >
                 <motion.div
                     className="relative rounded-xl bg-coffee-orange/20 backdrop-blur-xl 
@@ -290,13 +286,10 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
     );
 };
 
-
-
 interface InteractiveBentoGalleryProps {
     mediaItems: MediaItemType[]
     title: string
     description: string
-
 }
 
 const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ mediaItems, title, description }) => {
@@ -416,6 +409,5 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
         </div>
     );
 };
-
 
 export default InteractiveBentoGallery

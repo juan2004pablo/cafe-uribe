@@ -1,3 +1,4 @@
+
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -145,27 +146,27 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
 
     return (
         <>
-            {/* Main Modal */}
+            {/* Modal Backdrop - Click outside to close */}
             <motion.div
-                initial={{ scale: 0.98 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.98 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 transition={{
                     type: "spring",
                     stiffness: 400,
                     damping: 30
                 }}
-                className="fixed inset-0 w-full min-h-screen sm:h-[90vh] md:h-[600px] backdrop-blur-lg 
-                          rounded-none sm:rounded-lg md:rounded-xl overflow-hidden z-[9999]"
+                className="fixed inset-0 w-full min-h-screen backdrop-blur-lg bg-black/70 z-[9999]"
+                onClick={onClose}
             >
                 {/* Main Content */}
                 <div className="h-full flex flex-col">
-                    <div className="flex-1 p-2 sm:p-3 md:p-4 flex items-center justify-center bg-gray-50/50">
+                    <div className="flex-1 p-4 sm:p-6 md:p-8 flex items-center justify-center">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={selectedItem.id}
-                                className="relative w-full aspect-[16/9] max-w-[95%] sm:max-w-[85%] md:max-w-3xl 
-                                         h-auto max-h-[70vh] rounded-lg overflow-hidden shadow-md"
+                                className="relative w-full aspect-[16/9] max-w-[90%] sm:max-w-[80%] md:max-w-4xl 
+                                         h-auto max-h-[80vh] rounded-lg overflow-hidden shadow-2xl"
                                 initial={{ y: 20, scale: 0.97 }}
                                 animate={{
                                     y: 0,
@@ -182,15 +183,31 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                                     scale: 0.97,
                                     transition: { duration: 0.15 }
                                 }}
-                                onClick={onClose}
+                                onClick={(e) => e.stopPropagation()}
                             >
-                                <MediaItem item={selectedItem} className="w-full h-full object-contain bg-gray-900/20" onClick={onClose} />
-                                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 md:p-4 
-                                              bg-gradient-to-t from-black/50 to-transparent">
-                                    <h3 className="text-white text-base sm:text-lg md:text-xl font-semibold">
+                                <MediaItem item={selectedItem} className="w-full h-full object-contain bg-gray-900/20" />
+                                
+                                {/* Close Button - Repositioned to top-right of image */}
+                                <motion.button
+                                    className="absolute top-4 right-4 p-3 rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
+                                              backdrop-blur-sm shadow-lg z-10 transition-colors duration-200"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onClose();
+                                    }}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                >
+                                    <X className='w-5 h-5' />
+                                </motion.button>
+
+                                {/* Image Info Overlay */}
+                                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 
+                                              bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                                    <h3 className="text-white text-lg sm:text-xl md:text-2xl font-semibold font-playfair">
                                         {selectedItem.title}
                                     </h3>
-                                    <p className="text-white/80 text-xs sm:text-sm mt-1">
+                                    <p className="text-white/80 text-sm sm:text-base mt-2 leading-relaxed">
                                         {selectedItem.desc}
                                     </p>
                                 </div>
@@ -198,19 +215,6 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                         </AnimatePresence>
                     </div>
                 </div>
-
-                {/* Close Button - Increased z-index to ensure it's above header */}
-                <motion.button
-                    className="absolute top-2 sm:top-2.5 md:top-3 right-2 sm:right-2.5 md:right-3 
-                              p-2 rounded-full bg-gray-200/80 text-gray-700 hover:bg-gray-300/80 
-                              text-xs sm:text-sm backdrop-blur-sm z-[10000]"
-                    onClick={onClose}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                >
-                    <X className='w-3 h-3' />
-                </motion.button>
-
             </motion.div>
 
             {/* Draggable Dock */}
@@ -227,6 +231,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                     }));
                 }}
                 className="fixed z-[9998] left-1/2 bottom-4 -translate-x-1/2 touch-none"
+                onClick={(e) => e.stopPropagation()}
             >
                 <motion.div
                     className="relative rounded-xl bg-coffee-orange/20 backdrop-blur-xl 

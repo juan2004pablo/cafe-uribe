@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Award, Users, Leaf, Heart, MapPin } from 'lucide-react';
@@ -5,6 +6,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PhysicalStoreSection from '@/components/PhysicalStoreSection';
 import FarmShowcaseSection from '@/components/FarmShowcaseSection';
+import FarmInfoSection from '@/components/FarmInfoSection';
 import { Button } from '@/components/ui/button';
 
 const Nosotros = () => {
@@ -164,53 +166,8 @@ const Nosotros = () => {
             {/* New Farm Showcase Section */}
             <FarmShowcaseSection />
 
-            {/* La Finca */}
-            <section className="py-20 bg-coffee-cream/30">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            animate={historyInView ? { opacity: 1, x: 0 } : {}}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <img
-                                src="/images/foto_67.jpeg"
-                                alt="Finca de café"
-                                className="rounded-lg shadow-2xl"
-                            />
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            animate={historyInView ? { opacity: 1, x: 0 } : {}}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                        >
-                            <h2 className="font-playfair text-4xl font-bold text-coffee-brown mb-6">
-                                La Finca Café Uribe
-                            </h2>
-                            <p className="text-lg text-coffee-brown/80 mb-6 leading-relaxed">
-                                Ubicada en el corazón del Norte de Santander, a 1.750 metros sobre el nivel del mar,
-                                nuestra finca goza de condiciones climáticas excepcionales que favorecen
-                                el desarrollo de granos de café premium.
-                            </p>
-                            <p className="text-lg text-coffee-brown/80 mb-6 leading-relaxed">
-                                Los suelos volcánicos ricos en nutrientes, combinados con el clima templado
-                                y las lluvias regulares, crean el ambiente perfecto para cultivar café
-                                de especialidad con características únicas.
-                            </p>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="bg-white p-4 rounded-lg">
-                                    <p className="font-playfair text-2xl font-bold text-coffee-orange">1.750m</p>
-                                    <p className="text-coffee-brown/70">Altura sobre el mar</p>
-                                </div>
-                                <div className="bg-white p-4 rounded-lg">
-                                    <p className="font-playfair text-2xl font-bold text-coffee-orange">50Ha</p>
-                                    <p className="text-coffee-brown/70">Extensión cultivada</p>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
+            {/* Unified Farm Info Section */}
+            <FarmInfoSection />
 
             {/* Valores */}
             <section ref={valuesRef} className="py-20 bg-white">

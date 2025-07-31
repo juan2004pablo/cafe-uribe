@@ -64,88 +64,118 @@ const MachinerySection = () => {
                             transition={{ duration: 0.8, delay: index * 0.2 }}
                             className="group relative"
                         >
-                            {/* Main container with 3D hover effect */}
-                            <div className="relative h-[500px] rounded-3xl overflow-hidden bg-white shadow-xl group-hover:shadow-2xl transition-all duration-700 transform group-hover:scale-[1.02] group-hover:-rotate-1">
-                                
-                                {/* Background image with parallax effect */}
-                                <div className="absolute inset-0 overflow-hidden">
-                                    <motion.img
-                                        src={machine.image}
-                                        alt={machine.name}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                        whileHover={{ scale: 1.05 }}
-                                    />
-                                    {/* Dynamic gradient overlay */}
-                                    <div className={`absolute inset-0 bg-gradient-to-t from-coffee-brown/80 via-coffee-brown/40 to-transparent group-hover:from-coffee-brown/90 transition-all duration-500`} />
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${machine.color} group-hover:opacity-60 transition-opacity duration-500`} />
-                                </div>
-
-                                {/* Floating icon */}
-                                <motion.div
-                                    className="absolute top-6 right-6 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center text-white border border-white/30"
-                                    animate={{ 
-                                        y: [0, -10, 0],
-                                        rotate: [0, 5, 0] 
-                                    }}
-                                    transition={{ 
-                                        duration: 3, 
-                                        repeat: Infinity,
-                                        delay: index * 0.5 
-                                    }}
-                                >
-                                    {machine.icon}
-                                </motion.div>
-
-                                {/* Animated specs badge */}
-                                <motion.div
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                                    transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
-                                    className="absolute top-6 left-6 bg-coffee-orange/90 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm font-medium"
-                                >
-                                    {machine.capacity}
-                                </motion.div>
-
-                                {/* Content area with slide-up animation */}
-                                <div className="absolute bottom-0 left-0 right-0 p-8 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                    <motion.div
-                                        initial={{ opacity: 0.8 }}
-                                        whileHover={{ opacity: 1 }}
-                                        className="space-y-4"
-                                    >
-                                        <div className="flex items-center gap-3 mb-3">
-                                            <div className="w-2 h-2 bg-coffee-orange rounded-full animate-pulse" />
-                                            <span className="text-coffee-orange/90 text-sm font-medium uppercase tracking-wider">
-                                                {machine.process}
-                                            </span>
+                            {/* Flip card container */}
+                            <div className="flip-card h-[500px] w-full">
+                                <div className="flip-card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                                    
+                                    {/* Front side - Image */}
+                                    <div className="flip-card-front absolute w-full h-full backface-hidden rounded-3xl overflow-hidden bg-white shadow-xl">
+                                        <div className="absolute inset-0 overflow-hidden">
+                                            <motion.img
+                                                src={machine.image}
+                                                alt={machine.name}
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            />
+                                            <div className={`absolute inset-0 bg-gradient-to-t from-coffee-brown/80 via-coffee-brown/40 to-transparent`} />
+                                            <div className={`absolute inset-0 bg-gradient-to-br ${machine.color} opacity-40`} />
                                         </div>
-                                        
-                                        <h3 className="font-playfair text-2xl font-bold mb-3 group-hover:text-coffee-cream transition-colors">
-                                            {machine.name}
-                                        </h3>
-                                        
-                                        <p className="text-white/90 leading-relaxed group-hover:text-white transition-colors">
-                                            {machine.description}
-                                        </p>
 
-                                        {/* Interactive CTA that appears on hover */}
+                                        {/* Floating icon */}
                                         <motion.div
-                                            initial={{ opacity: 0, y: 10 }}
-                                            whileHover={{ opacity: 1, y: 0 }}
-                                            className="flex items-center gap-2 text-coffee-orange group-hover:text-coffee-cream cursor-pointer mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300"
+                                            className="absolute top-6 right-6 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center text-white border border-white/30"
+                                            animate={{ 
+                                                y: [0, -10, 0],
+                                                rotate: [0, 5, 0] 
+                                            }}
+                                            transition={{ 
+                                                duration: 3, 
+                                                repeat: Infinity,
+                                                delay: index * 0.5 
+                                            }}
                                         >
-                                            <span className="text-sm font-medium">Conocer más</span>
-                                            <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                                            {machine.icon}
                                         </motion.div>
-                                    </motion.div>
-                                </div>
 
-                                {/* Animated border effect */}
-                                <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-coffee-orange/50 transition-all duration-500" />
-                                
-                                {/* Glowing effect on hover */}
-                                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                                    <div className="absolute inset-0 rounded-3xl shadow-[0_0_30px_rgba(255,138,76,0.3)]" />
+                                        {/* Capacity badge */}
+                                        <div className="absolute top-6 left-6 bg-coffee-orange/90 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm font-medium">
+                                            {machine.capacity}
+                                        </div>
+
+                                        {/* Title at bottom */}
+                                        <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                                            <div className="flex items-center gap-3 mb-3">
+                                                <div className="w-2 h-2 bg-coffee-orange rounded-full animate-pulse" />
+                                                <span className="text-coffee-orange/90 text-sm font-medium uppercase tracking-wider">
+                                                    {machine.process}
+                                                </span>
+                                            </div>
+                                            
+                                            <h3 className="font-playfair text-2xl font-bold mb-3">
+                                                {machine.name}
+                                            </h3>
+
+                                            <div className="flex items-center gap-2 text-coffee-orange cursor-pointer">
+                                                <span className="text-sm font-medium">Hover para más detalles</span>
+                                                <ArrowRight className="w-4 h-4" />
+                                            </div>
+                                        </div>
+
+                                        {/* Animated border effect */}
+                                        <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-coffee-orange/50 transition-all duration-500" />
+                                    </div>
+
+                                    {/* Back side - Description */}
+                                    <div className="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 rounded-3xl overflow-hidden bg-gradient-to-br from-coffee-brown via-coffee-brown/95 to-coffee-brown/90 shadow-xl">
+                                        <div className="relative w-full h-full p-8 flex flex-col justify-center text-white">
+                                            {/* Background pattern */}
+                                            <div className="absolute inset-0 opacity-10">
+                                                <div className="w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
+                                            </div>
+
+                                            {/* Icon header */}
+                                            <div className="relative z-10 text-center mb-8">
+                                                <div className="w-20 h-20 bg-coffee-orange/20 backdrop-blur-sm rounded-3xl flex items-center justify-center text-coffee-orange mx-auto mb-4 border border-coffee-orange/30">
+                                                    {machine.icon}
+                                                </div>
+                                                <h3 className="font-playfair text-3xl font-bold mb-2">
+                                                    {machine.name}
+                                                </h3>
+                                                <div className="w-16 h-0.5 bg-coffee-orange mx-auto"></div>
+                                            </div>
+
+                                            {/* Process info */}
+                                            <div className="relative z-10 mb-6">
+                                                <div className="bg-coffee-orange/20 rounded-xl p-4 border border-coffee-orange/30">
+                                                    <h4 className="font-bold text-coffee-cream mb-2 flex items-center gap-2">
+                                                        <div className="w-2 h-2 bg-coffee-orange rounded-full"></div>
+                                                        Proceso Especializado
+                                                    </h4>
+                                                    <p className="text-coffee-cream/90 font-medium">
+                                                        {machine.process}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            {/* Description */}
+                                            <div className="relative z-10 mb-6">
+                                                <p className="text-coffee-cream/90 text-lg leading-relaxed text-center">
+                                                    {machine.description}
+                                                </p>
+                                            </div>
+
+                                            {/* Capacity info */}
+                                            <div className="relative z-10 text-center">
+                                                <div className="inline-flex items-center gap-3 bg-coffee-cream/10 rounded-full px-6 py-3 border border-coffee-cream/20">
+                                                    <span className="text-coffee-cream/70 text-sm">Capacidad:</span>
+                                                    <span className="text-coffee-orange font-bold text-lg">{machine.capacity}</span>
+                                                </div>
+                                            </div>
+
+                                            {/* Decorative elements */}
+                                            <div className="absolute top-4 right-4 w-16 h-16 border border-coffee-orange/20 rounded-full"></div>
+                                            <div className="absolute bottom-4 left-4 w-12 h-12 border border-coffee-cream/20 rounded-full"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -212,6 +242,39 @@ const MachinerySection = () => {
                     ))}
                 </motion.div>
             </div>
+
+            {/* CSS para el efecto flip */}
+            <style jsx>{`
+                .flip-card {
+                    perspective: 1000px;
+                }
+                
+                .flip-card-inner {
+                    transform-style: preserve-3d;
+                }
+                
+                .flip-card-front,
+                .flip-card-back {
+                    -webkit-backface-visibility: hidden;
+                    backface-visibility: hidden;
+                }
+                
+                .flip-card-back {
+                    transform: rotateY(180deg);
+                }
+                
+                .rotate-y-180 {
+                    transform: rotateY(180deg);
+                }
+                
+                .backface-hidden {
+                    backface-visibility: hidden;
+                }
+                
+                .transform-style-preserve-3d {
+                    transform-style: preserve-3d;
+                }
+            `}</style>
         </section>
     );
 };

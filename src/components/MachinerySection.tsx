@@ -65,11 +65,11 @@ const MachinerySection = () => {
                             className="group relative"
                         >
                             {/* Flip card container */}
-                            <div className="flip-card h-[500px] w-full">
-                                <div className="flip-card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                            <div className="h-[500px] w-full [perspective:1000px]">
+                                <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                                     
                                     {/* Front side - Image */}
-                                    <div className="flip-card-front absolute w-full h-full backface-hidden rounded-3xl overflow-hidden bg-white shadow-xl">
+                                    <div className="absolute w-full h-full [backface-visibility:hidden] rounded-3xl overflow-hidden bg-white shadow-xl">
                                         <div className="absolute inset-0 overflow-hidden">
                                             <motion.img
                                                 src={machine.image}
@@ -125,7 +125,7 @@ const MachinerySection = () => {
                                     </div>
 
                                     {/* Back side - Description */}
-                                    <div className="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 rounded-3xl overflow-hidden bg-gradient-to-br from-coffee-brown via-coffee-brown/95 to-coffee-brown/90 shadow-xl">
+                                    <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl overflow-hidden bg-gradient-to-br from-coffee-brown via-coffee-brown/95 to-coffee-brown/90 shadow-xl">
                                         <div className="relative w-full h-full p-8 flex flex-col justify-center text-white">
                                             {/* Background pattern */}
                                             <div className="absolute inset-0 opacity-10">
@@ -242,39 +242,6 @@ const MachinerySection = () => {
                     ))}
                 </motion.div>
             </div>
-
-            {/* CSS para el efecto flip */}
-            <style jsx>{`
-                .flip-card {
-                    perspective: 1000px;
-                }
-                
-                .flip-card-inner {
-                    transform-style: preserve-3d;
-                }
-                
-                .flip-card-front,
-                .flip-card-back {
-                    -webkit-backface-visibility: hidden;
-                    backface-visibility: hidden;
-                }
-                
-                .flip-card-back {
-                    transform: rotateY(180deg);
-                }
-                
-                .rotate-y-180 {
-                    transform: rotateY(180deg);
-                }
-                
-                .backface-hidden {
-                    backface-visibility: hidden;
-                }
-                
-                .transform-style-preserve-3d {
-                    transform-style: preserve-3d;
-                }
-            `}</style>
         </section>
     );
 };

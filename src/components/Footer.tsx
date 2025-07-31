@@ -92,7 +92,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Disclaimer */}
+        {/* Disclaimer
         <div className="border-t border-white/20 mt-12 pt-8">
           <div className="bg-white/5 rounded-lg p-4 mb-6">
             <h4 className="font-semibold text-coffee-orange mb-2">Propuesta no oficial – Uso demostrativo</h4>
@@ -111,7 +111,7 @@ const Footer = () => {
               Legado de aroma y sabor - 100% Colombiano
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

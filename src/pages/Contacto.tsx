@@ -269,7 +269,7 @@ const Contacto = () => {
                 </div>
             </section>
 
-            {/* Disclaimer Section */}
+            {/* Disclaimer Section
             <section ref={disclaimerRef} className="py-12 bg-coffee-brown/5">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
@@ -289,7 +289,7 @@ const Contacto = () => {
                         </Card>
                     </motion.div>
                 </div>
-            </section>
+            </section> */}
 
             <Footer />
         </div>

@@ -12,31 +12,31 @@ const MachinerySection = () => {
             name: "Tostadora Industrial",
             description: "Nuestra tostadora industrial de última generación utiliza tecnología de precisión para controlar la temperatura y el tiempo de tostado. Cada lote es monitoreado cuidadosamente para garantizar un perfil de tostado consistente que resalta las características únicas de nuestro café de alta montaña.",
             process: "Tostado controlado",
-            capacity: "50kg/batch",
+            // capacity: "50kg/batch",
             image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
             icon: <Cog className="w-8 h-8" />,
             color: "from-orange-500/20 to-red-500/20",
-            features: ["Control de temperatura preciso", "Monitoreo en tiempo real", "Perfil de tostado personalizable"]
+            // features: ["Control de temperatura preciso", "Monitoreo en tiempo real", "Perfil de tostado personalizable"]
         },
         {
             name: "Molino de Alta Precisión",
             description: "Nuestro sistema de molienda especializado preserva los aceites esenciales y aromas naturales del café. Las cuchillas de cerámica de grado industrial garantizan una molienda uniforme que maximiza la extracción de sabores durante la preparación.",
             process: "Molienda especializada",
-            capacity: "100kg/hr",
+            // capacity: "100kg/hr",
             image: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc?w=800&h=600&fit=crop",
             icon: <Settings className="w-8 h-8" />,
             color: "from-blue-500/20 to-cyan-500/20",
-            features: ["Cuchillas de cerámica", "Molienda uniforme", "Preservación de aceites"]
+            // features: ["Cuchillas de cerámica", "Molienda uniforme", "Preservación de aceites"]
         },
         {
             name: "Sistema de Empaque",
             description: "Tecnología avanzada de sellado al vacío que preserva la frescura y calidad de nuestro café por períodos extendidos. El sistema automatizado garantiza un empaque hermético que protege contra la oxidación y mantiene los aromas intactos.",
             process: "Empaque hermético",
-            capacity: "200 unidades/hr",
+            // capacity: "200 unidades/hr",
             image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=800&h=600&fit=crop",
             icon: <Zap className="w-8 h-8" />,
             color: "from-green-500/20 to-emerald-500/20",
-            features: ["Sellado al vacío", "Control automatizado", "Preservación de aromas"]
+            // features: ["Sellado al vacío", "Control automatizado", "Preservación de aromas"]
         }
     ];
 
@@ -118,7 +118,7 @@ const MachinerySection = () => {
                                             </h3>
 
                                             <div className="flex items-center gap-2 text-coffee-orange cursor-pointer">
-                                                <span className="text-sm font-medium">Hover para más detalles</span>
+                                                <span className="text-sm font-medium underline">Ver más detalles</span>
                                                 <ArrowRight className="w-4 h-4" />
                                             </div>
                                         </div>
@@ -151,7 +151,7 @@ const MachinerySection = () => {
                                                     {machine.description}
                                                 </p>
 
-                                                {/* Features */}
+                                                {/* Features 
                                                 <div className="space-y-3">
                                                     <h4 className="font-semibold text-coffee-brown text-center mb-4">
                                                         Características destacadas:
@@ -162,16 +162,16 @@ const MachinerySection = () => {
                                                             <span className="text-sm">{feature}</span>
                                                         </div>
                                                     ))}
-                                                </div>
+                                                </div>*/}
                                             </div>
 
-                                            {/* Capacity info */}
+                                            {/* Capacity info
                                             <div className="text-center pt-4 border-t border-coffee-cream/30">
                                                 <div className="bg-coffee-orange/10 rounded-xl px-6 py-3 inline-flex items-center gap-3">
                                                     <span className="text-coffee-brown/70 text-sm">Capacidad:</span>
                                                     <span className="text-coffee-orange font-bold">{machine.capacity}</span>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>

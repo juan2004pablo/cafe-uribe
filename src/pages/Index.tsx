@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ArrowRight, Coffee, Users, Award, Leaf, ChevronDown } from 'lucide-react';
@@ -9,6 +10,7 @@ import B2BSection from '@/components/B2BSection';
 import VarietiesSection from '@/components/VarietiesSection';
 import { TestimonialsSection } from '@/components/ui/testimonials-with-marquee';
 import HeroCTA from '@/components/HeroCTA';
+import { InfiniteSlider } from '@/components/ui/infinite-slider';
 
 const Index = () => {
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -57,6 +59,14 @@ const Index = () => {
     }
   ];
 
+  const certificationLogos = [
+    { name: "DO Café de Colombia", logo: "/images/certificaciones/do-cafe-colombia.png" },
+    { name: "ICA", logo: "/images/certificaciones/ica-logo.png" },
+    { name: "Invima", logo: "/images/certificaciones/invima-logo.png" },
+    { name: "CaféCert", logo: "/images/certificaciones/cafecert-logo.png" },
+    { name: "Federación Nacional de Café", logo: "/images/certificaciones/fnc-logo.png" }
+  ];
+
   const handleKnowOurCoffee = () => {
     window.location.href = '/variedades';
   };
@@ -70,7 +80,7 @@ const Index = () => {
       <Header />
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center">
+      <section ref={heroRef} className="relative min-h-screen flex flex-col">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -78,24 +88,78 @@ const Index = () => {
             filter: "brightness(0.4)"
           }}
         />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        
+        {/* Main hero content */}
+        <div className="relative z-10 flex-1 flex items-center justify-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+                Legado de <span className="text-coffee-orange">Aroma</span> y <span className="text-coffee-orange">Sabor</span>
+              </h1>
+              <p className="text-xl md:text-2xl mb-4 font-light">🇨🇴 100% Colombiano 🇨🇴</p>
+              <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                Café de finca con trazabilidad garantizada siempre. De la finca a tu taza con la más alta calidad.
+              </p>
+              
+              <HeroCTA 
+                onKnowOurCoffee={handleKnowOurCoffee}
+                onRequestSample={handleRequestSample}
+              />
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Certifications carousel at bottom of hero */}
+        <div className="relative z-10 pb-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-center mb-6"
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-              Legado de <span className="text-coffee-orange">Aroma</span> y <span className="text-coffee-orange">Sabor</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-4 font-light">🇨🇴 100% Colombiano 🇨🇴</p>
-            <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
-              Café de finca con trazabilidad garantizada siempre. De la finca a tu taza con la más alta calidad.
+            <p className="text-white/60 text-sm font-medium tracking-wide uppercase">
+              Certificado y Avalado Por
             </p>
-            
-            <HeroCTA 
-              onKnowOurCoffee={handleKnowOurCoffee}
-              onRequestSample={handleRequestSample}
-            />
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={heroInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="max-w-6xl mx-auto"
+          >
+            <InfiniteSlider
+              gap={48}
+              duration={30}
+              durationOnHover={50}
+              className="py-4"
+            >
+              {certificationLogos.map((cert, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-center h-16 px-4"
+                >
+                  <img
+                    src={cert.logo}
+                    alt={cert.name}
+                    className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                    onError={(e) => {
+                      // Fallback to placeholder if image doesn't exist
+                      e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`
+                        <svg width="120" height="48" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="120" height="48" fill="#ffffff" stroke="#cccccc" stroke-width="1" rx="4"/>
+                          <text x="60" y="30" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#666666">${cert.name}</text>
+                        </svg>
+                      `)}`;
+                    }}
+                  />
+                </div>
+              ))}
+            </InfiniteSlider>
           </motion.div>
         </div>
       </section>

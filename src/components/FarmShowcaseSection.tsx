@@ -156,7 +156,7 @@ const FarmShowcaseSection = () => {
           />
         </motion.div>
 
-        {/* Stats with improved design */}
+        {/* Stats with improved design
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -212,7 +212,6 @@ const FarmShowcaseSection = () => {
               </div>
             </div>
 
-            {/* Additional info section */}
             <div className="mt-12 pt-8 border-t border-coffee-cream/50">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
@@ -246,7 +245,7 @@ const FarmShowcaseSection = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.div>  */}
       </div>
     </section>
   );

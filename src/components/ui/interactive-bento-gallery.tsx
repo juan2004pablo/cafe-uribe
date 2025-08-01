@@ -1,8 +1,7 @@
-
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 // MediaItemType defines the structure of a media item
 interface MediaItemType {
@@ -142,6 +141,55 @@ interface GalleryModalProps {
 const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaItems }: GalleryModalProps) => {
     const [dockPosition, setDockPosition] = useState({ x: 0, y: 0 });  // Track the position of the dockable panel
 
+    // Prevent body scroll when modal is open
+    useEffect(() => {
+        if (isOpen) {
+            const originalStyle = window.getComputedStyle(document.body).overflow;
+            document.body.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = originalStyle;
+            };
+        }
+    }, [isOpen]);
+
+    // Navigation functions
+    const goToPrevious = () => {
+        const currentIndex = mediaItems.findIndex(item => item.id === selectedItem.id);
+        const prevIndex = currentIndex > 0 ? currentIndex - 1 : mediaItems.length - 1;
+        setSelectedItem(mediaItems[prevIndex]);
+    };
+
+    const goToNext = () => {
+        const currentIndex = mediaItems.findIndex(item => item.id === selectedItem.id);
+        const nextIndex = currentIndex < mediaItems.length - 1 ? currentIndex + 1 : 0;
+        setSelectedItem(mediaItems[nextIndex]);
+    };
+
+    // Keyboard navigation
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (!isOpen) return;
+            
+            switch (e.key) {
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    goToPrevious();
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    goToNext();
+                    break;
+                case 'Escape':
+                    e.preventDefault();
+                    onClose();
+                    break;
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isOpen, selectedItem, mediaItems]);
+
     if (!isOpen) return null; // Return null if the modal is not open
 
     return (
@@ -187,7 +235,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                             >
                                 <MediaItem item={selectedItem} className="w-full h-full object-contain bg-gray-900/20" />
                                 
-                                {/* Close Button - Repositioned to top-right of image */}
+                                {/* Close Button */}
                                 <motion.button
                                     className="absolute top-4 right-4 p-3 rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
                                               backdrop-blur-sm shadow-lg z-10 transition-colors duration-200"
@@ -199,6 +247,33 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                                     whileTap={{ scale: 0.9 }}
                                 >
                                     <X className='w-5 h-5' />
+                                </motion.button>
+
+                                {/* Navigation Arrows */}
+                                <motion.button
+                                    className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
+                                              backdrop-blur-sm shadow-lg z-10 transition-colors duration-200"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        goToPrevious();
+                                    }}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                >
+                                    <ChevronLeft className='w-5 h-5' />
+                                </motion.button>
+
+                                <motion.button
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
+                                              backdrop-blur-sm shadow-lg z-10 transition-colors duration-200"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        goToNext();
+                                    }}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                >
+                                    <ChevronRight className='w-5 h-5' />
                                 </motion.button>
 
                                 {/* Image Info Overlay */}

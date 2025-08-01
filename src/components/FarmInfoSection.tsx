@@ -99,20 +99,6 @@ const FarmInfoSection = () => {
                   </p>
                 </div>
               </div>
-
-              <div className="text-center group">
-                <div className="bg-coffee-orange/10 rounded-2xl p-6 mb-4 group-hover:bg-coffee-orange/20 transition-colors duration-300">
-                  <div className="text-3xl md:text-4xl font-bold text-coffee-brown mb-2">
-                    54
-                  </div>
-                  <div className="text-lg font-semibold text-coffee-brown mb-1">
-                    Años de tradición
-                  </div>
-                  <p className="text-coffee-brown/70 text-sm">
-                    Experiencia familiar transmitida de generación en generación
-                  </p>
-                </div>
-              </div>
             </div>
 
             {/* Enhanced certifications and process section */}

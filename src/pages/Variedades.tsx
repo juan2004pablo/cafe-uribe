@@ -374,7 +374,7 @@ const Variedades = () => {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={coffeeTypesInView ? { opacity: 1, scale: 1 } : {}}
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                                className="group cursor-pointer"
+                                className="group"
                             >
                                 <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
                                     <div className="relative overflow-hidden rounded-t-lg">

@@ -10,33 +10,30 @@ const MachinerySection = () => {
     const machinery = [
         {
             name: "Tostadora Industrial",
-            description: "Nuestra tostadora industrial de última generación utiliza tecnología de precisión para controlar la temperatura y el tiempo de tostado. Cada lote es monitoreado cuidadosamente para garantizar un perfil de tostado consistente que resalta las características únicas de nuestro café de alta montaña.",
+            description: "Tecnología de precisión para el tostado perfecto",
             process: "Tostado controlado",
             capacity: "50kg/batch",
             image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
             icon: <Cog className="w-8 h-8" />,
-            color: "from-orange-500/20 to-red-500/20",
-            features: ["Control de temperatura preciso", "Monitoreo en tiempo real", "Perfil de tostado personalizable"]
+            color: "from-orange-500/20 to-red-500/20"
         },
         {
             name: "Molino de Alta Precisión",
-            description: "Nuestro sistema de molienda especializado preserva los aceites esenciales y aromas naturales del café. Las cuchillas de cerámica de grado industrial garantizan una molienda uniforme que maximiza la extracción de sabores durante la preparación.",
+            description: "Molienda uniforme que preserva los aceites naturales",
             process: "Molienda especializada",
             capacity: "100kg/hr",
             image: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc?w=800&h=600&fit=crop",
             icon: <Settings className="w-8 h-8" />,
-            color: "from-blue-500/20 to-cyan-500/20",
-            features: ["Cuchillas de cerámica", "Molienda uniforme", "Preservación de aceites"]
+            color: "from-blue-500/20 to-cyan-500/20"
         },
         {
             name: "Sistema de Empaque",
-            description: "Tecnología avanzada de sellado al vacío que preserva la frescura y calidad de nuestro café por períodos extendidos. El sistema automatizado garantiza un empaque hermético que protege contra la oxidación y mantiene los aromas intactos.",
+            description: "Sellado al vacío para máxima frescura",
             process: "Empaque hermético",
             capacity: "200 unidades/hr",
             image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=800&h=600&fit=crop",
             icon: <Zap className="w-8 h-8" />,
-            color: "from-green-500/20 to-emerald-500/20",
-            features: ["Sellado al vacío", "Control automatizado", "Preservación de aromas"]
+            color: "from-green-500/20 to-emerald-500/20"
         }
     ];
 
@@ -69,7 +66,7 @@ const MachinerySection = () => {
                         >
                             {/* Flip card container */}
                             <div className="h-[500px] w-full [perspective:1000px]">
-                                <div className="relative w-full h-full transition-transform duration-1000 ease-in-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                                <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                                     
                                     {/* Front side - Image */}
                                     <div className="absolute w-full h-full [backface-visibility:hidden] rounded-3xl overflow-hidden bg-white shadow-xl">
@@ -118,7 +115,7 @@ const MachinerySection = () => {
                                             </h3>
 
                                             <div className="flex items-center gap-2 text-coffee-orange cursor-pointer">
-                                                <span className="text-sm font-medium">Hover para más detalles</span>
+                                                <span className="text-sm font-medium">Ver más detalles</span>
                                                 <ArrowRight className="w-4 h-4" />
                                             </div>
                                         </div>
@@ -128,50 +125,55 @@ const MachinerySection = () => {
                                     </div>
 
                                     {/* Back side - Description */}
-                                    <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl overflow-hidden bg-gradient-to-br from-white via-coffee-cream/10 to-coffee-cream/20 shadow-xl border border-coffee-cream/30">
-                                        <div className="relative w-full h-full p-8 flex flex-col">
-                                            {/* Header */}
-                                            <div className="text-center mb-6">
-                                                <div className="w-16 h-16 bg-coffee-orange/10 rounded-2xl flex items-center justify-center text-coffee-orange mx-auto mb-4">
+                                    <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl overflow-hidden bg-gradient-to-br from-coffee-brown via-coffee-brown/95 to-coffee-brown/90 shadow-xl">
+                                        <div className="relative w-full h-full p-8 flex flex-col justify-center text-white">
+                                            {/* Background pattern */}
+                                            <div className="absolute inset-0 opacity-10">
+                                                <div className="w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
+                                            </div>
+
+                                            {/* Icon header */}
+                                            <div className="relative z-10 text-center mb-8">
+                                                <div className="w-20 h-20 bg-coffee-orange/20 backdrop-blur-sm rounded-3xl flex items-center justify-center text-coffee-orange mx-auto mb-4 border border-coffee-orange/30">
                                                     {machine.icon}
                                                 </div>
-                                                <h3 className="font-playfair text-2xl font-bold text-coffee-brown mb-2">
+                                                <h3 className="font-playfair text-3xl font-bold mb-2">
                                                     {machine.name}
                                                 </h3>
-                                                <div className="flex items-center justify-center gap-2 text-coffee-orange text-sm font-medium">
-                                                    <div className="w-1.5 h-1.5 bg-coffee-orange rounded-full"></div>
-                                                    {machine.process}
-                                                    <div className="w-1.5 h-1.5 bg-coffee-orange rounded-full"></div>
+                                                <div className="w-16 h-0.5 bg-coffee-orange mx-auto"></div>
+                                            </div>
+
+                                            {/* Process info */}
+                                            <div className="relative z-10 mb-6">
+                                                <div className="bg-coffee-orange/20 rounded-xl p-4 border border-coffee-orange/30">
+                                                    <h4 className="font-bold text-coffee-cream mb-2 flex items-center gap-2">
+                                                        <div className="w-2 h-2 bg-coffee-orange rounded-full"></div>
+                                                        Proceso Especializado
+                                                    </h4>
+                                                    <p className="text-coffee-cream/90 font-medium">
+                                                        {machine.process}
+                                                    </p>
                                                 </div>
                                             </div>
 
                                             {/* Description */}
-                                            <div className="flex-1 mb-6">
-                                                <p className="text-coffee-brown/80 leading-relaxed text-center mb-6">
+                                            <div className="relative z-10 mb-6">
+                                                <p className="text-coffee-cream/90 text-lg leading-relaxed text-center">
                                                     {machine.description}
                                                 </p>
-
-                                                {/* Features */}
-                                                <div className="space-y-3">
-                                                    <h4 className="font-semibold text-coffee-brown text-center mb-4">
-                                                        Características destacadas:
-                                                    </h4>
-                                                    {machine.features.map((feature, idx) => (
-                                                        <div key={idx} className="flex items-center gap-3 text-coffee-brown/70">
-                                                            <div className="w-1.5 h-1.5 bg-coffee-orange rounded-full flex-shrink-0"></div>
-                                                            <span className="text-sm">{feature}</span>
-                                                        </div>
-                                                    ))}
-                                                </div>
                                             </div>
 
                                             {/* Capacity info */}
-                                            <div className="text-center pt-4 border-t border-coffee-cream/30">
-                                                <div className="bg-coffee-orange/10 rounded-xl px-6 py-3 inline-flex items-center gap-3">
-                                                    <span className="text-coffee-brown/70 text-sm">Capacidad:</span>
-                                                    <span className="text-coffee-orange font-bold">{machine.capacity}</span>
+                                            <div className="relative z-10 text-center">
+                                                <div className="inline-flex items-center gap-3 bg-coffee-cream/10 rounded-full px-6 py-3 border border-coffee-cream/20">
+                                                    <span className="text-coffee-cream/70 text-sm">Capacidad:</span>
+                                                    <span className="text-coffee-orange font-bold text-lg">{machine.capacity}</span>
                                                 </div>
                                             </div>
+
+                                            {/* Decorative elements */}
+                                            <div className="absolute top-4 right-4 w-16 h-16 border border-coffee-orange/20 rounded-full"></div>
+                                            <div className="absolute bottom-4 left-4 w-12 h-12 border border-coffee-cream/20 rounded-full"></div>
                                         </div>
                                     </div>
                                 </div>

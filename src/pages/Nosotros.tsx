@@ -8,6 +8,7 @@ import PhysicalStoreSection from '@/components/PhysicalStoreSection';
 import FarmShowcaseSection from '@/components/FarmShowcaseSection';
 import FarmInfoSection from '@/components/FarmInfoSection';
 import { Button } from '@/components/ui/button';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 
 const Nosotros = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -51,6 +52,15 @@ const Nosotros = () => {
         }
     ];
 
+    // Logos de certificaciones
+    const certificationLogos = [
+        { name: "DO Café de Colombia", src: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&h=100&fit=crop" },
+        { name: "ICA", src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=150&h=100&fit=crop" },
+        { name: "Invima", src: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=150&h=100&fit=crop" },
+        { name: "CaféCert", src: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=150&h=100&fit=crop" },
+        { name: "Federación Nacional de Café", src: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&h=100&fit=crop" }
+    ];
+
     return (
         <div className="min-h-screen">
             <Header />
@@ -92,6 +102,44 @@ const Nosotros = () => {
                             <MapPin className="w-4 h-4 mr-2" />
                             Visitar Local
                         </Button>
+
+                        {/* Carrusel de Certificaciones */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ duration: 0.8, delay: 0.5 }}
+                            className="mt-16"
+                        >
+                            <p className="text-sm text-white/70 mb-6 font-medium">
+                                Certificaciones y Registros
+                            </p>
+                            <Carousel
+                                opts={{
+                                    align: "start",
+                                    loop: true,
+                                }}
+                                className="max-w-4xl mx-auto"
+                            >
+                                <CarouselContent className="-ml-4">
+                                    {certificationLogos.concat(certificationLogos).map((logo, index) => (
+                                        <CarouselItem key={`${logo.name}-${index}`} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/5">
+                                            <div className="p-3">
+                                                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                                                    <img
+                                                        src={logo.src}
+                                                        alt={logo.name}
+                                                        className="w-full h-12 object-contain filter brightness-0 invert opacity-80"
+                                                    />
+                                                    <p className="text-xs text-white/60 mt-2 text-center font-medium">
+                                                        {logo.name}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </CarouselItem>
+                                    ))}
+                                </CarouselContent>
+                            </Carousel>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>

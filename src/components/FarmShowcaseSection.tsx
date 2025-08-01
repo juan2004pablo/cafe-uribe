@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -9,7 +8,7 @@ const FarmShowcaseSection = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Media items for the InteractiveBentoGallery - expandido con más imágenes
+  // Media items for the InteractiveBentoGallery - expandido con 3 imágenes más (total: 15)
   const farmMediaItems = [
     {
       id: 1,
@@ -106,6 +105,31 @@ const FarmShowcaseSection = () => {
       desc: "Recolección selectiva de los mejores frutos",
       url: "/images/foto_6.jpeg",
       span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-2",
+    },
+    // Nuevas 3 imágenes adicionales
+    {
+      id: 13,
+      type: "image",
+      title: "Beneficio Húmedo",
+      desc: "Proceso de lavado y fermentación controlada",
+      url: "/images/foto_7.jpeg",
+      span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
+    },
+    {
+      id: 14,
+      type: "image",
+      title: "Tostado Artesanal",
+      desc: "Proceso de tostado con control de temperatura preciso",
+      url: "/images/foto_8.jpeg",
+      span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
+    },
+    {
+      id: 15,
+      type: "image",
+      title: "Empaque Final",
+      desc: "Sellado y empaque para preservar frescura",
+      url: "/images/foto_9.jpeg",
+      span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-2",
     }
   ];
 
@@ -124,7 +148,7 @@ const FarmShowcaseSection = () => {
         </FloatingElement>
       </Floating>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
@@ -142,12 +166,12 @@ const FarmShowcaseSection = () => {
           <div className="w-32 h-1 bg-coffee-orange mx-auto mt-8"></div>
         </motion.div>
 
-        {/* Interactive Bento Gallery */}
+        {/* Interactive Bento Gallery - Ancho expandido */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mb-20"
+          className="mb-20 w-full max-w-[1400px] mx-auto"
         >
           <InteractiveBentoGallery
             mediaItems={farmMediaItems}

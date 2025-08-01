@@ -81,7 +81,7 @@ const FarmInfoSection = () => {
                     Plantas activas
                   </div>
                   <p className="text-coffee-brown/70 text-sm">
-                    Producción continua durante todo el año
+                    Producción constante y sostenible durante todo el año
                   </p>
                 </div>
               </div>

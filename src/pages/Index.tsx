@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ArrowRight, Coffee, Users, Award, Leaf, ChevronDown } from 'lucide-react';
@@ -17,10 +16,10 @@ const Index = () => {
   const [processRef, processInView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const processSteps = [
-    { icon: <Leaf className="w-8 h-8" />, title: "Cultivo", description: "En las montañas del Norte de Santander" },
-    { icon: <Coffee className="w-8 h-8" />, title: "Recolección", description: "Manual y selectiva" },
-    { icon: <Award className="w-8 h-8" />, title: "Tostión", description: "Proceso artesanal controlado" },
-    { icon: <Users className="w-8 h-8" />, title: "Tu Taza", description: "Calidad garantizada" }
+    { icon: <Leaf className="w-8 h-8" />, title: "Cultivamos", description: "En nuestras montañas del Norte de Santander" },
+    { icon: <Coffee className="w-8 h-8" />, title: "Procesamos", description: "Recolección manual y selectiva" },
+    { icon: <Award className="w-8 h-8" />, title: "Tostamos", description: "Proceso artesanal controlado" },
+    { icon: <Users className="w-8 h-8" />, title: "Empacamos", description: "Directo a tu taza con calidad garantizada" }
   ];
 
   const testimonials = [
@@ -118,6 +117,17 @@ const Index = () => {
                 lo que garantiza la calidad y sanidad de sus productos.
                 Operamos como tostadores, exportadores y trilladores,
                 asegurando un proceso de producción completo.
+              </p>
+              <div className="bg-white rounded-lg p-6 shadow-sm border-l-4 border-coffee-orange mb-6">
+                <p className="text-gray-700 font-semibold mb-2">
+                  🏭 Proceso 100% Propio
+                </p>
+                <p className="text-gray-600 text-sm">
+                  Cultivamos, procesamos, trillamos, tostamos y empacamos nuestro propio café. 
+                  No tercerizamos - cada grano tiene historia, nombre y origen real.
+                </p>
+              </div>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
                 Nuestro café cuenta con denominación de origen y el sello de la Federación Nacional de Cafeteros,
                 lo que certifica su autenticidad y que es 100% colombiano.
                 Un verdadero legado de aroma y sabor.
@@ -145,8 +155,8 @@ const Index = () => {
                 className="rounded-lg shadow-2xl"
               />
               <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-lg shadow-xl">
-                <p className="text-2xl font-bold text-gray-900">+50</p>
-                <p className="text-gray-600">Años de tradición</p>
+                <p className="text-2xl font-bold text-gray-900">+70k</p>
+                <p className="text-gray-600">Plantas activas</p>
               </div>
             </motion.div>
           </div>
@@ -166,11 +176,12 @@ const Index = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              De la Finca a Tu Taza
+              Nuestro Proceso Integral
             </h2>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto">
-              Nuestro proceso artesanal garantiza la máxima calidad en cada paso,
-              desde el cultivo hasta el producto final.
+            <p className="text-lg text-white/80 max-w-3xl mx-auto">
+              Controlamos cada paso del proceso para garantizar la máxima calidad.
+              Desde el cultivo hasta el empaque, todo se realiza en nuestras instalaciones
+              con inventario disponible durante todo el año.
             </p>
           </motion.div>
 

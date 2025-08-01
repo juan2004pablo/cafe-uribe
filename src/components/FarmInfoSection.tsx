@@ -29,15 +29,20 @@ const FarmInfoSection = () => {
               La Finca Café Uribe
             </h2>
             <p className="text-lg text-coffee-brown/80 mb-6 leading-relaxed">
-              Ubicada en el corazón del Norte de Santander, a 1.750 metros sobre el nivel del mar,
+              Ubicada en el Norte de Santander, entre 1.600 y 1.850 metros sobre el nivel del mar,
               nuestra finca goza de condiciones climáticas excepcionales que favorecen
-              el desarrollo de granos de café premium.
+              el desarrollo de granos de café premium con más de 70.000 plantas activas.
             </p>
-            <p className="text-lg text-coffee-brown/80 mb-8 leading-relaxed">
+            <p className="text-lg text-coffee-brown/80 mb-6 leading-relaxed">
               Los suelos volcánicos ricos en nutrientes, combinados con el clima templado
               y las lluvias regulares, crean el ambiente perfecto para cultivar café
-              de especialidad con características únicas.
+              de especialidad con características únicas y trazabilidad completa.
             </p>
+            <div className="bg-coffee-orange/10 rounded-lg p-4 mb-6">
+              <p className="text-coffee-brown font-semibold">
+                <span className="text-coffee-orange">✓</span> No tercerizamos: Cada grano tiene historia, nombre y origen real
+              </p>
+            </div>
           </motion.div>
         </div>
 
@@ -52,14 +57,14 @@ const FarmInfoSection = () => {
               Nuestra Finca en Números
             </h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
               <div className="text-center group">
                 <div className="bg-coffee-orange/10 rounded-2xl p-6 mb-4 group-hover:bg-coffee-orange/20 transition-colors duration-300">
-                  <div className="text-4xl md:text-5xl font-bold text-coffee-orange mb-2">
-                    1.750m
+                  <div className="text-3xl md:text-4xl font-bold text-coffee-orange mb-2">
+                    1.600-1.850m
                   </div>
                   <div className="text-lg font-semibold text-coffee-brown mb-1">
-                    Altura sobre el mar
+                    Altitud
                   </div>
                   <p className="text-coffee-brown/70 text-sm">
                     Condiciones climáticas ideales para café de especialidad
@@ -69,21 +74,35 @@ const FarmInfoSection = () => {
               
               <div className="text-center group">
                 <div className="bg-coffee-brown/10 rounded-2xl p-6 mb-4 group-hover:bg-coffee-brown/20 transition-colors duration-300">
-                  <div className="text-4xl md:text-5xl font-bold text-coffee-brown mb-2">
-                    50Ha
+                  <div className="text-3xl md:text-4xl font-bold text-coffee-brown mb-2">
+                    +70.000
                   </div>
                   <div className="text-lg font-semibold text-coffee-brown mb-1">
-                    Extensión cultivada
+                    Plantas activas
                   </div>
                   <p className="text-coffee-brown/70 text-sm">
-                    Terreno dedicado exclusivamente al cultivo de café premium
+                    Producción continua durante todo el año
                   </p>
                 </div>
               </div>
               
               <div className="text-center group">
                 <div className="bg-coffee-cream/50 rounded-2xl p-6 mb-4 group-hover:bg-coffee-cream/70 transition-colors duration-300">
-                  <div className="text-4xl md:text-5xl font-bold text-coffee-orange mb-2">
+                  <div className="text-3xl md:text-4xl font-bold text-coffee-orange mb-2">
+                    50Ha
+                  </div>
+                  <div className="text-lg font-semibold text-coffee-brown mb-1">
+                    Extensión cultivada
+                  </div>
+                  <p className="text-coffee-brown/70 text-sm">
+                    Terreno dedicado exclusivamente al cultivo premium
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-center group">
+                <div className="bg-coffee-orange/10 rounded-2xl p-6 mb-4 group-hover:bg-coffee-orange/20 transition-colors duration-300">
+                  <div className="text-3xl md:text-4xl font-bold text-coffee-brown mb-2">
                     54
                   </div>
                   <div className="text-lg font-semibold text-coffee-brown mb-1">
@@ -96,35 +115,54 @@ const FarmInfoSection = () => {
               </div>
             </div>
 
-            {/* Additional info section */}
+            {/* Enhanced certifications and process section */}
             <div className="pt-8 border-t border-coffee-cream/50">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-8">
                 <div>
-                  <h4 className="font-playfair text-2xl font-semibold text-coffee-brown mb-4">
-                    Certificaciones y Calidad
+                  <h4 className="font-playfair text-2xl font-semibold text-coffee-brown mb-6">
+                    Certificaciones y Registros
                   </h4>
-                  <ul className="space-y-2 text-coffee-brown/80">
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-coffee-orange rounded-full mr-3"></div>
-                      Café 100% Arábica Premium
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-coffee-orange rounded-full mr-3"></div>
-                      Prácticas sostenibles certificadas
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-coffee-orange rounded-full mr-3"></div>
-                      Comercio justo garantizado
-                    </li>
-                  </ul>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      'DO Café de Colombia',
+                      'ICA',
+                      'Invima', 
+                      'CaféCert',
+                      'Registro de exportador',
+                      'Sello FNC'
+                    ].map((cert) => (
+                      <div key={cert} className="flex items-center bg-coffee-orange/5 rounded-lg p-2">
+                        <div className="w-2 h-2 bg-coffee-orange rounded-full mr-2 flex-shrink-0"></div>
+                        <span className="text-sm text-coffee-brown font-medium">{cert}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <div>
-                  <h4 className="font-playfair text-2xl font-semibold text-coffee-brown mb-4">
-                    Proceso Artesanal
+                  <h4 className="font-playfair text-2xl font-semibold text-coffee-brown mb-6">
+                    Proceso Integral
                   </h4>
-                  <p className="text-coffee-brown/80 leading-relaxed">
-                    Cada grano pasa por un proceso meticuloso de selección, lavado y secado 
-                    natural que preserva los sabores únicos de nuestro terroir montañoso.
+                  <p className="text-coffee-brown/80 leading-relaxed mb-4">
+                    Cultivamos, procesamos, trillamos, tostamos y empacamos nuestro propio café.
+                    Un proceso 100% propio que garantiza trazabilidad total.
+                  </p>
+                  <div className="bg-coffee-cream/30 rounded-lg p-4">
+                    <p className="text-coffee-brown font-semibold text-sm">
+                      <span className="text-coffee-orange">📦</span> Inventario garantizado: 
+                      Entregas continuas durante todo el año
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* New generation leadership highlight */}
+              <div className="bg-gradient-to-r from-coffee-orange/10 to-coffee-brown/10 rounded-xl p-6">
+                <div className="text-center">
+                  <h4 className="font-playfair text-xl font-semibold text-coffee-brown mb-2">
+                    Generación Joven al Frente
+                  </h4>
+                  <p className="text-coffee-brown/80">
+                    Comprometida con la trazabilidad total y la innovación en cada proceso
                   </p>
                 </div>
               </div>

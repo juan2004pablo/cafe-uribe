@@ -25,7 +25,7 @@ const Variedades = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentImageIndex((prevIndex) => (prevIndex + 1) % productImages.length);
-        }, 3000);
+        }, 5000);
 
         return () => clearInterval(interval);
     }, []);

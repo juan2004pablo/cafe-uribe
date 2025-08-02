@@ -92,16 +92,16 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Disclaimer
+        {/* Disclaimer */}
         <div className="border-t border-white/20 mt-12 pt-8">
-          <div className="bg-white/5 rounded-lg p-4 mb-6">
+          {/* <div className="bg-white/5 rounded-lg p-4 mb-6">
             <h4 className="font-semibold text-coffee-orange mb-2">Propuesta no oficial – Uso demostrativo</h4>
             <p className="text-white/70 text-sm leading-relaxed">
               Este sitio es una propuesta desarrollada exclusivamente con fines demostrativos para la empresa Café Uribe. 
               No representa su sitio oficial, no está afiliado directamente a la empresa y no se utiliza con fines comerciales. 
               El contenido utilizado (logos, imágenes e información) es referencial.
             </p>
-          </div>
+          </div>  */}
           
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-white/60 text-sm">
@@ -111,7 +111,7 @@ const Footer = () => {
               Legado de aroma y sabor - 100% Colombiano
             </p>
           </div>
-        </div> */}
+        </div>
       </div>
     </footer>
   );

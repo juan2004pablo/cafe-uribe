@@ -3,7 +3,7 @@ import { Clock, MapPin } from "lucide-react";
 
 const PhysicalStoreSection = () => {
   return (
-    <section className="relative w-full min-h-[700px] bg-[#3B1F13] text-white font-sans px-4 py-20 overflow-hidden">
+    <section className="relative w-full min-h-[700px] bg-[#3B1F13] text-white font-sans px-4 py-20 overflow-hidden z-0">
       {/* Título por fuera del fondo */}
       <h2 className="relative z-10 text-center text-4xl md:text-5xl font-semibold uppercase tracking-wide mb-5">
         Punto de venta físico

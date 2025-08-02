@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Play, Pause, Download } from 'lucide-react';
@@ -87,11 +86,11 @@ const GalleryModal = ({ isOpen, items, currentIndex, onClose, onNavigate }: Gall
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center"
+        className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center"
         onClick={onClose}
       >
         {/* Header */}
-        <div className="absolute top-0 left-0 right-0 z-10 p-4 bg-gradient-to-b from-black/50 to-transparent">
+        <div className="absolute top-0 left-0 right-0 z-[10000] p-4 bg-gradient-to-b from-black/50 to-transparent">
           <div className="flex items-center justify-between">
             <div className="text-white">
               <h3 className="font-playfair text-lg md:text-xl font-semibold">
@@ -130,7 +129,7 @@ const GalleryModal = ({ isOpen, items, currentIndex, onClose, onNavigate }: Gall
           <Button
             variant="ghost"
             size="icon"
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/20 w-12 h-12"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-[10000] text-white hover:bg-white/20 w-12 h-12"
             onClick={(e) => {
               e.stopPropagation();
               onNavigate(currentIndex - 1);
@@ -144,7 +143,7 @@ const GalleryModal = ({ isOpen, items, currentIndex, onClose, onNavigate }: Gall
           <Button
             variant="ghost"
             size="icon"
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/20 w-12 h-12"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-[10000] text-white hover:bg-white/20 w-12 h-12"
             onClick={(e) => {
               e.stopPropagation();
               onNavigate(currentIndex + 1);
@@ -202,7 +201,7 @@ const GalleryModal = ({ isOpen, items, currentIndex, onClose, onNavigate }: Gall
         </div>
 
         {/* Thumbnail strip */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent">
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent z-[10000]">
           <div className="flex gap-2 justify-center overflow-x-auto scrollbar-hide">
             {items.slice(Math.max(0, currentIndex - 3), currentIndex + 4).map((item, idx) => {
               const actualIndex = Math.max(0, currentIndex - 3) + idx;

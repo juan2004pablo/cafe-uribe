@@ -134,7 +134,7 @@ const FarmShowcaseSection = () => {
   ];
 
   return (
-    <section ref={containerRef} className="relative py-32 bg-gradient-to-br from-coffee-cream/20 via-white to-coffee-orange/10 overflow-hidden">
+    <section ref={containerRef} className="relative bg-gradient-to-br from-coffee-cream/20 via-white to-coffee-orange/10 overflow-hidden">
       {/* Floating Background Elements */}
       <Floating className="absolute inset-0 pointer-events-none">
         <FloatingElement depth={1} className="top-20 left-10 w-32 h-32 bg-coffee-orange/10 rounded-full blur-xl">
@@ -154,16 +154,7 @@ const FarmShowcaseSection = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
         >
-          <h2 className="font-playfair text-5xl md:text-6xl font-bold text-coffee-brown mb-6">
-            Nuestra Finca Cafetera
-          </h2>
-          <p className="text-xl text-coffee-brown/80 max-w-3xl mx-auto leading-relaxed">
-            Descubre el corazón de nuestro café: una finca de 50 hectáreas ubicada a 1.750 metros 
-            sobre el nivel del mar, donde la tradición y la innovación se encuentran.
-          </p>
-          <div className="w-32 h-1 bg-coffee-orange mx-auto mt-8"></div>
         </motion.div>
 
         {/* Interactive Bento Gallery - Ancho expandido */}

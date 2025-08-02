@@ -63,9 +63,8 @@ const HeroCTA = ({ onKnowOurCoffee, onRequestSample }: HeroCTAProps) => {
         </Button>
       </div>
 
-      {/* Secondary CTA con enhanced styling */}
+      {/* Secondary CTA con enhanced styling
       <div className="flex flex-col sm:flex-row gap-4 items-center">
-        {/* Trust indicators */}
         <div className="flex items-center space-x-6 text-white/80 text-sm">
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
@@ -76,7 +75,7 @@ const HeroCTA = ({ onKnowOurCoffee, onRequestSample }: HeroCTAProps) => {
             <span>Envío Seguro</span>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Additional micro-interaction */}
       <motion.p
@@ -85,7 +84,7 @@ const HeroCTA = ({ onKnowOurCoffee, onRequestSample }: HeroCTAProps) => {
         transition={{ delay: 1.2 }}
         className="text-white/70 text-sm text-center max-w-md"
       >
-        Más de 50 años perfeccionando el arte del café colombiano
+        Cultivamos, procesamos, trillamos, tostamos y empacamos nuestro propio café
       </motion.p>
     </motion.div>
   );

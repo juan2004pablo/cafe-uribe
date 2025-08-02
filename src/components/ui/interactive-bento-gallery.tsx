@@ -378,7 +378,7 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
     const [isDragging, setIsDragging] = useState(false);
 
     return (
-        <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="container mx-auto px-8 pt-20 max-w-7xl">
             <div className="mb-8 text-center">
                 <motion.h1
                     className="text-2xl sm:text-3xl md:text-4xl font-bold text-coffee-brown font-playfair"

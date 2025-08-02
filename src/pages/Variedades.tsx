@@ -186,7 +186,7 @@ const Variedades = () => {
                             <div className="relative group">
                                 <div className="absolute -inset-4 bg-gradient-to-r from-coffee-orange to-coffee-brown rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300" />
                                 <img
-                                    src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&h=600&fit=crop"
+                                    src="/images/producto1.jpg"
                                     alt="Café Uribe Premium"
                                     className="relative w-full max-w-md mx-auto rounded-2xl shadow-2xl"
                                 />
@@ -242,16 +242,16 @@ const Variedades = () => {
                                         <p className="text-coffee-brown font-medium">Media-Alta</p>
                                     </div>
                                     <div>
-                                        <span className="text-coffee-brown/60 text-sm">Cuerpo:</span>
-                                        <p className="text-coffee-brown font-medium">Medio</p>
+                                        <span className="text-coffee-brown/60 text-sm">Grano:</span>
+                                        <p className="text-coffee-brown font-medium">100% Arábica</p>
                                     </div>
                                     <div>
                                         <span className="text-coffee-brown/60 text-sm">Aroma:</span>
-                                        <p className="text-coffee-brown font-medium">Floral y Frutal</p>
+                                        <p className="text-coffee-brown font-medium">Dulce</p>
                                     </div>
                                     <div>
                                         <span className="text-coffee-brown/60 text-sm">Notas:</span>
-                                        <p className="text-coffee-brown font-medium">Chocolate y Cítricos</p>
+                                        <p className="text-coffee-brown font-medium">Frutos Rojos y Chocolate</p>
                                     </div>
                                 </div>
                             </div>

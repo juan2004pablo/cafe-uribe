@@ -60,11 +60,11 @@ const Index = () => {
   ];
 
   const certificationLogos = [
-    { name: "DO Café de Colombia", logo: "/images/certificaciones/do-cafe-colombia.png" },
+    { name: "Denominación de Origen", logo: "/images/certificaciones/fnc-logo.jpeg" },
     { name: "ICA", logo: "/images/certificaciones/ica-logo.png" },
     { name: "Invima", logo: "/images/certificaciones/invima-logo.png" },
     { name: "CaféCert", logo: "/images/certificaciones/cafecert-logo.png" },
-    { name: "Federación Nacional de Café", logo: "/images/certificaciones/fnc-logo.png" }
+    { name: "Federación Nacional de Café", logo: "/images/certificaciones/do-cafe-colombia.png" }
   ];
 
   const handleKnowOurCoffee = () => {
@@ -88,7 +88,7 @@ const Index = () => {
             filter: "brightness(0.4)"
           }}
         />
-        
+
         {/* Main hero content */}
         <div className="relative z-10 flex-1 flex items-center justify-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
@@ -102,10 +102,10 @@ const Index = () => {
               </h1>
               <p className="text-xl md:text-2xl mb-4 font-light">🇨🇴 100% Colombiano 🇨🇴</p>
               <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
-                Café de finca con trazabilidad garantizada siempre. De la finca a tu taza con la más alta calidad.
+                Café de finca con trazabilidad garantizada siempre. <br></br> De la finca a tu taza con la más alta calidad.
               </p>
-              
-              <HeroCTA 
+
+              <HeroCTA
                 onKnowOurCoffee={handleKnowOurCoffee}
                 onRequestSample={handleRequestSample}
               />
@@ -125,7 +125,7 @@ const Index = () => {
               Certificado y Avalado Por
             </p>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={heroInView ? { opacity: 1 } : {}}
@@ -146,9 +146,9 @@ const Index = () => {
                   <img
                     src={cert.logo}
                     alt={cert.name}
-                    className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                    className={`h-16 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 ${cert.name !== "Denominación de Origen" ? "filter brightness-0 invert" : ""
+                      }`}
                     onError={(e) => {
-                      // Fallback to placeholder if image doesn't exist
                       e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`
                         <svg width="120" height="48" xmlns="http://www.w3.org/2000/svg">
                           <rect width="120" height="48" fill="#ffffff" stroke="#cccccc" stroke-width="1" rx="4"/>
@@ -188,7 +188,7 @@ const Index = () => {
                   🏭 Proceso 100% Propio
                 </p>
                 <p className="text-gray-600 text-sm">
-                  Cultivamos, procesamos, trillamos, tostamos y empacamos nuestro propio café. 
+                  Cultivamos, procesamos, trillamos, tostamos y empacamos nuestro propio café.
                   No tercerizamos - cada grano tiene historia, nombre y origen real.
                 </p>
               </div>
@@ -215,7 +215,7 @@ const Index = () => {
                 className="rounded-lg shadow-2xl"
               />
               <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-lg shadow-xl">
-                <p className="text-2xl font-bold text-gray-900">+70k</p>
+                <p className="text-2xl font-bold text-gray-900">+70.000</p>
                 <p className="text-gray-600">Plantas activas</p>
               </div>
             </motion.div>

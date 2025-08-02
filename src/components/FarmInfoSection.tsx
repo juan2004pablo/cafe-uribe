@@ -5,6 +5,16 @@ import { useInView } from 'react-intersection-observer';
 const FarmInfoSection = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
+  const certificationLogos = [
+    { name: "Denominación de Origen", logo: "/images/certificaciones/fnc-logo-original.png" },
+    { name: "ICA", logo: "/images/certificaciones/ica-logo.png" },
+    { name: "Invima", logo: "/images/certificaciones/invima-logo.png" },
+    { name: "CaféCert", logo: "/images/certificaciones/cafecert-logo.png" },
+    { name: "Federación Nacional de Café", logo: "/images/certificaciones/do-cafe-colombia.png" },
+    { name: "Registro de Trillador", logo: "/images/certificaciones/trillador.png" },
+    { name: "Registro de Exportador", logo: "/images/certificaciones/exportador.png" },
+  ];
+
   return (
     <section ref={ref} className="py-20 bg-coffee-cream/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,7 +66,7 @@ const FarmInfoSection = () => {
             <h3 className="font-playfair text-3xl md:text-4xl font-bold text-coffee-brown text-center mb-12">
               Nuestra Finca en Números
             </h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center group">
                 <div className="bg-coffee-orange/10 rounded-2xl p-6 mb-4 group-hover:bg-coffee-orange/20 transition-colors duration-300">
@@ -71,7 +81,7 @@ const FarmInfoSection = () => {
                   </p>
                 </div>
               </div>
-              
+
               <div className="text-center group">
                 <div className="bg-coffee-brown/10 rounded-2xl p-6 mb-4 group-hover:bg-coffee-brown/20 transition-colors duration-300">
                   <div className="text-3xl md:text-4xl font-bold text-coffee-brown mb-2">
@@ -85,7 +95,7 @@ const FarmInfoSection = () => {
                   </p>
                 </div>
               </div>
-              
+
               <div className="text-center group">
                 <div className="bg-coffee-cream/50 rounded-2xl p-6 mb-4 group-hover:bg-coffee-cream/70 transition-colors duration-300">
                   <div className="text-3xl md:text-4xl font-bold text-coffee-orange mb-2">
@@ -109,21 +119,30 @@ const FarmInfoSection = () => {
                     Certificaciones y Registros
                   </h4>
                   <div className="grid grid-cols-2 gap-3">
-                    {[
-                      'DO Café de Colombia',
-                      'ICA',
-                      'Invima', 
-                      'CaféCert',
-                      'Registro de exportador',
-                      'Sello FNC'
-                    ].map((cert) => (
-                      <div key={cert} className="flex items-center bg-coffee-orange/5 rounded-lg p-2">
-                        <div className="w-2 h-2 bg-coffee-orange rounded-full mr-2 flex-shrink-0"></div>
-                        <span className="text-sm text-coffee-brown font-medium">{cert}</span>
+                    {certificationLogos.map((cert) => (
+                      <div
+                        key={cert.name}
+                        className="flex items-center bg-coffee-orange/5 rounded-lg p-2"
+                      >
+                        <img
+                          src={cert.logo}
+                          alt={cert.name}
+                          className={`h-5 w-auto mr-2`}
+                          onError={(e) => {
+                            e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`
+              <svg width="120" height="48" xmlns="http://www.w3.org/2000/svg">
+                <rect width="120" height="48" fill="#ffffff" stroke="#cccccc" stroke-width="1" rx="4"/>
+                <text x="60" y="30" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#666666">${cert.name}</text>
+              </svg>
+            `)}`;
+                          }}
+                        />
+                        <span className="text-sm text-coffee-brown font-medium">{cert.name}</span>
                       </div>
                     ))}
                   </div>
                 </div>
+
                 <div>
                   <h4 className="font-playfair text-2xl font-semibold text-coffee-brown mb-6">
                     Proceso Integral
@@ -134,7 +153,7 @@ const FarmInfoSection = () => {
                   </p>
                   <div className="bg-coffee-cream/30 rounded-lg p-4">
                     <p className="text-coffee-brown font-semibold text-sm">
-                      <span className="text-coffee-orange">📦</span> Inventario garantizado: 
+                      <span className="text-coffee-orange">📦</span> Inventario garantizado:
                       Entregas continuas durante todo el año
                     </p>
                   </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Download, Coffee, Leaf, Flame, Package, Award, Thermometer, Droplets } from 'lucide-react';
@@ -16,6 +16,19 @@ const Variedades = () => {
     const [roastTypesRef, roastTypesInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [productRef, productInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [jobsRef, jobsInView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+    // Estado para el intercambio de imágenes del producto
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const productImages = ["/images/producto1.jpg", "/images/producto2.jpg"];
+
+    // Efecto para cambiar la imagen cada 3 segundos
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % productImages.length);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     const grainTypes = [
         {
@@ -185,11 +198,18 @@ const Variedades = () => {
                         >
                             <div className="relative group">
                                 <div className="absolute -inset-4 bg-gradient-to-r from-coffee-orange to-coffee-brown rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300" />
-                                <img
-                                    src="/images/producto1.jpg"
-                                    alt="Café Uribe Premium"
-                                    className="relative w-full max-w-md mx-auto rounded-2xl shadow-2xl"
-                                />
+                                <div className="relative overflow-hidden rounded-2xl">
+                                    <motion.img
+                                        key={currentImageIndex}
+                                        src={productImages[currentImageIndex]}
+                                        alt="Café Uribe Premium"
+                                        className="relative w-full max-w-md mx-auto rounded-2xl shadow-2xl"
+                                        initial={{ x: 100, opacity: 0 }}
+                                        animate={{ x: 0, opacity: 1 }}
+                                        exit={{ x: -100, opacity: 0 }}
+                                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                                    />
+                                </div>
                             </div>
                         </motion.div>
 

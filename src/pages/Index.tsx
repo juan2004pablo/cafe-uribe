@@ -113,8 +113,8 @@ const Index = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="inline-block"
                 >
-                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3">
-                    <p className="text-xl md:text-2xl font-semibold text-white">
+                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2">
+                    <p className="text-lg md:text-xl font-semibold text-white">
                       🇨🇴 100% Colombiano 🇨🇴
                     </p>
                   </div>

@@ -85,22 +85,26 @@ const Header = () => {
               variant="outline"
               size="sm"
               onClick={handleCall}
-              className={`transition-all duration-300 text-xs xl:text-sm px-3 xl:px-4 ${
+              className={`transition-all duration-300 ${
+                isScrolled ? 'text-xs xl:text-sm px-3 xl:px-4' : 'px-3'
+              } ${
                 isScrolled
                   ? 'border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white'
                   : 'border-white text-coffee-orange hover:bg-white/90 hover:text-coffee-orange'
               }`}
             >
-              <Phone className="w-3 h-3 xl:w-4 xl:h-4 mr-1 xl:mr-2" />
-              Llamar
+              <Phone className="w-3 h-3 xl:w-4 xl:h-4 mr-0 xl:mr-2" />
+              {isScrolled && <span className="hidden xl:inline">Llamar</span>}
             </Button>
             <Button
               size="sm"
               onClick={handleWhatsApp}
-              className="bg-coffee-orange hover:bg-coffee-orange/90 text-white text-xs xl:text-sm px-3 xl:px-4"
+              className={`bg-coffee-orange hover:bg-coffee-orange/90 text-white transition-all duration-300 ${
+                isScrolled ? 'text-xs xl:text-sm px-3 xl:px-4' : 'px-3'
+              }`}
             >
-              <WhatsAppIcon className="w-3 h-3 xl:w-4 xl:h-4 mr-1 xl:mr-2" />
-              WhatsApp
+              <WhatsAppIcon className="w-3 h-3 xl:w-4 xl:h-4 mr-0 xl:mr-2" />
+              {isScrolled && <span className="hidden xl:inline">WhatsApp</span>}
             </Button>
           </div>
 

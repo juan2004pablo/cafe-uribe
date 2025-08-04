@@ -46,13 +46,13 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
             <img 
-                src={isScrolled ? "/logo_claro.webp" : "lg:block hidden /logo_oscuro.webp"} 
-                alt="Montemar Logo" 
+                src={isScrolled ? "/logo_claro.webp" : "/logo_oscuro.webp"} 
+                alt="Café Uribe Logo" 
                 className="h-20 w-auto lg:block hidden"
               />
             <img 
                 src="/logo_claro.webp" 
-                alt="Montemar Logo" 
+                alt="Café Uribe Logo" 
                 className="h-20 w-auto lg:hidden"
               />
             <div className="flex flex-col">

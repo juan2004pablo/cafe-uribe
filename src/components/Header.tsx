@@ -38,7 +38,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || isOpen ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent lg:bg-transparent bg-white/95 backdrop-blur-md shadow-lg'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,22 +46,27 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
             <img 
-                src={isScrolled || isOpen ? "/logo_claro.webp" : "/logo_oscuro.webp"} 
+                src={isScrolled ? "/logo_claro.webp" : "/logo_oscuro.webp"} 
                 alt="Café Uribe Logo" 
-                className="h-20 w-auto"
+                className="h-20 w-auto lg:block hidden"
+              />
+            <img 
+                src="/logo_claro.webp" 
+                alt="Café Uribe Logo" 
+                className="h-20 w-auto lg:hidden"
               />
             <div className="flex flex-col">
               <span className={`font-bold text-lg md:text-xl transition-colors duration-300 ${
-                isScrolled || isOpen ? 'text-coffee-brown' : 'text-white'
+                isScrolled ? 'text-coffee-brown' : 'lg:text-white text-coffee-brown'
               }`}>Café Uribe</span>
               <span className={`text-xs transition-colors duration-300 ${
-                isScrolled || isOpen ? 'text-coffee-brown/60' : 'text-white/80'
+                isScrolled ? 'text-coffee-brown/60' : 'lg:text-white/80 text-coffee-brown/60'
               }`}>🇨🇴 100% Colombiano 🇨🇴</span>
             </div>
           </Link>
 
-          {/* Desktop Navigation - Cambié de lg a md para que aparezca antes */}
-          <nav className="hidden md:flex space-x-6 xl:space-x-8">
+          {/* Desktop Navigation - Better spacing for medium screens */}
+          <nav className="hidden lg:flex space-x-6 xl:space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -70,7 +75,7 @@ const Header = () => {
                   location.pathname === item.href
                     ? `text-coffee-orange border-b-2 border-coffee-orange pb-1`
                     : `transition-colors duration-300 hover:text-coffee-orange ${
-                        isScrolled || isOpen ? 'text-coffee-brown' : 'text-white'
+                        isScrolled ? 'text-coffee-brown' : 'text-white'
                       }`
                 }`}
               >
@@ -79,59 +84,57 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Contact Buttons - Cambié de lg a md para que aparezca antes */}
-          <div className="hidden md:flex items-center space-x-3 flex-shrink-0">
+          {/* Contact Buttons - Better responsive sizing */}
+          <div className="hidden lg:flex items-center space-x-3 flex-shrink-0">
             <Button
               variant="outline"
               size="sm"
               onClick={handleCall}
               className={`transition-all duration-300 text-xs xl:text-sm px-3 xl:px-4 ${
-                isScrolled || isOpen
+                isScrolled
                   ? 'border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white'
                   : 'border-white text-coffee-orange hover:bg-white/90 hover:text-coffee-orange'
               }`}
             >
-              <Phone className="w-3 h-3 xl:w-4 xl:h-4 mr-1 xl:mr-2" />
-              {(isScrolled || isOpen) && 'Llamar'}
+              <Phone className="w-3 h-3 xl:w-4 xl:h-4 mr-0 xl:mr-2" />
+              <span className={isScrolled ? 'inline' : 'hidden xl:inline'}>Llamar</span>
             </Button>
             <Button
               size="sm"
               onClick={handleWhatsApp}
               className="bg-coffee-orange hover:bg-coffee-orange/90 text-white text-xs xl:text-sm px-3 xl:px-4"
             >
-              <WhatsAppIcon className="w-3 h-3 xl:w-4 xl:h-4 mr-1 xl:mr-2" />
-              {(isScrolled || isOpen) && 'WhatsApp'}
+              <WhatsAppIcon className="w-3 h-3 xl:w-4 xl:h-4 mr-0 xl:mr-2" />
+              <span className={isScrolled ? 'inline' : 'hidden xl:inline'}>WhatsApp</span>
             </Button>
           </div>
 
-          {/* Mobile menu button - Cambié de lg a md para que aparezca solo en móviles */}
+          {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden p-2 rounded-md transition-colors duration-300 hover:text-coffee-orange ${
-              isScrolled || isOpen ? 'text-coffee-brown' : 'text-white'
-            }`}
+            className="lg:hidden p-2 rounded-md transition-colors duration-300 hover:text-coffee-orange text-coffee-brown"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation - Centrado y con fondo fijo */}
+      {/* Mobile Navigation */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 backdrop-blur-md border-t"
+            className="lg:hidden bg-white/95 backdrop-blur-md border-t"
           >
-            <div className="px-4 py-6 space-y-4 text-center">
+            <div className="px-4 py-6 space-y-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block text-lg font-medium ${
+                  className={`block text-lg font-medium text-center ${
                     location.pathname === item.href
                       ? 'text-coffee-orange'
                       : 'text-coffee-brown hover:text-coffee-orange'

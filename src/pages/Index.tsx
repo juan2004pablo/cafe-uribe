@@ -102,7 +102,7 @@ const Index = () => {
             >
               {/* Main title with better spacing */}
               <div className="space-y-4">
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                <h1 className="text-4xl md:text-7xl font-bold leading-tight">
                   Legado de <span className="text-coffee-orange">Aroma</span> y <span className="text-coffee-orange">Sabor</span>
                 </h1>
                 

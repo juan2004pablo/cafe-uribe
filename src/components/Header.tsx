@@ -56,7 +56,7 @@ const Header = () => {
               }`}>Café Uribe</span>
               <span className={`text-xs transition-colors duration-300 ${
                 isScrolled ? 'text-coffee-brown/60' : 'text-white/80'
-              }`}>100% Colombiano</span>
+              }`}>🇨🇴 100% Colombiano 🇨🇴</span>
             </div>
           </Link>
 
@@ -85,26 +85,22 @@ const Header = () => {
               variant="outline"
               size="sm"
               onClick={handleCall}
-              className={`transition-all duration-300 ${
-                isScrolled ? 'text-xs xl:text-sm px-3 xl:px-4' : 'px-3'
-              } ${
+              className={`transition-all duration-300 text-xs xl:text-sm px-3 xl:px-4 ${
                 isScrolled
                   ? 'border-coffee-orange text-coffee-orange hover:bg-coffee-orange hover:text-white'
                   : 'border-white text-coffee-orange hover:bg-white/90 hover:text-coffee-orange'
               }`}
             >
-              <Phone className="w-3 h-3 xl:w-4 xl:h-4 mr-0 xl:mr-2" />
-              {isScrolled && <span className="hidden xl:inline">Llamar</span>}
+              <Phone className="w-3 h-3 xl:w-4 xl:h-4 mr-1 xl:mr-2" />
+              Llamar
             </Button>
             <Button
               size="sm"
               onClick={handleWhatsApp}
-              className={`bg-coffee-orange hover:bg-coffee-orange/90 text-white transition-all duration-300 ${
-                isScrolled ? 'text-xs xl:text-sm px-3 xl:px-4' : 'px-3'
-              }`}
+              className="bg-coffee-orange hover:bg-coffee-orange/90 text-white text-xs xl:text-sm px-3 xl:px-4"
             >
-              <WhatsAppIcon className="w-3 h-3 xl:w-4 xl:h-4 mr-0 xl:mr-2" />
-              {isScrolled && <span className="hidden xl:inline">WhatsApp</span>}
+              <WhatsAppIcon className="w-3 h-3 xl:w-4 xl:h-4 mr-1 xl:mr-2" />
+              WhatsApp
             </Button>
           </div>
 

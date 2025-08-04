@@ -12,6 +12,7 @@ const FarmInfoSection = () => {
     { name: "CaféCert", logo: "/images/certificaciones/cafecert-logo.png" },
     { name: "Federación Nacional de Café", logo: "/images/certificaciones/do-cafe-colombia.png" },
     { name: "Registro de Trillador", logo: "/images/certificaciones/trillador.png" },
+    { name: "Registro de Tostador", logo: "/images/certificaciones/tostador.png" },
     { name: "Registro de Exportador", logo: "/images/certificaciones/exportador.png" },
   ];
 
@@ -149,7 +150,7 @@ const FarmInfoSection = () => {
                   </h4>
                   <p className="text-coffee-brown/80 leading-relaxed mb-4">
                     Cultivamos, procesamos, trillamos, tostamos y empacamos nuestro propio café.
-                    Un proceso 100% propio que garantiza trazabilidad total.
+                    Un proceso 100% nuestro que garantiza trazabilidad total.
                   </p>
                   <div className="bg-coffee-cream/30 rounded-lg p-4">
                     <p className="text-coffee-brown font-semibold text-sm">

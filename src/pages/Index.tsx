@@ -185,7 +185,7 @@ const Index = () => {
               </p>
               <div className="bg-white rounded-lg p-6 shadow-sm border-l-4 border-coffee-orange mb-6">
                 <p className="text-gray-700 font-semibold mb-2">
-                  🏭 Proceso 100% Propio
+                  🏭 Proceso 100% Nuestro
                 </p>
                 <p className="text-gray-600 text-sm">
                   Cultivamos, procesamos, trillamos, tostamos y empacamos nuestro propio café.

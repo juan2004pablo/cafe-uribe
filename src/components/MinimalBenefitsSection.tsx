@@ -78,7 +78,7 @@ const MinimalBenefitsSection = () => {
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
               >
-                15+
+                10+
               </motion.div>
               <div className="text-coffee-brown">Años de Experiencia</div>
             </div>

@@ -19,7 +19,7 @@ const PhysicalStoreSection = () => {
 
         {/* Card flotante */}
         <div className="absolute inset-0 flex  justify-end pb-8">
-          <div className="m-4 w-full sm:w-[80%] md:w-[45%] lg:w-[40%] h-[100%] bg-white/10 backdrop-blur-md p-6 shadow-xl flex flex-col justify-between">
+  <div className="m-4 w-full max-w-screen-sm sm:w-[80%] md:w-[45%] lg:w-[40%] h-full bg-white/10 backdrop-blur-md p-6 shadow-xl flex flex-col justify-between overflow-hidden">
             {/* Contenido alineado al fondo */}
             <div className="mt-auto space-y-8">
               <div className="space-y-6">
@@ -55,10 +55,10 @@ const PhysicalStoreSection = () => {
                 </div>
               </div>
 
-              <p className="text-sm text-white/90">
+              <p className="text-sm text-white/90 break-words">
                 Te invitamos a visitarnos para descubrir la belleza y la calidad que ofrecemos.
                 <br /><br />
-                Aquí, cada cliente vive una experiencia de compra personalizada, mientras descubre la historia detrás de nuestros productos y el cuidado artesanal con el que cultivamos y producimos en nuestras fincas.             
+                Aquí, cada cliente vive una experiencia personalizada, descubriendo la historia detrás de nuestros productos y el cuidado artesanal con el que cultivamos y producimos en nuestras fincas.             
               </p>
             </div>
 

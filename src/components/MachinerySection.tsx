@@ -214,7 +214,7 @@ const MachinerySection = () => {
                     className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8"
                 >
                     {[
-                        { number: "15+", label: "Años de experiencia", desc: "en tecnología cafetera" },
+                        { number: "10+", label: "Años de experiencia", desc: "en tecnología cafetera" },
                         { number: "99.9%", label: "Precisión", desc: "en cada proceso" },
                         { number: "24/7", label: "Monitoreo", desc: "de calidad continuo" }
                     ].map((stat, index) => (

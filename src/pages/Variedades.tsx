@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Download, Coffee, Leaf, Flame, Package, Award, Thermometer, Droplets } from 'lucide-react';
+import { Download, Coffee, Leaf, ThermometerSun, Package, Award, Thermometer, Droplets } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -13,15 +13,13 @@ const Variedades = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [grainTypesRef, grainTypesInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [coffeeTypesRef, coffeeTypesInView] = useInView({ triggerOnce: true, threshold: 0.1 });
-    const [roastTypesRef, roastTypesInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [productRef, productInView] = useInView({ triggerOnce: true, threshold: 0.1 });
-    const [jobsRef, jobsInView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
     // Estado para el intercambio de imágenes del producto
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const productImages = ["/images/producto1.jpg", "/images/producto2.jpg"];
 
-    // Efecto para cambiar la imagen cada 3 segundos
+    // Efecto para cambiar la imagen cada 5 segundos
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentImageIndex((prevIndex) => (prevIndex + 1) % productImages.length);
@@ -32,29 +30,64 @@ const Variedades = () => {
 
     const grainTypes = [
         {
-            name: "Arábica",
-            scientific: "Coffea Arabica",
-            image: "/images/granos/grano_arabica.webp",
-            icon: <Coffee className="w-8 h-8" />,
-            percentage: 85
+            name: "Pergamino",
+            scientific: "Grano seco con cáscara",
+            image: "/images/etapa/pergamino.webp",
+            icon: <ThermometerSun className="w-8 h-8" />,
+            percentage: 3
         },
         {
-            name: "Robusta",
-            scientific: "Coffea Canephora",
-            image: "/images/granos/grano_robusta.webp",
+            name: "Verde",
+            scientific: "Grano listo para exportar o tostar",
+            image: "/images/etapa/verde.webp",
             icon: <Leaf className="w-8 h-8" />,
             percentage: 12
         },
         {
-            name: "Liberica",
-            scientific: "Coffea Liberica",
-            image: "/images/granos/grano_liberica.webp",
-            icon: <Award className="w-8 h-8" />,
-            percentage: 3
+            name: "Tostado",
+            scientific: "Grano listo para moler y consumir",
+            image: "/images/etapa/grano_arabica.webp",
+            icon: <Coffee className="w-8 h-8" />,
+            percentage: 85
         }
     ];
 
     const coffeeTypes = [
+        {
+            name: "Café Castillo",
+            description: "Alta resistencia a la roya, buen rendimiento y calidad en taza.",
+            method: "Buen balance, acidez media, cuerpo medio",
+            time: "Arábica híbrido",
+            image: "/images/variedades/castillo.jpeg",
+            icon: <Coffee className="w-6 h-6" />
+        },
+        {
+            name: "Café Cenicafe 1",
+            description: "Excelente uniformidad genética y buena adaptación a altitudes",
+            method: "Dulce, acidez alta, cuerpo balanceado",
+            time: "Arábica híbrido",
+            image: "/images/variedades/cenicafe1.png",
+            icon: <Droplets className="w-6 h-6" />
+        },
+        {
+            name: "Café Tabi",
+            description: "Más resistente a enfermedades y mejor calidad en taza que Castillo.",
+            method: "Dulce, floral, cuerpo balanceado",
+            time: "Arábica híbrido",
+            image: "/images/variedades/tabi.jpeg",
+            icon: <Thermometer className="w-6 h-6" />
+        },
+        {
+            name: "Café Geisha",
+            description: "Muy apreciada por su calidad excepcional en taza.",
+            method: "Florales, cítricas, jazmín, frutas tropicales",
+            time: "Arábica pura",
+            image: "/images/variedades/geisha.jpg",
+            icon: <Coffee className="w-6 h-6" />
+        }
+    ];
+
+    /* const coffeeTypes = [
         {
             name: "Espresso",
             description: "Base perfecta para todas las preparaciones",
@@ -87,7 +120,7 @@ const Variedades = () => {
             image: "https://www.somoselcafe.com.ar/img/novedades/47.webp",
             icon: <Coffee className="w-6 h-6" />
         }
-    ];
+    ]; */
 
     const roastTypes = [
         {
@@ -307,7 +340,7 @@ const Variedades = () => {
                 </div>
             </section>
 
-            {/* Tipos de Grano */}
+            {/* Etapas del Grano */}
             <section ref={grainTypesRef} className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
@@ -317,11 +350,11 @@ const Variedades = () => {
                         className="text-center mb-16"
                     >
                         <h2 className="font-playfair text-4xl md:text-6xl font-bold text-coffee-brown mb-6">
-                            Tipos de Grano
+                            Etapas del Grano
                         </h2>
                         <p className="text-lg text-coffee-brown/70 max-w-3xl mx-auto">
-                            Conoce las variedades de café que cultivamos en nuestras fincas,
-                            cada una con características únicas que definen el sabor final
+                            Conoce las etapas del grano de café que trabajamos en nuestras fincas,
+                            desde su cultivo hasta el tostado
                         </p>
                     </motion.div>
 
@@ -369,7 +402,69 @@ const Variedades = () => {
             {/* Machinery Section */}
             <MachinerySection />
 
-            {/* Tipos de Café */}
+                        {/* Tipos de Café */}
+            <section ref={coffeeTypesRef} className="py-20 bg-coffee-cream/20">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={coffeeTypesInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8 }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="font-playfair text-4xl md:text-6xl font-bold text-coffee-brown mb-6">
+                            Variedades Grano Arábica
+                        </h2>
+                        <p className="text-lg text-coffee-brown/70 max-w-3xl mx-auto">
+                            Descubre las variedades de café Arábica que cultivamos en nuestra finca,
+                            cada una con características únicas que definen su sabor final
+                        </p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {coffeeTypes.map((coffee, index) => (
+                            <motion.div
+                                key={coffee.name}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={coffeeTypesInView ? { opacity: 1, scale: 1 } : {}}
+                                transition={{ duration: 0.6, delay: index * 0.1 }}
+                                className="group"
+                            >
+                                <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
+                                    <div className="relative overflow-hidden rounded-t-lg">
+                                        <img
+                                            src={coffee.image}
+                                            alt={coffee.name}
+                                            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                                        />
+                                        <div className="absolute top-4 left-4 bg-coffee-brown/80 text-white rounded-full p-2">
+                                            {coffee.icon}
+                                        </div>
+                                    </div>
+                                    <CardContent className="p-6">
+                                        <h3 className="font-playfair text-xl font-bold text-coffee-brown mb-2">
+                                            {coffee.name}
+                                        </h3>
+                                        <p className="text-coffee-brown/70 text-sm mb-4">
+                                            {coffee.description}
+                                        </p>
+                                        <div className="space-y-2 text-sm">
+                                            <div className="flex space-x-2">
+                                                <span className="text-coffee-brown/60">Notas de sabor:</span>
+                                                <span className="text-coffee-brown font-medium">{coffee.method}</span>
+                                            </div>
+                                            <div className="flex space-x-2">
+                                                <span className="text-coffee-orange font-medium">{coffee.time}</span>
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Tipos de Café 
             <section ref={coffeeTypesRef} className="py-20 bg-coffee-cream/20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
@@ -430,7 +525,7 @@ const Variedades = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Tipos de Tostión */}
             <section className="bg-[#2C1309] py-20 px-6 text-white">

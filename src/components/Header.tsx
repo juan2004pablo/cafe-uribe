@@ -38,7 +38,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent lg:bg-transparent bg-white/95 backdrop-blur-md shadow-lg'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,13 +46,13 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
             <img 
-                src={isScrolled ? "/logo_claro.webp" : "/logo_oscuro.webp"} 
-                alt="Café Uribe Logo" 
+                src={isScrolled ? "/logo_claro.webp" : "lg:block hidden /logo_oscuro.webp"} 
+                alt="Montemar Logo" 
                 className="h-20 w-auto lg:block hidden"
               />
             <img 
                 src="/logo_claro.webp" 
-                alt="Café Uribe Logo" 
+                alt="Montemar Logo" 
                 className="h-20 w-auto lg:hidden"
               />
             <div className="flex flex-col">

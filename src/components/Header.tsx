@@ -38,7 +38,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent lg:bg-transparent bg-white/95 backdrop-blur-md shadow-lg'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,16 +46,21 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
             <img 
-                src={isScrolled ? "/logo_claro.webp" : "/logo_oscuro.webp"} 
+                src={isScrolled ? "/logo_claro.webp" : "lg:block hidden /logo_oscuro.webp"} 
                 alt="Montemar Logo" 
-                className="h-20 w-auto"
+                className="h-20 w-auto lg:block hidden"
+              />
+            <img 
+                src="/logo_claro.webp" 
+                alt="Montemar Logo" 
+                className="h-20 w-auto lg:hidden"
               />
             <div className="flex flex-col">
               <span className={`font-bold text-lg md:text-xl transition-colors duration-300 ${
-                isScrolled ? 'text-coffee-brown' : 'text-white'
+                isScrolled ? 'text-coffee-brown' : 'lg:text-white text-coffee-brown'
               }`}>Café Uribe</span>
               <span className={`text-xs transition-colors duration-300 ${
-                isScrolled ? 'text-coffee-brown/60' : 'text-white/80'
+                isScrolled ? 'text-coffee-brown/60' : 'lg:text-white/80 text-coffee-brown/60'
               }`}>🇨🇴 100% Colombiano 🇨🇴</span>
             </div>
           </Link>
@@ -91,25 +96,23 @@ const Header = () => {
                   : 'border-white text-coffee-orange hover:bg-white/90 hover:text-coffee-orange'
               }`}
             >
-              <Phone className="w-3 h-3 xl:w-4 xl:h-4 mr-1 xl:mr-2" />
-              Llamar
+              <Phone className="w-3 h-3 xl:w-4 xl:h-4 mr-0 xl:mr-2" />
+              <span className={isScrolled ? 'inline' : 'hidden xl:inline'}>Llamar</span>
             </Button>
             <Button
               size="sm"
               onClick={handleWhatsApp}
               className="bg-coffee-orange hover:bg-coffee-orange/90 text-white text-xs xl:text-sm px-3 xl:px-4"
             >
-              <WhatsAppIcon className="w-3 h-3 xl:w-4 xl:h-4 mr-1 xl:mr-2" />
-              WhatsApp
+              <WhatsAppIcon className="w-3 h-3 xl:w-4 xl:h-4 mr-0 xl:mr-2" />
+              <span className={isScrolled ? 'inline' : 'hidden xl:inline'}>WhatsApp</span>
             </Button>
           </div>
 
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2 rounded-md transition-colors duration-300 hover:text-coffee-orange ${
-              isScrolled ? 'text-coffee-brown' : 'text-white'
-            }`}
+            className="lg:hidden p-2 rounded-md transition-colors duration-300 hover:text-coffee-orange text-coffee-brown"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -131,7 +134,7 @@ const Header = () => {
                   key={item.name}
                   to={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block text-lg font-medium ${
+                  className={`block text-lg font-medium text-center ${
                     location.pathname === item.href
                       ? 'text-coffee-orange'
                       : 'text-coffee-brown hover:text-coffee-orange'

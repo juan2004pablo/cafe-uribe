@@ -98,7 +98,7 @@ const Index = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8 }}
-              className="space-y-8"
+              className="space-y-8 mt-3"
             >
               {/* Main title with better spacing */}
               <div className="space-y-4">

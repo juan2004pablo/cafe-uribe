@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ArrowRight, Coffee, Users, Award, Leaf, ChevronDown } from 'lucide-react';
@@ -60,7 +59,7 @@ const Index = () => {
   ];
 
   const certificationLogos = [
-    { name: "Denominación de Origen", logo: "/images/certificaciones/fnc-logo.jpeg" },
+    { name: "Denominación de Origen", logo: "/images/certificaciones/fnc-logo.jpeg" },
     { name: "ICA", logo: "/images/certificaciones/ica-logo.png" },
     { name: "Invima", logo: "/images/certificaciones/invima-logo.png" },
     { name: "CaféCert", logo: "/images/certificaciones/cafecert-logo.png" },
@@ -79,32 +78,78 @@ const Index = () => {
     <div className="min-h-screen overflow-x-hidden">
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section - Enhanced */}
       <section ref={heroRef} className="relative min-h-screen flex flex-col">
+        {/* Background with subtle overlay */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: "url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1920&h=1080&fit=crop')",
-            filter: "brightness(0.4)"
           }}
         />
+        
+        {/* Enhanced gradient overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/70" />
 
-        {/* Main hero content */}
-        <div className="relative z-10 flex-1 flex items-center justify-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        {/* Main hero content with improved layout */}
+        <div className="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto text-center text-white">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8 }}
+              className="space-y-8"
             >
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-                Legado de <span className="text-coffee-orange">Aroma</span> y <span className="text-coffee-orange">Sabor</span>
-              </h1>
-              <p className="text-xl md:text-2xl mb-4 font-light">🇨🇴 100% Colombiano 🇨🇴</p>
-              <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
-                Café de finca con trazabilidad garantizada siempre. <br></br> De la finca a tu taza con la más alta calidad.
-              </p>
+              {/* Main title with better spacing */}
+              <div className="space-y-4">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                  Legado de <span className="text-coffee-orange">Aroma</span> y <span className="text-coffee-orange">Sabor</span>
+                </h1>
+                
+                {/* Colombian badge with enhanced styling */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={heroInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="inline-block"
+                >
+                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3">
+                    <p className="text-xl md:text-2xl font-semibold text-white">
+                      🇨🇴 100% Colombiano 🇨🇴
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
 
+              {/* Enhanced description with better readability */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="space-y-4"
+              >
+                {/* Main description with background for better readability */}
+                <div className="bg-black/40 backdrop-blur-sm rounded-2xl border border-white/10 px-8 py-6 max-w-4xl mx-auto">
+                  <p className="text-lg md:text-xl font-medium text-white leading-relaxed">
+                    Café de finca con trazabilidad garantizada siempre.
+                  </p>
+                  <p className="text-base md:text-lg text-white/90 mt-2">
+                    De la finca a tu taza con la más alta calidad.
+                  </p>
+                </div>
+
+                {/* Process highlight */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={heroInView ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="text-white/80 text-sm md:text-base max-w-2xl mx-auto"
+                >
+                  Cultivamos, procesamos, trillamos, tostamos y empacamos nuestro propio café
+                </motion.div>
+              </motion.div>
+
+              {/* CTA Section */}
               <HeroCTA
                 onKnowOurCoffee={handleKnowOurCoffee}
                 onRequestSample={handleRequestSample}
@@ -146,7 +191,7 @@ const Index = () => {
                   <img
                     src={cert.logo}
                     alt={cert.name}
-                    className={`h-16 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 ${cert.name !== "Denominación de Origen" ? "filter brightness-0 invert" : ""
+                    className={`h-16 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 ${cert.name !== "Denominación de Origen" ? "filter brightness-0 invert" : ""
                       }`}
                     onError={(e) => {
                       e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`

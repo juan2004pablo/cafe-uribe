@@ -138,7 +138,7 @@ const Index = () => {
                   </p>
                 </div>
 
-                {/* Process highlight */}
+                {/* Process highlight
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={heroInView ? { opacity: 1 } : {}}
@@ -146,7 +146,7 @@ const Index = () => {
                   className="text-white/80 text-sm md:text-base max-w-2xl mx-auto"
                 >
                   Cultivamos, procesamos, trillamos, tostamos y empacamos nuestro propio café
-                </motion.div>
+                </motion.div> */}
               </motion.div>
 
               {/* CTA Section */}

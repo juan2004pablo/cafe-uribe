@@ -30,7 +30,7 @@ const Contacto = () => {
             icon: <Phone className="w-6 h-6" />,
             title: "Teléfono",
             info: "+57 320 373 7502",
-            description: "Mar - Sáb, 7:00 AM - 7:00 PM",
+            description: "Lun - Sáb, 8:00 AM - 6:00 PM",
             action: () => window.open('tel:+573203737502', '_blank'),
             buttonText: "Llamar Ahora"
         },
@@ -93,20 +93,16 @@ const Contacto = () => {
                                     </div>
                                     <div>
                                         <h3 className="font-playfair text-xl font-semibold text-coffee-brown mb-3">
-                                            Horarios de Atención
+                                            Horarios de Atención Virtual
                                         </h3>
                                         <div className="space-y-2 text-coffee-brown/80">
                                             <div className="flex space-x-2">
-                                                <span>Martes - Sábado:</span>
-                                                <span className="font-medium">7:00 AM - 7:00 PM</span>
+                                                <span>Lunes - Sábado:</span>
+                                                <span className="font-medium">8:00 AM - 6:00 PM</span>
                                             </div>
                                             <div className="flex space-x-2">
                                                 <span>Domingo:</span>
                                                 <span className="font-medium">7:00 AM - 12:00 PM</span>
-                                            </div>
-                                            <div className="flex space-x-2">
-                                                <span>Lunes:</span>
-                                                <span className="font-medium">Cerrado</span>
                                             </div>
                                         </div>
                                     </div>

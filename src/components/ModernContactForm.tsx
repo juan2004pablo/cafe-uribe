@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -9,6 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from '@/components/ui/use-toast';
 import { useNavigate } from 'react-router-dom';
+import { useAnalytics } from '@/hooks/useAnalytics';
 import DisplayCards from '@/components/ui/display-cards';
 
 // Form validation schema
@@ -25,6 +27,7 @@ const ModernContactForm = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  const { trackFormSubmission, trackButtonClick, trackB2BLead } = useAnalytics();
 
   const {
     register,
@@ -98,6 +101,10 @@ const ModernContactForm = () => {
       
       console.log('Form submitted:', data);
       
+      // Track form submission
+      trackFormSubmission('modern_contact_form');
+      trackB2BLead('alliance_request');
+      
       toast({
         title: "Solicitud enviada exitosamente",
         description: "Nos pondremos en contacto contigo muy pronto.",
@@ -116,6 +123,7 @@ const ModernContactForm = () => {
   };
 
   const handleContactRedirect = () => {
+    trackButtonClick('contact_page_redirect', 'modern_contact_form');
     navigate('/contacto');
   };
 
@@ -236,6 +244,7 @@ const ModernContactForm = () => {
                     size="lg" 
                     className="w-full bg-coffee-orange hover:bg-coffee-orange/90 text-white"
                     disabled={isSubmitting}
+                    onClick={() => trackButtonClick('submit_alliance_form', 'modern_contact_form')}
                   >
                     {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
                     <ArrowRight className="ml-2 w-4 h-4" />

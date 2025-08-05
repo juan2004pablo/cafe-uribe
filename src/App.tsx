@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import Index from "./pages/Index";
 import Nosotros from "./pages/Nosotros";
 import Variedades from "./pages/Variedades";
@@ -19,12 +20,18 @@ const ScrollToTop = () => {
   return null;
 };
 
+const AnalyticsProvider = () => {
+  useAnalytics();
+  return null;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <Toaster />
     <Sonner />
     <BrowserRouter>
       <ScrollToTop />
+      <AnalyticsProvider />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/nosotros" element={<Nosotros />} />

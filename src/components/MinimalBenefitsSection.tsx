@@ -67,7 +67,7 @@ const MinimalBenefitsSection = () => {
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                +200
+                +50
               </motion.div>
               <div className="text-coffee-brown">Negocios Satisfechos</div>
             </div>

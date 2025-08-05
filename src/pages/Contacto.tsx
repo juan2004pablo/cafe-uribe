@@ -19,12 +19,12 @@ const Contacto = () => {
 
     const contactMethods = [
         {
-            icon: <Mail className="w-6 h-6" />,
-            title: "Email",
-            info: "info@cafeuribe.com",
-            description: "Respuesta en 24 horas",
-            action: () => window.open('mailto:info@cafeuribe.com', '_blank'),
-            buttonText: "Enviar Email"
+            icon: <MessageCircle className="w-6 h-6" />,
+            title: "WhatsApp",
+            info: "+57 320 373 7502",
+            description: "Atención inmediata",
+            action: () => window.open('https://wa.me/573203737502?text=Hola, me interesa conocer más sobre Café Uribe', '_blank'),
+            buttonText: "Chatear"
         },
         {
             icon: <Phone className="w-6 h-6" />,
@@ -35,12 +35,12 @@ const Contacto = () => {
             buttonText: "Llamar Ahora"
         },
         {
-            icon: <MessageCircle className="w-6 h-6" />,
-            title: "WhatsApp",
-            info: "+57 320 373 7502",
-            description: "Atención inmediata",
-            action: () => window.open('https://wa.me/573203737502?text=Hola, me interesa conocer más sobre Café Uribe', '_blank'),
-            buttonText: "Chatear"
+            icon: <Mail className="w-6 h-6" />,
+            title: "Email",
+            info: "info@cafeuribe.com",
+            description: "Respuesta en 24 horas",
+            action: () => window.open('mailto:info@cafeuribe.com', '_blank'),
+            buttonText: "Enviar Email"
         },
     ];
 
@@ -93,16 +93,12 @@ const Contacto = () => {
                                     </div>
                                     <div>
                                         <h3 className="font-playfair text-xl font-semibold text-coffee-brown mb-3">
-                                            Horarios de Atención Virtual
+                                            Horario de Atención Virtual
                                         </h3>
                                         <div className="space-y-2 text-coffee-brown/80">
                                             <div className="flex space-x-2">
                                                 <span>Lunes - Sábado:</span>
                                                 <span className="font-medium">8:00 AM - 6:00 PM</span>
-                                            </div>
-                                            <div className="flex space-x-2">
-                                                <span>Domingo:</span>
-                                                <span className="font-medium">7:00 AM - 12:00 PM</span>
                                             </div>
                                         </div>
                                     </div>
@@ -180,6 +176,32 @@ const Contacto = () => {
                             transition={{ duration: 0.8, delay: 0.2 }}
                             className="space-y-8"
                         >
+                            <Card className="p-6 bg-coffee-cream/20">
+                                <div className="flex items-start space-x-4">
+                                    <div className="w-12 h-12 bg-coffee-orange/10 rounded-full flex items-center justify-center">
+                                        <Clock className="w-6 h-6 text-coffee-orange" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-playfair text-xl font-semibold text-coffee-brown mb-3">
+                                            Horario Punto de Venta
+                                        </h3>
+                                        <div className="space-y-1 text-coffee-brown/80">
+                                            <div className="flex space-x-2">
+                                                <span>Lunes:</span>
+                                                <span className="font-medium">Cerrado</span>
+                                            </div>
+                                            <div className="flex space-x-2">
+                                                <span>Martes - Sábado:</span>
+                                                <span className="font-medium">7:00 AM - 12:00 M / 3:00 PM - 7:00 PM</span>
+                                            </div>
+                                            <div className="flex space-x-2">
+                                                <span>Domingo:</span>
+                                                <span className="font-medium">7:00 AM - 12:00 M</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Card>
                             <div>
                                 <h2 className="font-playfair text-3xl font-bold text-coffee-brown mb-6">
                                     Información de Contacto
@@ -231,7 +253,7 @@ const Contacto = () => {
                                 ))}
                             </div>
 
-                            {/* CTA rápido mejorado */}
+                            {/* CTA rápido mejorado
                             <Card className="p-6 bg-coffee-brown text-white">
                                 <h3 className="font-playfair text-xl font-semibold mb-3">
                                     ¿Necesitas Atención Inmediata?
@@ -246,7 +268,7 @@ const Contacto = () => {
                                     <WhatsAppIcon className="w-4 h-4 mr-2" />
                                     Chatear por WhatsApp
                                 </Button>
-                            </Card>
+                            </Card> */}
                         </motion.div>
                     </div>
                 </div>

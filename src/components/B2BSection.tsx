@@ -222,8 +222,8 @@ const B2BSection = () => {
                 className="absolute -bottom-4 -left-4 bg-card/95 backdrop-blur-sm border border-border rounded-xl p-4 shadow-lg z-20"
               >
                 <div className="text-center">
-                  <div className="text-xl lg:text-2xl font-bold text-primary">+200</div>
-                  <div className="text-xs lg:text-sm text-muted-foreground">Socios Comerciales</div>
+                  <div className="text-xl lg:text-2xl font-bold text-primary">+400</div>
+                  <div className="text-xs lg:text-sm text-muted-foreground">Clientes directos</div>
                 </div>
               </motion.div>
 
@@ -235,8 +235,8 @@ const B2BSection = () => {
                 className="absolute -top-4 -right-4 bg-card/95 backdrop-blur-sm border border-border rounded-xl p-4 shadow-lg z-20"
               >
                 <div className="text-center">
-                  <div className="text-xl lg:text-2xl font-bold text-primary">10+</div>
-                  <div className="text-xs lg:text-sm text-muted-foreground">Años de Experiencia</div>
+                  <div className="text-xl lg:text-2xl font-bold text-primary">+50</div>
+                  <div className="text-xs lg:text-sm text-muted-foreground">Socios Comerciales</div>
                 </div>
               </motion.div>
 

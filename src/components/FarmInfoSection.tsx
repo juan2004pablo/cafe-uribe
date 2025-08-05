@@ -100,7 +100,7 @@ const FarmInfoSection = () => {
               <div className="text-center group">
                 <div className="bg-coffee-cream/50 rounded-2xl p-6 mb-4 group-hover:bg-coffee-cream/70 transition-colors duration-300">
                   <div className="text-3xl md:text-4xl font-bold text-coffee-orange mb-2">
-                    50Ha
+                    14Ha
                   </div>
                   <div className="text-lg font-semibold text-coffee-brown mb-1">
                     Extensión cultivada

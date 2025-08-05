@@ -222,7 +222,7 @@ const WorkflowSection = () => {
                       animate={{ scale: [1, 1.05, 1] }}
                       transition={{ duration: 3, repeat: Infinity }}
                     >
-                      +200
+                      +50
                     </motion.div>
                     <div className="text-xl mb-4">Negocios Satisfechos</div>
                     <div className="flex justify-center space-x-2">

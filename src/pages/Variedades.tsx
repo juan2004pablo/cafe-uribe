@@ -17,7 +17,7 @@ const Variedades = () => {
 
     // Estado para el intercambio de imágenes del producto
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const productImages = ["/images/producto1.jpg", "/images/producto2.jpg"];
+    const productImages = ["/images/producto5.webp", "/images/producto4.webp"];
 
     // Efecto para cambiar la imagen cada 5 segundos
     useEffect(() => {
@@ -236,12 +236,13 @@ const Variedades = () => {
                                         key={currentImageIndex}
                                         src={productImages[currentImageIndex]}
                                         alt="Café Uribe Premium"
-                                        className="relative w-full max-w-md mx-auto rounded-2xl shadow-2xl"
+                                        className="w-[405px] h-[540px] object-contain mx-auto rounded-lg shadow-2xl"
                                         initial={{ x: 100, opacity: 0 }}
                                         animate={{ x: 0, opacity: 1 }}
                                         exit={{ x: -100, opacity: 0 }}
                                         transition={{ duration: 0.5, ease: "easeInOut" }}
                                     />
+
                                 </div>
                             </div>
                         </motion.div>
@@ -402,7 +403,7 @@ const Variedades = () => {
             {/* Machinery Section */}
             <MachinerySection />
 
-                        {/* Tipos de Café */}
+            {/* Tipos de Café */}
             <section ref={coffeeTypesRef} className="py-20 bg-coffee-cream/20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div

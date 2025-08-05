@@ -22,13 +22,6 @@ const Nosotros = () => {
         }
     };
 
-    const timeline = [
-        { year: "1970", event: "Fundación de la finca familiar en el Norte de Santander" },
-        { year: "1985", event: "Primera exportación internacional" },
-        { year: "2000", event: "Certificación de café orgánico" },
-        { year: "2024", event: "Expansión a mercados especializados" }
-    ];
-
     const values = [
         {
             icon: <Heart className="w-8 h-8" />,
@@ -84,9 +77,9 @@ const Nosotros = () => {
                             Nuestra Historia
                         </h1>
                         <p className="text-xl md:text-2xl opacity-90 mb-8">
-                            Tres generaciones cultivando el mejor café colombiano
+                            Dos generaciones dedicadas al arte de cultivar café de origen
                         </p>
-                        <Button 
+                        <Button
                             onClick={scrollToPhysicalStore}
                             className="bg-coffee-orange hover:bg-coffee-orange/90 text-white"
                         >
@@ -100,64 +93,103 @@ const Nosotros = () => {
             {/* Historia */}
             <section ref={historyRef} className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-                        <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            animate={historyInView ? { opacity: 1, x: 0 } : {}}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <h2 className="font-playfair text-4xl font-bold text-coffee-brown mb-6">
-                                El Legado Familiar
-                            </h2>
-                            <p className="text-lg text-coffee-brown/80 mb-6 leading-relaxed">
-                                Todo comenzó en 1970, cuando Don Álvaro Javier Uribe decidió plantar los primeros
-                                cafetos en las montañas del Norte de Santander. Con la visión de crear un café
-                                excepcional, estableció los cimientos de lo que hoy es Café Uribe.
-                            </p>
-                            <p className="text-lg text-coffee-brown/80 mb-6 leading-relaxed">
-                                A través de los años, hemos mantenido las tradiciones familiares mientras
-                                adoptamos innovaciones que mejoran la calidad de nuestro café. Cada
-                                generación ha aportado su conocimiento y pasión al negocio familiar.
-                            </p>
-                            <p className="text-lg text-coffee-brown/80 leading-relaxed">
-                                Hoy, seguimos comprometidos con la excelencia, llevando el auténtico
-                                sabor colombiano a mercados nacionales e internacionales.
-                            </p>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            animate={historyInView ? { opacity: 1, x: 0 } : {}}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                        >
-                            <img
-                                src="/images/foto_70.avif"
-                                alt="Familia cafetera"
-                                className="rounded-lg shadow-2xl"
-                            />
-                        </motion.div>
-                    </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={historyInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8 }}
+                        className="mb-16 text-center"
+                    >
+                        <h2 className="font-playfair text-4xl font-bold text-coffee-brown">
+                            Momentos que marcaron nuestro camino
+                        </h2>
+                    </motion.div>
 
-                    {/* Timeline */}
+
+                    {/* Timeline mejorado con imagen y diseño zigzag */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={historyInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="mb-16"
+                        className="relative"
                     >
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                            {timeline.map((item, index) => (
-                                <div key={item.year} className="text-center">
-                                    <div className="w-16 h-16 bg-coffee-orange rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <span className="text-white font-bold text-lg">{item.year.slice(-2)}</span>
+                        <div className="relative max-w-6xl mx-auto px-4">
+                            <div className="hidden md:block absolute left-1/2 top-0 w-1 h-full bg-coffee-orange -translate-x-1/2" />
+
+                            {[
+                                {
+                                    year: "1990",
+                                    title: "Herencia de generación en generación",
+                                    text: "La segunda generación toma las riendas con amor por la tradición.",
+                                    quote: "El café siguió en manos de la familia, con nuevas ideas pero mismas raíces.",
+                                    image: "/images/timeline/1990.jpeg"
+                                },
+                                {
+                                    year: "2021",
+                                    title: "Construcción de planta de beneficio propia",
+                                    text: "Inauguración de la planta de beneficio húmedo y secado con cáscara.",
+                                    quote: "Desde el grano, todo en casa. Nace la trazabilidad y calidad controlada 100 % por nosotros.",
+                                    image: "/images/timeline/2021.jpeg"
+                                },
+                                {
+                                    year: "2023",
+                                    title: "Nacimiento de la marca Café Uribe",
+                                    text: "Surge la marca que conecta el origen con el consumidor final.",
+                                    quote: "Café Uribe se convierte en símbolo de identidad familiar, sabor local y visión global.",
+                                    image: "/images/timeline/2023.jpeg"
+                                },
+                                {
+                                    year: "2024",
+                                    title: "Nace la tienda Café Uribe",
+                                    text: "Se abre el primer punto de venta en Villa del Rosario.",
+                                    quote: "Del cafetal a la taza, directo al corazón de quienes nos visitan.",
+                                    image: "/images/timeline/2024.jpeg"
+                                },
+                                {
+                                    year: "2025",
+                                    title: "Primeros microlotes diferenciados exportados",
+                                    text: "Microlotes por altitud: lavado, honey y natural.",
+                                    quote: "No solo vendemos café, exportamos identidad, origen y orgullo campesino.",
+                                    image: "/images/timeline/2025.jpeg"
+                                }
+                            ].map((event, index) => (
+                                <div
+                                    key={event.year}
+                                    className={`mb-16 flex flex-col md:flex-row items-center md:justify-between md:relative ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                                        }`}
+                                >
+                                    {/* Contenido del evento */}
+                                    <div className="w-full md:w-5/12">
+                                        <div className="bg-white p-6 rounded-xl shadow-md border border-coffee-orange/30">
+                                            <h4 className="text-coffee-brown font-playfair text-xl font-semibold mb-2">
+                                                {event.year} – {event.title}
+                                            </h4>
+                                            <p className="text-coffee-brown/80 mb-2">{event.text}</p>
+                                            <blockquote className="italic text-coffee-brown/70 border-l-4 border-coffee-orange pl-4">
+                                                “{event.quote}”
+                                            </blockquote>
+                                        </div>
                                     </div>
-                                    <h4 className="font-playfair text-xl font-semibold text-coffee-brown mb-2">
-                                        {item.year}
-                                    </h4>
-                                    <p className="text-coffee-brown/70">{item.event}</p>
+
+                                    {/* Punto y mini imagen */}
+                                    {/* Año + Imagen al lado */}
+                                    <div className="hidden md:flex items-center gap-4 w-56 justify-center">
+                                        <div className="w-14 h-14 bg-coffee-orange text-white font-bold rounded-full flex items-center justify-center shadow-lg border-4 border-white z-10">
+                                            {event.year.slice(-2)}
+                                        </div>
+                                        {event.image && (
+                                            <img
+                                                src={event.image}
+                                                alt={`Evento ${event.year}`}
+                                                className="w-32 h-24 object-cover rounded-lg border border-coffee-orange/30 shadow-md"
+                                            />
+                                        )}
+                                    </div>
+
                                 </div>
                             ))}
                         </div>
                     </motion.div>
+
                 </div>
             </section>
 

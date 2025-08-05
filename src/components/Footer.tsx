@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="flex items-center space-x-2 mb-6">
               <img 
                 src="/logo_oscuro.webp" 
-                alt="Montemar Logo" 
+                alt="Cafe Uribe Logo" 
                 className="h-28 w-auto mr-3"
               />
               <div className="flex flex-col">

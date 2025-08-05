@@ -94,7 +94,7 @@ const FarmShowcaseSection = () => {
       id: 11,
       type: "image",
       title: "Tradición Familiar",
-      desc: "Tres generaciones dedicadas al café",
+      desc: "Dos generaciones dedicadas al café",
       url: "/images/foto_5.jpeg",
       span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2",
     },

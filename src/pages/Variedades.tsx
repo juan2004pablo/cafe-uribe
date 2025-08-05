@@ -87,41 +87,6 @@ const Variedades = () => {
         }
     ];
 
-    /* const coffeeTypes = [
-        {
-            name: "Espresso",
-            description: "Base perfecta para todas las preparaciones",
-            method: "Extracción concentrada",
-            time: "25-30 segundos",
-            image: "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=400&h=300&fit=crop",
-            icon: <Coffee className="w-6 h-6" />
-        },
-        {
-            name: "Café Latte",
-            description: "Equilibrio perfecto entre espresso y leche",
-            method: "Espresso + leche vaporizada",
-            time: "2-3 minutos",
-            image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop",
-            icon: <Droplets className="w-6 h-6" />
-        },
-        {
-            name: "Cappuccino",
-            description: "Tradición italiana con espuma perfecta",
-            method: "Espresso + leche + espuma",
-            time: "3-4 minutos",
-            image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop",
-            icon: <Thermometer className="w-6 h-6" />
-        },
-        {
-            name: "Americano",
-            description: "Intensidad suave para cualquier momento",
-            method: "Espresso + agua caliente",
-            time: "1-2 minutos",
-            image: "https://www.somoselcafe.com.ar/img/novedades/47.webp",
-            icon: <Coffee className="w-6 h-6" />
-        }
-    ]; */
-
     const roastTypes = [
         {
             name: "Tostión Ligera",
@@ -236,7 +201,7 @@ const Variedades = () => {
                                         key={currentImageIndex}
                                         src={productImages[currentImageIndex]}
                                         alt="Café Uribe Premium"
-                                        className="w-[405px] h-[540px] object-contain mx-auto rounded-lg shadow-2xl"
+                                        className="w-[405px] h-[540px] object-cover mx-auto rounded-lg shadow-2xl"
                                         initial={{ x: 100, opacity: 0 }}
                                         animate={{ x: 0, opacity: 1 }}
                                         exit={{ x: -100, opacity: 0 }}
@@ -464,69 +429,6 @@ const Variedades = () => {
                     </div>
                 </div>
             </section>
-
-            {/* Tipos de Café 
-            <section ref={coffeeTypesRef} className="py-20 bg-coffee-cream/20">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={coffeeTypesInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8 }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="font-playfair text-4xl md:text-6xl font-bold text-coffee-brown mb-6">
-                            Preparaciones de Café
-                        </h2>
-                        <p className="text-lg text-coffee-brown/70 max-w-3xl mx-auto">
-                            Descubre las diferentes formas de preparar y disfrutar nuestro café,
-                            cada método resalta sabores únicos
-                        </p>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {coffeeTypes.map((coffee, index) => (
-                            <motion.div
-                                key={coffee.name}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={coffeeTypesInView ? { opacity: 1, scale: 1 } : {}}
-                                transition={{ duration: 0.6, delay: index * 0.1 }}
-                                className="group"
-                            >
-                                <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
-                                    <div className="relative overflow-hidden rounded-t-lg">
-                                        <img
-                                            src={coffee.image}
-                                            alt={coffee.name}
-                                            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                                        />
-                                        <div className="absolute top-4 left-4 bg-coffee-brown/80 text-white rounded-full p-2">
-                                            {coffee.icon}
-                                        </div>
-                                    </div>
-                                    <CardContent className="p-6">
-                                        <h3 className="font-playfair text-xl font-bold text-coffee-brown mb-2">
-                                            {coffee.name}
-                                        </h3>
-                                        <p className="text-coffee-brown/70 text-sm mb-4">
-                                            {coffee.description}
-                                        </p>
-                                        <div className="space-y-2 text-sm">
-                                            <div className="flex space-x-2">
-                                                <span className="text-coffee-brown/60">Método:</span>
-                                                <span className="text-coffee-brown font-medium">{coffee.method}</span>
-                                            </div>
-                                            <div className="flex space-x-2">
-                                                <span className="text-coffee-brown/60">Tiempo:</span>
-                                                <span className="text-coffee-orange font-medium">{coffee.time}</span>
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section> */}
 
             {/* Tipos de Tostión */}
             <section className="bg-[#2C1309] py-20 px-6 text-white">

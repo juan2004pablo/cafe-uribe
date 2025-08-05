@@ -2,53 +2,28 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-// Declarar gtag como una función global
+// Declarar dataLayer como una función global para GTM
 declare global {
   interface Window {
-    gtag: (command: string, targetId: string, config?: any) => void;
     dataLayer: any[];
   }
 }
 
-const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Reemplazar con el ID real de GA4
+const GTM_ID = 'GTM-MLGBGB9R';
 
 export const useAnalytics = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Cargar el script de Google Analytics
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-    document.head.appendChild(script);
-
-    // Inicializar dataLayer y gtag
+    // Inicializar dataLayer si no existe
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag(...args: any[]) {
-      window.dataLayer.push(args);
-    };
-
-    window.gtag('js', new Date().toISOString());
-    window.gtag('config', GA_MEASUREMENT_ID, {
-      page_title: document.title,
-      page_location: window.location.href,
-    });
-
-    return () => {
-      // Cleanup si es necesario
-      const existingScript = document.querySelector(
-        `script[src*="${GA_MEASUREMENT_ID}"]`
-      );
-      if (existingScript) {
-        existingScript.remove();
-      }
-    };
   }, []);
 
   // Rastrear cambios de página
   useEffect(() => {
-    if (window.gtag) {
-      window.gtag('config', GA_MEASUREMENT_ID, {
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'page_view',
         page_title: document.title,
         page_location: window.location.href,
         page_path: location.pathname,
@@ -56,19 +31,23 @@ export const useAnalytics = () => {
     }
   }, [location]);
 
-  // Funciones para eventos personalizados
+  // Funciones para eventos personalizados usando GTM
   const trackEvent = (
     eventName: string,
     parameters: { [key: string]: any } = {}
   ) => {
-    if (window.gtag) {
-      window.gtag('event', eventName, parameters);
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: eventName,
+        ...parameters,
+      });
     }
   };
 
   const trackConversion = (eventName: string, value?: number) => {
-    if (window.gtag) {
-      window.gtag('event', eventName, {
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: eventName,
         event_category: 'conversion',
         value: value,
         currency: 'COP',
@@ -83,10 +62,10 @@ export const useAnalytics = () => {
     });
   };
 
-  const trackButtonClick = (buttonName: string, location: string) => {
+  const trackButtonClick = (buttonName: string, buttonLocation: string) => {
     trackEvent('button_click', {
       button_name: buttonName,
-      button_location: location,
+      button_location: buttonLocation,
       event_category: 'engagement',
     });
   };

@@ -1,8 +1,8 @@
 
-// Configuración de Google Analytics para Café Uribe
+// Configuración de Google Tag Manager para Café Uribe
 
-// ID de medición de GA4 - DEBE SER REEMPLAZADO CON EL ID REAL
-export const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+// ID de GTM
+export const GTM_ID = 'GTM-MLGBGB9R';
 
 // Eventos personalizados para el negocio de café
 export const ANALYTICS_EVENTS = {
@@ -36,10 +36,17 @@ export const CONVERSION_VALUES = {
   CONTACT_FORM: 5000, // Valor de contacto general
 } as const;
 
-// Configuración de audiencias personalizadas
+// Configuración de audiencias personalizadas para GTM
 export const CUSTOM_AUDIENCES = {
   B2B_PROSPECTS: 'b2b_prospects',
   COFFEE_ENTHUSIASTS: 'coffee_enthusiasts',
   RETURN_VISITORS: 'return_visitors',
   HIGH_ENGAGEMENT: 'high_engagement',
 } as const;
+
+// Funciones de utilidad para GTM
+export const pushToDataLayer = (data: { [key: string]: any }) => {
+  if (typeof window !== 'undefined' && window.dataLayer) {
+    window.dataLayer.push(data);
+  }
+};

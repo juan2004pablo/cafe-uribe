@@ -10,8 +10,51 @@ import VarietiesSection from '@/components/VarietiesSection';
 import { TestimonialsSection } from '@/components/ui/testimonials-with-marquee';
 import HeroCTA from '@/components/HeroCTA';
 import { InfiniteSlider } from '@/components/ui/infinite-slider';
+import { useSEO } from '@/hooks/useSEO';
+import { getOrganizationStructuredData, getFAQStructuredData } from '@/utils/structuredData';
+import { useEffect } from 'react';
 
 const Index = () => {
+  // SEO Configuration
+  useSEO({
+    title: 'Inicio',
+    description: 'Café Uribe - Café colombiano de especialidad premium con trazabilidad garantizada. Cultivamos, procesamos y tostamos nuestro propio café desde Norte de Santander. Distribuidor B2B de café de origen.',
+    keywords: 'café colombiano, café de especialidad, café premium, Norte de Santander, café de origen, trazabilidad, B2B, distribución café, café artesanal, denominación de origen',
+    image: '/images/foto_24.jpeg',
+    structuredData: getOrganizationStructuredData()
+  });
+
+  // Add FAQ structured data
+  useEffect(() => {
+    const faqs = [
+      {
+        question: "¿Qué hace especial al café de Café Uribe?",
+        answer: "Nuestro café es 100% colombiano con denominación de origen, cultivado en las montañas de Norte de Santander. Controlamos todo el proceso desde el cultivo hasta el empaque, garantizando trazabilidad completa."
+      },
+      {
+        question: "¿Ofrecen servicio para empresas?",
+        answer: "Sí, somos distribuidores B2B especializados en cafeterías, restaurantes y empresas. Ofrecemos precios mayoristas y servicio personalizado."
+      },
+      {
+        question: "¿Cómo garantizan la calidad del café?",
+        answer: "Tenemos certificaciones Invima, registro de la Federación Nacional de Cafeteros y denominación de origen. Además, controlamos todo el proceso en nuestras propias instalaciones."
+      }
+    ];
+
+    const faqStructuredData = getFAQStructuredData(faqs);
+    
+    let scriptTag = document.querySelector('script[data-type="faq-structured-data"]');
+    if (scriptTag) {
+      scriptTag.textContent = JSON.stringify(faqStructuredData);
+    } else {
+      scriptTag = document.createElement('script');
+      scriptTag.type = 'application/ld+json';
+      scriptTag.setAttribute('data-type', 'faq-structured-data');
+      scriptTag.textContent = JSON.stringify(faqStructuredData);
+      document.head.appendChild(scriptTag);
+    }
+  }, []);
+
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [aboutRef, aboutInView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [processRef, processInView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -105,20 +148,6 @@ const Index = () => {
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
                   Legado de <span className="text-coffee-orange">Aroma</span> y <span className="text-coffee-orange">Sabor</span>
                 </h1>
-                
-                {/* Colombian badge with enhanced styling
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={heroInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="inline-block"
-                >
-                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3">
-                    <p className="text-xl md:text-2xl font-semibold text-white">
-                      🇨🇴 100% Colombiano 🇨🇴
-                    </p>
-                  </div>
-                </motion.div> */}
               </div>
 
               {/* Enhanced description with better readability */}
@@ -137,16 +166,6 @@ const Index = () => {
                     De la finca a tu taza con la más alta calidad.
                   </p>
                 </div>
-
-                {/* Process highlight
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={heroInView ? { opacity: 1 } : {}}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                  className="text-white/80 text-sm md:text-base max-w-2xl mx-auto"
-                >
-                  Cultivamos, procesamos, trillamos, tostamos y empacamos nuestro propio café
-                </motion.div> */}
               </motion.div>
 
               {/* CTA Section */}

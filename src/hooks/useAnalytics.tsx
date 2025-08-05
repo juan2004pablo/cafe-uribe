@@ -28,7 +28,7 @@ export const useAnalytics = () => {
       window.dataLayer.push(args);
     };
 
-    window.gtag('js', new Date());
+    window.gtag('js', new Date().toISOString());
     window.gtag('config', GA_MEASUREMENT_ID, {
       page_title: document.title,
       page_location: window.location.href,

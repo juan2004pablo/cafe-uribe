@@ -61,7 +61,7 @@ export const useSEO = ({
 
     // Add structured data
     if (structuredData) {
-      let scriptTag = document.querySelector('script[type="application/ld+json"]');
+      let scriptTag = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
       if (scriptTag) {
         scriptTag.textContent = JSON.stringify(structuredData);
       } else {
@@ -73,7 +73,7 @@ export const useSEO = ({
     }
 
     // Add canonical URL
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
     if (!canonicalLink) {
       canonicalLink = document.createElement('link');
       canonicalLink.setAttribute('rel', 'canonical');
@@ -85,7 +85,7 @@ export const useSEO = ({
 };
 
 const updateMetaTag = (attribute: string, value: string, content: string) => {
-  let metaTag = document.querySelector(`meta[${attribute}="${value}"]`);
+  let metaTag = document.querySelector(`meta[${attribute}="${value}"]`) as HTMLMetaElement;
   if (!metaTag) {
     metaTag = document.createElement('meta');
     metaTag.setAttribute(attribute, value);

@@ -43,7 +43,7 @@ const Index = () => {
 
     const faqStructuredData = getFAQStructuredData(faqs);
     
-    let scriptTag = document.querySelector('script[data-type="faq-structured-data"]');
+    let scriptTag = document.querySelector('script[data-type="faq-structured-data"]') as HTMLScriptElement;
     if (scriptTag) {
       scriptTag.textContent = JSON.stringify(faqStructuredData);
     } else {

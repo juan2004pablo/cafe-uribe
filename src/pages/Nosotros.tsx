@@ -38,7 +38,7 @@ const Nosotros = () => {
     
     const breadcrumbData = getBreadcrumbStructuredData(breadcrumbs);
     
-    let scriptTag = document.querySelector('script[data-type="breadcrumb-structured-data"]');
+    let scriptTag = document.querySelector('script[data-type="breadcrumb-structured-data"]') as HTMLScriptElement;
     if (scriptTag) {
       scriptTag.textContent = JSON.stringify(breadcrumbData);
     } else {

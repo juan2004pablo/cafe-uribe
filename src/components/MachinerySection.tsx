@@ -2,41 +2,72 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Cog, Zap, Settings, ArrowRight } from 'lucide-react';
+import { Cog, Zap, Settings, ArrowRight, Droplets, Sun, Filter } from 'lucide-react';
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel"
 
 const MachinerySection = () => {
     const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
     const machinery = [
         {
-            name: "Tostadora Industrial",
-            description: "Nuestra tostadora industrial de última generación utiliza tecnología de precisión para controlar la temperatura y el tiempo de tostado. Cada lote es monitoreado cuidadosamente para garantizar un perfil de tostado consistente que resalta las características únicas de nuestro café de alta montaña.",
-            process: "Tostado controlado",
-            capacity: "50kg/batch",
-            image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
+            name: "Despulpadora + Preclasificador Hidráulico",
+            description: "Sistema integrado que selecciona el café antes del despulpado según su peso y calidad. La tecnología hidráulica por densidad garantiza que solo los granos de mejor calidad pasen al siguiente proceso, eliminando impurezas y frutos defectuosos desde el inicio.",
+            process: "Selección por densidad",
+            capacity: "1.500kg/hora",
+            image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&h=600&fit=crop",
+            icon: <Filter className="w-8 h-8" />,
+            color: "from-blue-500/20 to-cyan-500/20",
+        },
+        {
+            name: "Tanques de Fermentación + Lavador + Clasificador",
+            description: "Sistema completo de procesamiento húmedo que incluye tanques de fermentación controlada, lavador hidráulico para remoción del mucílago, y clasificador posterior que garantiza una fermentación y limpieza óptima del grano para desarrollar perfiles de sabor únicos.",
+            process: "Fermentación controlada",
+            capacity: "1.200kg/batch",
+            image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&h=600&fit=crop",
+            icon: <Droplets className="w-8 h-8" />,
+            color: "from-emerald-500/20 to-teal-500/20",
+        },
+        {
+            name: "Secadores Solares y Silo con Cáscara",
+            description: "Sistema de secado sostenible que combina energía solar y biomasa de cáscara de café como combustible. Permite un secado controlado y uniforme que preserva las características organolépticas del grano mientras mantiene un proceso respetuoso con el medio ambiente.",
+            process: "Secado sostenible",
+            capacity: "800kg/día",
+            image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop",
+            icon: <Sun className="w-8 h-8" />,
+            color: "from-yellow-500/20 to-orange-500/20",
+        },
+        {
+            name: "Monitor de Pergamino",
+            description: "Equipo especializado que realiza una selección más fina del café pergamino antes del proceso de trillado. Utiliza tecnología avanzada para detectar defectos invisibles al ojo humano y garantizar que solo los granos de calidad superior continúen al siguiente proceso.",
+            process: "Selección fina",
+            capacity: "500kg/hora",
+            image: "https://images.unsplash.com/photo-1442411210769-ce2df4b1ee89?w=800&h=600&fit=crop",
+            icon: <Settings className="w-8 h-8" />,
+            color: "from-purple-500/20 to-indigo-500/20",
+        },
+        {
+            name: "Trilladora con Tamices de Selección",
+            description: "Trilladora industrial equipada con sistema de tamices de selección por mallas que garantiza la uniformidad del café verde. Las mallas de diferentes calibres clasifican los granos por tamaño, asegurando homogeneidad y calidad constante en cada lote procesado.",
+            process: "Trillado y clasificación",
+            capacity: "600kg/hora",
+            image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=600&fit=crop",
             icon: <Cog className="w-8 h-8" />,
             color: "from-orange-500/20 to-red-500/20",
-            // features: ["Control de temperatura preciso", "Monitoreo en tiempo real", "Perfil de tostado personalizable"]
         },
         {
-            name: "Molino de Alta Precisión",
-            description: "Nuestro sistema de molienda especializado preserva los aceites esenciales y aromas naturales del café. Las cuchillas de cerámica de grado industrial garantizan una molienda uniforme que maximiza la extracción de sabores durante la preparación.",
-            process: "Molienda especializada",
-            capacity: "100kg/hr",
-            image: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc?w=800&h=600&fit=crop",
-            icon: <Settings className="w-8 h-8" />,
-            color: "from-blue-500/20 to-cyan-500/20",
-            // features: ["Cuchillas de cerámica", "Molienda uniforme", "Preservación de aceites"]
-        },
-        {
-            name: "Sistema de Empaque",
-            description: "Tecnología avanzada de sellado al vacío que preserva la frescura y calidad de nuestro café por períodos extendidos. El sistema automatizado garantiza un empaque hermético que protege contra la oxidación y mantiene los aromas intactos.",
-            process: "Empaque hermético",
-            capacity: "200 unidades/hr",
-            image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=800&h=600&fit=crop",
+            name: "Tostadora Industrial Prisma",
+            description: "Tostadora profesional Prisma de última generación que permite tueste con curvas de calidad precisas. Control total sobre temperatura, tiempo y flujo de aire para desarrollar perfiles de tostado únicos que resaltan las características específicas de cada variedad de café.",
+            process: "Tueste profesional",
+            capacity: "50kg/batch",
+            image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
             icon: <Zap className="w-8 h-8" />,
-            color: "from-green-500/20 to-emerald-500/20",
-            // features: ["Sellado al vacío", "Control automatizado", "Preservación de aromas"]
+            color: "from-red-500/20 to-pink-500/20",
         }
     ];
 
@@ -58,153 +89,150 @@ const MachinerySection = () => {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {machinery.map((machine, index) => (
-                        <motion.div
-                            key={machine.name}
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={inView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.8, delay: index * 0.2 }}
-                            className="group relative"
-                        >
-                            {/* Flip card container */}
-                            <div className="h-[500px] w-full [perspective:1000px]">
-                                <div className="relative w-full h-full transition-transform duration-1000 ease-in-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                                    
-                                    {/* Front side - Image */}
-                                    <div className="absolute w-full h-full [backface-visibility:hidden] rounded-3xl overflow-hidden bg-white shadow-xl">
-                                        <div className="absolute inset-0 overflow-hidden">
-                                            <motion.img
-                                                src={machine.image}
-                                                alt={machine.name}
-                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                            />
-                                            <div className={`absolute inset-0 bg-gradient-to-t from-coffee-brown/80 via-coffee-brown/40 to-transparent`} />
-                                            <div className={`absolute inset-0 bg-gradient-to-br ${machine.color} opacity-40`} />
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="relative"
+                >
+                    <Carousel 
+                        opts={{
+                            align: "start",
+                            loop: true,
+                        }}
+                        className="w-full"
+                    >
+                        <CarouselContent className="-ml-4">
+                            {machinery.map((machine, index) => (
+                                <CarouselItem key={machine.name} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 50 }}
+                                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                                        transition={{ duration: 0.8, delay: index * 0.1 }}
+                                        className="group relative"
+                                    >
+                                        {/* Flip card container */}
+                                        <div className="h-[500px] w-full [perspective:1000px]">
+                                            <div className="relative w-full h-full transition-transform duration-1000 ease-in-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                                                
+                                                {/* Front side - Image */}
+                                                <div className="absolute w-full h-full [backface-visibility:hidden] rounded-3xl overflow-hidden bg-white shadow-xl">
+                                                    <div className="absolute inset-0 overflow-hidden">
+                                                        <motion.img
+                                                            src={machine.image}
+                                                            alt={machine.name}
+                                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                                        />
+                                                        <div className={`absolute inset-0 bg-gradient-to-t from-coffee-brown/80 via-coffee-brown/40 to-transparent`} />
+                                                        <div className={`absolute inset-0 bg-gradient-to-br ${machine.color} opacity-40`} />
+                                                    </div>
+
+                                                    {/* Floating icon */}
+                                                    <motion.div
+                                                        className="absolute top-6 right-6 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center text-white border border-white/30"
+                                                        animate={{ 
+                                                            y: [0, -10, 0],
+                                                            rotate: [0, 5, 0] 
+                                                        }}
+                                                        transition={{ 
+                                                            duration: 3, 
+                                                            repeat: Infinity,
+                                                            delay: index * 0.5 
+                                                        }}
+                                                    >
+                                                        {machine.icon}
+                                                    </motion.div>
+
+                                                    {/* Capacity badge */}
+                                                    <div className="absolute top-6 left-6 bg-coffee-orange/90 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm font-medium">
+                                                        {machine.capacity}
+                                                    </div>
+
+                                                    {/* Title at bottom */}
+                                                    <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                                                        <div className="flex items-center gap-3 mb-3">
+                                                            <div className="w-2 h-2 bg-coffee-orange rounded-full animate-pulse" />
+                                                            <span className="text-coffee-orange/90 text-sm font-medium uppercase tracking-wider">
+                                                                {machine.process}
+                                                            </span>
+                                                        </div>
+                                                        
+                                                        <h3 className="font-playfair text-2xl font-bold mb-3">
+                                                            {machine.name}
+                                                        </h3>
+
+                                                        <div className="flex items-center gap-2 text-coffee-orange cursor-pointer">
+                                                            <span className="text-sm font-medium underline">Ver más detalles</span>
+                                                            <ArrowRight className="w-4 h-4" />
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Animated border effect */}
+                                                    <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-coffee-orange/50 transition-all duration-500" />
+                                                </div>
+
+                                                {/* Back side - Description */}
+                                                <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl overflow-hidden bg-gradient-to-br from-white via-coffee-cream/10 to-coffee-cream/20 shadow-xl border border-coffee-cream/30">
+                                                    <div className="relative w-full h-full p-8 flex flex-col">
+                                                        {/* Header */}
+                                                        <div className="text-center mb-6">
+                                                            <div className="w-16 h-16 bg-coffee-orange/10 rounded-2xl flex items-center justify-center text-coffee-orange mx-auto mb-4">
+                                                                {machine.icon}
+                                                            </div>
+                                                            <h3 className="font-playfair text-2xl font-bold text-coffee-brown mb-2">
+                                                                {machine.name}
+                                                            </h3>
+                                                            <div className="flex items-center justify-center gap-2 text-coffee-orange text-sm font-medium">
+                                                                <div className="w-1.5 h-1.5 bg-coffee-orange rounded-full"></div>
+                                                                {machine.process}
+                                                                <div className="w-1.5 h-1.5 bg-coffee-orange rounded-full"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Description */}
+                                                        <div className="flex-1 mb-6">
+                                                            <p className="text-coffee-brown/80 leading-relaxed text-center text-sm">
+                                                                {machine.description}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        {/* Floating icon */}
+                                        {/* Floating elements for extra dynamism */}
                                         <motion.div
-                                            className="absolute top-6 right-6 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center text-white border border-white/30"
+                                            className="absolute -top-2 -right-2 w-6 h-6 bg-coffee-orange/30 rounded-full blur-sm"
                                             animate={{ 
-                                                y: [0, -10, 0],
-                                                rotate: [0, 5, 0] 
+                                                scale: [1, 1.5, 1],
+                                                opacity: [0.3, 0.7, 0.3] 
                                             }}
                                             transition={{ 
-                                                duration: 3, 
+                                                duration: 2, 
                                                 repeat: Infinity,
-                                                delay: index * 0.5 
+                                                delay: index * 0.3 
                                             }}
-                                        >
-                                            {machine.icon}
-                                        </motion.div>
-
-                                        {/* Capacity badge */}
-                                        <div className="absolute top-6 left-6 bg-coffee-orange/90 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm font-medium">
-                                            {machine.capacity}
-                                        </div>
-
-                                        {/* Title at bottom */}
-                                        <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                                            <div className="flex items-center gap-3 mb-3">
-                                                <div className="w-2 h-2 bg-coffee-orange rounded-full animate-pulse" />
-                                                <span className="text-coffee-orange/90 text-sm font-medium uppercase tracking-wider">
-                                                    {machine.process}
-                                                </span>
-                                            </div>
-                                            
-                                            <h3 className="font-playfair text-2xl font-bold mb-3">
-                                                {machine.name}
-                                            </h3>
-
-                                            <div className="flex items-center gap-2 text-coffee-orange cursor-pointer">
-                                                <span className="text-sm font-medium underline">Ver más detalles</span>
-                                                <ArrowRight className="w-4 h-4" />
-                                            </div>
-                                        </div>
-
-                                        {/* Animated border effect */}
-                                        <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-coffee-orange/50 transition-all duration-500" />
-                                    </div>
-
-                                    {/* Back side - Description */}
-                                    <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl overflow-hidden bg-gradient-to-br from-white via-coffee-cream/10 to-coffee-cream/20 shadow-xl border border-coffee-cream/30">
-                                        <div className="relative w-full h-full p-8 flex flex-col">
-                                            {/* Header */}
-                                            <div className="text-center mb-6">
-                                                <div className="w-16 h-16 bg-coffee-orange/10 rounded-2xl flex items-center justify-center text-coffee-orange mx-auto mb-4">
-                                                    {machine.icon}
-                                                </div>
-                                                <h3 className="font-playfair text-2xl font-bold text-coffee-brown mb-2">
-                                                    {machine.name}
-                                                </h3>
-                                                <div className="flex items-center justify-center gap-2 text-coffee-orange text-sm font-medium">
-                                                    <div className="w-1.5 h-1.5 bg-coffee-orange rounded-full"></div>
-                                                    {machine.process}
-                                                    <div className="w-1.5 h-1.5 bg-coffee-orange rounded-full"></div>
-                                                </div>
-                                            </div>
-
-                                            {/* Description */}
-                                            <div className="flex-1 mb-6">
-                                                <p className="text-coffee-brown/80 leading-relaxed text-center mb-6">
-                                                    {machine.description}
-                                                </p>
-
-                                                {/* Features 
-                                                <div className="space-y-3">
-                                                    <h4 className="font-semibold text-coffee-brown text-center mb-4">
-                                                        Características destacadas:
-                                                    </h4>
-                                                    {machine.features.map((feature, idx) => (
-                                                        <div key={idx} className="flex items-center gap-3 text-coffee-brown/70">
-                                                            <div className="w-1.5 h-1.5 bg-coffee-orange rounded-full flex-shrink-0"></div>
-                                                            <span className="text-sm">{feature}</span>
-                                                        </div>
-                                                    ))}
-                                                </div>*/}
-                                            </div>
-
-                                            {/* Capacity info
-                                            <div className="text-center pt-4 border-t border-coffee-cream/30">
-                                                <div className="bg-coffee-orange/10 rounded-xl px-6 py-3 inline-flex items-center gap-3">
-                                                    <span className="text-coffee-brown/70 text-sm">Capacidad:</span>
-                                                    <span className="text-coffee-orange font-bold">{machine.capacity}</span>
-                                                </div>
-                                            </div> */}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Floating elements for extra dynamism */}
-                            <motion.div
-                                className="absolute -top-2 -right-2 w-6 h-6 bg-coffee-orange/30 rounded-full blur-sm"
-                                animate={{ 
-                                    scale: [1, 1.5, 1],
-                                    opacity: [0.3, 0.7, 0.3] 
-                                }}
-                                transition={{ 
-                                    duration: 2, 
-                                    repeat: Infinity,
-                                    delay: index * 0.3 
-                                }}
-                            />
-                            <motion.div
-                                className="absolute -bottom-4 -left-4 w-4 h-4 bg-coffee-brown/20 rounded-full blur-sm"
-                                animate={{ 
-                                    scale: [1, 1.3, 1],
-                                    opacity: [0.2, 0.5, 0.2] 
-                                }}
-                                transition={{ 
-                                    duration: 2.5, 
-                                    repeat: Infinity,
-                                    delay: index * 0.4 
-                                }}
-                            />
-                        </motion.div>
-                    ))}
-                </div>
+                                        />
+                                        <motion.div
+                                            className="absolute -bottom-4 -left-4 w-4 h-4 bg-coffee-brown/20 rounded-full blur-sm"
+                                            animate={{ 
+                                                scale: [1, 1.3, 1],
+                                                opacity: [0.2, 0.5, 0.2] 
+                                            }}
+                                            transition={{ 
+                                                duration: 2.5, 
+                                                repeat: Infinity,
+                                                delay: index * 0.4 
+                                            }}
+                                        />
+                                    </motion.div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="left-4 bg-white/80 hover:bg-white border-coffee-brown/20 text-coffee-brown hover:text-coffee-orange transition-colors" />
+                        <CarouselNext className="right-4 bg-white/80 hover:bg-white border-coffee-brown/20 text-coffee-brown hover:text-coffee-orange transition-colors" />
+                    </Carousel>
+                </motion.div>
 
                 {/* Bottom stats section */}
                 <motion.div
@@ -214,7 +242,7 @@ const MachinerySection = () => {
                     className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8"
                 >
                     {[
-                        { number: "10+", label: "Años de experiencia", desc: "en tecnología cafetera" },
+                        { number: "1.500kg", label: "Capacidad por hora", desc: "de café cereza procesado" },
                         { number: "99.9%", label: "Precisión", desc: "en cada proceso" },
                         { number: "24/7", label: "Monitoreo", desc: "de calidad continuo" }
                     ].map((stat, index) => (

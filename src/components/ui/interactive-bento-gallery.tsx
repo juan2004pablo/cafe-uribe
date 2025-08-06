@@ -1,7 +1,8 @@
+
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Volume2, VolumeX } from 'lucide-react';
 
 // MediaItemType defines the structure of a media item
 interface MediaItemType {
@@ -14,10 +15,16 @@ interface MediaItemType {
 }
 
 // MediaItem component renders either a video or image based on item.type
-const MediaItem = ({ item, className, onClick }: { item: MediaItemType, className?: string, onClick?: () => void }) => {
+const MediaItem = ({ item, className, onClick, isFullscreen = false }: { 
+    item: MediaItemType, 
+    className?: string, 
+    onClick?: () => void,
+    isFullscreen?: boolean 
+}) => {
     const videoRef = useRef<HTMLVideoElement>(null); // Reference for video element
     const [isInView, setIsInView] = useState(false); // To track if video is in the viewport
     const [isBuffering, setIsBuffering] = useState(true);  // To track if video is buffering
+    const [isMuted, setIsMuted] = useState(true); // To track video mute state
 
     // Intersection Observer to detect if video is in view and play/pause accordingly
     useEffect(() => {
@@ -43,12 +50,13 @@ const MediaItem = ({ item, className, onClick }: { item: MediaItemType, classNam
             }
         };
     }, []);
+
     // Handle video play/pause based on whether the video is in view or not
     useEffect(() => {
         let mounted = true;
 
         const handleVideoPlay = async () => {
-            if (!videoRef.current || !isInView || !mounted) return; // Don't play if video is not in view or component is unmounted
+            if (!videoRef.current || (!isInView && !isFullscreen) || !mounted) return; // Don't play if video is not in view or component is unmounted
 
             try {
                 if (videoRef.current.readyState >= 3) {
@@ -71,7 +79,7 @@ const MediaItem = ({ item, className, onClick }: { item: MediaItemType, classNam
             }
         };
 
-        if (isInView) {
+        if (isInView || isFullscreen) {
             handleVideoPlay();
         } else if (videoRef.current) {
             videoRef.current.pause();
@@ -85,10 +93,19 @@ const MediaItem = ({ item, className, onClick }: { item: MediaItemType, classNam
                 videoRef.current.load();
             }
         };
-    }, [isInView]);
+    }, [isInView, isFullscreen]);
+
+    // Toggle mute/unmute for videos in fullscreen mode
+    const toggleMute = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (videoRef.current) {
+            const newMutedState = !isMuted;
+            videoRef.current.muted = newMutedState;
+            setIsMuted(newMutedState);
+        }
+    };
 
     // Render either a video or image based on item.type
-
     if (item.type === 'video') {
         return (
             <div className={`${className} relative overflow-hidden`}>
@@ -97,7 +114,7 @@ const MediaItem = ({ item, className, onClick }: { item: MediaItemType, classNam
                     className="w-full h-full object-cover"
                     onClick={onClick}
                     playsInline
-                    muted
+                    muted={isMuted}
                     loop
                     preload="auto"
                     style={{
@@ -109,6 +126,20 @@ const MediaItem = ({ item, className, onClick }: { item: MediaItemType, classNam
                 >
                     <source src={item.url} type="video/mp4" />
                 </video>
+                
+                {/* Sound control button for fullscreen videos */}
+                {isFullscreen && (
+                    <motion.button
+                        className="absolute bottom-4 left-4 p-3 rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
+                                  backdrop-blur-sm shadow-lg z-10 transition-colors duration-200"
+                        onClick={toggleMute}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                    >
+                        {isMuted ? <VolumeX className='w-5 h-5' /> : <Volume2 className='w-5 h-5' />}
+                    </motion.button>
+                )}
+                
                 {isBuffering && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black/10">
                         <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -205,7 +236,11 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                     damping: 30
                 }}
                 className="fixed inset-0 w-full min-h-screen backdrop-blur-lg bg-black/70 z-[9999]"
-                onClick={onClose}
+                onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onClose();
+                }}
             >
                 {/* Main Content */}
                 <div className="h-full flex flex-col">
@@ -233,7 +268,11 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                                 }}
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                <MediaItem item={selectedItem} className="w-full h-full object-contain bg-gray-900/20" />
+                                <MediaItem 
+                                    item={selectedItem} 
+                                    className="w-full h-full object-contain bg-gray-900/20" 
+                                    isFullscreen={true}
+                                />
                                 
                                 {/* Close Button */}
                                 <motion.button
@@ -249,32 +288,28 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                                     <X className='w-5 h-5' />
                                 </motion.button>
 
-                                {/* Navigation Arrows */}
-                                <motion.button
+                                {/* Navigation Arrows - Fixed position without hover movement */}
+                                <button
                                     className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
                                               backdrop-blur-sm shadow-lg z-10 transition-colors duration-200"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         goToPrevious();
                                     }}
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.9 }}
                                 >
                                     <ChevronLeft className='w-5 h-5' />
-                                </motion.button>
+                                </button>
 
-                                <motion.button
+                                <button
                                     className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
                                               backdrop-blur-sm shadow-lg z-10 transition-colors duration-200"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         goToNext();
                                     }}
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.9 }}
                                 >
                                     <ChevronRight className='w-5 h-5' />
-                                </motion.button>
+                                </button>
 
                                 {/* Image Info Overlay */}
                                 <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 

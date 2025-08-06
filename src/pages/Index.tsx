@@ -62,7 +62,7 @@ const Index = () => {
   const processSteps = [
     { icon: <Leaf className="w-8 h-8" />, title: "Cultivamos", description: "En nuestras montañas del Norte de Santander" },
     { icon: <Coffee className="w-8 h-8" />, title: "Procesamos", description: "Recolección manual y selectiva" },
-    { icon: <Award className="w-8 h-8" />, title: "Tostamos", description: "Proceso artesanal controlado" },
+    { icon: <Award className="w-8 h-8" />, title: "Tostamos", description: "Proceso profesional con control de calidad" },
     { icon: <Users className="w-8 h-8" />, title: "Empacamos", description: "Directo a tu taza con calidad garantizada" }
   ];
 

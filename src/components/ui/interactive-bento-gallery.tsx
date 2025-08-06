@@ -130,7 +130,7 @@ const MediaItem = ({ item, className, onClick, isFullscreen = false }: {
                 {/* Sound control button for fullscreen videos */}
                 {isFullscreen && (
                     <motion.button
-                        className="absolute bottom-4 left-4 p-3 rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
+                        className="absolute bottom-4 right-4 p-3 rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
                                   backdrop-blur-sm shadow-lg z-10 transition-colors duration-200"
                         onClick={toggleMute}
                         whileHover={{ scale: 1.1 }}

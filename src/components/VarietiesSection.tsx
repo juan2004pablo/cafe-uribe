@@ -10,15 +10,15 @@ const VarietiesSection = () => {
 
   const varieties = [
     {
-      name: "Especial Tostado Entero y Molido",
+      name: "Especial Tostado Entero",
       description: "Notas cítricas y chocolate",
-      image: "/images/foto_60.jpeg",
+      image: "/images/producto/empaque_especial_cafe_500_gramos.png",
       origin: "Norte de Santander"
     },
     {
       name: "Especial Tostado Molido",
       description: "Equilibrio perfecto, notas frutales",
-      image: "/images/foto_61.jpeg",
+      image: "/images/producto/empaque_puro_cafe.jpeg",
       origin: "Norte de Santander"
     },
   ];
@@ -92,7 +92,7 @@ const VarietiesSection = () => {
             <div className="text-gray-600">Café Colombiano</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-coffee-orange mb-2">+50</div>
+            <div className="text-3xl font-bold text-coffee-orange mb-2">+10</div>
             <div className="text-gray-600">Años de experiencia</div>
           </div>
           <div className="text-center">

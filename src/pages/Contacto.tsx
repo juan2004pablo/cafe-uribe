@@ -53,7 +53,7 @@ const Contacto = () => {
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{
-                        backgroundImage: "url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1920&h=1080&fit=crop')",
+                        backgroundImage: "url('/images/producto/punto_de_venta_hero.png')",
                         filter: "brightness(0.5)"
                     }}
                 />

@@ -26,7 +26,7 @@ const FarmInfoSection = () => {
             transition={{ duration: 0.8 }}
           >
             <img
-              src="/images/foto_67.jpeg"
+              src="/images/foto_panoramica_finca.jpeg"
               alt="Finca de café"
               className="rounded-lg shadow-2xl"
             />

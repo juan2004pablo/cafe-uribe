@@ -12,7 +12,7 @@ const VarietiesSection = () => {
     {
       name: "Especial Tostado Entero",
       description: "Notas cítricas y chocolate",
-      image: "/images/producto/empaque_especial_cafe_500_gramos.png",
+      image: "/images/producto/empaque_especial_cafe_500_gramos.jpeg",
       origin: "Norte de Santander"
     },
     {

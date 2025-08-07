@@ -96,7 +96,7 @@ const FarmShowcaseSection = () => {
       title: "Grano de Excelencia",
       desc: "Selección de café de alta calidad",
       url: "/images/galeria/granos_cafe_mejor_calidad.jpeg",
-      span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2",
+      span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
     },
     {
       id: 12,

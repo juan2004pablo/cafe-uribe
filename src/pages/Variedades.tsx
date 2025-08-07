@@ -17,7 +17,7 @@ const Variedades = () => {
 
     // Estado para el intercambio de imágenes del producto
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const productImages = ["/images/producto5.webp", "/images/producto4.webp"];
+    const productImages = ["/images/nueva_presentacion_cafe_base.webp", "/images/empaque_especial_cafe_500_gramos.webp"];
 
     // Efecto para cambiar la imagen cada 5 segundos
     useEffect(() => {
@@ -34,21 +34,21 @@ const Variedades = () => {
             scientific: "Grano seco con cáscara",
             image: "/images/etapa/pergamino.webp",
             icon: <ThermometerSun className="w-8 h-8" />,
-            percentage: 3
+            percentage: 30
         },
         {
             name: "Verde",
             scientific: "Grano listo para exportar o tostar",
             image: "/images/etapa/verde.webp",
             icon: <Leaf className="w-8 h-8" />,
-            percentage: 12
+            percentage: 30
         },
         {
             name: "Tostado",
             scientific: "Grano listo para moler y consumir",
             image: "/images/etapa/grano_arabica.webp",
             icon: <Coffee className="w-8 h-8" />,
-            percentage: 85
+            percentage: 40
         }
     ];
 
@@ -135,7 +135,7 @@ const Variedades = () => {
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{
-                        backgroundImage: "url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1920&h=1080&fit=crop&quot')",
+                        backgroundImage: "url('/images/heroSection/variedades.jpeg')",
                         filter: "brightness(0.4)"
                     }}
                 />
@@ -276,21 +276,15 @@ const Variedades = () => {
                             </div>
 
                             <div className="flex flex-col sm:flex-row gap-4 pt-4 flex-wrap">
-                                <div className="relative group w-full sm:w-auto">
+                                <a href="/files/Fichas_Tecnica_Producto_Cafe_Uribe.pdf" download>
                                     <Button
                                         size="lg"
                                         className="bg-coffee-orange hover:bg-coffee-orange/90 w-full sm:w-auto"
-                                        disabled
                                     >
                                         <Download className="w-4 h-4 mr-2" />
                                         Descargar Ficha Técnica
                                     </Button>
-
-                                    {/* Tooltip */}
-                                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 px-4 py-2 text-sm text-white bg-coffee-brown rounded-xl shadow-xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 z-20 pointer-events-none whitespace-nowrap">
-                                        Esta funcionalidad estará disponible próximamente
-                                    </div>
-                                </div>
+                                </a>
 
                                 <Button
                                     size="lg"

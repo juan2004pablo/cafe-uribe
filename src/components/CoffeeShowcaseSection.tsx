@@ -47,7 +47,7 @@ const CoffeeShowcaseSection = () => {
               </div>
               <div className="shrink-0">
                 <img
-                  src="/images/foto_71.png"
+                  src="/images/cafe_uribe_empaque_anterior.png"
                   alt="Taza de café"
                   className="w-60 h-60 sm:w-72 sm:h-72 object-cover rounded-lg opacity-80"
                 />
@@ -66,7 +66,7 @@ const CoffeeShowcaseSection = () => {
                 Legado de <br />aroma y sabor
               </div>
               <img
-                src="/images/foto_72.png"
+                src="/images/proceso_preparacion_cafe.png"
                 alt="Café de origen"
                 className="min-w-36 h-full object-cover rounded-lg opacity-80"
               />
@@ -110,7 +110,7 @@ const CoffeeShowcaseSection = () => {
 
             <div className="hidden lg:block mr-20">
               <img
-                src="/images/foto_74.jpeg"
+                src="/images/cafe_de_maquina.jpeg"
                 alt="Taza de café"
                 className="w-32 h-42 object-cover"
               />

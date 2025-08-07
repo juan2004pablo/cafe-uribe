@@ -6,7 +6,7 @@ export const getOrganizationStructuredData = () => ({
   "description": "Café colombiano de especialidad premium con trazabilidad garantizada. Cultivamos, procesamos, trillamos, tostamos y empacamos nuestro propio café.",
   "url": "https://cafeuribe.com",
   "logo": "https://cafeuribe.com/logo_oscuro.webp",
-  "image": "https://cafeuribe.com/images/foto_24.jpeg",
+  "image": "https://cafeuribe.com/images/mejor_calidad_en_tu_taza.jpeg",
   "telephone": "+57 320 373 7502",
   "email": "info@cafeuribe.com",
   "address": {

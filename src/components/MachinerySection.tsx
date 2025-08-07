@@ -143,10 +143,10 @@ const MachinerySection = () => {
                                                         {machine.icon}
                                                     </motion.div>
 
-                                                    {/* Capacity badge */}
+                                                    {/* Capacity badge
                                                     <div className="absolute top-6 left-6 bg-coffee-orange/90 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm font-medium">
                                                         {machine.capacity}
-                                                    </div>
+                                                    </div> */}
 
                                                     {/* Title at bottom */}
                                                     <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -201,18 +201,6 @@ const MachinerySection = () => {
                                         </div>
 
                                         {/* Floating elements for extra dynamism */}
-                                        <motion.div
-                                            className="absolute -top-2 -right-2 w-6 h-6 bg-coffee-orange/30 rounded-full blur-sm"
-                                            animate={{ 
-                                                scale: [1, 1.5, 1],
-                                                opacity: [0.3, 0.7, 0.3] 
-                                            }}
-                                            transition={{ 
-                                                duration: 2, 
-                                                repeat: Infinity,
-                                                delay: index * 0.3 
-                                            }}
-                                        />
                                         <motion.div
                                             className="absolute -bottom-4 -left-4 w-4 h-4 bg-coffee-brown/20 rounded-full blur-sm"
                                             animate={{ 

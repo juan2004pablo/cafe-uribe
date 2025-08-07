@@ -42,22 +42,22 @@ const ClientesB2B = () => {
         {
             title: "Cafeterías y Coffee Shops",
             description: "Variedades premium para establecimientos que buscan diferenciarse",
-            image: "https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=400&h=300&fit=crop"
+            image: "/images/clientes/Cafeterías_y_Coffee_Shops.jpeg"
         },
         {
             title: "Hoteles y Restaurantes",
             description: "Soluciones a medida para el sector HORECA con calidad consistente",
-            image: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=400&h=300&fit=crop"
+            image: "/images/clientes/Hoteles_y_Restaurantes.jpeg"
         },
         {
             title: "Distribuidores Mayoristas",
             description: "Alianzas estratégicas para ampliar su portafolio con café premium",
-            image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=400&h=300&fit=crop"
+            image: "/images/clientes/Distribuidores_Mayoristas.jpeg"
         },
         {
             title: "Tiendas Especializadas",
             description: "Productos únicos para retailers que valoran la calidad y origen",
-            image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop"
+            image: "/images/clientes/Tiendas_Especializadas.jpeg"
         }
     ];
 
@@ -81,7 +81,7 @@ const ClientesB2B = () => {
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{
-                        backgroundImage: "url('https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1920&h=1080&fit=crop')",
+                        backgroundImage: "url('/images/heroSection/clientesB2B.jpeg')",
                         filter: "brightness(0.4)"
                     }}
                 />

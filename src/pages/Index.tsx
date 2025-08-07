@@ -20,7 +20,7 @@ const Index = () => {
     title: 'Inicio',
     description: 'Café Uribe - Café colombiano de especialidad premium con trazabilidad garantizada. Cultivamos, procesamos y tostamos nuestro propio café desde Norte de Santander. Distribuidor B2B de café de origen.',
     keywords: 'café colombiano, café de especialidad, café premium, Norte de Santander, café de origen, trazabilidad, B2B, distribución café, café artesanal, denominación de origen',
-    image: '/images/foto_24.jpeg',
+    image: '/images/mejor_calidad_en_tu_taza.jpeg',
     structuredData: getOrganizationStructuredData()
   });
 
@@ -71,7 +71,6 @@ const Index = () => {
       author: {
         name: "Juan Pérez",
         handle: "Café Central - Bogotá",
-        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
       },
       text: "El café de Cafe Uribe es excepcional, se siente la calidad desde la primera taza. Nuestros clientes siempre quedan satisfechos con el aroma y sabor único que ofrecemos.",
     },
@@ -79,7 +78,6 @@ const Index = () => {
       author: {
         name: "Ana López",
         handle: "Tostadora Especializada",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
       },
       text: "La trazabilidad del café es impresionante, se nota el cuidado en cada detalle. Como tostadora, valoramos la consistencia y calidad que nos brinda Café Uribe.",
     },
@@ -87,7 +85,6 @@ const Index = () => {
       author: {
         name: "Carlos Mendoza",
         handle: "Restaurante Gourmet",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
       },
       text: "Hemos trabajado con Café Uribe por años y siempre nos sorprende la calidad constante. Es el complemento perfecto para nuestros desayunos gourmet.",
     },
@@ -95,7 +92,6 @@ const Index = () => {
       author: {
         name: "María Rodríguez",
         handle: "Café Boutique",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
       },
       text: "La variedad de sabores y la frescura del café de Uribe nos permite ofrecer una experiencia única a nuestros clientes. Definitivamente recomendado.",
     }
@@ -127,7 +123,7 @@ const Index = () => {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1920&h=1080&fit=crop')",
+            backgroundImage: "url('/images/heroSection/index.jpeg')",
           }}
         />
         
@@ -274,7 +270,7 @@ const Index = () => {
               className="relative"
             >
               <img
-                src="/images/foto_24.jpeg"
+                src="/images/mejor_calidad_en_tu_taza.jpeg"
                 alt="Plantación de café"
                 className="rounded-lg shadow-2xl"
               />

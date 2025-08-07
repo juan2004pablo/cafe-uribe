@@ -17,11 +17,11 @@ const B2BSection = () => {
   ];
 
   const floatingImages = [
-    "/images/foto_30.jpeg",
-    "/images/foto_45.jpeg",
-    "/images/foto_52.jpeg",
-    "/images/foto_38.jpeg",
-    "/images/foto_25.jpeg",
+    "/images/cafe_expreso.jpeg",
+    "/images/corazon_semillas_cafe.jpeg",
+    "/images/taza_cafe_uribe.jpeg",
+    "/images/tasa_icono_cafe_uribe.jpeg",
+    "/images/taza_de_cafe_con_empaque.jpeg",
   ];
 
   return (
@@ -206,7 +206,7 @@ const B2BSection = () => {
                 className="relative"
               >
                 <img
-                  src="/images/foto_62.jpeg"
+                  src="/images/producto/tasa_cafe_al_aire.png"
                   alt="Café para negocios"
                   className="w-full h-80 lg:h-96 object-cover rounded-2xl shadow-xl"
                 />

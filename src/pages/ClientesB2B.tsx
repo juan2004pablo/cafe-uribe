@@ -42,7 +42,7 @@ const ClientesB2B = () => {
         {
             title: "Cafeterías y Coffee Shops",
             description: "Variedades premium para establecimientos que buscan diferenciarse",
-            image: "/images/clientes/Cafeterías_y_Coffee_Shops.jpeg"
+            image: "/images/clientes/Cafeterias_y_Coffee_Shops.jpeg"
         },
         {
             title: "Hoteles y Restaurantes",

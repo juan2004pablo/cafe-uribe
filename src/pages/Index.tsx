@@ -42,7 +42,7 @@ const Index = () => {
     ];
 
     const faqStructuredData = getFAQStructuredData(faqs);
-    
+
     let scriptTag = document.querySelector('script[data-type="faq-structured-data"]') as HTMLScriptElement;
     if (scriptTag) {
       scriptTag.textContent = JSON.stringify(faqStructuredData);
@@ -126,7 +126,7 @@ const Index = () => {
             backgroundImage: "url('/images/heroSection/index.jpeg')",
           }}
         />
-        
+
         {/* Enhanced gradient overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/70" />
 
@@ -337,38 +337,38 @@ const Index = () => {
         testimonials={[
           {
             author: {
-              name: "María González",
-              handle: "Café Especializado La Esquina"
+              name: "Comopicassocol",
+              handle: "Aliado comercial en el sector gastronómico"
             },
-            text: "La calidad de Café Uribe es excepcional. Se nota que no tercerizan - cultivar, procesar, trillar, tostar y empacar su propio café garantiza que cada grano tenga historia, nombre y origen real. Nuestros clientes siempre quedan satisfechos."
+            text: "Café Uribe tiene algo especial. Se nota que cuidan cada etapa del proceso, y eso se refleja en el sabor. Nuestros clientes lo valoran muchísimo."
           },
           {
             author: {
-              name: "Carlos Ramírez",
-              handle: "Hotel Villa Colonial"
+              name: "Cristian Amaya",
+              handle: "Café La Greca (Venezuela)"
             },
-            text: "Trabajamos con Café Uribe porque valoramos la trazabilidad total. Saber que cada grano tiene su propia historia y origen real hace la diferencia en nuestro servicio de desayunos premium."
+            text: "Soy embajador natural de la marca Café Uribe en frontera. Elegimos Café Uribe por la trazabilidad. Saber de dónde viene cada grano le da un valor único."
           },
           {
             author: {
               name: "Ana Sofía López",
               handle: "Distribuidora Norte"
             },
-            text: "Lo que más me impresiona es su proceso integral: desde el cultivo hasta el empaque, todo bajo su control. No tercerizan nada, y eso se refleja en la consistencia y calidad excepcional de cada lote."
+            text: "Lo que más destaco es que todo lo hacen ellos mismos. No tercerizan, y eso se nota en la calidad constante que recibimos."
           },
           {
             author: {
               name: "Diego Hernández",
               handle: "Café Central"
             },
-            text: "La diferencia está en los detalles: cada grano tiene nombre, origen y historia. Café Uribe demuestra que cuando no se terceriza y se controla todo el proceso, el resultado es café de verdadera especialidad."
+            text: "Cada grano tiene historia. Cuando el proceso es tan cuidado, el resultado es un café que realmente marca la diferencia."
           },
           {
             author: {
-              name: "Patricia Vargas",
+              name: "Cafetito",
               handle: "Restaurante Tierra Noble"
             },
-            text: "Nuestros comensales notan la diferencia. Café Uribe cultiva, procesa, trilla, tuesta y empaca su propio café. Esa dedicación en cada etapa se traduce en una experiencia única en cada taza."
+            text: "Cliente desde su inicio, fidelizando café Uribe como marca base."
           }
         ]}
       />

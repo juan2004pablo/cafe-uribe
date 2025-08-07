@@ -10,9 +10,9 @@ const Footer = () => {
           {/* Logo y descripción */}
           <div className="md:col-span-1 lg:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
-              <img 
-                src="/logo_oscuro.webp" 
-                alt="Cafe Uribe Logo" 
+              <img
+                src="/logo_oscuro.webp"
+                alt="Cafe Uribe Logo"
                 className="h-28 w-auto mr-3"
               />
               <div className="flex flex-col">
@@ -21,38 +21,38 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-white/80 mb-6 max-w-md">
-              Legado de aroma y sabor. Café de finca con trazabilidad garantizada siempre, 
+              Legado de aroma y sabor. Café de finca con trazabilidad garantizada siempre,
               de la finca a tu taza con la más alta calidad colombiana.
             </p>
             <div className="flex space-x-4">
-              <a 
-                href="https://www.facebook.com/share/17fEZXoBLy/?mibextid=wwXIfr" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-coffee-orange transition-colors"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a 
-                href="https://www.instagram.com/cafeuribe?igsh=MTNpbW9sZ3c0ODRjNQ==&utm_source=qr" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/cafeuribe?igsh=MTNpbW9sZ3c0ODRjNQ==&utm_source=qr"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-coffee-orange transition-colors"
               >
                 <Instagram className="w-5 h-5" />
               </a>
-              <a 
-                href="https://www.tiktok.com/@cafeuriberag?_t=ZS-8ycBca0Wdf7&_r=1" 
-                target="_blank" 
+              <a
+                href="https://www.facebook.com/share/17fEZXoBLy/?mibextid=wwXIfr"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-coffee-orange transition-colors"
               >
-                <svg 
-                  className="w-5 h-5" 
-                  fill="currentColor" 
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@cafeuriberag?_t=ZS-8ycBca0Wdf7&_r=1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-coffee-orange transition-colors"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
                 </svg>
               </a>
             </div>
@@ -75,10 +75,17 @@ const Footer = () => {
             {/* Contacto */}
             <div>
               <h3 className="font-playfair font-semibold text-lg mb-6">Contacto</h3>
+
+              {/* Persona de contacto */}
+              <div className="mb-4 text-white/80">
+                <p className="font-semibold">Lina Castro</p>
+                <p className="text-sm underline">Gerente de Desarrollo de Negocios</p>
+              </div>
+
               <ul className="space-y-3">
                 <li className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-coffee-orange" />
-                  <a 
+                  <a
                     href="mailto:info@cafeuribe.com"
                     className="text-white/80 hover:text-coffee-orange transition-colors"
                   >
@@ -87,7 +94,7 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-coffee-orange" />
-                  <a 
+                  <a
                     href="tel:+573203737502"
                     className="text-white/80 hover:text-coffee-orange transition-colors"
                   >
@@ -116,7 +123,7 @@ const Footer = () => {
               El contenido utilizado (logos, imágenes e información) es referencial.
             </p>
           </div>  */}
-          
+
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-white/60 text-sm">
               © 2025 Café Uribe. Todos los derechos reservados.

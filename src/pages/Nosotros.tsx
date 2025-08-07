@@ -1,7 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Award, Users, Leaf, Heart, MapPin } from 'lucide-react';
+import { Award, Users, Leaf, Heart, MapPin, Download } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PhysicalStoreSection from '@/components/PhysicalStoreSection';
@@ -45,6 +45,15 @@ const Nosotros = () => {
         }
     ];
 
+    const handleDownloadResume = () => {
+        const link = document.createElement('a');
+        link.href = '/files/Resumen_cafe_uribe.pdf';
+        link.download = 'Resumen_Cafe_Uribe.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     return (
         <div className="min-h-screen">
             <Header />
@@ -79,13 +88,23 @@ const Nosotros = () => {
                         <p className="text-xl md:text-2xl opacity-90 mb-8">
                             Dos generaciones dedicadas al arte de cultivar café de origen
                         </p>
-                        <Button
-                            onClick={scrollToPhysicalStore}
-                            className="bg-coffee-orange hover:bg-coffee-orange/90 text-white"
-                        >
-                            <MapPin className="w-4 h-4 mr-2" />
-                            Visitar Local
-                        </Button>
+                        <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                            <Button
+                                onClick={scrollToPhysicalStore}
+                                className="bg-coffee-orange hover:bg-coffee-orange/90 text-white"
+                            >
+                                <MapPin className="w-4 h-4 mr-2" />
+                                Visitar Local
+                            </Button>
+                            <Button
+                                onClick={handleDownloadResume}
+                                variant="outline"
+                                className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+                            >
+                                <Download className="w-4 h-4 mr-2" />
+                                Descargar Resumen
+                            </Button>
+                        </div>
                     </motion.div>
                 </div>
             </section>

@@ -330,12 +330,47 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonios - Nuevo componente con marquee */}
+      {/* Testimonios */}
       <TestimonialsSection
         title="Lo Que Dicen Nuestros Clientes"
-        description="La confianza de nuestros socios comerciales y clientes es nuestro mayor logro"
-        testimonials={testimonials}
-        className="bg-orange-50"
+        description="Testimonios reales de quienes han probado nuestro café de origen"
+        testimonials={[
+          {
+            author: {
+              name: "María González",
+              handle: "Café Especializado La Esquina"
+            },
+            text: "La calidad de Café Uribe es excepcional. Se nota que no tercerizan - cultivar, procesar, trillar, tostar y empacar su propio café garantiza que cada grano tenga historia, nombre y origen real. Nuestros clientes siempre quedan satisfechos."
+          },
+          {
+            author: {
+              name: "Carlos Ramírez",
+              handle: "Hotel Villa Colonial"
+            },
+            text: "Trabajamos con Café Uribe porque valoramos la trazabilidad total. Saber que cada grano tiene su propia historia y origen real hace la diferencia en nuestro servicio de desayunos premium."
+          },
+          {
+            author: {
+              name: "Ana Sofía López",
+              handle: "Distribuidora Norte"
+            },
+            text: "Lo que más me impresiona es su proceso integral: desde el cultivo hasta el empaque, todo bajo su control. No tercerizan nada, y eso se refleja en la consistencia y calidad excepcional de cada lote."
+          },
+          {
+            author: {
+              name: "Diego Hernández",
+              handle: "Café Central"
+            },
+            text: "La diferencia está en los detalles: cada grano tiene nombre, origen y historia. Café Uribe demuestra que cuando no se terceriza y se controla todo el proceso, el resultado es café de verdadera especialidad."
+          },
+          {
+            author: {
+              name: "Patricia Vargas",
+              handle: "Restaurante Tierra Noble"
+            },
+            text: "Nuestros comensales notan la diferencia. Café Uribe cultiva, procesa, trilla, tuesta y empaca su propio café. Esa dedicación en cada etapa se traduce en una experiencia única en cada taza."
+          }
+        ]}
       />
 
       {/* CTA B2B - Enhanced Section */}

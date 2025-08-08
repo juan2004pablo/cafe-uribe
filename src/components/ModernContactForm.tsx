@@ -1,274 +1,238 @@
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ArrowRight, Coffee, Shield, Truck, Mail, Building2, User, Phone, Leaf, Users } from 'lucide-react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { toast } from '@/components/ui/use-toast';
-import { useNavigate } from 'react-router-dom';
-import { useAnalytics } from '@/hooks/useAnalytics';
-import DisplayCards from '@/components/ui/display-cards';
-
-// Form validation schema
-const formSchema = z.object({
-  businessName: z.string().min(2, 'El nombre del negocio debe tener al menos 2 caracteres'),
-  contactName: z.string().min(2, 'El nombre de contacto debe tener al menos 2 caracteres'),
-  email: z.string().email('Por favor ingresa un email válido'),
-  phone: z.string().min(10, 'El teléfono debe tener al menos 10 caracteres'),
-});
-
-type FormData = z.infer<typeof formSchema>;
+import { Textarea } from '@/components/ui/textarea';
+import { Card, CardContent } from '@/components/ui/card';
+import { Building2, Mail, Phone, User, MessageSquare, Send, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const ModernContactForm = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const navigate = useNavigate();
-  const { trackFormSubmission, trackButtonClick, trackB2BLead } = useAnalytics();
+    const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const form = useRef<HTMLFormElement>(null);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-  });
+    const sendEmail = (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
 
-  // Cards for mobile/tablet (3 cards)
-  const mobileCards = [
-    {
-      icon: <Coffee className="size-4 text-coffee-orange" />,
-      title: "Calidad Premium",
-      description: "100% Café Colombiano",
-      date: "Certificado",
-      iconClassName: "text-coffee-orange",
-      titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
-    },
-    {
-      icon: <Shield className="size-4 text-coffee-orange" />,
-      title: "Garantía Total",
-      description: "Satisfacción asegurada",
-      date: "Respaldado",
-      iconClassName: "text-coffee-orange",
-      titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] translate-x-6 sm:translate-x-8 md:translate-x-12 translate-y-10 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
-    },
-    {
-      icon: <Truck className="size-4 text-coffee-orange" />,
-      title: "Logística Eficaz",
-      description: "Entregas puntuales",
-      date: "Garantizado",
-      iconClassName: "text-coffee-orange",
-      titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] translate-x-12 sm:translate-x-16 md:translate-x-24 translate-y-20 hover:translate-y-10",
-    },
-  ];
+        if (form.current) {
+            emailjs
+                .sendForm('service_cafe_uribe_test', 'template_zzfiriv', form.current, {
+                    publicKey: 'GgMkx8GPi6Z3ZXerG',
+                })
+                .then(
+                    () => {
+                        console.log('SUCCESS!');
+                        setIsSubmitted(true);
+                        setIsSubmitting(false);
+                        // Reset form after 3 seconds
+                        setTimeout(() => {
+                            setIsSubmitted(false);
+                            if (form.current) {
+                                form.current.reset();
+                            }
+                        }, 3000);
+                    },
+                    (error) => {
+                        console.log('FAILED...', error.text);
+                        setIsSubmitting(false);
+                        alert('Error al enviar el mensaje. Por favor, intenta de nuevo.');
+                    },
+                );
+        }
+    };
 
-  // Cards for desktop (5 cards)
-  const desktopCards = [
-    ...mobileCards,
-    {
-      icon: <Leaf className="size-4 text-coffee-orange" />,
-      title: "Sostenibilidad",
-      description: "Cultivo responsable",
-      date: "Eco Friendly",
-      iconClassName: "text-coffee-orange",
-      titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] translate-x-6 sm:translate-x-8 md:translate-x-36 translate-y-32 hover:translate-y-20 transition-transform duration-700",
-    },
-    {
-      icon: <Users className="size-4 text-coffee-orange" />,
-      title: "Relaciones Directas",
-      description: "Apoyo al caficultor",
-      date: "Comercio Justo",
-      iconClassName: "text-coffee-orange",
-      titleClassName: "text-coffee-brown",
-      className: "[grid-area:stack] translate-x-24 sm:translate-x-32 md:translate-x-48 translate-y-44 hover:translate-y-28 transition-transform duration-700",
-    },
-  ];
+    return (
+        <section id="comencemos-alianza" className="py-20 bg-gradient-to-br from-coffee-cream/20 to-white">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.div
+                    ref={ref}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8 }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="font-playfair text-4xl md:text-5xl font-bold text-coffee-brown mb-6">
+                        Comencemos una Alianza
+                    </h2>
+                    <p className="text-lg text-coffee-brown/70 max-w-2xl mx-auto">
+                        Cuéntanos sobre tu negocio y descubre cómo podemos ser tu mejor aliado en café premium.
+                    </p>
+                </motion.div>
 
-  const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true);
-    
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      console.log('Form submitted:', data);
-      
-      // Track form submission
-      trackFormSubmission('modern_contact_form');
-      trackB2BLead('alliance_request');
-      
-      toast({
-        title: "Solicitud enviada exitosamente",
-        description: "Nos pondremos en contacto contigo muy pronto.",
-      });
-      
-      reset();
-    } catch (error) {
-      toast({
-        title: "Error al enviar la solicitud",
-        description: "Por favor intenta nuevamente más tarde.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleContactRedirect = () => {
-    trackButtonClick('contact_page_redirect', 'modern_contact_form');
-    navigate('/contacto');
-  };
-
-  return (
-    <section id="comencemos-alianza" ref={ref} className="py-20 bg-coffee-cream/30 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold text-coffee-brown mb-6">
-            Comencemos una Alianza
-          </h2>
-          <p className="text-lg text-coffee-brown/70 max-w-2xl mx-auto">
-            Déjanos tus datos y te contactaremos para explorar oportunidades de negocio
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-36 items-center">
-          {/* Left side - Display Cards - Desktop only */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="hidden lg:flex justify-center self-center"
-          >
-            <div className="flex min-h-[400px] w-full items-center justify-center py-5 overflow-hidden">
-              <div className="w-full max-w-3xl px-4">
-                <DisplayCards cards={desktopCards} />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right side - Simple Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-coffee-cream order-1 lg:order-2"
-          >
-            <div className="space-y-6">
-              <div className="text-center mb-8">
-                <h3 className="font-playfair text-2xl font-bold text-coffee-brown mb-2">
-                  Solicita Información
-                </h3>
-                <p className="text-coffee-brown/60">
-                  Formulario rápido para comenzar
-                </p>
-              </div>
-
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div className="space-y-2">
-                  <label className="text-coffee-brown text-sm font-medium flex items-center">
-                    <Building2 className="w-4 h-4 mr-2 text-coffee-orange" />
-                    Nombre del Negocio
-                  </label>
-                  <Input 
-                    {...register('businessName')}
-                    placeholder="Tu empresa" 
-                    className="border-coffee-cream/60 focus:border-coffee-orange"
-                  />
-                  {errors.businessName && (
-                    <p className="text-sm text-red-500">{errors.businessName.message}</p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-coffee-brown text-sm font-medium flex items-center">
-                    <User className="w-4 h-4 mr-2 text-coffee-orange" />
-                    Nombre de Contacto
-                  </label>
-                  <Input 
-                    {...register('contactName')}
-                    placeholder="Tu nombre" 
-                    className="border-coffee-cream/60 focus:border-coffee-orange"
-                  />
-                  {errors.contactName && (
-                    <p className="text-sm text-red-500">{errors.contactName.message}</p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-coffee-brown text-sm font-medium flex items-center">
-                    <Mail className="w-4 h-4 mr-2 text-coffee-orange" />
-                    Email
-                  </label>
-                  <Input 
-                    {...register('email')}
-                    type="email" 
-                    placeholder="tu@email.com" 
-                    className="border-coffee-cream/60 focus:border-coffee-orange"
-                  />
-                  {errors.email && (
-                    <p className="text-sm text-red-500">{errors.email.message}</p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-coffee-brown text-sm font-medium flex items-center">
-                    <Phone className="w-4 h-4 mr-2 text-coffee-orange" />
-                    Teléfono
-                  </label>
-                  <Input 
-                    {...register('phone')}
-                    placeholder="+57 300 123 4567" 
-                    className="border-coffee-cream/60 focus:border-coffee-orange"
-                  />
-                  {errors.phone && (
-                    <p className="text-sm text-red-500">{errors.phone.message}</p>
-                  )}
-                </div>
-
-                <div className="space-y-4 pt-4">
-                  <Button 
-                    type="submit" 
-                    size="lg" 
-                    className="w-full bg-coffee-orange hover:bg-coffee-orange/90 text-white"
-                    disabled={isSubmitting}
-                    onClick={() => trackButtonClick('submit_alliance_form', 'modern_contact_form')}
-                  >
-                    {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                  
-                  <div className="text-center">
-                    <p className="text-sm text-coffee-brown/60 mb-2">¿Prefieres contactarnos directamente?</p>
-                    <Button 
-                      type="button"
-                      variant="outline" 
-                      className="text-coffee-brown border-coffee-brown hover:bg-coffee-brown hover:text-white"
-                      onClick={handleContactRedirect}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    {/* Contact Information */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={inView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="space-y-8"
                     >
-                      Ir a Página de Contacto
-                    </Button>
-                  </div>
+                        <div>
+                            <h3 className="font-playfair text-2xl font-semibold text-coffee-brown mb-6">
+                                ¿Por qué elegir Café Uribe?
+                            </h3>
+                            <div className="space-y-6">
+                                {[
+                                    {
+                                        icon: <Building2 className="w-6 h-6" />,
+                                        title: "Tradición Familiar",
+                                        description: "Más de 30 años cultivando y procesando nuestro propio café de especialidad."
+                                    },
+                                    {
+                                        icon: <Mail className="w-6 h-6" />,
+                                        title: "Calidad Garantizada",
+                                        description: "Trazabilidad completa desde la finca hasta tu negocio. Cada grano tiene historia."
+                                    },
+                                    {
+                                        icon: <Phone className="w-6 h-6" />,
+                                        title: "Soporte Personalizado",
+                                        description: "Asesoría técnica y comercial adaptada a las necesidades de tu negocio."
+                                    }
+                                ].map((item, index) => (
+                                    <motion.div
+                                        key={item.title}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                                        transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                                        className="flex items-start space-x-4"
+                                    >
+                                        <div className="w-12 h-12 bg-coffee-orange/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <div className="text-coffee-orange">{item.icon}</div>
+                                        </div>
+                                        <div>
+                                            <h4 className="font-semibold text-coffee-brown mb-2">{item.title}</h4>
+                                            <p className="text-coffee-brown/70 text-sm leading-relaxed">
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Contact Form */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={inView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                    >
+                        <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
+                            <CardContent className="p-8">
+                                {isSubmitted ? (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="text-center py-8"
+                                    >
+                                        <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                                        <h3 className="text-xl font-semibold text-coffee-brown mb-2">
+                                            ¡Mensaje Enviado!
+                                        </h3>
+                                        <p className="text-coffee-brown/70">
+                                            Nos pondremos en contacto contigo pronto para comenzar nuestra alianza.
+                                        </p>
+                                    </motion.div>
+                                ) : (
+                                    <form ref={form} onSubmit={sendEmail} className="space-y-6">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div className="relative">
+                                                <User className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
+                                                <Input
+                                                    type="text"
+                                                    name="user_name"
+                                                    placeholder="Nombre completo"
+                                                    className="pl-10 border-coffee-brown/20 focus:border-coffee-orange"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="relative">
+                                                <Building2 className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
+                                                <Input
+                                                    type="text"
+                                                    name="company_name"
+                                                    placeholder="Nombre de la empresa"
+                                                    className="pl-10 border-coffee-brown/20 focus:border-coffee-orange"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div className="relative">
+                                                <Mail className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
+                                                <Input
+                                                    type="email"
+                                                    name="user_email"
+                                                    placeholder="Correo electrónico"
+                                                    className="pl-10 border-coffee-brown/20 focus:border-coffee-orange"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="relative">
+                                                <Phone className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
+                                                <Input
+                                                    type="tel"
+                                                    name="user_phone"
+                                                    placeholder="Teléfono"
+                                                    className="pl-10 border-coffee-brown/20 focus:border-coffee-orange"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="relative">
+                                            <Input
+                                                type="text"
+                                                name="business_type"
+                                                placeholder="Tipo de negocio (ej: Restaurante, Hotel, Distribuidor)"
+                                                className="border-coffee-brown/20 focus:border-coffee-orange"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div className="relative">
+                                            <MessageSquare className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
+                                            <Textarea
+                                                name="message"
+                                                placeholder="Cuéntanos sobre tu negocio y cómo podemos ayudarte..."
+                                                rows={4}
+                                                className="pl-10 border-coffee-brown/20 focus:border-coffee-orange resize-none"
+                                                required
+                                            />
+                                        </div>
+
+                                        <Button
+                                            type="submit"
+                                            size="lg"
+                                            className="w-full bg-coffee-orange hover:bg-coffee-orange/80 text-white group"
+                                            disabled={isSubmitting}
+                                        >
+                                            {isSubmitting ? (
+                                                <span className="flex items-center">
+                                                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                                                    Enviando...
+                                                </span>
+                                            ) : (
+                                                <span className="flex items-center">
+                                                    Iniciar Alianza
+                                                    <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                                </span>
+                                            )}
+                                        </Button>
+                                    </form>
+                                )}
+                            </CardContent>
+                        </Card>
+                    </motion.div>
                 </div>
-              </form>
             </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 };
 
 export default ModernContactForm;

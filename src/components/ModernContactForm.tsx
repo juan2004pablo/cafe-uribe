@@ -6,44 +6,132 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
-import { Building2, Mail, Phone, User, MessageSquare, Send, CheckCircle } from 'lucide-react';
+import { Building2, Mail, Phone, User, MessageSquare, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const ModernContactForm = () => {
     const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [errors, setErrors] = useState<Record<string, string>>({});
     const form = useRef<HTMLFormElement>(null);
+
+    const validateField = (name: string, value: string) => {
+        const newErrors = { ...errors };
+
+        switch (name) {
+            case 'user_name':
+                if (!value.trim()) {
+                    newErrors[name] = 'El nombre es requerido';
+                } else if (value.length < 2) {
+                    newErrors[name] = 'El nombre debe tener al menos 2 caracteres';
+                } else if (value.length > 50) {
+                    newErrors[name] = 'El nombre no puede exceder 50 caracteres';
+                } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/.test(value)) {
+                    newErrors[name] = 'El nombre solo puede contener letras y espacios';
+                } else {
+                    delete newErrors[name];
+                }
+                break;
+
+            case 'company_name':
+                if (!value.trim()) {
+                    newErrors[name] = 'El nombre de la empresa es requerido';
+                } else if (value.length < 2) {
+                    newErrors[name] = 'El nombre de la empresa debe tener al menos 2 caracteres';
+                } else if (value.length > 100) {
+                    newErrors[name] = 'El nombre de la empresa no puede exceder 100 caracteres';
+                } else {
+                    delete newErrors[name];
+                }
+                break;
+
+            case 'user_email':
+                if (!value.trim()) {
+                    newErrors[name] = 'El correo electrónico es requerido';
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    newErrors[name] = 'Por favor ingresa un correo electrónico válido';
+                } else {
+                    delete newErrors[name];
+                }
+                break;
+
+            case 'user_phone':
+                if (value && !/^[\d\s\-\+\(\)]+$/.test(value)) {
+                    newErrors[name] = 'El teléfono solo puede contener números, espacios, guiones, + y paréntesis';
+                } else if (value && (value.length < 7 || value.length > 20)) {
+                    newErrors[name] = 'El teléfono debe tener entre 7 y 20 caracteres';
+                } else {
+                    delete newErrors[name];
+                }
+                break;
+
+            case 'business_type':
+                if (!value.trim()) {
+                    newErrors[name] = 'El tipo de negocio es requerido';
+                } else if (value.length < 3) {
+                    newErrors[name] = 'El tipo de negocio debe tener al menos 3 caracteres';
+                } else if (value.length > 100) {
+                    newErrors[name] = 'El tipo de negocio no puede exceder 100 caracteres';
+                } else if (/^\d+$/.test(value)) {
+                    newErrors[name] = 'El tipo de negocio no puede ser solo números';
+                } else {
+                    delete newErrors[name];
+                }
+                break;
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        validateField(e.target.name, e.target.value);
+    };
 
     const sendEmail = (e: React.FormEvent) => {
         e.preventDefault();
+        
+        if (!form.current) return;
+
+        const formData = new FormData(form.current);
+        let isValid = true;
+
+        // Validar todos los campos
+        for (const [name, value] of formData.entries()) {
+            if (!validateField(name as string, value as string)) {
+                isValid = false;
+            }
+        }
+
+        if (!isValid) return;
+
         setIsSubmitting(true);
 
-        if (form.current) {
-            emailjs
-                .sendForm('service_cafe_uribe_test', 'template_zzfiriv', form.current, {
-                    publicKey: 'GgMkx8GPi6Z3ZXerG',
-                })
-                .then(
-                    () => {
-                        console.log('SUCCESS!');
-                        setIsSubmitted(true);
-                        setIsSubmitting(false);
-                        // Reset form after 3 seconds
-                        setTimeout(() => {
-                            setIsSubmitted(false);
-                            if (form.current) {
-                                form.current.reset();
-                            }
-                        }, 3000);
-                    },
-                    (error) => {
-                        console.log('FAILED...', error.text);
-                        setIsSubmitting(false);
-                        alert('Error al enviar el mensaje. Por favor, intenta de nuevo.');
-                    },
-                );
-        }
+        emailjs
+            .sendForm('service_cafe_uribe_test', 'template_zzfiriv', form.current, {
+                publicKey: 'GgMkx8GPi6Z3ZXerG',
+            })
+            .then(
+                () => {
+                    console.log('SUCCESS!');
+                    setIsSubmitted(true);
+                    setIsSubmitting(false);
+                    setErrors({});
+                    // Reset form after 3 seconds
+                    setTimeout(() => {
+                        setIsSubmitted(false);
+                        if (form.current) {
+                            form.current.reset();
+                        }
+                    }, 3000);
+                },
+                (error) => {
+                    console.log('FAILED...', error.text);
+                    setIsSubmitting(false);
+                    alert('Error al enviar el mensaje. Por favor, intenta de nuevo.');
+                },
+            );
     };
 
     return (
@@ -147,9 +235,16 @@ const ModernContactForm = () => {
                                                     type="text"
                                                     name="user_name"
                                                     placeholder="Nombre completo"
-                                                    className="pl-10 border-coffee-brown/20 focus:border-coffee-orange"
+                                                    className={`pl-10 border-coffee-brown/20 focus:border-coffee-orange ${errors.user_name ? 'border-red-500' : ''}`}
+                                                    onChange={handleInputChange}
                                                     required
                                                 />
+                                                {errors.user_name && (
+                                                    <div className="flex items-center mt-1 text-red-500 text-sm">
+                                                        <AlertCircle className="w-3 h-3 mr-1" />
+                                                        {errors.user_name}
+                                                    </div>
+                                                )}
                                             </div>
                                             <div className="relative">
                                                 <Building2 className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
@@ -157,9 +252,16 @@ const ModernContactForm = () => {
                                                     type="text"
                                                     name="company_name"
                                                     placeholder="Nombre de la empresa"
-                                                    className="pl-10 border-coffee-brown/20 focus:border-coffee-orange"
+                                                    className={`pl-10 border-coffee-brown/20 focus:border-coffee-orange ${errors.company_name ? 'border-red-500' : ''}`}
+                                                    onChange={handleInputChange}
                                                     required
                                                 />
+                                                {errors.company_name && (
+                                                    <div className="flex items-center mt-1 text-red-500 text-sm">
+                                                        <AlertCircle className="w-3 h-3 mr-1" />
+                                                        {errors.company_name}
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
 
@@ -170,18 +272,32 @@ const ModernContactForm = () => {
                                                     type="email"
                                                     name="user_email"
                                                     placeholder="Correo electrónico"
-                                                    className="pl-10 border-coffee-brown/20 focus:border-coffee-orange"
+                                                    className={`pl-10 border-coffee-brown/20 focus:border-coffee-orange ${errors.user_email ? 'border-red-500' : ''}`}
+                                                    onChange={handleInputChange}
                                                     required
                                                 />
+                                                {errors.user_email && (
+                                                    <div className="flex items-center mt-1 text-red-500 text-sm">
+                                                        <AlertCircle className="w-3 h-3 mr-1" />
+                                                        {errors.user_email}
+                                                    </div>
+                                                )}
                                             </div>
                                             <div className="relative">
                                                 <Phone className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
                                                 <Input
                                                     type="tel"
                                                     name="user_phone"
-                                                    placeholder="Teléfono"
-                                                    className="pl-10 border-coffee-brown/20 focus:border-coffee-orange"
+                                                    placeholder="Teléfono (opcional)"
+                                                    className={`pl-10 border-coffee-brown/20 focus:border-coffee-orange ${errors.user_phone ? 'border-red-500' : ''}`}
+                                                    onChange={handleInputChange}
                                                 />
+                                                {errors.user_phone && (
+                                                    <div className="flex items-center mt-1 text-red-500 text-sm">
+                                                        <AlertCircle className="w-3 h-3 mr-1" />
+                                                        {errors.user_phone}
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
 
@@ -190,16 +306,23 @@ const ModernContactForm = () => {
                                                 type="text"
                                                 name="business_type"
                                                 placeholder="Tipo de negocio (ej: Restaurante, Hotel, Distribuidor)"
-                                                className="border-coffee-brown/20 focus:border-coffee-orange"
+                                                className={`border-coffee-brown/20 focus:border-coffee-orange ${errors.business_type ? 'border-red-500' : ''}`}
+                                                onChange={handleInputChange}
                                                 required
                                             />
+                                            {errors.business_type && (
+                                                <div className="flex items-center mt-1 text-red-500 text-sm">
+                                                    <AlertCircle className="w-3 h-3 mr-1" />
+                                                    {errors.business_type}
+                                                </div>
+                                            )}
                                         </div>
 
                                         <Button
                                             type="submit"
                                             size="lg"
                                             className="w-full bg-coffee-orange hover:bg-coffee-orange/80 text-white group"
-                                            disabled={isSubmitting}
+                                            disabled={isSubmitting || Object.keys(errors).length > 0}
                                         >
                                             {isSubmitting ? (
                                                 <span className="flex items-center">

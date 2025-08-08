@@ -118,62 +118,6 @@ const Contacto = () => {
                             transition={{ duration: 0.8 }}
                             className="space-y-8"
                         >
-                            {/* Horarios Mejorados */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {/* Horario Virtual */}
-                                <Card className="p-6 bg-gradient-to-br from-coffee-orange/5 to-coffee-orange/10 border-coffee-orange/20">
-                                    <div className="text-center">
-                                        <div className="w-16 h-16 bg-coffee-orange/15 rounded-full flex items-center justify-center mx-auto mb-4">
-                                            <MessageCircle className="w-8 h-8 text-coffee-orange" />
-                                        </div>
-                                        <h3 className="font-playfair text-lg font-bold text-coffee-brown mb-2">
-                                            Atención Virtual
-                                        </h3>
-                                        <div className="space-y-2 text-sm">
-                                            <div className="flex items-center justify-center space-x-2 text-coffee-brown/80">
-                                                <Clock className="w-4 h-4" />
-                                                <span className="font-medium">Lunes - Sábado</span>
-                                            </div>
-                                            <div className="text-lg font-bold text-coffee-orange">
-                                                8:00 AM - 6:00 PM
-                                            </div>
-                                            <p className="text-xs text-coffee-brown/60 mt-2">
-                                                WhatsApp, Email y Formulario
-                                            </p>
-                                        </div>
-                                    </div>
-                                </Card>
-
-                                {/* Horario Punto de Venta */}
-                                <Card className="p-6 bg-gradient-to-br from-coffee-brown/5 to-coffee-brown/10 border-coffee-brown/20">
-                                    <div className="text-center">
-                                        <div className="w-16 h-16 bg-coffee-brown/15 rounded-full flex items-center justify-center mx-auto mb-4">
-                                            <MapPin className="w-8 h-8 text-coffee-brown" />
-                                        </div>
-                                        <h3 className="font-playfair text-lg font-bold text-coffee-brown mb-2">
-                                            Punto de Venta
-                                        </h3>
-                                        <div className="space-y-1 text-xs text-coffee-brown/80">
-                                            <div className="flex justify-between items-center py-1">
-                                                <span>Lunes:</span>
-                                                <span className="font-medium text-red-600">Cerrado</span>
-                                            </div>
-                                            <div className="flex justify-between items-center py-1">
-                                                <span>Mar - Sáb:</span>
-                                                <span className="font-medium text-green-600">7AM-12M / 3PM-7PM</span>
-                                            </div>
-                                            <div className="flex justify-between items-center py-1">
-                                                <span>Domingo:</span>
-                                                <span className="font-medium text-green-600">7AM - 12M</span>
-                                            </div>
-                                        </div>
-                                        <p className="text-xs text-coffee-brown/60 mt-3">
-                                            Ragonvalia, Norte de Santander
-                                        </p>
-                                    </div>
-                                </Card>
-                            </div>
-
                             <Card>
                                 <CardHeader>
                                     <h2 className="font-playfair text-3xl font-bold text-coffee-brown">
@@ -302,14 +246,66 @@ const Contacto = () => {
                             transition={{ duration: 0.8, delay: 0.2 }}
                             className="space-y-8"
                         >
+                            {/* Horarios Mejorados */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {/* Horario Virtual */}
+                                <Card className="p-6 bg-gradient-to-br from-coffee-orange/5 to-coffee-orange/10 border-coffee-orange/20">
+                                    <div className="text-center">
+                                        <div className="w-16 h-16 bg-coffee-orange/15 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <MessageCircle className="w-8 h-8 text-coffee-orange" />
+                                        </div>
+                                        <h3 className="font-playfair text-lg font-bold text-coffee-brown mb-2">
+                                            Atención Virtual
+                                        </h3>
+                                        <div className="space-y-2 text-sm">
+                                            <div className="flex items-center justify-center space-x-2 text-coffee-brown/80">
+                                                <Clock className="w-4 h-4" />
+                                                <span className="font-medium">Lunes - Sábado</span>
+                                            </div>
+                                            <div className="text-lg font-bold text-coffee-orange">
+                                                8:00 AM - 6:00 PM
+                                            </div>
+                                            <p className="text-xs text-coffee-brown/60 mt-2">
+                                                WhatsApp, Email y Formulario
+                                            </p>
+                                        </div>
+                                    </div>
+                                </Card>
+
+                                {/* Horario Punto de Venta */}
+                                <Card className="p-6 bg-gradient-to-br from-coffee-brown/5 to-coffee-brown/10 border-coffee-brown/20">
+                                    <div className="text-center">
+                                        <div className="w-16 h-16 bg-coffee-brown/15 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <MapPin className="w-8 h-8 text-coffee-brown" />
+                                        </div>
+                                        <h3 className="font-playfair text-lg font-bold text-coffee-brown mb-2">
+                                            Punto de Venta
+                                        </h3>
+                                        <div className="space-y-1 text-xs text-coffee-brown/80">
+                                            <div className="flex justify-between items-center py-1">
+                                                <span>Lunes:</span>
+                                                <span className="font-medium text-red-600">Cerrado</span>
+                                            </div>
+                                            <div className="flex justify-between items-center py-1">
+                                                <span>Mar - Sáb:</span>
+                                                <span className="font-medium text-green-600">7AM-12M / 3PM-7PM</span>
+                                            </div>
+                                            <div className="flex justify-between items-center py-1">
+                                                <span>Domingo:</span>
+                                                <span className="font-medium text-green-600">7AM - 12M</span>
+                                            </div>
+                                        </div>
+                                        <p className="text-xs text-coffee-brown/60 mt-3">
+                                            Ragonvalia, Norte de Santander
+                                        </p>
+                                    </div>
+                                </Card>
+                            </div>
                             <div>
                                 <h2 className="font-playfair text-3xl font-bold text-coffee-brown mb-6">
                                     Información de Contacto
                                 </h2>
-                                <p className="text-coffee-brown/80 mb-8">
-                                    Nuestras fincas están ubicadas en el hermoso municipio de Ragonvalia, Norte de Santander,
-                                    a una altitud de 1,750 metros sobre el nivel del mar.
-                                </p>
+                               
                             </div>
 
                             <div className="grid grid-cols-1 gap-6">
@@ -327,15 +323,13 @@ const Contacto = () => {
                                                         <div className="text-coffee-orange">{method.icon}</div>
                                                     </div>
                                                     <div className="flex-1 min-w-0">
-                                                        <h3 className="font-semibold text-coffee-brown mb-1">
+                                                        <span className="text-sm font-semibold text-coffee-brown mb-1">
                                                             {method.title}
-                                                        </h3>
+                                                        </span>
                                                         <p className="text-coffee-brown font-medium mb-1 break-words">
                                                             {method.info}
                                                         </p>
-                                                        <p className="text-coffee-brown/60 text-sm">
-                                                            {method.description}
-                                                        </p>
+                                                        
                                                     </div>
                                                 </div>
                                                 <Button

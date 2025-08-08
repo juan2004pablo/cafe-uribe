@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Mail, Phone, MapPin, MessageCircle, Clock, ExternalLink } from 'lucide-react';
@@ -10,7 +9,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import GoogleMaps from '@/components/GoogleMaps';
 import { WhatsAppIcon } from '@/components/ui/whatsAppIcon';
-import { useForm, ValidationError } from '@formspree/react';
+import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contacto = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -18,8 +18,37 @@ const Contacto = () => {
     const [mapRef, mapInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [disclaimerRef, disclaimerInView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
-    // Formspree integration
-    const [state, handleSubmit] = useForm("mvgqvwnk");
+    // EmailJS integration
+    const form = useRef<HTMLFormElement>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const sendEmail = (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        if (form.current) {
+            emailjs
+                .sendForm('service_cafe_uribe_test', 'template_x7a8zdu', form.current, {
+                    publicKey: 'GgMkx8GPi6Z3ZXerG',
+                })
+                .then(
+                    () => {
+                        console.log('SUCCESS!');
+                        setIsSuccess(true);
+                        setIsSubmitting(false);
+                        if (form.current) {
+                            form.current.reset();
+                        }
+                    },
+                    (error) => {
+                        console.log('FAILED...', error.text);
+                        setIsSubmitting(false);
+                        alert('Error al enviar el mensaje. Por favor intenta nuevamente.');
+                    },
+                );
+        }
+    };
 
     const contactMethods = [
         {
@@ -119,7 +148,7 @@ const Contacto = () => {
                                     </p>
                                 </CardHeader>
                                 <CardContent className="space-y-6">
-                                    {state.succeeded ? (
+                                    {isSuccess ? (
                                         <div className="text-center py-8">
                                             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                                                 <Mail className="w-8 h-8 text-green-600" />
@@ -130,81 +159,63 @@ const Contacto = () => {
                                             <p className="text-coffee-brown/70">
                                                 Gracias por contactarnos. Te responderemos muy pronto.
                                             </p>
+                                            <Button 
+                                                onClick={() => setIsSuccess(false)}
+                                                className="mt-4 bg-coffee-orange hover:bg-coffee-orange/90"
+                                            >
+                                                Enviar otro mensaje
+                                            </Button>
                                         </div>
                                     ) : (
-                                        <form onSubmit={handleSubmit} className="space-y-6">
+                                        <form ref={form} onSubmit={sendEmail} className="space-y-6">
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                 <div>
-                                                    <label htmlFor="name" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                    <label htmlFor="user_name" className="block text-sm font-medium text-coffee-brown mb-2">
                                                         Nombre
                                                     </label>
                                                     <Input 
-                                                        id="name"
-                                                        name="name"
+                                                        id="user_name"
+                                                        name="user_name"
                                                         type="text"
                                                         placeholder="Tu nombre completo" 
                                                         required
                                                     />
-                                                    <ValidationError 
-                                                        prefix="Nombre" 
-                                                        field="name"
-                                                        errors={state.errors}
-                                                        className="text-sm text-red-500 mt-1"
-                                                    />
                                                 </div>
                                                 <div>
-                                                    <label htmlFor="email" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                    <label htmlFor="user_email" className="block text-sm font-medium text-coffee-brown mb-2">
                                                         Email
                                                     </label>
                                                     <Input 
-                                                        id="email"
-                                                        name="email"
+                                                        id="user_email"
+                                                        name="user_email"
                                                         type="email" 
                                                         placeholder="tu@email.com" 
                                                         required
-                                                    />
-                                                    <ValidationError 
-                                                        prefix="Email" 
-                                                        field="email"
-                                                        errors={state.errors}
-                                                        className="text-sm text-red-500 mt-1"
                                                     />
                                                 </div>
                                             </div>
 
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                 <div>
-                                                    <label htmlFor="phone" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                    <label htmlFor="user_phone" className="block text-sm font-medium text-coffee-brown mb-2">
                                                         Teléfono
                                                     </label>
                                                     <Input 
-                                                        id="phone"
-                                                        name="phone"
+                                                        id="user_phone"
+                                                        name="user_phone"
                                                         type="tel"
                                                         placeholder="+57 300 123 4567" 
                                                     />
-                                                    <ValidationError 
-                                                        prefix="Teléfono" 
-                                                        field="phone"
-                                                        errors={state.errors}
-                                                        className="text-sm text-red-500 mt-1"
-                                                    />
                                                 </div>
                                                 <div>
-                                                    <label htmlFor="company" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                    <label htmlFor="user_company" className="block text-sm font-medium text-coffee-brown mb-2">
                                                         Empresa (opcional)
                                                     </label>
                                                     <Input 
-                                                        id="company"
-                                                        name="company"
+                                                        id="user_company"
+                                                        name="user_company"
                                                         type="text"
                                                         placeholder="Nombre de tu empresa" 
-                                                    />
-                                                    <ValidationError 
-                                                        prefix="Empresa" 
-                                                        field="company"
-                                                        errors={state.errors}
-                                                        className="text-sm text-red-500 mt-1"
                                                     />
                                                 </div>
                                             </div>
@@ -220,12 +231,6 @@ const Contacto = () => {
                                                     placeholder="Motivo de tu consulta" 
                                                     required
                                                 />
-                                                <ValidationError 
-                                                    prefix="Asunto" 
-                                                    field="subject"
-                                                    errors={state.errors}
-                                                    className="text-sm text-red-500 mt-1"
-                                                />
                                             </div>
 
                                             <div>
@@ -239,21 +244,15 @@ const Contacto = () => {
                                                     className="min-h-[120px]"
                                                     required
                                                 />
-                                                <ValidationError 
-                                                    prefix="Mensaje" 
-                                                    field="message"
-                                                    errors={state.errors}
-                                                    className="text-sm text-red-500 mt-1"
-                                                />
                                             </div>
 
                                             <Button 
                                                 type="submit" 
                                                 size="lg" 
                                                 className="w-full bg-coffee-orange hover:bg-coffee-orange/90"
-                                                disabled={state.submitting}
+                                                disabled={isSubmitting}
                                             >
-                                                {state.submitting ? 'Enviando...' : 'Enviar Mensaje'}
+                                                {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
                                             </Button>
                                         </form>
                                     )}
@@ -261,7 +260,6 @@ const Contacto = () => {
                             </Card>
                         </motion.div>
 
-                        {/* Información de contacto mejorada */}
                         <motion.div
                             initial={{ opacity: 0, x: 50 }}
                             animate={contactInView ? { opacity: 1, x: 0 } : {}}

@@ -81,7 +81,7 @@ const ClientesB2B = () => {
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{
-                        backgroundImage: "url('/images/heroSection/clientesB2B.jpeg')",
+                        backgroundImage: "url('/images/heroSection/clientesB2B.webp')",
                         filter: "brightness(0.4)"
                     }}
                 />

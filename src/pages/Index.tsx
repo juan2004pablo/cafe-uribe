@@ -123,7 +123,7 @@ const Index = () => {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/images/heroSection/index.jpeg')",
+            backgroundImage: "url('/images/heroSection/index.webp')",
           }}
         />
 

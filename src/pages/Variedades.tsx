@@ -135,7 +135,7 @@ const Variedades = () => {
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{
-                        backgroundImage: "url('/images/heroSection/variedades.jpeg')",
+                        backgroundImage: "url('/images/heroSection/variedades.webp')",
                         filter: "brightness(0.4)"
                     }}
                 />

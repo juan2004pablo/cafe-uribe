@@ -1,382 +1,258 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useState, useRef } from 'react';
+import { Mail, Phone, MapPin, MessageCircle, Clock, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent } from '@/components/ui/card';
-import { Building2, Mail, Phone, User, MessageSquare, Send, CheckCircle, AlertCircle, MapPin, Clock, Coffee } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import GoogleMaps from '@/components/GoogleMaps';
+import { WhatsAppIcon } from '@/components/ui/whatsAppIcon';
+import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 const Contacto = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
-    const [formRef, formInView] = useInView({ triggerOnce: true, threshold: 0.1 });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [errors, setErrors] = useState<Record<string, string>>({});
+    const [contactRef, contactInView] = useInView({ triggerOnce: true, threshold: 0.1 });
+    const [mapRef, mapInView] = useInView({ triggerOnce: true, threshold: 0.1 });
+    const [disclaimerRef, disclaimerInView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+    // EmailJS integration
     const form = useRef<HTMLFormElement>(null);
-
-    const validateField = (name: string, value: string) => {
-        const newErrors = { ...errors };
-
-        switch (name) {
-            case 'user_name':
-                if (!value.trim()) {
-                    newErrors[name] = 'El nombre es requerido';
-                } else if (value.length < 2) {
-                    newErrors[name] = 'El nombre debe tener al menos 2 caracteres';
-                } else if (value.length > 50) {
-                    newErrors[name] = 'El nombre no puede exceder 50 caracteres';
-                } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/.test(value)) {
-                    newErrors[name] = 'El nombre solo puede contener letras y espacios';
-                } else {
-                    delete newErrors[name];
-                }
-                break;
-
-            case 'user_email':
-                if (!value.trim()) {
-                    newErrors[name] = 'El correo electrónico es requerido';
-                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-                    newErrors[name] = 'Por favor ingresa un correo electrónico válido';
-                } else {
-                    delete newErrors[name];
-                }
-                break;
-
-            case 'user_phone':
-                if (value && !/^[\d\s\-\+\(\)]+$/.test(value)) {
-                    newErrors[name] = 'El teléfono solo puede contener números, espacios, guiones, + y paréntesis';
-                } else if (value && (value.length < 7 || value.length > 20)) {
-                    newErrors[name] = 'El teléfono debe tener entre 7 y 20 caracteres';
-                } else {
-                    delete newErrors[name];
-                }
-                break;
-
-            case 'subject':
-                if (!value.trim()) {
-                    newErrors[name] = 'El asunto es requerido';
-                } else if (value.length < 5) {
-                    newErrors[name] = 'El asunto debe tener al menos 5 caracteres';
-                } else if (value.length > 100) {
-                    newErrors[name] = 'El asunto no puede exceder 100 caracteres';
-                } else if (/^\d+$/.test(value)) {
-                    newErrors[name] = 'El asunto no puede ser solo números';
-                } else {
-                    delete newErrors[name];
-                }
-                break;
-
-            case 'message':
-                if (!value.trim()) {
-                    newErrors[name] = 'El mensaje es requerido';
-                } else if (value.length < 10) {
-                    newErrors[name] = 'El mensaje debe tener al menos 10 caracteres';
-                } else if (value.length > 1000) {
-                    newErrors[name] = 'El mensaje no puede exceder 1000 caracteres';
-                } else if (/^\d+$/.test(value)) {
-                    newErrors[name] = 'El mensaje no puede ser solo números';
-                } else {
-                    delete newErrors[name];
-                }
-                break;
-        }
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        validateField(e.target.name, e.target.value);
-    };
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
     const sendEmail = (e: React.FormEvent) => {
         e.preventDefault();
-        
-        if (!form.current) return;
-
-        const formData = new FormData(form.current);
-        let isValid = true;
-
-        // Validar todos los campos
-        for (const [name, value] of formData.entries()) {
-            if (!validateField(name as string, value as string)) {
-                isValid = false;
-            }
-        }
-
-        if (!isValid) return;
-
         setIsSubmitting(true);
 
-        emailjs
-            .sendForm('service_cafe_uribe_test', 'template_x7a8zdu', form.current, {
-                publicKey: 'GgMkx8GPi6Z3ZXerG',
-            })
-            .then(
-                () => {
-                    console.log('SUCCESS!');
-                    setIsSubmitted(true);
-                    setIsSubmitting(false);
-                    setErrors({});
-                    // Reset form after 5 seconds
-                    setTimeout(() => {
-                        setIsSubmitted(false);
+        if (form.current) {
+            emailjs
+                .sendForm('service_cafe_uribe_test', 'template_x7a8zdu', form.current, {
+                    publicKey: 'GgMkx8GPi6Z3ZXerG',
+                })
+                .then(
+                    () => {
+                        console.log('SUCCESS!');
+                        setIsSuccess(true);
+                        setIsSubmitting(false);
                         if (form.current) {
                             form.current.reset();
                         }
-                    }, 5000);
-                },
-                (error) => {
-                    console.log('FAILED...', error.text);
-                    setIsSubmitting(false);
-                    alert('Error al enviar el mensaje. Por favor, intenta de nuevo.');
-                },
-            );
+                    },
+                    (error) => {
+                        console.log('FAILED...', error.text);
+                        setIsSubmitting(false);
+                        alert('Error al enviar el mensaje. Por favor intenta nuevamente.');
+                    },
+                );
+        }
     };
 
+    const contactMethods = [
+        {
+            icon: <MessageCircle className="w-6 h-6" />,
+            title: "WhatsApp",
+            info: "+57 320 373 7502",
+            description: "Atención inmediata",
+            action: () => window.open('https://wa.me/573203737502?text=Hola, me interesa conocer más sobre Café Uribe', '_blank'),
+            buttonText: "Chatear"
+        },
+        {
+            icon: <Phone className="w-6 h-6" />,
+            title: "Teléfono",
+            info: "+57 320 373 7502",
+            description: "Lun - Sáb, 8:00 AM - 6:00 PM",
+            action: () => window.open('tel:+573203737502', '_blank'),
+            buttonText: "Llamar Ahora"
+        },
+        {
+            icon: <Mail className="w-6 h-6" />,
+            title: "Email",
+            info: "info@cafeuribe.com",
+            description: "Respuesta en 24 horas",
+            action: () => window.open('mailto:info@cafeuribe.com', '_blank'),
+            buttonText: "Enviar Email"
+        },
+    ];
+
     return (
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen overflow-x-hidden">
             <Header />
 
             {/* Hero Section */}
-            <section ref={heroRef} className="relative min-h-[60vh] flex items-center justify-center pt-20">
+            <section ref={heroRef} className="relative min-h-[80vh] flex items-center justify-center pt-20">
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{
-                        backgroundImage: "url('/images/heroSection/contacto.jpeg')",
-                        filter: "brightness(0.4)"
+                        backgroundImage: "url('/images/producto/punto_de_venta_hero.png')",
+                        filter: "brightness(0.5)"
                     }}
                 />
-                <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+                <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={heroInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8 }}
                     >
                         <h1 className="font-playfair text-5xl md:text-6xl font-bold mb-6">
-                            Contáctanos
+                            Hablemos de buen café
                         </h1>
-                        <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-2xl mx-auto">
-                            Estamos listos para responder a todas tus preguntas y ayudarte en lo que necesites.
+                        <p className="text-xl md:text-2xl opacity-90">
+                            Estamos aquí para acompañarte en tu negocio
                         </p>
                     </motion.div>
                 </div>
             </section>
 
-            {/* Contact Info Cards */}
-            <section className="py-16 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                        >
-                            <Card className="h-full flex flex-col justify-center items-center p-6 border-0 shadow-md">
-                                <MapPin className="w-10 h-10 text-coffee-orange mb-4" />
-                                <h3 className="font-playfair text-xl font-semibold text-coffee-brown mb-2">
-                                    Visítanos
-                                </h3>
-                                <p className="text-coffee-brown/70 text-center">
-                                    Cra 24 # 77-34
-                                    <br />
-                                    Bogotá, Colombia
-                                </p>
-                            </Card>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                        >
-                            <Card className="h-full flex flex-col justify-center items-center p-6 border-0 shadow-md">
-                                <Clock className="w-10 h-10 text-coffee-orange mb-4" />
-                                <h3 className="font-playfair text-xl font-semibold text-coffee-brown mb-2">
-                                    Horario
-                                </h3>
-                                <p className="text-coffee-brown/70 text-center">
-                                    Lunes a Viernes: 8 AM - 6 PM
-                                    <br />
-                                    Sábados: 9 AM - 1 PM
-                                </p>
-                            </Card>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.8, delay: 0.6 }}
-                        >
-                            <Card className="h-full flex flex-col justify-center items-center p-6 border-0 shadow-md">
-                                <Coffee className="w-10 h-10 text-coffee-orange mb-4" />
-                                <h3 className="font-playfair text-xl font-semibold text-coffee-brown mb-2">
-                                    ¡Escríbenos!
-                                </h3>
-                                <p className="text-coffee-brown/70 text-center">
-                                    info@cafeuribe.com
-                                </p>
-                            </Card>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Contact Form and Map */}
-            <section ref={formRef} className="py-20 bg-gradient-to-br from-coffee-cream/20 to-white">
+            {/* Información de contacto */}
+            <section ref={contactRef} className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                        {/* Contact Form */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            animate={formInView ? { opacity: 1, x: 0 } : {}}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
-                                <CardContent className="p-8">
-                                    <div className="mb-8">
-                                        <h3 className="font-playfair text-2xl font-bold text-coffee-brown mb-4">
-                                            Envíanos un Mensaje
-                                        </h3>
-                                        <p className="text-coffee-brown/70">
-                                            Estamos aquí para responder todas tus preguntas sobre nuestros productos y servicios.
-                                        </p>
-                                    </div>
 
-                                    {isSubmitted ? (
-                                        <motion.div
-                                            initial={{ opacity: 0, scale: 0.9 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            className="text-center py-8"
-                                        >
-                                            <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                                            <h4 className="text-xl font-semibold text-coffee-brown mb-2">
-                                                ¡Mensaje Enviado!
-                                            </h4>
+                        {/* Formulario */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={contactInView ? { opacity: 1, x: 0 } : {}}
+                            transition={{ duration: 0.8 }}
+                            className="space-y-8"
+                        >
+                            {/* Horarios */}
+                            <Card className="p-6 bg-coffee-cream/20">
+                                <div className="flex items-start space-x-4">
+                                    <div className="w-12 h-12 bg-coffee-orange/10 rounded-full flex items-center justify-center">
+                                        <Clock className="w-6 h-6 text-coffee-orange" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-playfair text-xl font-semibold text-coffee-brown mb-3">
+                                            Horario de Atención Virtual
+                                        </h3>
+                                        <div className="space-y-2 text-coffee-brown/80">
+                                            <div className="flex space-x-2">
+                                                <span>Lunes - Sábado:</span>
+                                                <span className="font-medium">8:00 AM - 6:00 PM</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Card>
+
+                            <Card>
+                                <CardHeader>
+                                    <h2 className="font-playfair text-3xl font-bold text-coffee-brown">
+                                        Envíanos un Mensaje
+                                    </h2>
+                                    <p className="text-coffee-brown/70">
+                                        Completa el formulario y nos pondremos en contacto contigo pronto.
+                                    </p>
+                                </CardHeader>
+                                <CardContent className="space-y-6">
+                                    {isSuccess ? (
+                                        <div className="text-center py-8">
+                                            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                <Mail className="w-8 h-8 text-green-600" />
+                                            </div>
+                                            <h3 className="text-xl font-semibold text-coffee-brown mb-2">
+                                                ¡Mensaje enviado exitosamente!
+                                            </h3>
                                             <p className="text-coffee-brown/70">
-                                                Gracias por contactarnos. Te responderemos pronto.
+                                                Gracias por contactarnos. Te responderemos muy pronto.
                                             </p>
-                                        </motion.div>
+                                            <Button 
+                                                onClick={() => setIsSuccess(false)}
+                                                className="mt-4 bg-coffee-orange hover:bg-coffee-orange/90"
+                                            >
+                                                Enviar otro mensaje
+                                            </Button>
+                                        </div>
                                     ) : (
                                         <form ref={form} onSubmit={sendEmail} className="space-y-6">
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                <div className="relative">
-                                                    <User className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
-                                                    <Input
-                                                        type="text"
+                                                <div>
+                                                    <label htmlFor="user_name" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                        Nombre
+                                                    </label>
+                                                    <Input 
+                                                        id="user_name"
                                                         name="user_name"
-                                                        placeholder="Tu nombre completo"
-                                                        className={`pl-10 border-coffee-brown/20 focus:border-coffee-orange ${errors.user_name ? 'border-red-500' : ''}`}
-                                                        onChange={handleInputChange}
+                                                        type="text"
+                                                        placeholder="Tu nombre completo" 
                                                         required
                                                     />
-                                                    {errors.user_name && (
-                                                        <div className="flex items-center mt-1 text-red-500 text-sm">
-                                                            <AlertCircle className="w-3 h-3 mr-1" />
-                                                            {errors.user_name}
-                                                        </div>
-                                                    )}
                                                 </div>
-                                                <div className="relative">
-                                                    <Mail className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
-                                                    <Input
-                                                        type="email"
+                                                <div>
+                                                    <label htmlFor="user_email" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                        Email
+                                                    </label>
+                                                    <Input 
+                                                        id="user_email"
                                                         name="user_email"
-                                                        placeholder="Tu correo electrónico"
-                                                        className={`pl-10 border-coffee-brown/20 focus:border-coffee-orange ${errors.user_email ? 'border-red-500' : ''}`}
-                                                        onChange={handleInputChange}
+                                                        type="email" 
+                                                        placeholder="tu@email.com" 
                                                         required
                                                     />
-                                                    {errors.user_email && (
-                                                        <div className="flex items-center mt-1 text-red-500 text-sm">
-                                                            <AlertCircle className="w-3 h-3 mr-1" />
-                                                            {errors.user_email}
-                                                        </div>
-                                                    )}
                                                 </div>
                                             </div>
 
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                <div className="relative">
-                                                    <Phone className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
-                                                    <Input
-                                                        type="tel"
+                                                <div>
+                                                    <label htmlFor="user_phone" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                        Teléfono
+                                                    </label>
+                                                    <Input 
+                                                        id="user_phone"
                                                         name="user_phone"
-                                                        placeholder="Tu teléfono (opcional)"
-                                                        className={`pl-10 border-coffee-brown/20 focus:border-coffee-orange ${errors.user_phone ? 'border-red-500' : ''}`}
-                                                        onChange={handleInputChange}
+                                                        type="tel"
+                                                        placeholder="+57 300 123 4567" 
                                                     />
-                                                    {errors.user_phone && (
-                                                        <div className="flex items-center mt-1 text-red-500 text-sm">
-                                                            <AlertCircle className="w-3 h-3 mr-1" />
-                                                            {errors.user_phone}
-                                                        </div>
-                                                    )}
                                                 </div>
-                                                <div className="relative">
-                                                    <Building2 className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
-                                                    <Input
+                                                <div>
+                                                    <label htmlFor="user_company" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                        Empresa (opcional)
+                                                    </label>
+                                                    <Input 
+                                                        id="user_company"
+                                                        name="user_company"
                                                         type="text"
-                                                        name="subject"
-                                                        placeholder="Asunto del mensaje"
-                                                        className={`pl-10 border-coffee-brown/20 focus:border-coffee-orange ${errors.subject ? 'border-red-500' : ''}`}
-                                                        onChange={handleInputChange}
-                                                        required
+                                                        placeholder="Nombre de tu empresa" 
                                                     />
-                                                    {errors.subject && (
-                                                        <div className="flex items-center mt-1 text-red-500 text-sm">
-                                                            <AlertCircle className="w-3 h-3 mr-1" />
-                                                            {errors.subject}
-                                                        </div>
-                                                    )}
                                                 </div>
                                             </div>
 
-                                            <div className="relative">
-                                                <MessageSquare className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
-                                                <Textarea
-                                                    name="message"
-                                                    placeholder="Escribe tu mensaje aquí..."
-                                                    rows={6}
-                                                    className={`pl-10 border-coffee-brown/20 focus:border-coffee-orange resize-none ${errors.message ? 'border-red-500' : ''}`}
-                                                    onChange={handleInputChange}
+                                            <div>
+                                                <label htmlFor="subject" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                    Asunto
+                                                </label>
+                                                <Input 
+                                                    id="subject"
+                                                    name="subject"
+                                                    type="text"
+                                                    placeholder="Motivo de tu consulta" 
                                                     required
                                                 />
-                                                {errors.message && (
-                                                    <div className="flex items-center mt-1 text-red-500 text-sm">
-                                                        <AlertCircle className="w-3 h-3 mr-1" />
-                                                        {errors.message}
-                                                    </div>
-                                                )}
-                                                <div className="text-right mt-1">
-                                                    <span className="text-sm text-coffee-brown/50">
-                                                        {form.current?.message?.value?.length || 0}/1000
-                                                    </span>
-                                                </div>
                                             </div>
 
-                                            <Button
-                                                type="submit"
-                                                size="lg"
-                                                className="w-full bg-coffee-orange hover:bg-coffee-orange/80 text-white group"
-                                                disabled={isSubmitting || Object.keys(errors).length > 0}
+                                            <div>
+                                                <label htmlFor="message" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                    Mensaje
+                                                </label>
+                                                <Textarea
+                                                    id="message"
+                                                    name="message"
+                                                    placeholder="Cuéntanos cómo podemos ayudarte..."
+                                                    className="min-h-[120px]"
+                                                    required
+                                                />
+                                            </div>
+
+                                            <Button 
+                                                type="submit" 
+                                                size="lg" 
+                                                className="w-full bg-coffee-orange hover:bg-coffee-orange/90"
+                                                disabled={isSubmitting}
                                             >
-                                                {isSubmitting ? (
-                                                    <span className="flex items-center">
-                                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                                                        Enviando mensaje...
-                                                    </span>
-                                                ) : (
-                                                    <span className="flex items-center">
-                                                        Enviar Mensaje
-                                                        <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                                    </span>
-                                                )}
+                                                {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
                                             </Button>
                                         </form>
                                     )}
@@ -384,17 +260,144 @@ const Contacto = () => {
                             </Card>
                         </motion.div>
 
-                        {/* Map */}
                         <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            animate={formInView ? { opacity: 1, x: 0 } : {}}
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={contactInView ? { opacity: 1, x: 0 } : {}}
                             transition={{ duration: 0.8, delay: 0.2 }}
+                            className="space-y-8"
                         >
-                            <GoogleMaps />
+                            <Card className="p-6 bg-coffee-cream/20">
+                                <div className="flex items-start space-x-4">
+                                    <div className="w-12 h-12 bg-coffee-orange/10 rounded-full flex items-center justify-center">
+                                        <Clock className="w-6 h-6 text-coffee-orange" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-playfair text-xl font-semibold text-coffee-brown mb-3">
+                                            Horario Punto de Venta
+                                        </h3>
+                                        <div className="space-y-1 text-coffee-brown/80">
+                                            <div className="flex space-x-2">
+                                                <span>Lunes:</span>
+                                                <span className="font-medium">Cerrado</span>
+                                            </div>
+                                            <div className="flex space-x-2">
+                                                <span>Martes - Sábado:</span>
+                                                <span className="font-medium">7:00 AM - 12:00 M / 3:00 PM - 7:00 PM</span>
+                                            </div>
+                                            <div className="flex space-x-2">
+                                                <span>Domingo:</span>
+                                                <span className="font-medium">7:00 AM - 12:00 M</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Card>
+                            <div>
+                                <h2 className="font-playfair text-3xl font-bold text-coffee-brown mb-6">
+                                    Información de Contacto
+                                </h2>
+                                <p className="text-coffee-brown/80 mb-8">
+                                    Nuestras fincas están ubicadas en el hermoso municipio de Ragonvalia, Norte de Santander,
+                                    a una altitud de 1,750 metros sobre el nivel del mar.
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-1 gap-6">
+                                {contactMethods.map((method, index) => (
+                                    <motion.div
+                                        key={method.title}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={contactInView ? { opacity: 1, y: 0 } : {}}
+                                        transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                                    >
+                                        <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+                                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                                                <div className="flex items-start space-x-4 flex-1 min-w-0">
+                                                    <div className="w-12 h-12 bg-coffee-orange/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                                        <div className="text-coffee-orange">{method.icon}</div>
+                                                    </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <h3 className="font-semibold text-coffee-brown mb-1">
+                                                            {method.title}
+                                                        </h3>
+                                                        <p className="text-coffee-brown font-medium mb-1 break-words">
+                                                            {method.info}
+                                                        </p>
+                                                        <p className="text-coffee-brown/60 text-sm">
+                                                            {method.description}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <Button
+                                                    onClick={method.action}
+                                                    size="sm"
+                                                    className="bg-coffee-orange hover:bg-coffee-orange/90 text-white flex items-center gap-2 w-full sm:w-auto flex-shrink-0"
+                                                >
+                                                    <span className="hidden sm:inline">{method.buttonText}</span>
+                                                    <span className="sm:hidden text-xs">{method.buttonText}</span>
+                                                    <ExternalLink className="w-3 h-3" />
+                                                </Button>
+                                            </div>
+                                        </Card>
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                            {/* CTA rápido mejorado
+                            <Card className="p-6 bg-coffee-brown text-white">
+                                <h3 className="font-playfair text-xl font-semibold mb-3">
+                                    ¿Necesitas Atención Inmediata?
+                                </h3>
+                                <p className="text-white/80 mb-4">
+                                    Para consultas urgentes o pedidos inmediatos, contáctanos por WhatsApp.
+                                </p>
+                                <Button
+                                    onClick={() => window.open('https://wa.me/573203737502?text=Hola, necesito atención inmediata sobre Café Uribe', '_blank')}
+                                    className="bg-coffee-orange hover:bg-coffee-orange/90 text-white w-full"
+                                >
+                                    <WhatsAppIcon className="w-4 h-4 mr-2" />
+                                    Chatear por WhatsApp
+                                </Button>
+                            </Card> */}
                         </motion.div>
                     </div>
                 </div>
             </section>
+
+            {/* Mapa de Google Maps */}
+            <section ref={mapRef} className="py-20 bg-coffee-cream/30">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={mapInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <GoogleMaps />
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Disclaimer Section
+            <section ref={disclaimerRef} className="py-12 bg-coffee-brown/5">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={disclaimerInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <Card className="p-6 border-coffee-orange/20">
+                            <h3 className="font-playfair text-lg font-semibold text-coffee-orange mb-3">
+                                Propuesta no oficial – Uso demostrativo
+                            </h3>
+                            <p className="text-coffee-brown/80 text-sm leading-relaxed">
+                                Este sitio es una propuesta desarrollada exclusivamente con fines demostrativos para la empresa Café Uribe. 
+                                No representa su sitio oficial, no está afiliado directamente a la empresa y no se utiliza con fines comerciales. 
+                                El contenido utilizado (logos, imágenes e información) es referencial.
+                            </p>
+                        </Card>
+                    </motion.div>
+                </div>
+            </section> */}
 
             <Footer />
         </div>
@@ -402,3 +405,4 @@ const Contacto = () => {
 };
 
 export default Contacto;
+

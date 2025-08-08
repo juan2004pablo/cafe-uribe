@@ -118,25 +118,61 @@ const Contacto = () => {
                             transition={{ duration: 0.8 }}
                             className="space-y-8"
                         >
-                            {/* Horarios */}
-                            <Card className="p-6 bg-coffee-cream/20">
-                                <div className="flex items-start space-x-4">
-                                    <div className="w-12 h-12 bg-coffee-orange/10 rounded-full flex items-center justify-center">
-                                        <Clock className="w-6 h-6 text-coffee-orange" />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-playfair text-xl font-semibold text-coffee-brown mb-3">
-                                            Horario de Atención Virtual
+                            {/* Horarios Mejorados */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {/* Horario Virtual */}
+                                <Card className="p-6 bg-gradient-to-br from-coffee-orange/5 to-coffee-orange/10 border-coffee-orange/20">
+                                    <div className="text-center">
+                                        <div className="w-16 h-16 bg-coffee-orange/15 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <MessageCircle className="w-8 h-8 text-coffee-orange" />
+                                        </div>
+                                        <h3 className="font-playfair text-lg font-bold text-coffee-brown mb-2">
+                                            Atención Virtual
                                         </h3>
-                                        <div className="space-y-2 text-coffee-brown/80">
-                                            <div className="flex space-x-2">
-                                                <span>Lunes - Sábado:</span>
-                                                <span className="font-medium">8:00 AM - 6:00 PM</span>
+                                        <div className="space-y-2 text-sm">
+                                            <div className="flex items-center justify-center space-x-2 text-coffee-brown/80">
+                                                <Clock className="w-4 h-4" />
+                                                <span className="font-medium">Lunes - Sábado</span>
                                             </div>
+                                            <div className="text-lg font-bold text-coffee-orange">
+                                                8:00 AM - 6:00 PM
+                                            </div>
+                                            <p className="text-xs text-coffee-brown/60 mt-2">
+                                                WhatsApp, Email y Formulario
+                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                            </Card>
+                                </Card>
+
+                                {/* Horario Punto de Venta */}
+                                <Card className="p-6 bg-gradient-to-br from-coffee-brown/5 to-coffee-brown/10 border-coffee-brown/20">
+                                    <div className="text-center">
+                                        <div className="w-16 h-16 bg-coffee-brown/15 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <MapPin className="w-8 h-8 text-coffee-brown" />
+                                        </div>
+                                        <h3 className="font-playfair text-lg font-bold text-coffee-brown mb-2">
+                                            Punto de Venta
+                                        </h3>
+                                        <div className="space-y-1 text-xs text-coffee-brown/80">
+                                            <div className="flex justify-between items-center py-1">
+                                                <span>Lunes:</span>
+                                                <span className="font-medium text-red-600">Cerrado</span>
+                                            </div>
+                                            <div className="flex justify-between items-center py-1">
+                                                <span>Mar - Sáb:</span>
+                                                <span className="font-medium text-green-600">7AM-12M / 3PM-7PM</span>
+                                            </div>
+                                            <div className="flex justify-between items-center py-1">
+                                                <span>Domingo:</span>
+                                                <span className="font-medium text-green-600">7AM - 12M</span>
+                                            </div>
+                                        </div>
+                                        <p className="text-xs text-coffee-brown/60 mt-3">
+                                            Ragonvalia, Norte de Santander
+                                        </p>
+                                    </div>
+                                </Card>
+                            </div>
 
                             <Card>
                                 <CardHeader>
@@ -266,32 +302,6 @@ const Contacto = () => {
                             transition={{ duration: 0.8, delay: 0.2 }}
                             className="space-y-8"
                         >
-                            <Card className="p-6 bg-coffee-cream/20">
-                                <div className="flex items-start space-x-4">
-                                    <div className="w-12 h-12 bg-coffee-orange/10 rounded-full flex items-center justify-center">
-                                        <Clock className="w-6 h-6 text-coffee-orange" />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-playfair text-xl font-semibold text-coffee-brown mb-3">
-                                            Horario Punto de Venta
-                                        </h3>
-                                        <div className="space-y-1 text-coffee-brown/80">
-                                            <div className="flex space-x-2">
-                                                <span>Lunes:</span>
-                                                <span className="font-medium">Cerrado</span>
-                                            </div>
-                                            <div className="flex space-x-2">
-                                                <span>Martes - Sábado:</span>
-                                                <span className="font-medium">7:00 AM - 12:00 M / 3:00 PM - 7:00 PM</span>
-                                            </div>
-                                            <div className="flex space-x-2">
-                                                <span>Domingo:</span>
-                                                <span className="font-medium">7:00 AM - 12:00 M</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Card>
                             <div>
                                 <h2 className="font-playfair text-3xl font-bold text-coffee-brown mb-6">
                                     Información de Contacto
@@ -342,23 +352,6 @@ const Contacto = () => {
                                     </motion.div>
                                 ))}
                             </div>
-
-                            {/* CTA rápido mejorado
-                            <Card className="p-6 bg-coffee-brown text-white">
-                                <h3 className="font-playfair text-xl font-semibold mb-3">
-                                    ¿Necesitas Atención Inmediata?
-                                </h3>
-                                <p className="text-white/80 mb-4">
-                                    Para consultas urgentes o pedidos inmediatos, contáctanos por WhatsApp.
-                                </p>
-                                <Button
-                                    onClick={() => window.open('https://wa.me/573203737502?text=Hola, necesito atención inmediata sobre Café Uribe', '_blank')}
-                                    className="bg-coffee-orange hover:bg-coffee-orange/90 text-white w-full"
-                                >
-                                    <WhatsAppIcon className="w-4 h-4 mr-2" />
-                                    Chatear por WhatsApp
-                                </Button>
-                            </Card> */}
                         </motion.div>
                     </div>
                 </div>
@@ -377,32 +370,9 @@ const Contacto = () => {
                 </div>
             </section>
 
-            {/* Disclaimer Section
-            <section ref={disclaimerRef} className="py-12 bg-coffee-brown/5">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={disclaimerInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <Card className="p-6 border-coffee-orange/20">
-                            <h3 className="font-playfair text-lg font-semibold text-coffee-orange mb-3">
-                                Propuesta no oficial – Uso demostrativo
-                            </h3>
-                            <p className="text-coffee-brown/80 text-sm leading-relaxed">
-                                Este sitio es una propuesta desarrollada exclusivamente con fines demostrativos para la empresa Café Uribe. 
-                                No representa su sitio oficial, no está afiliado directamente a la empresa y no se utiliza con fines comerciales. 
-                                El contenido utilizado (logos, imágenes e información) es referencial.
-                            </p>
-                        </Card>
-                    </motion.div>
-                </div>
-            </section> */}
-
             <Footer />
         </div>
     );
 };
 
 export default Contacto;
-

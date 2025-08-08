@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Mail, Phone, MapPin, MessageCircle, Clock, ExternalLink } from 'lucide-react';
+import { Facebook, Instagram, } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -139,7 +140,7 @@ const Contacto = () => {
                                             <p className="text-coffee-brown/70">
                                                 Gracias por contactarnos. Te responderemos muy pronto.
                                             </p>
-                                            <Button 
+                                            <Button
                                                 onClick={() => setIsSuccess(false)}
                                                 className="mt-4 bg-coffee-orange hover:bg-coffee-orange/90"
                                             >
@@ -153,11 +154,11 @@ const Contacto = () => {
                                                     <label htmlFor="user_name" className="block text-sm font-medium text-coffee-brown mb-2">
                                                         Nombre
                                                     </label>
-                                                    <Input 
+                                                    <Input
                                                         id="user_name"
                                                         name="user_name"
                                                         type="text"
-                                                        placeholder="Tu nombre completo" 
+                                                        placeholder="Tu nombre completo"
                                                         required
                                                     />
                                                 </div>
@@ -165,11 +166,11 @@ const Contacto = () => {
                                                     <label htmlFor="user_email" className="block text-sm font-medium text-coffee-brown mb-2">
                                                         Email
                                                     </label>
-                                                    <Input 
+                                                    <Input
                                                         id="user_email"
                                                         name="user_email"
-                                                        type="email" 
-                                                        placeholder="tu@email.com" 
+                                                        type="email"
+                                                        placeholder="tu@email.com"
                                                         required
                                                     />
                                                 </div>
@@ -180,22 +181,22 @@ const Contacto = () => {
                                                     <label htmlFor="user_phone" className="block text-sm font-medium text-coffee-brown mb-2">
                                                         Teléfono
                                                     </label>
-                                                    <Input 
+                                                    <Input
                                                         id="user_phone"
                                                         name="user_phone"
                                                         type="tel"
-                                                        placeholder="+57 300 123 4567" 
+                                                        placeholder="+57 300 123 4567"
                                                     />
                                                 </div>
                                                 <div>
                                                     <label htmlFor="user_company" className="block text-sm font-medium text-coffee-brown mb-2">
                                                         Empresa (opcional)
                                                     </label>
-                                                    <Input 
+                                                    <Input
                                                         id="user_company"
                                                         name="user_company"
                                                         type="text"
-                                                        placeholder="Nombre de tu empresa" 
+                                                        placeholder="Nombre de tu empresa"
                                                     />
                                                 </div>
                                             </div>
@@ -204,11 +205,11 @@ const Contacto = () => {
                                                 <label htmlFor="subject" className="block text-sm font-medium text-coffee-brown mb-2">
                                                     Asunto
                                                 </label>
-                                                <Input 
+                                                <Input
                                                     id="subject"
                                                     name="subject"
                                                     type="text"
-                                                    placeholder="Motivo de tu consulta" 
+                                                    placeholder="Motivo de tu consulta"
                                                     required
                                                 />
                                             </div>
@@ -226,9 +227,9 @@ const Contacto = () => {
                                                 />
                                             </div>
 
-                                            <Button 
-                                                type="submit" 
-                                                size="lg" 
+                                            <Button
+                                                type="submit"
+                                                size="lg"
                                                 className="w-full bg-coffee-orange hover:bg-coffee-orange/90"
                                                 disabled={isSubmitting}
                                             >
@@ -238,6 +239,61 @@ const Contacto = () => {
                                     )}
                                 </CardContent>
                             </Card>
+                            <div className="mt-8">
+                                <h3 className="font-playfair text-xl font-bold text-coffee-brown mb-2">
+                                    Síguenos en redes
+                                </h3>
+                                <p className="text-sm text-coffee-brown/70 mb-4">
+                                    Conéctate con nosotros y descubre más sobre nuestro café.
+                                </p>
+
+                                <div className="flex space-x-4">
+                                    {/* Instagram */}
+                                    <motion.a
+                                        whileHover={{ scale: 1.15 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        href="https://www.instagram.com/cafeuribe?igsh=MTNpbW9sZ3c0ODRjNQ==&utm_source=qr"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-12 h-12 bg-coffee-orange/10 text-coffee-orange rounded-full flex items-center justify-center 
+                 hover:bg-coffee-orange hover:text-white transition-all duration-300 shadow-sm"
+                                    >
+                                        <Instagram className="w-6 h-6" />
+                                    </motion.a>
+
+                                    {/* Facebook */}
+                                    <motion.a
+                                        whileHover={{ scale: 1.15 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        href="https://www.facebook.com/share/17fEZXoBLy/?mibextid=wwXIfr"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-12 h-12 bg-coffee-orange/10 text-coffee-orange rounded-full flex items-center justify-center 
+                 hover:bg-coffee-orange hover:text-white transition-all duration-300 shadow-sm"
+                                    >
+                                        <Facebook className="w-6 h-6" />
+                                    </motion.a>
+
+                                    {/* TikTok */}
+                                    <motion.a
+                                        whileHover={{ scale: 1.15 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        href="https://www.tiktok.com/@cafeuriberag?_t=ZS-8ycBca0Wdf7&_r=1"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-12 h-12 bg-coffee-orange/10 text-coffee-orange rounded-full flex items-center justify-center 
+                 hover:bg-coffee-orange hover:text-white transition-all duration-300 shadow-sm"
+                                    >
+                                        <svg
+                                            className="w-6 h-6"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+                                        </svg>
+                                    </motion.a>
+                                </div>
+                            </div>
                         </motion.div>
 
                         <motion.div
@@ -288,7 +344,7 @@ const Contacto = () => {
                                             </div>
                                             <div className="flex justify-between items-center py-1">
                                                 <span>Mar - Sáb:</span>
-                                                <span className="font-medium text-green-600">7AM-12M / 3PM-7PM</span>
+                                                <span className="font-medium text-green-600">7AM - 12M / 3PM - 7PM</span>
                                             </div>
                                             <div className="flex justify-between items-center py-1">
                                                 <span>Domingo:</span>
@@ -305,7 +361,7 @@ const Contacto = () => {
                                 <h2 className="font-playfair text-3xl font-bold text-coffee-brown mb-6">
                                     Información de Contacto
                                 </h2>
-                               
+
                             </div>
 
                             <div className="grid grid-cols-1 gap-6">
@@ -323,13 +379,13 @@ const Contacto = () => {
                                                         <div className="text-coffee-orange">{method.icon}</div>
                                                     </div>
                                                     <div className="flex-1 min-w-0">
-                                                        <span className="text-sm font-semibold text-coffee-brown mb-1">
+                                                        <span className="text-sm font-light text-coffee-brown mb-1">
                                                             {method.title}
                                                         </span>
                                                         <p className="text-coffee-brown font-medium mb-1 break-words">
                                                             {method.info}
                                                         </p>
-                                                        
+
                                                     </div>
                                                 </div>
                                                 <Button

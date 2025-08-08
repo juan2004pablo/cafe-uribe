@@ -60,7 +60,7 @@ const ModernContactForm = () => {
                         Comencemos una Alianza
                     </h2>
                     <p className="text-lg text-coffee-brown/70 max-w-2xl mx-auto">
-                        Cuéntanos sobre tu negocio y descubre cómo podemos ser tu mejor aliado en café premium.
+                        Cuéntanos sobre tu negocio y descubre cómo podemos ser tu mejor aliado en café de especialidad.
                     </p>
                 </motion.div>
 
@@ -80,8 +80,8 @@ const ModernContactForm = () => {
                                 {[
                                     {
                                         icon: <Building2 className="w-6 h-6" />,
-                                        title: "Tradición Familiar",
-                                        description: "Más de 30 años cultivando y procesando nuestro propio café de especialidad."
+                                        title: "Logística Eficaz",
+                                        description: "Garantizamos que nuestro café llegue fresco y a tiempo, con procesos logísticos precisos y confiables."
                                     },
                                     {
                                         icon: <Mail className="w-6 h-6" />,
@@ -191,17 +191,6 @@ const ModernContactForm = () => {
                                                 name="business_type"
                                                 placeholder="Tipo de negocio (ej: Restaurante, Hotel, Distribuidor)"
                                                 className="border-coffee-brown/20 focus:border-coffee-orange"
-                                                required
-                                            />
-                                        </div>
-
-                                        <div className="relative">
-                                            <MessageSquare className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
-                                            <Textarea
-                                                name="message"
-                                                placeholder="Cuéntanos sobre tu negocio y cómo podemos ayudarte..."
-                                                rows={4}
-                                                className="pl-10 border-coffee-brown/20 focus:border-coffee-orange resize-none"
                                                 required
                                             />
                                         </div>

@@ -10,12 +10,16 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import GoogleMaps from '@/components/GoogleMaps';
 import { WhatsAppIcon } from '@/components/ui/whatsAppIcon';
+import { useForm, ValidationError } from '@formspree/react';
 
 const Contacto = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [contactRef, contactInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [mapRef, mapInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [disclaimerRef, disclaimerInView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+    // Formspree integration
+    const [state, handleSubmit] = useForm("mvgqvwnk");
 
     const contactMethods = [
         {
@@ -115,56 +119,144 @@ const Contacto = () => {
                                     </p>
                                 </CardHeader>
                                 <CardContent className="space-y-6">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div>
-                                            <label className="block text-sm font-medium text-coffee-brown mb-2">
-                                                Nombre
-                                            </label>
-                                            <Input placeholder="Tu nombre completo" />
+                                    {state.succeeded ? (
+                                        <div className="text-center py-8">
+                                            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                <Mail className="w-8 h-8 text-green-600" />
+                                            </div>
+                                            <h3 className="text-xl font-semibold text-coffee-brown mb-2">
+                                                ¡Mensaje enviado exitosamente!
+                                            </h3>
+                                            <p className="text-coffee-brown/70">
+                                                Gracias por contactarnos. Te responderemos muy pronto.
+                                            </p>
                                         </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-coffee-brown mb-2">
-                                                Email
-                                            </label>
-                                            <Input type="email" placeholder="tu@email.com" />
-                                        </div>
-                                    </div>
+                                    ) : (
+                                        <form onSubmit={handleSubmit} className="space-y-6">
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div>
+                                                    <label htmlFor="name" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                        Nombre
+                                                    </label>
+                                                    <Input 
+                                                        id="name"
+                                                        name="name"
+                                                        type="text"
+                                                        placeholder="Tu nombre completo" 
+                                                        required
+                                                    />
+                                                    <ValidationError 
+                                                        prefix="Nombre" 
+                                                        field="name"
+                                                        errors={state.errors}
+                                                        className="text-sm text-red-500 mt-1"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label htmlFor="email" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                        Email
+                                                    </label>
+                                                    <Input 
+                                                        id="email"
+                                                        name="email"
+                                                        type="email" 
+                                                        placeholder="tu@email.com" 
+                                                        required
+                                                    />
+                                                    <ValidationError 
+                                                        prefix="Email" 
+                                                        field="email"
+                                                        errors={state.errors}
+                                                        className="text-sm text-red-500 mt-1"
+                                                    />
+                                                </div>
+                                            </div>
 
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div>
-                                            <label className="block text-sm font-medium text-coffee-brown mb-2">
-                                                Teléfono
-                                            </label>
-                                            <Input placeholder="+57 300 123 4567" />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-coffee-brown mb-2">
-                                                Empresa (opcional)
-                                            </label>
-                                            <Input placeholder="Nombre de tu empresa" />
-                                        </div>
-                                    </div>
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div>
+                                                    <label htmlFor="phone" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                        Teléfono
+                                                    </label>
+                                                    <Input 
+                                                        id="phone"
+                                                        name="phone"
+                                                        type="tel"
+                                                        placeholder="+57 300 123 4567" 
+                                                    />
+                                                    <ValidationError 
+                                                        prefix="Teléfono" 
+                                                        field="phone"
+                                                        errors={state.errors}
+                                                        className="text-sm text-red-500 mt-1"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label htmlFor="company" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                        Empresa (opcional)
+                                                    </label>
+                                                    <Input 
+                                                        id="company"
+                                                        name="company"
+                                                        type="text"
+                                                        placeholder="Nombre de tu empresa" 
+                                                    />
+                                                    <ValidationError 
+                                                        prefix="Empresa" 
+                                                        field="company"
+                                                        errors={state.errors}
+                                                        className="text-sm text-red-500 mt-1"
+                                                    />
+                                                </div>
+                                            </div>
 
-                                    <div>
-                                        <label className="block text-sm font-medium text-coffee-brown mb-2">
-                                            Asunto
-                                        </label>
-                                        <Input placeholder="Motivo de tu consulta" />
-                                    </div>
+                                            <div>
+                                                <label htmlFor="subject" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                    Asunto
+                                                </label>
+                                                <Input 
+                                                    id="subject"
+                                                    name="subject"
+                                                    type="text"
+                                                    placeholder="Motivo de tu consulta" 
+                                                    required
+                                                />
+                                                <ValidationError 
+                                                    prefix="Asunto" 
+                                                    field="subject"
+                                                    errors={state.errors}
+                                                    className="text-sm text-red-500 mt-1"
+                                                />
+                                            </div>
 
-                                    <div>
-                                        <label className="block text-sm font-medium text-coffee-brown mb-2">
-                                            Mensaje
-                                        </label>
-                                        <Textarea
-                                            placeholder="Cuéntanos cómo podemos ayudarte..."
-                                            className="min-h-[120px]"
-                                        />
-                                    </div>
+                                            <div>
+                                                <label htmlFor="message" className="block text-sm font-medium text-coffee-brown mb-2">
+                                                    Mensaje
+                                                </label>
+                                                <Textarea
+                                                    id="message"
+                                                    name="message"
+                                                    placeholder="Cuéntanos cómo podemos ayudarte..."
+                                                    className="min-h-[120px]"
+                                                    required
+                                                />
+                                                <ValidationError 
+                                                    prefix="Mensaje" 
+                                                    field="message"
+                                                    errors={state.errors}
+                                                    className="text-sm text-red-500 mt-1"
+                                                />
+                                            </div>
 
-                                    <Button size="lg" className="w-full bg-coffee-orange hover:bg-coffee-orange/90">
-                                        Enviar Mensaje
-                                    </Button>
+                                            <Button 
+                                                type="submit" 
+                                                size="lg" 
+                                                className="w-full bg-coffee-orange hover:bg-coffee-orange/90"
+                                                disabled={state.submitting}
+                                            >
+                                                {state.submitting ? 'Enviando...' : 'Enviar Mensaje'}
+                                            </Button>
+                                        </form>
+                                    )}
                                 </CardContent>
                             </Card>
                         </motion.div>

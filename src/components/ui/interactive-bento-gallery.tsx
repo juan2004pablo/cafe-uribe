@@ -172,13 +172,35 @@ interface GalleryModalProps {
 const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaItems }: GalleryModalProps) => {
     const [dockPosition, setDockPosition] = useState({ x: 0, y: 0 });  // Track the position of the dockable panel
 
-    // Prevent body scroll when modal is open
+    // Prevent body scroll when modal is open - Enhanced for mobile
     useEffect(() => {
         if (isOpen) {
+            // Store original values
             const originalStyle = window.getComputedStyle(document.body).overflow;
+            const originalPosition = window.getComputedStyle(document.body).position;
+            const originalHeight = window.getComputedStyle(document.body).height;
+            
+            // Apply mobile-specific styles
             document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.height = '100%';
+            document.body.style.width = '100%';
+            document.body.style.top = '0';
+            document.body.style.left = '0';
+            
+            // Also prevent scroll on document root
+            document.documentElement.style.overflow = 'hidden';
+            document.documentElement.style.height = '100%';
+            
             return () => {
                 document.body.style.overflow = originalStyle;
+                document.body.style.position = originalPosition;
+                document.body.style.height = originalHeight;
+                document.body.style.width = '';
+                document.body.style.top = '';
+                document.body.style.left = '';
+                document.documentElement.style.overflow = '';
+                document.documentElement.style.height = '';
             };
         }
     }, [isOpen]);
@@ -225,7 +247,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
 
     return (
         <>
-            {/* Modal Backdrop - Click outside to close */}
+            {/* Modal Backdrop - Enhanced for mobile */}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -235,7 +257,19 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                     stiffness: 400,
                     damping: 30
                 }}
-                className="fixed inset-0 w-full min-h-screen backdrop-blur-lg bg-black/70 z-[9999]"
+                className="fixed inset-0 w-full h-full min-h-screen backdrop-blur-lg bg-black/70 z-[9999] 
+                          overscroll-none touch-none"
+                style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    height: '100vh',
+                    height: '100dvh', // Dynamic viewport height for mobile
+                    width: '100vw',
+                    overflow: 'hidden'
+                }}
                 onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -243,13 +277,14 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                 }}
             >
                 {/* Main Content */}
-                <div className="h-full flex flex-col">
-                    <div className="flex-1 p-4 sm:p-6 md:p-8 flex items-center justify-center">
+                <div className="h-full w-full flex flex-col" style={{ height: '100vh', height: '100dvh' }}>
+                    <div className="flex-1 p-2 sm:p-4 md:p-6 lg:p-8 flex items-center justify-center overflow-hidden">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={selectedItem.id}
-                                className="relative w-full aspect-[16/9] max-w-[90%] sm:max-w-[80%] md:max-w-4xl 
-                                         h-auto max-h-[80vh] rounded-lg overflow-hidden shadow-2xl"
+                                className="relative w-full h-full max-w-[95%] max-h-[85%] sm:max-w-[90%] sm:max-h-[80%] 
+                                         md:max-w-4xl md:aspect-[16/9] md:max-h-[80vh]
+                                         rounded-lg overflow-hidden shadow-2xl flex items-center justify-center"
                                 initial={{ y: 20, scale: 0.97 }}
                                 animate={{
                                     y: 0,
@@ -274,10 +309,12 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                                     isFullscreen={true}
                                 />
                                 
-                                {/* Close Button */}
+                                {/* Close Button - Enhanced for mobile */}
                                 <motion.button
-                                    className="absolute top-4 right-4 p-3 rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
-                                              backdrop-blur-sm shadow-lg z-10 transition-colors duration-200"
+                                    className="absolute top-2 right-2 sm:top-4 sm:right-4 p-2 sm:p-3 rounded-full 
+                                              bg-coffee-brown/80 text-white hover:bg-coffee-brown 
+                                              backdrop-blur-sm shadow-lg z-10 transition-colors duration-200
+                                              touch-manipulation"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         onClose();
@@ -285,39 +322,43 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
                                 >
-                                    <X className='w-5 h-5' />
+                                    <X className='w-4 h-4 sm:w-5 sm:h-5' />
                                 </motion.button>
 
-                                {/* Navigation Arrows - Fixed position without hover movement */}
+                                {/* Navigation Arrows - Enhanced for mobile */}
                                 <button
-                                    className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
-                                              backdrop-blur-sm shadow-lg z-10 transition-colors duration-200"
+                                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 
+                                              rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
+                                              backdrop-blur-sm shadow-lg z-10 transition-colors duration-200
+                                              touch-manipulation"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         goToPrevious();
                                     }}
                                 >
-                                    <ChevronLeft className='w-5 h-5' />
+                                    <ChevronLeft className='w-4 h-4 sm:w-5 sm:h-5' />
                                 </button>
 
                                 <button
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
-                                              backdrop-blur-sm shadow-lg z-10 transition-colors duration-200"
+                                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 
+                                              rounded-full bg-coffee-brown/80 text-white hover:bg-coffee-brown 
+                                              backdrop-blur-sm shadow-lg z-10 transition-colors duration-200
+                                              touch-manipulation"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         goToNext();
                                     }}
                                 >
-                                    <ChevronRight className='w-5 h-5' />
+                                    <ChevronRight className='w-4 h-4 sm:w-5 sm:h-5' />
                                 </button>
 
-                                {/* Image Info Overlay */}
-                                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 
+                                {/* Image Info Overlay - Enhanced for mobile */}
+                                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-6 lg:p-8 
                                               bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                                    <h3 className="text-white text-lg sm:text-xl md:text-2xl font-semibold font-playfair">
+                                    <h3 className="text-white text-base sm:text-lg md:text-xl lg:text-2xl font-semibold font-playfair">
                                         {selectedItem.title}
                                     </h3>
-                                    <p className="text-white/80 text-sm sm:text-base mt-2 leading-relaxed">
+                                    <p className="text-white/80 text-xs sm:text-sm md:text-base mt-1 sm:mt-2 leading-relaxed">
                                         {selectedItem.desc}
                                     </p>
                                 </div>
@@ -327,7 +368,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                 </div>
             </motion.div>
 
-            {/* Draggable Dock */}
+            {/* Draggable Dock - Enhanced for mobile */}
             <motion.div
                 drag
                 dragMomentum={false}
@@ -340,7 +381,8 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                         y: prev.y + info.offset.y
                     }));
                 }}
-                className="fixed z-[9998] left-1/2 bottom-4 -translate-x-1/2 touch-none"
+                className="fixed z-[9998] left-1/2 bottom-2 sm:bottom-4 -translate-x-1/2 touch-none"
+                style={{ touchAction: 'none' }}
                 onClick={(e) => e.stopPropagation()}
             >
                 <motion.div
@@ -348,7 +390,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                              border border-coffee-orange/30 shadow-lg
                              cursor-grab active:cursor-grabbing"
                 >
-                    <div className="flex items-center -space-x-2 px-3 py-2">
+                    <div className="flex items-center -space-x-1 sm:-space-x-2 px-2 sm:px-3 py-1 sm:py-2">
                         {mediaItems.map((item, index) => (
                             <motion.div
                                 key={item.id}
@@ -358,10 +400,11 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                                 }}
                                 style={{
                                     zIndex: selectedItem.id === item.id ? 30 : mediaItems.length - index,
+                                    touchAction: 'manipulation'
                                 }}
                                 className={`
                                     relative group
-                                    w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex-shrink-0 
+                                    w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 flex-shrink-0 
                                     rounded-lg overflow-hidden 
                                     cursor-pointer hover:z-20
                                     ${selectedItem.id === item.id
@@ -380,6 +423,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                                     y: -10,
                                     transition: { type: "spring", stiffness: 400, damping: 25 }
                                 }}
+                                whileTap={{ scale: 0.9 }}
                             >
                                 <MediaItem item={item} className="w-full h-full" onClick={() => setSelectedItem(item)} />
                                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-coffee-orange/5 to-coffee-orange/20" />

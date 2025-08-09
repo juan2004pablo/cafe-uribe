@@ -366,7 +366,7 @@ const Index = () => {
           {
             author: {
               name: "Cafetito",
-              handle: "Restaurante Tierra Noble"
+              handle: "Restaurante"
             },
             text: "Cliente desde su inicio, fidelizando café Uribe como marca base."
           }

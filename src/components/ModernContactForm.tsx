@@ -1,20 +1,24 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
-import { Building2, Mail, Phone, User, MessageSquare, Send, CheckCircle, AlertCircle } from 'lucide-react';
-import emailjs from '@emailjs/browser';
+import { Building2, Mail, Phone, User, Send, CheckCircle, AlertCircle } from 'lucide-react';
 
 const ModernContactForm = () => {
     const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [errors, setErrors] = useState<Record<string, string>>({});
-    const form = useRef<HTMLFormElement>(null);
+    const [formData, setFormData] = useState({
+        user_name: '',
+        company_name: '',
+        user_email: '',
+        user_phone: '',
+        business_type: ''
+    });
 
     const validateField = (name: string, value: string) => {
         const newErrors = { ...errors };
@@ -85,53 +89,61 @@ const ModernContactForm = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        validateField(e.target.name, e.target.value);
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        validateField(name, value);
     };
 
-    const sendEmail = (e: React.FormEvent) => {
+    const sendToWhatsApp = (e: React.FormEvent) => {
         e.preventDefault();
         
-        if (!form.current) return;
-
-        const formData = new FormData(form.current);
         let isValid = true;
 
         // Validar todos los campos
-        for (const [name, value] of formData.entries()) {
-            if (!validateField(name as string, value as string)) {
+        Object.entries(formData).forEach(([name, value]) => {
+            if (!validateField(name, value)) {
                 isValid = false;
             }
-        }
+        });
 
         if (!isValid) return;
 
         setIsSubmitting(true);
 
-        emailjs
-            .sendForm('service_cafe_uribe_test', 'template_zzfiriv', form.current, {
-                publicKey: 'GgMkx8GPi6Z3ZXerG',
-            })
-            .then(
-                () => {
-                    console.log('SUCCESS!');
-                    setIsSubmitted(true);
-                    setIsSubmitting(false);
-                    setErrors({});
-                    // Reset form after 3 seconds
-                    setTimeout(() => {
-                        setIsSubmitted(false);
-                        if (form.current) {
-                            form.current.reset();
-                        }
-                    }, 3000);
-                },
-                (error) => {
-                    console.log('FAILED...', error.text);
-                    setIsSubmitting(false);
-                    alert('Error al enviar el mensaje. Por favor, intenta de nuevo.');
-                },
-            );
+        // Crear mensaje para WhatsApp
+        const message = `¡Hola! Me interesa iniciar una alianza con Café Uribe.
+
+*Información de contacto:*
+• Nombre: ${formData.user_name}
+• Empresa: ${formData.company_name}
+• Email: ${formData.user_email}
+• Teléfono: ${formData.user_phone || 'No proporcionado'}
+• Tipo de negocio: ${formData.business_type}
+
+Me gustaría conocer más sobre sus productos y condiciones para distribuidores.`;
+
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/573203737502?text=${encodedMessage}`;
+        
+        setTimeout(() => {
+            window.open(whatsappUrl, '_blank');
+            setIsSubmitted(true);
+            setIsSubmitting(false);
+            setErrors({});
+            
+            // Reset form after 3 seconds
+            setTimeout(() => {
+                setIsSubmitted(false);
+                setFormData({
+                    user_name: '',
+                    company_name: '',
+                    user_email: '',
+                    user_phone: '',
+                    business_type: ''
+                });
+            }, 3000);
+        }, 500);
     };
 
     return (
@@ -220,14 +232,14 @@ const ModernContactForm = () => {
                                     >
                                         <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
                                         <h3 className="text-xl font-semibold text-coffee-brown mb-2">
-                                            ¡Mensaje Enviado!
+                                            ¡Redirigido a WhatsApp!
                                         </h3>
                                         <p className="text-coffee-brown/70">
-                                            Nos pondremos en contacto contigo pronto para comenzar nuestra alianza.
+                                            Se ha abierto WhatsApp con tu mensaje. Completa el envío para iniciar nuestra conversación.
                                         </p>
                                     </motion.div>
                                 ) : (
-                                    <form ref={form} onSubmit={sendEmail} className="space-y-6">
+                                    <form onSubmit={sendToWhatsApp} className="space-y-6">
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div className="relative">
                                                 <User className="absolute left-3 top-3.5 w-4 h-4 text-coffee-brown/50" />
@@ -235,6 +247,7 @@ const ModernContactForm = () => {
                                                     type="text"
                                                     name="user_name"
                                                     placeholder="Nombre completo"
+                                                    value={formData.user_name}
                                                     className={`pl-10 border-coffee-brown/20 focus:border-coffee-orange ${errors.user_name ? 'border-red-500' : ''}`}
                                                     onChange={handleInputChange}
                                                     required
@@ -252,6 +265,7 @@ const ModernContactForm = () => {
                                                     type="text"
                                                     name="company_name"
                                                     placeholder="Nombre de la empresa"
+                                                    value={formData.company_name}
                                                     className={`pl-10 border-coffee-brown/20 focus:border-coffee-orange ${errors.company_name ? 'border-red-500' : ''}`}
                                                     onChange={handleInputChange}
                                                     required
@@ -272,6 +286,7 @@ const ModernContactForm = () => {
                                                     type="email"
                                                     name="user_email"
                                                     placeholder="Correo electrónico"
+                                                    value={formData.user_email}
                                                     className={`pl-10 border-coffee-brown/20 focus:border-coffee-orange ${errors.user_email ? 'border-red-500' : ''}`}
                                                     onChange={handleInputChange}
                                                     required
@@ -289,6 +304,7 @@ const ModernContactForm = () => {
                                                     type="tel"
                                                     name="user_phone"
                                                     placeholder="Teléfono (opcional)"
+                                                    value={formData.user_phone}
                                                     className={`pl-10 border-coffee-brown/20 focus:border-coffee-orange ${errors.user_phone ? 'border-red-500' : ''}`}
                                                     onChange={handleInputChange}
                                                 />
@@ -306,6 +322,7 @@ const ModernContactForm = () => {
                                                 type="text"
                                                 name="business_type"
                                                 placeholder="Tipo de negocio (ej: Restaurante, Hotel, Distribuidor)"
+                                                value={formData.business_type}
                                                 className={`border-coffee-brown/20 focus:border-coffee-orange ${errors.business_type ? 'border-red-500' : ''}`}
                                                 onChange={handleInputChange}
                                                 required
@@ -327,11 +344,11 @@ const ModernContactForm = () => {
                                             {isSubmitting ? (
                                                 <span className="flex items-center">
                                                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                                                    Enviando...
+                                                    Redirigiendo a WhatsApp...
                                                 </span>
                                             ) : (
                                                 <span className="flex items-center">
-                                                    Iniciar Alianza
+                                                    Iniciar Conversación en WhatsApp
                                                     <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                                 </span>
                                             )}

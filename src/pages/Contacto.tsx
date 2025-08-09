@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Phone, MapPin, MessageCircle, Clock, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, MessageCircle, Clock, ExternalLink, AlertCircle } from 'lucide-react';
 import { Facebook, Instagram, } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
@@ -9,46 +9,170 @@ import { Textarea } from '@/components/ui/textarea';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import GoogleMaps from '@/components/GoogleMaps';
-import { WhatsAppIcon } from '@/components/ui/whatsAppIcon';
-import React, { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useState } from 'react';
 
 const Contacto = () => {
     const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [contactRef, contactInView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const [mapRef, mapInView] = useInView({ triggerOnce: true, threshold: 0.1 });
-    const [disclaimerRef, disclaimerInView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
-    // EmailJS integration
-    const form = useRef<HTMLFormElement>(null);
+    // Form state and validation
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [errors, setErrors] = useState<Record<string, string>>({});
+    const [formData, setFormData] = useState({
+        user_name: '',
+        user_email: '',
+        user_phone: '',
+        user_company: '',
+        subject: '',
+        message: ''
+    });
 
-    const sendEmail = (e: React.FormEvent) => {
+    const validateField = (name: string, value: string) => {
+        const newErrors = { ...errors };
+
+        switch (name) {
+            case 'user_name':
+                if (!value.trim()) {
+                    newErrors[name] = 'El nombre es requerido';
+                } else if (value.length < 2) {
+                    newErrors[name] = 'El nombre debe tener al menos 2 caracteres';
+                } else if (value.length > 50) {
+                    newErrors[name] = 'El nombre no puede exceder 50 caracteres';
+                } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/.test(value)) {
+                    newErrors[name] = 'El nombre solo puede contener letras y espacios';
+                } else {
+                    delete newErrors[name];
+                }
+                break;
+
+            case 'user_email':
+                if (!value.trim()) {
+                    newErrors[name] = 'El correo electrónico es requerido';
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    newErrors[name] = 'Por favor ingresa un correo electrónico válido';
+                } else {
+                    delete newErrors[name];
+                }
+                break;
+
+            case 'user_phone':
+                if (value && !/^[\d\s\-\+\(\)]+$/.test(value)) {
+                    newErrors[name] = 'El teléfono solo puede contener números, espacios, guiones, + y paréntesis';
+                } else if (value && (value.length < 7 || value.length > 20)) {
+                    newErrors[name] = 'El teléfono debe tener entre 7 y 20 caracteres';
+                } else {
+                    delete newErrors[name];
+                }
+                break;
+
+            case 'user_company':
+                if (value && value.length < 2) {
+                    newErrors[name] = 'El nombre de la empresa debe tener al menos 2 caracteres';
+                } else if (value && value.length > 100) {
+                    newErrors[name] = 'El nombre de la empresa no puede exceder 100 caracteres';
+                } else {
+                    delete newErrors[name];
+                }
+                break;
+
+            case 'subject':
+                if (!value.trim()) {
+                    newErrors[name] = 'El asunto es requerido';
+                } else if (value.length < 5) {
+                    newErrors[name] = 'El asunto debe tener al menos 5 caracteres';
+                } else if (value.length > 100) {
+                    newErrors[name] = 'El asunto no puede exceder 100 caracteres';
+                } else if (/^\d+$/.test(value)) {
+                    newErrors[name] = 'El asunto no puede ser solo números';
+                } else {
+                    delete newErrors[name];
+                }
+                break;
+
+            case 'message':
+                if (!value.trim()) {
+                    newErrors[name] = 'El mensaje es requerido';
+                } else if (value.length < 10) {
+                    newErrors[name] = 'El mensaje debe tener al menos 10 caracteres';
+                } else if (value.length > 1000) {
+                    newErrors[name] = 'El mensaje no puede exceder 1000 caracteres';
+                } else if (/^\d+$/.test(value)) {
+                    newErrors[name] = 'El mensaje no puede ser solo números';
+                } else {
+                    delete newErrors[name];
+                }
+                break;
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        validateField(name, value);
+    };
+
+    const sendToWhatsApp = (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        if (form.current) {
-            emailjs
-                .sendForm('service_cafe_uribe_test', 'template_x7a8zdu', form.current, {
-                    publicKey: 'GgMkx8GPi6Z3ZXerG',
-                })
-                .then(
-                    () => {
-                        console.log('SUCCESS!');
-                        setIsSuccess(true);
-                        setIsSubmitting(false);
-                        if (form.current) {
-                            form.current.reset();
-                        }
-                    },
-                    (error) => {
-                        console.log('FAILED...', error.text);
-                        setIsSubmitting(false);
-                        alert('Error al enviar el mensaje. Por favor intenta nuevamente.');
-                    },
-                );
+        let isValid = true;
+
+        // Validar todos los campos requeridos
+        const requiredFields = ['user_name', 'user_email', 'subject', 'message'];
+        const allFields = ['user_name', 'user_email', 'user_phone', 'user_company', 'subject', 'message'];
+        
+        allFields.forEach(field => {
+            if (!validateField(field, formData[field as keyof typeof formData])) {
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            setIsSubmitting(false);
+            return;
         }
+
+        // Crear mensaje para WhatsApp
+        const message = `¡Hola! Te escribo desde el formulario de contacto de Café Uribe.
+
+*Información de contacto:*
+• Nombre: ${formData.user_name}
+• Email: ${formData.user_email}
+• Teléfono: ${formData.user_phone || 'No proporcionado'}
+• Empresa: ${formData.user_company || 'No proporcionada'}
+
+*Asunto:* ${formData.subject}
+
+*Mensaje:*
+${formData.message}`;
+
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/573203737502?text=${encodedMessage}`;
+        
+        setTimeout(() => {
+            window.open(whatsappUrl, '_blank');
+            setIsSuccess(true);
+            setIsSubmitting(false);
+            setErrors({});
+            
+            // Reset form after showing success message
+            setTimeout(() => {
+                setIsSuccess(false);
+                setFormData({
+                    user_name: '',
+                    user_email: '',
+                    user_phone: '',
+                    user_company: '',
+                    subject: '',
+                    message: ''
+                });
+            }, 3000);
+        }, 500);
     };
 
     const contactMethods = [
@@ -135,10 +259,10 @@ const Contacto = () => {
                                                 <Mail className="w-8 h-8 text-green-600" />
                                             </div>
                                             <h3 className="text-xl font-semibold text-coffee-brown mb-2">
-                                                ¡Mensaje enviado exitosamente!
+                                                ¡Redirigido a WhatsApp!
                                             </h3>
                                             <p className="text-coffee-brown/70">
-                                                Gracias por contactarnos. Te responderemos muy pronto.
+                                                Se ha abierto WhatsApp con tu mensaje. Completa el envío para continuar la conversación.
                                             </p>
                                             <Button
                                                 onClick={() => setIsSuccess(false)}
@@ -148,7 +272,7 @@ const Contacto = () => {
                                             </Button>
                                         </div>
                                     ) : (
-                                        <form ref={form} onSubmit={sendEmail} className="space-y-6">
+                                        <form onSubmit={sendToWhatsApp} className="space-y-6">
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                 <div>
                                                     <label htmlFor="user_name" className="block text-sm font-medium text-coffee-brown mb-2">
@@ -159,8 +283,17 @@ const Contacto = () => {
                                                         name="user_name"
                                                         type="text"
                                                         placeholder="Tu nombre completo"
+                                                        value={formData.user_name}
+                                                        onChange={handleInputChange}
+                                                        className={errors.user_name ? 'border-red-500' : ''}
                                                         required
                                                     />
+                                                    {errors.user_name && (
+                                                        <div className="flex items-center mt-1 text-red-500 text-sm">
+                                                            <AlertCircle className="w-3 h-3 mr-1" />
+                                                            {errors.user_name}
+                                                        </div>
+                                                    )}
                                                 </div>
                                                 <div>
                                                     <label htmlFor="user_email" className="block text-sm font-medium text-coffee-brown mb-2">
@@ -171,8 +304,17 @@ const Contacto = () => {
                                                         name="user_email"
                                                         type="email"
                                                         placeholder="tu@email.com"
+                                                        value={formData.user_email}
+                                                        onChange={handleInputChange}
+                                                        className={errors.user_email ? 'border-red-500' : ''}
                                                         required
                                                     />
+                                                    {errors.user_email && (
+                                                        <div className="flex items-center mt-1 text-red-500 text-sm">
+                                                            <AlertCircle className="w-3 h-3 mr-1" />
+                                                            {errors.user_email}
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
 
@@ -186,7 +328,16 @@ const Contacto = () => {
                                                         name="user_phone"
                                                         type="tel"
                                                         placeholder="+57 300 123 4567"
+                                                        value={formData.user_phone}
+                                                        onChange={handleInputChange}
+                                                        className={errors.user_phone ? 'border-red-500' : ''}
                                                     />
+                                                    {errors.user_phone && (
+                                                        <div className="flex items-center mt-1 text-red-500 text-sm">
+                                                            <AlertCircle className="w-3 h-3 mr-1" />
+                                                            {errors.user_phone}
+                                                        </div>
+                                                    )}
                                                 </div>
                                                 <div>
                                                     <label htmlFor="user_company" className="block text-sm font-medium text-coffee-brown mb-2">
@@ -197,7 +348,16 @@ const Contacto = () => {
                                                         name="user_company"
                                                         type="text"
                                                         placeholder="Nombre de tu empresa"
+                                                        value={formData.user_company}
+                                                        onChange={handleInputChange}
+                                                        className={errors.user_company ? 'border-red-500' : ''}
                                                     />
+                                                    {errors.user_company && (
+                                                        <div className="flex items-center mt-1 text-red-500 text-sm">
+                                                            <AlertCircle className="w-3 h-3 mr-1" />
+                                                            {errors.user_company}
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
 
@@ -210,8 +370,17 @@ const Contacto = () => {
                                                     name="subject"
                                                     type="text"
                                                     placeholder="Motivo de tu consulta"
+                                                    value={formData.subject}
+                                                    onChange={handleInputChange}
+                                                    className={errors.subject ? 'border-red-500' : ''}
                                                     required
                                                 />
+                                                {errors.subject && (
+                                                    <div className="flex items-center mt-1 text-red-500 text-sm">
+                                                        <AlertCircle className="w-3 h-3 mr-1" />
+                                                        {errors.subject}
+                                                    </div>
+                                                )}
                                             </div>
 
                                             <div>
@@ -222,18 +391,26 @@ const Contacto = () => {
                                                     id="message"
                                                     name="message"
                                                     placeholder="Cuéntanos cómo podemos ayudarte..."
-                                                    className="min-h-[120px]"
+                                                    className={`min-h-[120px] ${errors.message ? 'border-red-500' : ''}`}
+                                                    value={formData.message}
+                                                    onChange={handleInputChange}
                                                     required
                                                 />
+                                                {errors.message && (
+                                                    <div className="flex items-center mt-1 text-red-500 text-sm">
+                                                        <AlertCircle className="w-3 h-3 mr-1" />
+                                                        {errors.message}
+                                                    </div>
+                                                )}
                                             </div>
 
                                             <Button
                                                 type="submit"
                                                 size="lg"
                                                 className="w-full bg-coffee-orange hover:bg-coffee-orange/90"
-                                                disabled={isSubmitting}
+                                                disabled={isSubmitting || Object.keys(errors).length > 0}
                                             >
-                                                {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
+                                                {isSubmitting ? 'Redirigiendo a WhatsApp...' : 'Enviar por WhatsApp'}
                                             </Button>
                                         </form>
                                     )}

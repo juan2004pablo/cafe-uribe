@@ -193,7 +193,7 @@ ${formData.message}`;
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{
-                        backgroundImage: "url('/images/producto/punto_de_venta_hero.png')",
+                        backgroundImage: "url('/images/heroSection/punto_de_venta_hero.webp')",
                         filter: "brightness(0.5)"
                     }}
                 />

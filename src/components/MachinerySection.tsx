@@ -38,7 +38,7 @@ const MachinerySection = () => {
             description: "Sistema de secado sostenible que combina energía solar y biomasa de cáscara de café como combustible. Permite un secado controlado y uniforme que preserva las características organolépticas del grano mientras mantiene un proceso respetuoso con el medio ambiente.",
             process: "Secado sostenible",
             capacity: "800kg/día",
-            image: "/images/maquinaria/secadores_solares_silo.png",
+            image: "/images/maquinaria/secadores_solares_silo.webp",
             icon: <Sun className="w-8 h-8" />,
             color: "from-yellow-500/20 to-orange-500/20",
         },

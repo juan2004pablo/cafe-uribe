@@ -206,7 +206,7 @@ const B2BSection = () => {
                 className="relative"
               >
                 <img
-                  src="/images/producto/tasa_cafe_al_aire.png"
+                  src="/images/producto/tasa_cafe_al_aire.webp"
                   alt="Café para negocios"
                   className="w-full h-80 lg:h-96 object-cover rounded-2xl shadow-xl"
                 />

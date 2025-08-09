@@ -140,35 +140,35 @@ const Nosotros = () => {
                                     title: "Herencia de generación en generación",
                                     text: "La segunda generación toma las riendas con amor por la tradición.",
                                     quote: "El café siguió en manos de la familia, con nuevas ideas pero mismas raíces.",
-                                    image: "/images/timeline/1990.jpeg"
+                                    image: "/images/timeline/1990.webp"
                                 },
                                 {
                                     year: "2021",
                                     title: "Construcción de planta de beneficio propia",
                                     text: "Inauguración de la planta de beneficio húmedo y secado con cáscara.",
                                     quote: "Desde el grano, todo en casa. Nace la trazabilidad y calidad controlada 100 % por nosotros.",
-                                    image: "/images/timeline/2021.jpeg"
+                                    image: "/images/timeline/2021.webp"
                                 },
                                 {
                                     year: "2023",
                                     title: "Nacimiento de la marca Café Uribe",
                                     text: "Surge la marca que conecta el origen con el consumidor final.",
                                     quote: "Café Uribe se convierte en símbolo de identidad familiar, sabor local y visión global.",
-                                    image: "/images/timeline/2023.jpeg"
+                                    image: "/images/timeline/2023.webp"
                                 },
                                 {
                                     year: "2024",
                                     title: "Nace la tienda Café Uribe",
                                     text: "Se abre el primer punto de venta en Villa del Rosario.",
                                     quote: "Del cafetal a la taza, directo al corazón de quienes nos visitan.",
-                                    image: "/images/timeline/2024.jpeg"
+                                    image: "/images/timeline/2024.webp"
                                 },
                                 {
                                     year: "2025",
                                     title: "Primeros microlotes diferenciados exportados",
                                     text: "Microlotes por altitud: lavado, honey y natural.",
                                     quote: "No solo vendemos café, exportamos identidad, origen y orgullo campesino.",
-                                    image: "/images/timeline/2025.jpeg"
+                                    image: "/images/timeline/2025.webp"
                                 }
                             ].map((event, index) => (
                                 <div

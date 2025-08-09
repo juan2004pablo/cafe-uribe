@@ -58,7 +58,7 @@ const Variedades = () => {
             description: "Alta resistencia a la roya, buen rendimiento y calidad en taza.",
             method: "Buen balance, acidez media, cuerpo medio",
             time: "Arábica híbrido",
-            image: "/images/variedades/castillo.jpeg",
+            image: "/images/variedades/castillo.webp",
             icon: <Coffee className="w-6 h-6" />
         },
         {
@@ -66,7 +66,7 @@ const Variedades = () => {
             description: "Excelente uniformidad genética y buena adaptación a altitudes",
             method: "Dulce, acidez alta, cuerpo balanceado",
             time: "Arábica híbrido",
-            image: "/images/variedades/cenicafe1.png",
+            image: "/images/variedades/cenicafe1.webp",
             icon: <Droplets className="w-6 h-6" />
         },
         {
@@ -74,7 +74,7 @@ const Variedades = () => {
             description: "Más resistente a enfermedades y mejor calidad en taza que Castillo.",
             method: "Dulce, floral, cuerpo balanceado",
             time: "Arábica híbrido",
-            image: "/images/variedades/tabi.jpeg",
+            image: "/images/variedades/tabi.webp",
             icon: <Thermometer className="w-6 h-6" />
         },
         {
@@ -82,7 +82,7 @@ const Variedades = () => {
             description: "Muy apreciada por su calidad excepcional en taza.",
             method: "Florales, cítricas, jazmín, frutas tropicales",
             time: "Arábica pura",
-            image: "/images/variedades/geisha.jpg",
+            image: "/images/variedades/geisha.webp",
             icon: <Coffee className="w-6 h-6" />
         }
     ];

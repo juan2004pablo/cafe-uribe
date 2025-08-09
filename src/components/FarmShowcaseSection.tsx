@@ -63,7 +63,7 @@ const FarmShowcaseSection = () => {
       type: "image",
       title: "Secado en Pergamino",
       desc: "Etapa crucial para la calidad del grano",
-      url: "/images/galeria/secado_del_cafe_pergamino.jpeg",
+      url: "/images/galeria/secado_del_cafe_pergamino.webp",
       span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
     },
     {
@@ -87,7 +87,7 @@ const FarmShowcaseSection = () => {
       type: "image",
       title: "Amor por el Café",
       desc: "El sabor que une generaciones",
-      url: "/images/galeria/nino_tomando_cafe.jpeg",
+      url: "/images/galeria/nino_tomando_cafe.webp",
       span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
     },
     {
@@ -111,7 +111,7 @@ const FarmShowcaseSection = () => {
       type: "image",
       title: "Empaque Premium",
       desc: "Presentación elegante y profesional",
-      url: "/images/galeria/empaque_premium_cafe_uribe.png",
+      url: "/images/galeria/empaque_premium_cafe_uribe.webp",
       span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
     },
     {
@@ -119,7 +119,7 @@ const FarmShowcaseSection = () => {
       type: "image",
       title: "Tienda Propia",
       desc: "Nuestro punto de venta exclusivo",
-      url: "/images/galeria/punto_de_venta_cafe_uribe.png",
+      url: "/images/galeria/punto_de_venta_cafe_uribe.webp",
       span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
     },
     {
@@ -127,7 +127,7 @@ const FarmShowcaseSection = () => {
       type: "image",
       title: "Secado de Cereza",
       desc: "Sol y paciencia para un grano perfecto",
-      url: "/images/galeria/cafe_cereza_secando.jpeg",
+      url: "/images/galeria/cafe_cereza_secando.webp",
       span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-2",
     },
     {
@@ -135,7 +135,7 @@ const FarmShowcaseSection = () => {
       type: "image",
       title: "Plántulas de Café",
       desc: "Inicio del viaje del grano perfecto",
-      url: "/images/galeria/plantas_de_cafe.jpeg",
+      url: "/images/galeria/plantas_de_cafe.webp",
       span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
     },
   ];

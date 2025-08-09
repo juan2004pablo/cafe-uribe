@@ -14,7 +14,7 @@ const PhysicalStoreSection = () => {
         {/* Imagen de fondo */}
         <div
           className="bg-cover bg-center min-h-[600px] w-full"
-          style={{ backgroundImage: "url('/images/punto_venta_fisico_frontal.png')" }}
+          style={{ backgroundImage: "url('/images/punto_venta_fisico_frontal.webp')" }}
         />
 
         {/* Card flotante */}

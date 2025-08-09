@@ -25,7 +25,6 @@ const Contacto = () => {
         user_email: '',
         user_phone: '',
         user_company: '',
-        subject: '',
         message: ''
     });
 
@@ -77,20 +76,6 @@ const Contacto = () => {
                 }
                 break;
 
-            case 'subject':
-                if (!value.trim()) {
-                    newErrors[name] = 'El asunto es requerido';
-                } else if (value.length < 5) {
-                    newErrors[name] = 'El asunto debe tener al menos 5 caracteres';
-                } else if (value.length > 100) {
-                    newErrors[name] = 'El asunto no puede exceder 100 caracteres';
-                } else if (/^\d+$/.test(value)) {
-                    newErrors[name] = 'El asunto no puede ser solo números';
-                } else {
-                    delete newErrors[name];
-                }
-                break;
-
             case 'message':
                 if (!value.trim()) {
                     newErrors[name] = 'El mensaje es requerido';
@@ -123,8 +108,8 @@ const Contacto = () => {
         let isValid = true;
 
         // Validar todos los campos requeridos
-        const requiredFields = ['user_name', 'user_email', 'subject', 'message'];
-        const allFields = ['user_name', 'user_email', 'user_phone', 'user_company', 'subject', 'message'];
+        const requiredFields = ['user_name', 'user_email', 'message'];
+        const allFields = ['user_name', 'user_email', 'user_phone', 'user_company', 'message'];
         
         allFields.forEach(field => {
             if (!validateField(field, formData[field as keyof typeof formData])) {
@@ -146,8 +131,6 @@ const Contacto = () => {
 • Teléfono: ${formData.user_phone || 'No proporcionado'}
 • Empresa: ${formData.user_company || 'No proporcionada'}
 
-*Asunto:* ${formData.subject}
-
 *Mensaje:*
 ${formData.message}`;
 
@@ -168,7 +151,6 @@ ${formData.message}`;
                     user_email: '',
                     user_phone: '',
                     user_company: '',
-                    subject: '',
                     message: ''
                 });
             }, 3000);
@@ -359,28 +341,6 @@ ${formData.message}`;
                                                         </div>
                                                     )}
                                                 </div>
-                                            </div>
-
-                                            <div>
-                                                <label htmlFor="subject" className="block text-sm font-medium text-coffee-brown mb-2">
-                                                    Asunto
-                                                </label>
-                                                <Input
-                                                    id="subject"
-                                                    name="subject"
-                                                    type="text"
-                                                    placeholder="Motivo de tu consulta"
-                                                    value={formData.subject}
-                                                    onChange={handleInputChange}
-                                                    className={errors.subject ? 'border-red-500' : ''}
-                                                    required
-                                                />
-                                                {errors.subject && (
-                                                    <div className="flex items-center mt-1 text-red-500 text-sm">
-                                                        <AlertCircle className="w-3 h-3 mr-1" />
-                                                        {errors.subject}
-                                                    </div>
-                                                )}
                                             </div>
 
                                             <div>

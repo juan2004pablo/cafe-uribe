@@ -1,4 +1,3 @@
-
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -257,7 +256,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                     stiffness: 400,
                     damping: 30
                 }}
-                className="fixed inset-0 w-full h-full min-h-screen backdrop-blur-lg bg-black/70 z-[9999] 
+                className="fixed inset-0 w-full backdrop-blur-lg bg-black/70 z-[9999] 
                           overscroll-none touch-none"
                 style={{
                     position: 'fixed',
@@ -265,8 +264,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    height: '100vh',
-                    height: '100dvh', // Dynamic viewport height for mobile
+                    height: '100dvh',
                     width: '100vw',
                     overflow: 'hidden'
                 }}
@@ -277,13 +275,13 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                 }}
             >
                 {/* Main Content */}
-                <div className="h-full w-full flex flex-col" style={{ height: '100vh', height: '100dvh' }}>
+                <div className="h-full w-full flex flex-col pt-16 sm:pt-20" style={{ height: '100dvh' }}>
                     <div className="flex-1 p-2 sm:p-4 md:p-6 lg:p-8 flex items-center justify-center overflow-hidden">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={selectedItem.id}
-                                className="relative w-full h-full max-w-[95%] max-h-[85%] sm:max-w-[90%] sm:max-h-[80%] 
-                                         md:max-w-4xl md:aspect-[16/9] md:max-h-[80vh]
+                                className="relative w-full h-full max-w-[95%] max-h-[75%] sm:max-w-[90%] sm:max-h-[70%] 
+                                         md:max-w-4xl md:aspect-[16/9] md:max-h-[70vh]
                                          rounded-lg overflow-hidden shadow-2xl flex items-center justify-center"
                                 initial={{ y: 20, scale: 0.97 }}
                                 animate={{

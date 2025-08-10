@@ -131,7 +131,6 @@ const Contacto = () => {
 • Teléfono: ${formData.user_phone || 'No proporcionado'}
 • Empresa: ${formData.user_company || 'No proporcionada'}
 
-*Mensaje:*
 ${formData.message}`;
 
         const encodedMessage = encodeURIComponent(message);

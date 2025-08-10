@@ -1,4 +1,6 @@
-
+// =========================
+// ORGANIZATION
+// =========================
 export const getOrganizationStructuredData = () => ({
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -12,7 +14,7 @@ export const getOrganizationStructuredData = () => ({
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Cr 11 6-88",
-    "addressLocality": "Villa del Rosario",
+    "addressLocality": "Ragonvalia",
     "addressRegion": "Norte de Santander",
     "addressCountry": "CO"
   },
@@ -21,12 +23,22 @@ export const getOrganizationStructuredData = () => ({
     "latitude": "7.8358",
     "longitude": "-72.4622"
   },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+57 320 373 7502",
+    "contactType": "customer service",
+    "areaServed": "CO",
+    "availableLanguage": ["es", "en"]
+  },
   "sameAs": [
     "https://www.facebook.com/share/17fEZXoBLy/?mibextid=wwXIfr",
     "https://www.instagram.com/cafeuribe?igsh=MTNpbW9sZ3c0ODRjNQ=="
   ],
-  "makesOffer": {
+  "offers": {
     "@type": "Offer",
+    "priceCurrency": "COP",
+    "price": "25000",
+    "availability": "https://schema.org/InStock",
     "itemOffered": {
       "@type": "Product",
       "name": "Café Colombiano de Especialidad",
@@ -34,12 +46,17 @@ export const getOrganizationStructuredData = () => ({
     }
   },
   "foundingDate": "1990",
-  "founders": {
-    "@type": "Person",
-    "name": "Familia Uribe"
-  }
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "Álvaro Javier Uribe Riago"
+    }
+  ]
 });
 
+// =========================
+// PRODUCT
+// =========================
 export const getProductStructuredData = (product: {
   name: string;
   description: string;
@@ -77,11 +94,15 @@ export const getProductStructuredData = (product: {
       "@type": "Offer",
       "price": product.price,
       "priceCurrency": "COP",
-      "availability": "https://schema.org/InStock"
+      "availability": "https://schema.org/InStock",
+      "url": "https://cafeuribe.com"
     }
   })
 });
 
+// =========================
+// FAQ
+// =========================
 export const getFAQStructuredData = (faqs: Array<{question: string, answer: string}>) => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -95,6 +116,9 @@ export const getFAQStructuredData = (faqs: Array<{question: string, answer: stri
   }))
 });
 
+// =========================
+// BREADCRUMB
+// =========================
 export const getBreadcrumbStructuredData = (breadcrumbs: Array<{name: string, url: string}>) => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
